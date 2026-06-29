@@ -1,0 +1,61 @@
+{
+  "description": "Receitas padrão do MoonRock Saboaria — do iniciante ao avançado",
+  "recipes": [
+    {
+      "id": "base-glicerina-mel",
+      "name": "Sabonete de Base Glicerinada com Mel",
+      "level": "mix-pronto",
+      "difficulty": "iniciante",
+      "yield": "200g (4 sabonetes de 50g)",
+      "ingredients": [
+        { "oilId": "base-glicerinada", "name": "Base Glicerinada Transparente", "percentage": 94, "grams": 188 },
+        { "oilId": "mel", "name": "Mel", "percentage": 3, "grams": 6 },
+        { "oilId": "essencia", "name": "Essência de Mel ou Laranja", "percentage": 2, "grams": 4 },
+        { "oilId": "corante", "name": "Corante Amarelo/Âmbar (q.b.)", "percentage": 1, "grams": 2 }
+      ],
+      "steps": [
+        "Corte a base glicerinada em cubos pequenos",
+        "Derreta em banho-maria ou micro-ondas (30s, mexa, repita até derreter completamente)",
+        "Adicione o mel e misture suavemente",
+        "Adicione a essência e o corante",
+        "Despeje nas formas e aguarde 1-2h",
+        "Desenforme e embale em filme PVC",
+        "Cura: 24h"
+      ],
+      "safety": [
+        "Use utensílios dedicados (não reutilize para comida)",
+        "A base derretida está quente — cuidado ao manusear"
+      ]
+    },
+    {
+      "id": "sabao-oleo-usado",
+      "name": "Sabão Caseiro de Óleo Usado",
+      "level": "oleo-usado",
+      "difficulty": "iniciante",
+      "yield": "1kg",
+      "ingredients": [
+        { "oilId": "oleo-usado", "name": "Óleo de Cozinha Usado (filtrado)", "percentage": 72, "grams": 720 },
+        { "oilId": "coco", "name": "Óleo de Coco (opcional, melhora espuma)", "percentage": 8, "grams": 80 },
+        { "oilId": "soda", "name": "Soda Cáustica (NaOH)", "percentage": 0, "grams": 109 },
+        { "oilId": "agua", "name": "Água Filtrada (ou leite)", "percentage": 0, "grams": 273 }
+      ],
+      "notes": "Soda calculada para 800g de óleos com SAP médio 0.136 e superfat 5%: 800*0.136*0.95=103g + 6g extra pelo coco. Água a 35% do peso dos óleos."
+    },
+    {
+      "id": "cp-clasico-azeite-coco",
+      "name": "Cold Process Clássico — Azeite & Coco",
+      "level": "cold-process",
+      "difficulty": "intermediario",
+      "yield": "500g de óleos (~700g de sabão)",
+      "ingredients": [
+        { "oilId": "azeite", "name": "Azeite de Oliva", "percentage": 70, "grams": 350 },
+        { "oilId": "coco", "name": "Óleo de Coco", "percentage": 20, "grams": 100 },
+        { "oilId": "mamona", "name": "Óleo de Mamona", "percentage": 10, "grams": 50 },
+        { "oilId": "soda", "name": "Soda Cáustica (NaOH)", "percentage": 0, "grams": 0 },
+        { "oilId": "agua", "name": "Água Filtrada", "percentage": 0, "grams": 0 }
+      ],
+      "notes": "Esta receita usa a calculadora — os valores de soda e água são calculados dinamicamente com base no superfat e concentração escolhidos.",
+      "usingCalculator": true
+    }
+  ]
+}

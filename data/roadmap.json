@@ -1,0 +1,94 @@
+{
+  "description": "Roadmap de aprendizado em saboaria — do básico ao avançado",
+  "levels": [
+    {
+      "id": "seguranca",
+      "title": "Nível 0: Segurança",
+      "order": 0,
+      "color": "red",
+      "icon": "shield",
+      "essential": true,
+      "topics": [
+        "EPIs obrigatórios: óculos de proteção, luvas de nitrila, avental, máscara",
+        "Ventilação adequada do ambiente",
+        "Regra de ouro: SEMPRE soda na água, NUNCA água na soda",
+        "Utensílios separados e exclusivos para saboaria (nunca reutilizar para comida)",
+        "Vinagre ao lado (neutraliza soda em caso de acidente)",
+        "Armazenamento seguro da soda cáustica (longe de crianças e animais)",
+        "Primeiros socorros para queimaduras químicas"
+      ]
+    },
+    {
+      "id": "mix-pronto",
+      "title": "Nível 1: Mix Pronto (Base Glicerinada)",
+      "order": 1,
+      "color": "green",
+      "icon": "cube",
+      "description": "A forma mais segura de começar. Sem soda cáustica, sem perigo. Ideal para ganhar confiança.",
+      "recipes": ["base-glicerina-mel"],
+      "topics": [
+        "Derreter a base em banho-maria ou micro-ondas (30s em 30s)",
+        "Adicionar corante (cosmético, não corante alimentício)",
+        "Adicionar essência ou óleo essencial (1-3% do peso)",
+        "Despejar na forma e aguardar endurecer (1-2h)",
+        "Desenformar e embalar em filme PVC",
+        "Tempo de cura: 24h (já pode usar)"
+      ]
+    },
+    {
+      "id": "oleo-usado",
+      "title": "Nível 2: Sabão de Óleo Usado",
+      "order": 2,
+      "color": "yellow",
+      "icon": "recycle",
+      "description": "Reaproveitamento de óleo de cozinha. Primeiro contato com soda cáustica. Sabão de limpeza, não cosmético.",
+      "recipes": ["sabao-oleo-usado"],
+      "topics": [
+        "Filtrar o óleo usado (peneira + filtro de papel)",
+        "Aquecer levemente para eliminar odor (não ferver)",
+        "Primeiro contato com soda cáustica — USAR EPI COMPLETO",
+        "Cálculo de soda para óleo usado (valor médio SAP 0.136)",
+        "Ponto de fio (consistência correta)",
+        "Despejar na forma e isolar (cobertor) — reação exotérmica",
+        "Cortar após 24-48h",
+        "Cura: 30 dias (sabão de limpeza)"
+      ]
+    },
+    {
+      "id": "cold-process",
+      "title": "Nível 3: Cold Process Básico",
+      "order": 3,
+      "color": "blue",
+      "icon": "thermometer",
+      "description": "O método clássico da saboaria artesanal. Controle total sobre ingredientes e propriedades.",
+      "recipes": ["cp-clasico-azeite-coco"],
+      "topics": [
+        "Entendendo superfat (gordura excedente para hidratar a pele)",
+        "Cálculo preciso: SAP values + superfat + água",
+        "Temperatura dos óleos e da lixívia (35-45°C)",
+        "Ponto de traço (trace) — identificar a consistência ideal",
+        "Adição de corantes, essências e aditivos no traço",
+        "Despejo na forma e isolamento térmico (24h)",
+        "Desenformar e cortar",
+        "Cura completa: 4-6 semanas"
+      ]
+    },
+    {
+      "id": "receita-autoral",
+      "title": "Nível 4: Receita Autoral",
+      "order": 4,
+      "color": "purple",
+      "icon": "sparkles",
+      "description": "Criar suas próprias receitas combinando óleos para propriedades específicas.",
+      "topics": [
+        "Calculando o perfil da receita (dureza, limpeza, condicionamento, espuma)",
+        "Balanceamento de óleos duros (coco, palma, palmiste) e macios (azeite, soja)",
+        "Superfat intencional de 5-15% dependendo do uso",
+        "Concentração de lixívia (água:soda) — 2:1 a 2.5:1",
+        "Teste de receita: lote pequeno de 300-500g",
+        "Custo por barra",
+        "Documentação e ajustes"
+      ]
+    }
+  ]
+}
