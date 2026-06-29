@@ -102,3 +102,102 @@ Transformar o roadmap atual (5 níveis rasos) em **páginas de estudo detalhadas
 3. Populary conteúdo de `curriculo.md` nos níveis
 4. Sistema de progresso (checklist por nível)
 5. Vincular calculadora e receitas nos níveis
+
+---
+
+## Especificação: Roadmap Interativo (Níveis de Estudo)
+
+### Contexto
+Ana é química pela UFMG. O roadmap atual em `data/roadmap.json` (5 níveis genéricos) é superficial demais. Precisamos de **páginas de estudo completas** com profundidade técnica real.
+
+### Fonte de dados
+`data/curriculo.md` contém o conteúdo completo de 8 níveis, cada um com:
+- **Fundamentos** — química aplicada (cinética, diagramas de fase, mecanismos)
+- **Matérias-primas** — detalhes pertinentes ao nível com viés químico
+- **Processos** — passo a passo com temperaturas, tempos, reações
+- **Canais YouTube** — referências brasileiras e internacionais
+- **Referências** — artigos científicos (JAOCS, Langmuir, Embrapa), livros, normas ABNT
+- **Critério de conclusão** — prático (produziu + aprovou no teste)
+
+### Arquitetura Sugerida
+
+#### Dados
+Converter `data/curriculo.md` para `data/curriculo.json` (estruturado) com:
+```json
+{
+  "levels": [
+    {
+      "id": "base-glicerinada",
+      "title": "Base Glicerinada (Melt & Pour)",
+      "order": 1,
+      "color": "green",
+      "icon": "cube",
+      "sections": [
+        {
+          "id": "fundamentos",
+          "title": "Fundamentos",
+          "content": "...",
+          "chemicalFormulas": ["..."],
+          "keyConcepts": ["Ponto de fusão", "Recristalização"]
+        },
+        {
+          "id": "materias-primas",
+          "title": "Matérias-Primas",
+          "content": "...",
+          "items": [
+            { "name": "Base Transparente", "details": "...", "chemistry": "..." }
+          ]
+        },
+        {
+          "id": "processos",
+          "title": "Processos",
+          "steps": ["Passo 1...", "Passo 2..."]
+        },
+        {
+          "id": "referencias",
+          "title": "Referências",
+          "youtube": ["Canal X", "Canal Y"],
+          "papers": ["Título - Autor - Ano"],
+          "books": ["Título - Autor"]
+        }
+      ],
+      "completionCriteria": "Produzir 3 barras sem bolhas...",
+      "linkedRecipes": ["base-glicerina-mel"],
+      "linkedCalculator": true
+    }
+  ]
+}
+```
+
+#### Componentes
+- **LevelCard** — card na página do roadmap que leva pro detalhe
+- **LevelPage** — `/roadmap/[id]` com seções expansíveis (accordion)
+- **LevelProgress** — checklist salvo em localStorage
+- **ScientificFormula** — componente pra renderizar fórmulas químicas (LaTeX ou Unicode)
+- **ReferenceLink** — link externo com ícone (YouTube, PDF, artigo)
+
+#### Páginas
+- `/roadmap` — mantém a visão geral com cards melhores
+- `/roadmap/[id]` — página de detalhe com seções
+
+### Fluxo do Usuário
+1. Abre `/roadmap` → vê os 8 níveis como cards
+2. Clica em um nível → vai pra `/roadmap/base-glicerinada`
+3. Vê as seções: Fundamentos → MPs → Processos → Referências
+4. Marca checklist de conclusão (salva no localStorage)
+5. Avança para o próximo nível
+
+### Implementação Priorizada
+
+**Fase 1 (MVP do currículo):**
+1. Estruturar `curriculo.json` a partir do `curriculo.md`
+2. Criar `app/roadmap/[id]/page.tsx` com accordion sections
+3. Melhorar `/roadmap` com cards linkando pros detalhes
+4. Adicionar `levelProgress` no localStorage
+
+**Fase 2 (Rico):**
+5. Componente `ScientificFormula` para renderizar equações
+6. Vídeos embutidos do YouTube
+7. PDF/print de cada nível
+8. Sistema de "nível concluído → desbloqueia próximo"
+
