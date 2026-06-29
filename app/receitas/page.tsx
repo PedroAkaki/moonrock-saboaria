@@ -2,9 +2,9 @@ import Link from "next/link";
 import recipesData from "@/data/recipes.json";
 
 const difficultyColors: Record<string, string> = {
-  iniciante: "bg-green-100 text-green-800",
-  intermediario: "bg-amber-100 text-amber-800",
-  avancado: "bg-red-100 text-red-800",
+  iniciante: "bg-green-900/50 text-green-300 border border-green-700",
+  intermediario: "bg-amber-900/50 text-amber-300 border border-amber-700",
+  avancado: "bg-red-900/50 text-red-300 border border-red-700",
 };
 
 const levelIcons: Record<string, string> = {
@@ -18,14 +18,14 @@ export default function ReceitasPage() {
     <div className="max-w-4xl mx-auto px-4 py-8 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-800">📖 Receitas</h1>
-          <p className="text-gray-500 mt-1">
+          <h1 className="text-3xl font-bold text-white">📖 Receitas</h1>
+          <p className="text-moon-400 mt-1">
             Receitas testadas, do básico ao cold process
           </p>
         </div>
         <Link
           href="/calculadora"
-          className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+          className="bg-white hover:bg-moon-200 text-moon-900 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
         >
           → Calculadora
         </Link>
@@ -35,22 +35,22 @@ export default function ReceitasPage() {
         {recipesData.recipes.map((recipe) => (
           <div
             key={recipe.id}
-            className="bg-white rounded-xl border border-gray-200 p-6 space-y-4"
+            className="bg-moon-700/50 backdrop-blur rounded-xl border border-moon-600 p-6 space-y-4"
           >
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-3">
                 <span className="text-2xl">{levelIcons[recipe.level] ?? "📄"}</span>
                 <div>
-                  <h2 className="text-xl font-semibold text-gray-800">{recipe.name}</h2>
+                  <h2 className="text-xl font-semibold text-white">{recipe.name}</h2>
                   <div className="flex items-center gap-2 mt-1">
                     <span
                       className={`text-xs font-medium px-2 py-0.5 rounded-full ${
-                        difficultyColors[recipe.difficulty] ?? "bg-gray-100 text-gray-600"
+                        difficultyColors[recipe.difficulty] ?? "bg-moon-800 text-moon-400"
                       }`}
                     >
                       {recipe.difficulty}
                     </span>
-                    <span className="text-xs text-gray-400">{recipe.yield}</span>
+                    <span className="text-xs text-moon-500">{recipe.yield}</span>
                   </div>
                 </div>
               </div>
@@ -58,18 +58,16 @@ export default function ReceitasPage() {
 
             {/* Ingredients */}
             <div>
-              <h3 className="text-sm font-semibold text-gray-600 uppercase mb-2">
-                Ingredientes
-              </h3>
+              <h3 className="text-sm font-semibold text-moon-400 uppercase mb-2">Ingredientes</h3>
               <div className="grid grid-cols-2 gap-2 text-sm">
                 {recipe.ingredients.map((ing, i) => (
-                  <div key={i} className="flex justify-between border-b border-gray-100 py-1">
-                    <span className="text-gray-700">{ing.name}</span>
+                  <div key={i} className="flex justify-between border-b border-moon-700 py-1">
+                    <span className="text-moon-200">{ing.name}</span>
                     {ing.grams > 0 && (
-                      <span className="font-mono text-gray-500">{ing.grams}g</span>
+                      <span className="font-mono text-moon-400">{ing.grams}g</span>
                     )}
                     {ing.percentage > 0 && (
-                      <span className="text-gray-400">{ing.percentage}%</span>
+                      <span className="text-moon-500">{ing.percentage}%</span>
                     )}
                   </div>
                 ))}
@@ -79,10 +77,8 @@ export default function ReceitasPage() {
             {/* Steps */}
             {recipe.steps && (
               <div>
-                <h3 className="text-sm font-semibold text-gray-600 uppercase mb-2">
-                  Modo de Fazer
-                </h3>
-                <ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
+                <h3 className="text-sm font-semibold text-moon-400 uppercase mb-2">Modo de Fazer</h3>
+                <ol className="list-decimal list-inside space-y-1 text-sm text-moon-300">
                   {recipe.steps.map((step, i) => (
                     <li key={i}>{step}</li>
                   ))}
@@ -91,18 +87,18 @@ export default function ReceitasPage() {
             )}
 
             {recipe.safety && recipe.safety.length > 0 && (
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-amber-800">
+              <div className="bg-amber-900/30 border border-amber-700 rounded-lg p-3 text-sm text-amber-300">
                 <span className="font-semibold">⚠️ </span>
                 {recipe.safety.join(" | ")}
               </div>
             )}
 
             {recipe.usingCalculator && (
-              <div className="bg-purple-50 border border-purple-200 rounded-lg p-3 text-sm text-purple-700">
+              <div className="bg-moon-800 border border-moon-500 rounded-lg p-3 text-sm text-moon-300">
                 Esta receita usa a calculadora — ajuste superfat e tamanho da forma.
                 <Link
                   href="/calculadora"
-                  className="block mt-1 font-semibold underline"
+                  className="block mt-1 font-semibold text-white underline"
                 >
                   Abrir Calculadora →
                 </Link>
@@ -110,7 +106,7 @@ export default function ReceitasPage() {
             )}
 
             {recipe.notes && (
-              <p className="text-sm text-gray-500 italic">{recipe.notes}</p>
+              <p className="text-sm text-moon-500 italic">{recipe.notes}</p>
             )}
           </div>
         ))}

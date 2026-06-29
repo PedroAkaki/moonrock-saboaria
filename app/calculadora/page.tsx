@@ -110,8 +110,8 @@ export default function CalculadoraPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-gray-800">🧮 Calculadora de Saponificação</h1>
-        <p className="text-gray-500 mt-1">
+        <h1 className="text-3xl font-bold text-white">🧮 Calculadora de Saponificação</h1>
+        <p className="text-moon-400 mt-1">
           Calcule a quantidade exata de soda cáustica e água para sua receita
         </p>
       </div>
@@ -120,9 +120,9 @@ export default function CalculadoraPage() {
         {/* Form */}
         <div className="space-y-6">
           {/* Mold scaler by dimensions */}
-          <div className="bg-white rounded-xl border border-gray-200 p-4 space-y-3">
-            <h2 className="font-semibold text-gray-700">📐 Tamanho da Forma</h2>
-            <p className="text-xs text-gray-400">Informe as dimensões internas da forma em centímetros</p>
+          <div className="bg-moon-700/50 backdrop-blur rounded-xl border border-moon-600 p-4 space-y-3">
+            <h2 className="font-semibold text-moon-100">📐 Tamanho da Forma</h2>
+            <p className="text-xs text-moon-500">Informe as dimensões internas da forma em centímetros</p>
             <div className="grid grid-cols-3 gap-2">
               <div>
                 <label className="text-xs text-gray-500">Comprimento</label>
@@ -187,8 +187,8 @@ export default function CalculadoraPage() {
           </div>
 
           {/* Total weight */}
-          <div className="bg-white rounded-xl border border-gray-200 p-4 space-y-3">
-            <h2 className="font-semibold text-gray-700">Peso Total dos Óleos</h2>
+          <div className="bg-moon-700/50 backdrop-blur rounded-xl border border-moon-600 p-4 space-y-3">
+            <h2 className="font-semibold text-moon-100">Peso Total dos Óleos</h2>
             <div className="flex items-center gap-3">
               <input
                 type="number"
