@@ -1,0 +1,167 @@
+{
+  "app/calculadora/page.tsx": {
+    "mtime": 1782774979.28911,
+    "ast_hash": "6e68fee82dd05b215a1448964c663f18",
+    "semantic_hash": ""
+  },
+  "app/layout.tsx": {
+    "mtime": 1782774694.298565,
+    "ast_hash": "26c9ee91f15f466eae11167ddfcb1ed6",
+    "semantic_hash": ""
+  },
+  "app/oleos/page.tsx": {
+    "mtime": 1782774882.4142842,
+    "ast_hash": "8999e85d242ad68f89c0b10d883de9d6",
+    "semantic_hash": ""
+  },
+  "app/page.tsx": {
+    "mtime": 1782771246.9424767,
+    "ast_hash": "dd1fc44e3b13e91a85e52cbaba56794d",
+    "semantic_hash": ""
+  },
+  "app/receitas/page.tsx": {
+    "mtime": 1782771287.0595248,
+    "ast_hash": "7a50ad3870211ffe8c0e7cade496be4f",
+    "semantic_hash": ""
+  },
+  "app/roadmap/page.tsx": {
+    "mtime": 1782771287.0585225,
+    "ast_hash": "aa004e9857fab75a195f67c7536ac948",
+    "semantic_hash": ""
+  },
+  "components/GlossaryTerm.tsx": {
+    "mtime": 1782774896.8316946,
+    "ast_hash": "54439ce275fd0227c80bce755b327b90",
+    "semantic_hash": ""
+  },
+  "components/SafetyChecklist.tsx": {
+    "mtime": 1782774926.8020627,
+    "ast_hash": "f3038665880ba36a3fd4aa53c5d2eced",
+    "semantic_hash": ""
+  },
+  "data/glossary.json": {
+    "mtime": 1782774844.822828,
+    "ast_hash": "3aae18f2cf64b165ea180c6fc398f3ee",
+    "semantic_hash": ""
+  },
+  "data/oils.json": {
+    "mtime": 1782774343.1510067,
+    "ast_hash": "0447bd544fea9928651872437a55b069",
+    "semantic_hash": ""
+  },
+  "data/recipes.json": {
+    "mtime": 1782771199.5902505,
+    "ast_hash": "b730a965a974a15374e0626703641566",
+    "semantic_hash": ""
+  },
+  "data/roadmap.json": {
+    "mtime": 1782771199.6277132,
+    "ast_hash": "e35dafddf83e881940e110fd3e756b18",
+    "semantic_hash": ""
+  },
+  "eslint.config.mjs": {
+    "mtime": 1782771130.4062421,
+    "ast_hash": "dfa1f5f6a7037bf39dc510f30b180002",
+    "semantic_hash": ""
+  },
+  "lib/soap/calculator.ts": {
+    "mtime": 1782774754.1492074,
+    "ast_hash": "79df6735d26dc30d93144ff1c70a1d7f",
+    "semantic_hash": ""
+  },
+  "lib/soap/oils.ts": {
+    "mtime": 1782774372.1148932,
+    "ast_hash": "752f15b42f023ac16eb0ee2612d294a7",
+    "semantic_hash": ""
+  },
+  "next.config.ts": {
+    "mtime": 1782771130.4969392,
+    "ast_hash": "9b77af189a21a7a64e4bd7a426f64176",
+    "semantic_hash": ""
+  },
+  "package.json": {
+    "mtime": 1782771131.0149727,
+    "ast_hash": "855d61938491283adbca873e5af3f4c0",
+    "semantic_hash": ""
+  },
+  "postcss.config.mjs": {
+    "mtime": 1782771130.426914,
+    "ast_hash": "239f3ebf717465dc636818a1a619398d",
+    "semantic_hash": ""
+  },
+  "public/manifest.json": {
+    "mtime": 1782774713.0433085,
+    "ast_hash": "3a73dc222ddba2d6cc508ea1d90e6f03",
+    "semantic_hash": ""
+  },
+  "public/sw.js": {
+    "mtime": 1782774681.4762719,
+    "ast_hash": "46fd1e7b8ba50aa0d3fec7b3f168a499",
+    "semantic_hash": ""
+  },
+  "src/app/layout.tsx": {
+    "mtime": 1782771130.520722,
+    "ast_hash": "94c34ef68b3949a75807a0211ec2273c",
+    "semantic_hash": ""
+  },
+  "src/app/page.tsx": {
+    "mtime": 1782771131.0139723,
+    "ast_hash": "1e489b26bb597dc97f8d44954dd042da",
+    "semantic_hash": ""
+  },
+  "tsconfig.json": {
+    "mtime": 1782771233.9298604,
+    "ast_hash": "02fc19ad21338c2ab820a70136310db4",
+    "semantic_hash": ""
+  },
+  "AGENTS.md": {
+    "mtime": 1782771157.6069858,
+    "ast_hash": "9e09241799026ac05be315a2f0b50055",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1782771157.6079865,
+    "ast_hash": "5c27369b226fcf2be8a6cfe52224e767",
+    "semantic_hash": ""
+  },
+  "PROJECT_PLAN.md": {
+    "mtime": 1782775957.7905278,
+    "ast_hash": "822f887f448c4341b2ad927ce6572e30",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1782771130.388976,
+    "ast_hash": "f15aaa42d5d299d091b1171097ea56ad",
+    "semantic_hash": ""
+  },
+  "data/deep-research-prompt.md": {
+    "mtime": 1782771933.9356835,
+    "ast_hash": "f4622e5e88c9077e8369064ee048f955",
+    "semantic_hash": ""
+  },
+  "public/file.svg": {
+    "mtime": 1782771130.431922,
+    "ast_hash": "d09f95206c3fa0bb9bd9fefabfd0ea71",
+    "semantic_hash": ""
+  },
+  "public/globe.svg": {
+    "mtime": 1782771130.442777,
+    "ast_hash": "2aaafa6a49b6563925fe440891e32717",
+    "semantic_hash": ""
+  },
+  "public/next.svg": {
+    "mtime": 1782771130.452786,
+    "ast_hash": "8e061864f388b47f33a1c3780831193e",
+    "semantic_hash": ""
+  },
+  "public/vercel.svg": {
+    "mtime": 1782771130.462934,
+    "ast_hash": "c0af2f507b369b085b35ef4bbe3bcf1e",
+    "semantic_hash": ""
+  },
+  "public/window.svg": {
+    "mtime": 1782771130.4719346,
+    "ast_hash": "a2760511c65806022ad20adf74370ff3",
+    "semantic_hash": ""
+  }
+}
