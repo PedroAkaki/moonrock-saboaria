@@ -156,6 +156,48 @@ Fazer um lote de CP (Receita Tríade de Ouro) que passe no zap test, com dureza 
 - Livro: *Liquid Soap Technology* (para entender os limites do CP)
 - "Fatty acid composition of Amazonian oils" — artigos da Embrapa
 
+---
+
+## Apêndice Químico — Fundamentos para Ana (Química UFMG)
+
+### Mecanismo da Saponificação (Hidrólise Alcalina de Ésteres)
+Substituição nucleofílica acílica. Clivagem de triglicerídeos por base forte → sais de ácidos graxos + glicerol.
+
+**Equação Geral:**
+R-COO-CH₂-CH(O-CO-R)-CH₂-O-CO-R + 3NaOH → 3R-COO⁻Na⁺ + HO-CH₂-CH(OH)-CH₂OH
+
+**Passo a passo:**
+1. **Ataque Nucleofílico:** OH⁻ ataca o carbono eletrofílico da carbonila do éster
+2. **Intermediário Tetraédrico:** Intermediário instável com oxigênio negativo
+3. **Eliminação:** Refazimento da dupla ligação, expulsando o alcóxido RO⁻
+4. **Transferência de Próton:** Ácido carboxílico doa próton ao alcóxido → carboxilato + glicerol. Etapa que desloca o equilíbrio para a direita (irreversibilidade).
+
+### Cinética e Interface de Fases
+Saponificação clássica é bifásica (água alcalina + lipídio).
+
+- **O "traço" como emulsificação:** Taxa inicial limitada pela área interfacial. O mixer quebra a fase lipídica em micelas temporárias. Os primeiros sais formados atuam como emulsificantes *in situ*, diminuindo tensão superficial e acelerando a cinética.
+- **Termodinâmica:** Reação fortemente exotérmica (ΔH < 0). Controle de temperatura evita fervura e efeito "vulcão".
+
+### Perfil de Ácidos Graxos e Comportamento Supramolecular
+
+| Tipo | Cadeia | Comportamento |
+|------|--------|---------------|
+| **Láurico/Mirístico** | C₁₂, C₁₄ | Alta solubilidade, baixo Ponto de Krafft, micelização rápida, espuma abundante |
+| **Palmítico/Esteárico** | C₁₆, C₁₈ | Alto ponto de fusão, alto Krafft, dureza estrutural, espuma cremosa |
+| **Insaturados** | C₁₈:1/2/3 | Ligações *cis* impedem empacotamento cristalino → sabão mole, condicionante, vulnerável à oxidação |
+
+### Oxidação Lipídica (DOS)
+Processo radicalar de autoxidação nas insaturações.
+
+1. **Iniciação:** Abstração de H alílico → radical alquila R•
+2. **Propagação:** R• + O₂ → R-OO• (peroxil) → abstrai outro H → hidroperóxido R-OOH + novo R•
+3. **Catálise por Metais:** Fe²⁺, Cu²⁺ aceleram decomposição de hidroperóxidos (Fenton-like)
+4. **Prevenção:** Quelantes (EDTA, citrato de sódio) + antioxidantes (vitamina E, BHT)
+
+### Química de Syndets (Nível 8)
+Sabão tradicional: sal de ácido graxo (pKa ~4.5-5.0) → hidrólise em água → pH 9-10.
+Syndet: tensoativos com grupos isetionato (SCI), sulfato, betaína → ácidos mais fortes → sem hidrólise alcalina → pH 5.0-6.0 compatível com manto ácido da pele.
+
 ### Critério de Conclusão
 Criar uma receita do zero que atinja metas específicas de propriedades (ex: Dureza 3+, Limpeza 3+, Condicionamento 4+) e seja aprovada na calculadora do app.
 
