@@ -47,22 +47,24 @@ Dark theme lunar (preto+branco+hexágonos).
 
 ## Pendências (o que ainda falta)
 
-### 🔥 Fase 1 — App de Estudo (prioridade atual)
-**Estudo Interativo v1** — fortalecer fundamentos com:
-- Quiz de fixação nos níveis 1-3
-- Cards de conceitos (definição + por que importa + erro comum)
-- Revisão rápida (5-8 pontos essenciais)
-- Checklist "Antes de praticar"
+### 🔥 Fase 2 — Ferramenta de Bancada (próxima)
+**Receitas Ligadas aos Módulos v1** — fechar o ciclo: estudar → escolher receita → calcular → praticar.
+
+Detalhes:
+- Adicionar `relatedModuleSlugs` em recipes.json
+- Seção "Receitas para praticar" em /aprendizado/[slug]
+- Separar cosmético vs limpeza nas receitas
+- Badges em /receitas
 
 Depois:
-- Corrigir dark theme dos inputs/selects da calculadora (se ainda houver)
-- Níveis 4 a 8: conteúdo existe em `data/curriculo.md`, falta passar para `learning-modules.json`
-
-### ⚡ Fase 2 — Ferramenta de Bancada
-- Calculadora explicativa (fórmulas + tooltips) — ✅ CONCLUÍDO
-- Receitas ligadas aos módulos de estudo
 - Biblioteca de óleos com função prática + substituições + risco DOS
 - Diário de lote (registro de produção)
+
+### ✅ Fase 1 — App de Estudo (CONCLUÍDO)
+- Estudo Interativo v1 (quiz, cards, revisão, checklist pré-bancada)
+- Calculadora explicativa (breakdown, tooltips, dark theme)
+- Progresso unificado (lib/progress.ts — chave única localStorage)
+- 3 níveis completos com estudo ativo
 
 ### 💤 Fase 3 — Avançado
 - KOH, timer, custo, IFRA, PDF, modo mãos sujas
