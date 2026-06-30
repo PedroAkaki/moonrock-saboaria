@@ -180,3 +180,16 @@ Manter dark theme, hexágonos. Não mexer na calculadora nem oils.json.
 15. **Modo Mãos Sujas** (item 17)
 16. **Sync nuvem** (item 28)
 17. **Domínio moonrock.pousadamayon.com** (item 29)
+
+---
+
+## Decisões Técnicas Confirmadas (pesquisa GPT v0.1)
+
+- Saponificação = hidrólise alcalina de triglicerídeos → sais de ácidos graxos + glicerol
+- NaOH = sabão sólido/barra; KOH = sabão líquido/macio (não intercambiáveis)
+- SAP = valor médio, sujeito a variação por lote/fornecedor. Superfat cobre essa variação
+- INS, iodo, dureza, limpeza, espuma, condicionamento = **estimativas heurísticas**, não medição laboratorial
+- Sabão de óleo usado = limpeza doméstica, **nunca** sabonete corporal
+- Fragrâncias devem respeitar limite do fornecedor/IFRA; percentual genérico ≠ permissão universal
+- Segurança: EPIs, soda na água (nunca inverso), lavar com água corrente em contato (nunca vinagre na pele)
+- Regulatório ANVISA: pendente de validação primária antes de texto final sobre venda
