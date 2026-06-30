@@ -1,0 +1,217 @@
+[
+  {
+    "id": 1,
+    "slug": "base-glicerinada",
+    "level": 1,
+    "title": "Base Glicerinada (Melt and Pour)",
+    "status": "available",
+    "summary": "Introdução à manipulação de sabão pré-saponificado. Ideal para entender aditivos, corantes e fragrâncias sem manuseio de soda cáustica.",
+    "objective": "Aprender a fundir, colorir, aromatizar e moldar bases prontas, compreendendo os limites térmicos e químicos da glicerina.",
+    "scope_warning": "Produto para uso pessoal e cosmético. Não envolve saponificação do zero.",
+    "prerequisites": ["Nenhum. Módulo inicial absoluto."],
+    "chemical_fundamentals": [
+      "A base glicerinada já passou pelo processo de saponificação industrial. É composta por sais de ácidos graxos, glicerol, água e, frequentemente, álcool ou açúcares para aumentar a transparência.",
+      "A glicerina é higroscópica, atraindo água do ambiente, o que causa o fenômeno de 'suor' na superfície do sabão.",
+      "O superaquecimento (acima de 70-80°C) causa evaporação da água e quebra da estrutura cristalina, deixando a base opaca e quebradiça."
+    ],
+    "materials": ["Base glicerinada (transparente ou branca)", "Essência ou fragrância cosmética", "Corante líquido ou mica", "Álcool de cereais (para borrifador)"],
+    "equipment": ["Micro-ondas ou banho-maria", "Jarra de vidro resistente ao calor", "Espátula de silicone", "Formas de silicone", "Borrifador de álcool"],
+    "safety": [
+      "Risco térmico: a base derretida atinge temperaturas que podem causar queimaduras.",
+      "Ventilação: essências voláteis podem ser irritantes em ambientes fechados."
+    ],
+    "process": [
+      "Pese a base glicerinada e corte em cubos pequenos para derretimento uniforme.",
+      "Derreta em micro-ondas em ciclos de 30 segundos, mexendo entre os ciclos. Não ferver.",
+      "Adicione corante (poucas gotas) e mexa.",
+      "Adicione a fragrância (1% a 3% do peso) quando a base estiver líquida, mas não fervendo.",
+      "Borrife álcool na superfície para quebrar bolhas.",
+      "Despeje na forma e borrife álcool novamente.",
+      "Aguarde esfriar e desenforme."
+    ],
+    "critical_parameters": [
+      "Temperatura de fusão: não exceder 70°C.",
+      "Limite de aditivos líquidos: acima de 5-10% pode impedir a solidificação."
+    ],
+    "visual_criteria": [
+      "Superfície lisa e brilhante após a secagem.",
+      "Ausência de camada esbranquiçada (indica resfriamento rápido ou superaquecimento)."
+    ],
+    "common_errors": [
+      "Bolhas: causadas por mexer vigorosamente. Solução: borrifador de álcool.",
+      "Suor de glicerina: armazenar em local seco ou embalar em filme PVC."
+    ],
+    "troubleshooting": "Se a base não endurecer, excesso de aditivo líquido foi adicionado. Não há correção; usar como pasta de limpeza.",
+    "practical_exercise": "Faça um sabão de 100g usando base transparente, adicione 2g de essência e corante. Observe o tempo de secagem e a transparência final.",
+    "conclusion_criteria": [
+      "Compreender por que a base não deve ferver.",
+      "Identificar o suor de glicerina e sua causa higroscópica.",
+      "Diferenciar base pronta de Cold Process (onde a reação química acontece na bancada)."
+    ],
+    "related_recipes": [],
+    "related_glossary": ["Glicerol", "Higroscópico", "Saponificação"],
+    "references": ["Scientific Soapmaking (Kevin Dunn) — fundamentos físicos do sabão."]
+  },
+  {
+    "id": 2,
+    "slug": "sabao-de-oleo-usado",
+    "level": 2,
+    "title": "Sabão de Óleo Usado (Saneante Doméstico)",
+    "status": "available",
+    "summary": "Reciclagem de óleo de cozinha para produção de sabão de limpeza. Módulo focado em saneantes, não cosméticos.",
+    "objective": "Transformar óleo residual de fritura em sabão de limpeza doméstico, compreendendo a degradação do óleo e a variação do índice de saponificação.",
+    "scope_warning": "AVISO: Este produto NÃO é cosmético. É um saneante doméstico artesanal. Não deve ser usado na pele corporal devido a impurezas, agentes oxidativos e risco de soda livre.",
+    "prerequisites": ["Leitura do Nível 1 para entendimento básico de moldagem e segurança."],
+    "chemical_fundamentals": [
+      "Óleo de cozinha usado sofre oxidação térmica. Formam-se compostos polares, peróxidos e ácidos graxos livres (FFA).",
+      "O aumento de FFA altera o Índice de Saponificação (SAP). Óleo degradado consome mais soda, mas o cálculo exato é impossível sem titulação laboratorial.",
+      "Para segurança (sem soda livre) em óleo usado, usa-se um superfat alto (10-15%), resultando em sabão macio e alcalino, adequado para limpeza pesada."
+    ],
+    "materials": ["Óleo usado filtrado", "Água destilada", "NaOH (soda cáustica)", "Essência de limpeza (opcional)"],
+    "equipment": ["Balança digital", "Panela de aço inoxidável", "Filtro (pano fino ou peneira)", "Mixer de cozinha (opcional)", "Colher de silicone"],
+    "safety": [
+      "EPI obrigatório: luvas nitrílicas, óculos de proteção e máscara para vapores.",
+      "O óleo usado pode conter água residual de fritura. Ao adicionar a soda, pode haver reação exotérmica violenta com projeção.",
+      "Ventilação extrema necessária. O odor da soda com óleo usado é forte."
+    ],
+    "process": [
+      "Filtração: filtre o óleo usado ainda morno para remover resíduos sólidos.",
+      "Dissolução da soda: adicione NaOH na água (nunca o contrário). Misture em local ventilado.",
+      "Aquecimento: aqueça o óleo levemente (cerca de 40°C).",
+      "Mistura: despeje a solução alcalina no óleo e mexa.",
+      "Homogeneização: mexa até atingir o trace (pode levar mais tempo devido às impurezas).",
+      "Moldagem: despeje em formas de silicone ou madeira.",
+      "Isolamento: cubra com manta por 24h. Cura: 4 semanas."
+    ],
+    "critical_parameters": [
+      "Temperatura da mistura: ~40°C. Óleo quente demais acelera o trace descontroladamente.",
+      "Relação água:soda: usar 2:1 ou 3:1 para garantir dissolução total."
+    ],
+    "visual_criteria": [
+      "Trace pode ser mais ralo e escuro que o normal devido a impurezas.",
+      "Cor final variará do marrom claro ao escuro, dependendo da degradação do óleo."
+    ],
+    "common_errors": [
+      "Sabão não endurece: óleo muito degradado ou superfat excessivo.",
+      "Camada de soda no fundo: mistura insuficiente ou soda mal dissolvida."
+    ],
+    "troubleshooting": "Se a massa separar (óleo e soda), leve ao fogo baixo em banho-maria e mexa vigorosamente (Hot Process de resgate).",
+    "practical_exercise": "Fabrique 1kg de sabão de óleo usado. Deixe curar 4 semanas. Teste dureza e poder de limpeza em superfície engordurada.",
+    "conclusion_criteria": [
+      "Entender por que o óleo usado não serve para sabonete corporal.",
+      "Explicar o risco de variação do SAP em óleos degradados.",
+      "Realizar a filtragem correta e a ordem segura da mistura."
+    ],
+    "related_recipes": [],
+    "related_glossary": ["Saponificação", "Soda livre", "Oxidação lipídica", "SAP"],
+    "references": ["Manual de Boas Práticas para Fabricação de Sabão Ecológico (literatura técnica)."]
+  },
+  {
+    "id": 3,
+    "slug": "cold-process-basico",
+    "level": 3,
+    "title": "Cold Process Básico (Sabonete Corporal)",
+    "status": "available",
+    "summary": "Saponificação a frio para cosméticos. Reação química real na bancada, controle de traço e temperatura.",
+    "objective": "Executar uma saponificação a frio controlada, entendendo triglicerídeos, solução alcalina, fases do traço e cura.",
+    "scope_warning": "Produto cosmético para uso corporal. Exige rigor na pesagem, qualidade das matérias-primas e cura mínima de 4 semanas.",
+    "prerequisites": ["Níveis 1 e 2 recomendados para familiaridade com moldes e segurança básica."],
+    "chemical_fundamentals": [
+      "Triglicerídeos (glicerol + 3 ácidos graxos) reagem com NaOH em hidrólise alcalina, produzindo sabão e glicerol livre.",
+      "Superfat: excesso de óleo não saponificado para garantir que não haja soda livre. Fórmula: NaOH = Peso_Óleo × SAP × (1 - Superfat).",
+      "A água atua como solvente para a soda, não participa da reação. Sua proporção afeta a velocidade do traço e a dureza final.",
+      "Gel Phase: fase onde a massa atinge ~80°C internamente. Acelera a saponificação e altera a transparência do sabão."
+    ],
+    "materials": [
+      "Óleos vegetais (azeite, coco, palma, etc.) pesados com precisão",
+      "NaOH (soda cáustica) 99%",
+      "Água destilada",
+      "Fragrância cosmética IFRA-compliant (opcional)"
+    ],
+    "equipment": [
+      "Balança de precisão (0.1g)",
+      "Termômetro infravermelho ou de sonda",
+      "Mixer de imersão (stick blender)",
+      "Recipiente de vidro ou PP para solução de NaOH",
+      "Panela para óleos",
+      "Forma de silicone"
+    ],
+    "safety": [
+      "EPI completo: luvas nitrílicas, óculos de proteção, máscara, mangas compridas.",
+      "Ordem de mistura: SEMPRE adicione a soda na água. O inverso causa ebulição instantânea e projeção explosiva.",
+      "Ventilação cruzada ao manusear soda seca e solução. Não inalar vapores."
+    ],
+    "process": [
+      "Pese todos os ingredientes exatamente conforme a receita.",
+      "Prepare a solução alcalina: adicione NaOH à água (nunca o contrário). Dissolva e deixe esfriar.",
+      "Derreta os óleos sólidos e misture com os líquidos.",
+      "Alinhe temperaturas: óleos e solução alcalina entre 35°C e 45°C (diferença máxima 5°C).",
+      "Despeje a solução alcalina nos óleos e misture com mixer em pulsos curtos.",
+      "Trace leve: textura de leite. Trace médio: deixa rastro na superfície. Adicione fragrância no traço leve/médio.",
+      "Despeje no molde. Isolamento térmico opcional para forçar gel phase."
+    ],
+    "critical_parameters": [
+      "Temperatura de mistura: 35-45°C (muito quente acelera o traço; muito frio não emulsiona bem).",
+      "Relação água:soda: 2:1 é padrão (ex: 100g NaOH → 200g água).",
+      "Cura: mínimo 28 dias. Durante a cura, perde-se água, o sabão endurece e a saponificação se completa."
+    ],
+    "visual_criteria": [
+      "Traço claro e brilhante no ponto de adição de fragrância.",
+      "Gel Phase: massa fica translúcida, como vaselina."
+    ],
+    "common_errors": [
+      "Aceleração de traço (seize): causada por fragrâncias ou temperaturas altas. Solução: preparar formas e aditivos antes.",
+      "Rancificação (DOS): manchas alaranjadas por oxidação de óleos insaturados. Causa: óleos velhos."
+    ],
+    "troubleshooting": "Se o sabão não saponificar após 48h (óleo separado), erro de cálculo de soda. Levar ao forno em Hot Process para forçar a reação.",
+    "practical_exercise": "Faça 500g de sabonete com azeite e coco (5% superfat). Controle a temperatura da soda e documente o tempo de traço.",
+    "conclusion_criteria": [
+      "Diferenciar traço leve, médio e pesado visualmente.",
+      "Compreender que o pH sozinho não garante segurança.",
+      "Executar a mistura de soda na água com segurança e sem hesitação."
+    ],
+    "related_recipes": [],
+    "related_glossary": ["Triglicerídeos", "Saponificação", "Traço", "Gel Phase", "DOS", "Superfat"],
+    "references": ["Scientific Soapmaking (Kevin Dunn) — cinética e fases do sabão."]
+  },
+  {
+    "id": 4,
+    "slug": "controle-de-formulacao",
+    "level": 4,
+    "title": "Controle de Formulação",
+    "status": "soon",
+    "summary": "INS, DOS, proporções de ácidos graxos, balanço de propriedades."
+  },
+  {
+    "id": 5,
+    "slug": "hot-process",
+    "level": 5,
+    "title": "Hot Process",
+    "status": "soon",
+    "summary": "Saponificação a quente, uso mais rápido, textura rústica."
+  },
+  {
+    "id": 6,
+    "slug": "cold-process-avancado",
+    "level": 6,
+    "title": "Cold Process Avançado",
+    "status": "soon",
+    "summary": "Swirls, camadas, cores, fragrâncias e design."
+  },
+  {
+    "id": 7,
+    "slug": "saboaria-liquida-koh",
+    "level": 7,
+    "title": "Saboaria Líquida com KOH",
+    "status": "soon",
+    "summary": "Hidróxido de potássio, pasta de sabão, diluição e viscosidade."
+  },
+  {
+    "id": 8,
+    "slug": "syndet-avancado",
+    "level": 8,
+    "title": "Syndet e Formulação Avançada",
+    "status": "soon",
+    "summary": "Tensoativos sintéticos, pH ácido, barras syndet."
+  }
+]

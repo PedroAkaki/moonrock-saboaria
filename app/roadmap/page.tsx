@@ -1,103 +1,67 @@
-import roadmapData from "@/data/roadmap.json";
+import Link from "next/link";
+import learningModules from "@/data/learning-modules.json";
 
-const levelColors: Record<string, string> = {
-  red: "border-red-700 bg-red-900/20",
-  green: "border-green-700 bg-green-900/20",
-  yellow: "border-yellow-700 bg-yellow-900/20",
-  blue: "border-blue-700 bg-blue-900/20",
-  purple: "border-purple-700 bg-purple-900/20",
-};
+interface Module {
+  id: number;
+  slug: string;
+  level: number;
+  title: string;
+  status: string;
+  summary: string;
+}
 
 export default function RoadmapPage() {
+  const modules = learningModules as Module[];
+
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8 space-y-8">
-      <div>
-        <h1 className="text-3xl font-bold text-white">🗺️ Roadmap de Aprendizado</h1>
-        <p className="text-moon-400 mt-1">
-          Sua jornada na saboaria — do básico à criação de receitas autorais
+    <div className="max-w-4xl mx-auto px-4 py-10">
+      <header className="mb-10 text-center">
+        <h1 className="text-3xl font-bold text-white">🗺️ Trilha de Aprendizado</h1>
+        <p className="text-moon-400 mt-2">
+          8 níveis — do laboratório à bancada, com rigor técnico e passo a passo prático
         </p>
-      </div>
+      </header>
 
-      {/* Safety first */}
-      <div className="bg-red-900/20 border-2 border-red-700 rounded-xl p-5">
-        <div className="flex items-start gap-3">
-          <span className="text-2xl">⚠️</span>
-          <div>
-            <h2 className="font-bold text-red-300 text-lg">
-              Nível 0: Segurança — É obrigatório!
-            </h2>
-            <p className="text-red-400 text-sm mt-1">
-              Antes de qualquer receita com soda cáustica, leia e siga todas as regras de segurança.
-            </p>
-          </div>
-        </div>
-        <ul className="mt-3 space-y-1 text-sm text-red-300 list-disc list-inside">
-          {roadmapData.levels
-            .find((l) => l.id === "seguranca")
-            ?.topics.map((t, i) => (
-              <li key={i}>{t}</li>
-            ))}
-        </ul>
-      </div>
+      <div className="grid gap-4 md:grid-cols-2">
+        {modules.map((mod) => {
+          const isAvailable = mod.status === "available";
 
-      {/* Levels */}
-      <div className="space-y-6">
-        {roadmapData.levels
-          .filter((l) => l.id !== "seguranca")
-          .map((level, idx) => (
-            <div
-              key={level.id}
-              className={`border-l-4 rounded-xl p-5 ${
-                levelColors[level.color] ?? "border-moon-600 bg-moon-700/30"
+          return (
+            <Link
+              key={mod.id}
+              href={isAvailable ? `/roadmap/${mod.slug}` : "#"}
+              className={`block p-6 rounded-xl border transition-all ${
+                isAvailable
+                  ? "bg-moon-700/30 border-moon-600 hover:border-moon-400 hover:bg-moon-700/50 hover:-translate-y-0.5"
+                  : "bg-moon-800/30 border-moon-700 opacity-50 cursor-not-allowed"
               }`}
             >
-              <div className="flex items-start justify-between">
-                <div>
-                  <span className="text-xs text-moon-500 uppercase tracking-wider">
-                    Nível {level.order}
-                  </span>
-                  <h2 className="text-xl font-bold text-white mt-1">
-                    {level.title}
-                  </h2>
-                </div>
-                <span className="text-2xl">{level.icon}</span>
-              </div>
-
-              {level.description && (
-                <p className="text-moon-400 mt-2">{level.description}</p>
-              )}
-
-              <ul className="mt-3 space-y-1 text-sm text-moon-300 list-disc list-inside">
-                {level.topics.map((t, i) => (
-                  <li key={i}>{t}</li>
-                ))}
-              </ul>
-
-              {level.recipes && level.recipes.length > 0 && (
-                <div className="mt-3">
-                  <span className="text-xs font-semibold text-moon-500 uppercase">
-                    Receitas relacionadas:
-                  </span>
-                  <div className="flex gap-2 mt-1">
-                    {level.recipes.map((r) => (
-                      <span
-                        key={r}
-                        className="bg-moon-800 border border-moon-600 rounded-full px-3 py-1 text-xs text-moon-400"
-                      >
-                        {r}
-                      </span>
-                    ))}
+              <div className="flex items-start gap-3 mb-3">
+                {/* Nível em hexágono */}
+                <div className="w-10 h-10 flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 border border-moon-400 transform rotate-45 flex items-center justify-center">
+                    <span className="text-xs font-mono text-moon-300 -rotate-45">{mod.level}</span>
                   </div>
                 </div>
-              )}
-
-              {idx < roadmapData.levels.filter((l) => l.id !== "seguranca").length - 1 && (
-                <div className="mt-4 flex justify-center">
-                  <div className="w-0.5 h-6 bg-moon-600" />
+                <div>
+                  <h2 className="text-lg font-semibold text-white">{mod.title}</h2>
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+              <p className="text-sm text-moon-400 mb-4 leading-relaxed">{mod.summary}</p>
+              <div className="flex items-center">
+                {isAvailable ? (
+                  <span className="text-xs px-3 py-1.5 bg-moon-600 text-moon-200 rounded-full">
+                    Acessar Módulo →
+                  </span>
+                ) : (
+                  <span className="text-xs px-3 py-1.5 border border-moon-600 text-moon-500 rounded-full">
+                    Em Breve
+                  </span>
+                )}
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
