@@ -8,130 +8,130 @@
 
 ## Nível 1 — Base Glicerinada (Melt & Pour)
 
-### Fundamentos
-- **Por que a base já está saponificada?** A base glicerinada é um sabão neutro (pH ~9-10) que passou por saponificação completa em ambiente industrial. O que a Ana está fazendo é uma **reformulação física** — derreter, adicionar ativos, e recristalizar. Não há reação química nova.
-- **Ponto de fusão e cristalização:** A base é uma mistura de sabões de sódio (Na-stearato, Na-palmitato, Na-oleato) + glicerina + solventes (álcoois poli-hídricos). O comportamento térmico depende da proporção destes. O ponto de fusão típico é 50-70°C.
-- **Hidratação:** A glicerina é higroscópica — atrai água do ar. Isso causa "suor" no sabonete se a umidade relativa do ar for alta. Por isso o filme PVC na embalagem não é frescura, é físico-química.
+### Fundamentos Químicos
+- **Fase sólida contínua vs. Fase dispersa:** A base glicerinada é um sabão neutro (pH ~9-10) que passou por saponificação completa em ambiente industrial. A reformulação é física — fusão, adição de ativos e recristalização.
+- **Estrutura da matriz:** Cristais de Na-estearato/palmitato/oleato com glicerina como plastificante. Transparência exige homogeneidade da matriz. Ponto de fusão 50-70°C.
+- **Glicerina higroscópica:** Atrai umidade do ar. Sinérese ("suor") em UR > 60%. Filme PVC é barreira física contra umidade, não estética.
+- **Estequiometria de aditivos:** Excesso de corantes/fragrâncias rompe a transparência por alterar o índice de refração da matriz sólida.
 
 ### Matérias-primas
-- **Base transparente vs base branca**: A diferença é o TiO₂ (dióxido de titânio). A base transparente não tem opacificante. A branca tem ~0.5-2% de TiO₂ que cristaliza em partículas que espalham luz (efeito Tyndall).
-- **Corantes:** 
-  - Micas: pigmentos minerais (mica + óxido de ferro/titânio). Estáveis ao pH 9-10.
-  - Corantes líquidos: corantes sintéticos solúveis em água/glicerina. Podem "migrar" se não forem compatíveis com a base.
-  - Corantes naturais: urucum (bixina), cúrcuma (curcumina), espirulina (ficocianina). Todos sensíveis ao pH e à luz UV.
-- **Fragrâncias vs Óleos Essenciais:** A diferença é química. Fragrâncias são blends sintéticos com moléculas desenhadas para fixação. OEs são misturas naturais complexas (ex: lavanda tem >100 compostos). O ponto de volatilização (flash point) determina quando adicionar.
+- **Base transparente vs branca:** TiO₂ como opacificante (efeito Tyndall).
+- **Corantes:** Micas (minerais, pH 9-10 estáveis), corantes líquidos (podem migrar), corantes naturais (urucum, cúrcuma, espirulina — sensíveis a pH e UV).
+- **Fragrâncias vs OEs:** Fragrâncias = blends sintéticos com fixação desenhada. OEs = >100 compostos naturais. Flash point define adição.
+- **Tensoativos:** SLS/SLES vs sabões de ácido graxo na base comercial. SLS é mais detergente e irritante.
 
 ### Processos
-1. **Corte** da base em cubos pequenos (maior superfície de contato = fusão mais rápida)
-2. **Fusão** em micro-ondas (30s + 30s, nunca ferver — bolhas = oxigênio dissolvido = opacidade)
-3. **Adição de corante** a ~60°C (acima disso corantes voláteis degradam)
-4. **Adição de fragrância** a ~55°C (flash point da maioria está entre 50-80°C)
-5. **Despejo** na forma — vibração suave para eliminar bolhas
-6. **Resfriamento** — 1-2h em temperatura ambiente. Geladeira acelera mas pode causar choque térmico e trincas.
-7. **Desenforme** e embale em filme PVC (barreira contra umidade)
+1. **Corte** cúbico uniforme (superfície = velocidade de fusão)
+2. **Fusão:** 30s + 30s micro-ondas, nunca ferver (bolhas = opacidade)
+3. **Adição de corante** a ~60°C
+4. **Adição de fragrância** a ~55°C (voláteis degradam acima)
+5. **Despejo + vibração** para eliminar bolhas
+6. **Resfriamento** 1-2h TA. Geladeira trinca por choque térmico
+7. **Embalar em filme PVC imediatamente** (sinérese prevenida)
+
+### Prevenção de Sinérese
+Controle UR < 60%. Base com baixo teor de glicerina livre. Embalagem selada.
 
 ### Canais YouTube
-- **Vida de Saboaria** — Boa para técnica de M&P, cores e camadas
-- **Casa da Saboaria** — Foco em iniciantes, bem didática
-- **Nandê Botânica** — Mais técnica, aborda química
-
-### Referências de Estudo
-- *Scientific Soapmaking* (Kevin M. Dunn) — capítulo sobre physical properties of soap
-- Artigo: "Crystallization behavior of sodium soaps" — Journal of American Oil Chemists' Society
-- FISPQ das bases glicerinadas (ver sites dos fornecedores: Bel Col, Superbrix)
-
-### Critério de Conclusão
-Produzir 3 barras de M&P sem bolhas, com cor homogênea e sem suor após 7 dias.
-
----
-
-## Nível 2 — Sabão de Óleo Usado
-
-### Fundamentos
-- **O que muda no óleo usado:** Durante a fritura, os triglicerídeos sofrem **hidrólise térmica** e **oxidação**. A hidrólise quebra ligações éster formando ácidos graxos livres (AGL) e glicerol. Isso aumenta a acidez do óleo, o que consome MAIS soda do que o SAP teórico. Por isso a regra prática é usar SAP 0.136 (médio) mesmo pra óleo misto.
-- **Índice de peróxidos:** Mede o grau de oxidação primária. Quanto maior, mais escuro e fedido o sabão.
-- **Polímeros de óleo:** Formados durante fritura repetida. São moléculas gigantes que não saponificam e viram "borra" no fundo do sabão. A filtragem remove parte, mas não tudo.
-- **Superfat 0%:** Sabão de limpeza não precisa de superfat porque não vai na pele. Zero superfat = soda calculada exata = sabão mais duro e mais limpante.
-
-### Matérias-primas
-- **Óleo de cozinha usado:** A qualidade depende do histórico térmico. Óleo de fritura única é melhor que óleo de fritadeira de restaurante.
-- **Coco (adição de 20%):** Aumenta dureza e espuma. O SAP do coco (0.183) compensa a perda de qualidade do óleo usado.
-- **Sal:** NaCl reduz a solubilidade do sabão em água (efeito "salting out"), endurecendo a barra e reduzindo a "gomosidade".
-- **Açúcar:** Pequena quantidade (1 colher/kg) melhora a formação de espuma por aumentar a viscosidade da solução.
-
-### Processos
-1. **Filtragem:** Filtro de papel ou pano. Óleo quente (60°C) filtra mais rápido. Filtração a vácuo é ideal mas não necessário.
-2. **Desodorização (opcional):** Aquecer a 80°C com 5% de água + carvão ativado. Remover cheiro de fritura.
-3. **Cálculo da soda:** Pesar o óleo filtrado. Usar SAP médio 0.136. Calcular NaOH = peso_óleo × 0.136. Superfat 0%.
-4. **Saponificação:** O traço vem mais rápido que óleo virgem (AGL catalisam a reação). Misturar até traço médio.
-5. **Moldagem:** Despejar na forma. Isolamento térmico leve (cobertor). A reação exotérmica é menor que CP padrão.
-6. **Corte:** 24-48h. O sabão de óleo usado tende a ser mais duro que CP comum.
-7. **Cura:** 4 semanas. Testar pH antes de usar.
-
-### Canais YouTube
-- **Rose Leite Saboaria Ecológica** — Especialista em sabão de óleo usado
-- **Vanessa Dias Sabões Caseiros** — Técnicas de reaproveitamento
+- Vida de Saboaria, Casa da Saboaria, Nandê Botânica
 
 ### Referências
-- *Estudo da cinética de saponificação de óleos residuais* — artigos da SciELO Brasil
-- "Efeito do teor de ácidos graxos livres no consumo de NaOH" — Journal of the Brazilian Chemical Society
-- Norma ABNT NBR 14120 — determinação de índice de acidez em óleos
+- *Scientific Soapmaking* (Dunn) — propriedades físicas
+- "Crystallization behavior of sodium soaps" — JAOCS
+- FISPQ das bases (Bel Col, Superbrix)
 
 ### Critério de Conclusão
-Sabão de óleo usado aprovado no zap test, com corte limpo e sem odor desagradável de fritura.
+3 barras M&P sem bolhas, cor homogênea, sem suor após 7 dias.
 
 ---
 
-## Nível 3 — Cold Process Básico
+## Nível 2 — Sabão de Óleo Usado (Reciclagem e Cinética)
 
-### Fundamentos
-- **Cinética da saponificação:** Reação de segunda ordem. A velocidade depende da temperatura, da concentração de OH⁻ e da superfície de contato entre as fases. A fase de emulsão (óleo + lixívia) é o gargalo — o mixer de imersão acelera drasticamente criando microgotículas.
-- **Curva de saponificação:** A reação é rápida nos primeiros 5 minutos (~60% de conversão), depois desacelera. A "cura" não é sobre saponificação (que termina em 24-48h), mas sobre **evaporação de água** e **cristalização** dos sabões de sódio.
-- **Fases do sabão:** 
-  - Fase isotrópica (líquida) → fase hexagonal (gel) → fase lamelar (cristal). 
-  - A gel phase é a transição para a fase lamelar. A temperatura da massa determina se entra ou não em gel.
-- **INS Number:** Equação empírica (INS = SAP × 100 - Iodo). Correlaciona com dureza porque óleos com alto SAP (coco) têm baixo iodo → INS alto → sabão duro. Não é lei física, é regra de bolso.
+### Fundamentos Químicos
+- **Grau de hidrólise e acidez:** Durante a fritura, os triglicerídeos sofrem hidrólise térmica formando ácidos graxos livres (AGL). Isso aumenta o índice de acidez, consumindo MAIS soda que o SAP teórico. A regra prática de usar SAP ~0.136 é uma aproximação.
+- **Mecanismo de oxidação:** Óleos degradados contêm aldeídos e peróxidos (medidos pelo índice de peróxidos). Quanto maior, mais escuro e odor desagradável o sabão final.
+- **Polímeros de óleo:** Moléculas gigantes formadas durante fritura repetida — não saponificam e viram "borra". A filtragem remove parte, não tudo.
+- **Superfat 0%:** Sabão de limpeza não precisa de superfat. Zero SF = soda exata = sabão mais duro e mais desengordurante.
 
-### Matérias-primas (abordagem química)
-- **Ácidos graxos e suas contribuições:**
-  - Láurico (C12:0, coco): dureza + espuma + limpeza
-  - Mirístico (C14:0, coco/palmiste): espuma cremosa
-  - Palmítico (C16:0, palma): dureza
-  - Esteárico (C18:0, karité/cacau): dureza + cremosidade
-  - Oleico (C18:1, oliva): condicionamento, maciez
-  - Linoleico (C18:2, soja/girassol): condicionamento, mas oxida
-  - Linolênico (C18:3, linhaça): muito instável
-  - Ricinoleico (C18:1-OH, mamona): espuma estável e cremosa
+### Matérias-primas
+- **Óleo de fritura:** Qualidade depende do histórico térmico. Fritura única > restaurante.
+- **Coco (20%):** Aumenta dureza e espuma. SAP do coco (0.183) compensa a perda de qualidade do óleo base.
+- **Sal (NaCl):** Efeito "salting out" — reduz solubilidade do sabão, endurecendo a barra.
+- **Açúcar:** Pequena quantidade melhora espuma por aumentar viscosidade da solução.
 
-- **A regra dos 30% de coco:** O coco tem 48% de láurico + 19% de mirístico. Acima de 30% na receita, a concentração de sabões de cadeia média (C12-C14) fica alta demais, removendo o manto lipídico da pele (efeito "ressecamento").
+### Processos
+1. **Filtragem:** Filtro de papel/pano. Óleo quente (60°C) filtra mais rápido
+2. **Desodorização (opcional):** Aquecer 80°C com 5% água + carvão ativado. Remove cheiro de fritura
+3. **Cálculo da soda:** Peso óleo × SAP 0.136. SF 0%
+4. **Saponificação:** Traço mais rápido que óleo virgem — AGL catalisam a reação. Traço médio
+5. **Moldagem:** Isolamento térmico leve (a reação exotérmica é menor que CP padrão)
+6. **Corte:** 24-48h. Sabão tende a ser mais duro que CP comum
+7. **Cura:** 4 semanas. Testar pH antes de usar (deve estar > 8 para limpeza)
+
+### Controle de Qualidade
+Índice de acidez do óleo antes do uso. Correção de pH final. Teste de zap.
+
+### Canais YouTube
+- Rose Leite Saboaria Ecológica, Vanessa Dias Sabões Caseiros
+
+### Referências
+- "Efeito do teor de AGL no consumo de NaOH" — JBCS
+- Norma ABNT NBR 14120 — índice de acidez em óleos
+- Artigos SciELO: cinética de saponificação de óleos residuais
+
+### Critério de Conclusão
+Sabão aprovado no zap test, corte limpo, sem odor de fritura, pH > 8.
+
+---
+
+## Nível 3 — Cold Process (CP) Básico
+
+### Fundamentos Químicos
+- **Termodinâmica da saponificação:** Reação fortemente exotérmica (ΔH < 0). O balanço entálpico entre a fase de dissolução do NaOH (libera calor) e a reação de saponificação (libera calor) exige controle de temperatura para evitar efeito "vulcão".
+- **Sistema bifásico Óleo/Água/Base:** A emulsão é o gargalo cinético. O mixer de imersão cria microgotículas, aumentando a área interfacial em ordens de magnitude. Os primeiros sais de ácidos graxos atuam como emulsificantes in situ, desacelerando a coalescência.
+- **Curva de saponificação:** Reação de segunda ordem. ~60% de conversão nos primeiros 5 minutos, depois desacelera. A "cura" não é sobre saponificação (que termina em 24-48h) — é sobre evaporação de água e cristalização dos sabões (formação da fase lamelar).
+- **Comportamento de fases:** Fase isotrópica (líquida) → fase hexagonal (gel) → fase lamelar (cristal). A gel phase é a transição para a fase lamelar. Controlar o isolamento térmico decide se a massa entra ou não em gel.
+- **Superfat:** Fração de óleo não saponificada propositalmente. Reduz a irritabilidade cutânea (sabões de cadeia média são mais agressivos ao manto lipídico). Aumenta emoliência mas reduz dureza.
+
+### Matérias-primas
+- **Balanceamento de ácidos graxos (Saturados vs Insaturados):** A regra dos 30% de coco não é folclore — sabões de cadeia C12-C14 têm ponto de Krafft mais baixo, formam micelas rapidamente e removem o manto lipídico.
+- **INS Number:** Equação empírica (INS = SAP × 100 - Iodo). Correlaciona com dureza. Ideal 136-170.
+- **Ácidos Graxos individuais:**
+  - Láurico (C12:0): dureza + espuma + limpeza
+  - Mirístico (C14:0): espuma cremosa
+  - Palmítico (C16:0): dureza
+  - Esteárico (C18:0): dureza + cremosidade
+  - Oleico (C18:1): condicionamento, maciez
+  - Linoleico (C18:2): condicionamento, vulnerável à oxidação
+  - Ricinoleico (C18:1-OH): espuma estável e cremosa
 
 ### Processos
 1. **Cálculo da receita** (calculadora do app)
-2. **Pesagem dos óleos** — óleos sólidos (coco, palma) derreter primeiro
-3. **Preparo da lixívia** — NaOH na água GELADA (nunca o contrário). A reação de dissolução libera ~40 kJ/mol — suficiente pra elevar a temperatura a 80-90°C. Banho de gelo externo.
-4. **Equalização de temperatura** — óleos a 35-45°C, lixívia à mesma faixa. A diferença de temperatura entre as fases não deve passar de 10°C.
-5. **Emulsão** — verter a lixívia nos óleos. Mixer de imersão em pulsos de 5 segundos.
-6. **Ponto de traço** — a emulsão engrossa. Atingido quando o "traço" da mistura na superfície permanece visível por alguns segundos.
-7. **Aditivos** — no traço leve. Essências aceleram o traço (álcool na composição).
-8. **Moldagem** — despejar na forma. Bater a forma na bancada para eliminar bolhas.
-9. **Isolamento** — cobertor ou caixa de isopor (força gel phase) OU geladeira (previne gel = cores mais claras).
-10. **Desenforme** — 24-48h. Se estiver mole, esperar mais 24h.
-11. **Corte** — em barras de ~100g. Pesar cada barra fresco.
-12. **Cura** — 4-6 semanas em local seco e ventilado. Virar as barras semanalmente.
+2. **Pesagem:** óleos sólidos derreter primeiro
+3. **Preparo da lixívia:** NaOH na água GELADA (dissolução ~40 kJ/mol, eleva a 80-90°C). A ordem é **soda na água, nunca água na soda** — a inversão causa ebulição violenta e projeção alcalina
+4. **Equalização de temperatura:** óleos 35-45°C, lixívia mesma faixa. Diferença máxima 10°C entre as fases
+5. **Emulsão:** verter lixívia nos óleos. Mixer em pulsos de 5s
+6. **Ponto de traço:** a emulsão engrossa. O "traço" na superfície permanece visível por segundos
+7. **Aditivos:** adicionar no traço leve. Fragrâncias aceleram (álcool desestabiliza a emulsão)
+8. **Moldagem:** despejar na forma. Bater para eliminar bolhas
+9. **Gel phase:** cobertor/isopor força gel (cores mais escuras). Geladeira previne gel (cores mais claras)
+10. **Desenforme:** 24-48h. Se mole, esperar mais 24h
+11. **Corte:** barras ~100g. Pesar cada barra fresco
+12. **Cura:** 4-6 semanas, local seco ventilado, virar semanalmente
+
+### Cinética da Cristalização na Cura
+Evaporação da água → concentração dos sabões → nucleação e crescimento de cristais lamelares. A rede cristalina final determina dureza e solubilidade. Barras com cura inadequada dissolvem-se mais rápido na água.
 
 ### Canais YouTube
-- **Nandê Botânica** — A melhor do Brasil em química do sabão
-- **Bramble Berry** (inglês) — Referência mundial em CP
-- **Soap Queen TV** (inglês) — Técnicas e troubleshooting
+- Nandê Botânica (BR), Bramble Berry (EN), Soap Queen TV (EN)
 
 ### Referências
-- *Scientific Soapmaking* (Kevin M. Dunn) — **leitura obrigatória**
-- *The Chemistry of Soap* — capítulo do livro *Surfactant Science Series*
-- "Kinetics of saponification of vegetable oils" — Journal of the American Oil Chemists' Society (JAOCS)
-- Artigo: "Phase behavior of sodium soap systems" — Langmuir
+- *Scientific Soapmaking* (Dunn) — **obrigatório**
+- "Kinetics of saponification of vegetable oils" — JAOCS
+- "Phase behavior of sodium soap systems" — Langmuir
 
 ### Critério de Conclusão
-Fazer um lote de CP (Receita Tríade de Ouro) que passe no zap test, com dureza adequada, corte limpo e pH 8-10.
+Produzir um lote com perfil de ácidos graxos equilibrado (ex: 60/40 cadeia longa/média). pH 8-10, zap test aprovado, sem DOS após 4 semanas, corte limpo.
 
 ---
 
