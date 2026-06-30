@@ -34,9 +34,10 @@ export async function generateStaticParams() {
   return modules.map((m) => ({ slug: m.slug }));
 }
 
-export default function ModulePage({ params }: { params: { slug: string } }) {
+export default async function ModulePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const modules = learningModules as Module[];
-  const mod = modules.find((m) => m.slug === params.slug);
+  const mod = modules.find((m) => m.slug === slug);
 
   if (!mod || mod.status !== "available") {
     notFound();
