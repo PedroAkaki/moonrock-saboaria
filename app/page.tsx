@@ -1,16 +1,6 @@
+import { Moon, Calculator, BookOpen, Droplets, Map, TriangleAlert, BookMarked, Milestone, ArrowRight, Play, Database } from "lucide-react";
 import Link from "next/link";
-import {
-  Moon,
-  Calculator,
-  BookOpen,
-  Droplets,
-  Map,
-  TriangleAlert,
-  BookMarked,
-  Milestone,
-  Database,
-  ArrowRight,
-} from "lucide-react";
+import ResumeStudy from "@/components/ResumeStudy";
 
 export default function Home() {
   return (
@@ -37,11 +27,11 @@ export default function Home() {
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/calculadora"
+              href="/roadmap"
               className="group inline-flex items-center justify-center gap-2 bg-white text-moon-900 font-semibold px-6 py-3.5 rounded-xl hover:bg-moon-100 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
             >
-              <Calculator className="w-5 h-5" />
-              Começar a Calcular
+              <BookOpen className="w-5 h-5" />
+              Vamos Estudar
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </Link>
             <Link
@@ -54,6 +44,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Resume Study Card */}
+      <div className="max-w-4xl mx-auto px-4 -mt-6 relative z-10">
+        <ResumeStudy />
+      </div>
 
       {/* Navigation Grid */}
       <main className="flex-1 max-w-4xl mx-auto px-4 py-10 w-full">
