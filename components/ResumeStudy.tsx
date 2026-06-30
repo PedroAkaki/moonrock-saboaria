@@ -74,7 +74,7 @@ export default function ResumeStudy() {
             {hasProgress ? "Continuar Estudo" : "Começar"}
           </p>
           <p className="text-white font-semibold text-sm">
-            {nextSlug === "roadmap" ? "Revisar Roadmap" : nextTitle}
+            {nextSlug === "roadmap" ? "Revisar Estudo" : nextTitle}
           </p>
         </div>
         <ArrowRight className="w-5 h-5 text-moon-300 group-hover:translate-x-0.5 transition-transform" />

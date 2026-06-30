@@ -39,7 +39,7 @@ export default function Home() {
               className="group inline-flex items-center justify-center gap-2 border border-moon-500 text-moon-200 font-semibold px-6 py-3.5 rounded-xl hover:bg-moon-700 transition-all hover:-translate-y-0.5"
             >
               <Map className="w-5 h-5" />
-              Ver Roadmap
+              Ver Estudo
             </Link>
           </div>
         </div>
@@ -105,10 +105,10 @@ export default function Home() {
             <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             <Map className="w-8 h-8 text-moon-200 mb-3" />
             <h2 className="text-lg font-semibold text-white group-hover:text-white transition-colors">
-              Roadmap
+              Estudo
             </h2>
             <p className="text-moon-400 text-sm mt-1">
-              Sua jornada de aprendizado, passo a passo
+              Trilha completa de aprendizado, do básico ao avançado
             </p>
             <ArrowRight className="absolute bottom-4 right-4 w-4 h-4 text-moon-500 opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-0.5" />
           </Link>
