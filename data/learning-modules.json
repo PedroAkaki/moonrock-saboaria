@@ -8,14 +8,27 @@
     "summary": "Introdução à manipulação de sabão pré-saponificado. Ideal para entender aditivos, corantes e fragrâncias sem manuseio de soda cáustica.",
     "objective": "Aprender a fundir, colorir, aromatizar e moldar bases prontas, compreendendo os limites térmicos e químicos da glicerina.",
     "scope_warning": "Produto para uso pessoal e cosmético. Não envolve saponificação do zero.",
-    "prerequisites": ["Nenhum. Módulo inicial absoluto."],
+    "prerequisites": [
+      "Nenhum. Módulo inicial absoluto."
+    ],
     "chemical_fundamentals": [
       "A base glicerinada já passou pelo processo de saponificação industrial. É composta por sais de ácidos graxos, glicerol, água e, frequentemente, álcool ou açúcares para aumentar a transparência.",
       "A glicerina é higroscópica, atraindo água do ambiente, o que causa o fenômeno de 'suor' na superfície do sabão.",
       "O superaquecimento (acima de 70-80°C) causa evaporação da água e quebra da estrutura cristalina, deixando a base opaca e quebradiça."
     ],
-    "materials": ["Base glicerinada (transparente ou branca)", "Essência ou fragrância cosmética", "Corante líquido ou mica", "Álcool de cereais (para borrifador)"],
-    "equipment": ["Micro-ondas ou banho-maria", "Jarra de vidro resistente ao calor", "Espátula de silicone", "Formas de silicone", "Borrifador de álcool"],
+    "materials": [
+      "Base glicerinada (transparente ou branca)",
+      "Essência ou fragrância cosmética",
+      "Corante líquido ou mica",
+      "Álcool de cereais (para borrifador)"
+    ],
+    "equipment": [
+      "Micro-ondas ou banho-maria",
+      "Jarra de vidro resistente ao calor",
+      "Espátula de silicone",
+      "Formas de silicone",
+      "Borrifador de álcool"
+    ],
     "safety": [
       "Risco térmico: a base derretida atinge temperaturas que podem causar queimaduras.",
       "Ventilação: essências voláteis podem ser irritantes em ambientes fechados."
@@ -49,8 +62,73 @@
       "Diferenciar base pronta de Cold Process (onde a reação química acontece na bancada)."
     ],
     "related_recipes": [],
-    "related_glossary": ["Glicerol", "Higroscópico", "Saponificação"],
-    "references": ["Scientific Soapmaking (Kevin Dunn) — fundamentos físicos do sabão."]
+    "related_glossary": [
+      "Glicerol",
+      "Higroscópico",
+      "Saponificação"
+    ],
+    "references": [
+      "Scientific Soapmaking (Kevin Dunn) — fundamentos físicos do sabão."
+    ],
+    "studyCards": [
+      {
+        "title": "Base Glicerinada (M&P)",
+        "definition": "Sabão já saponificado industrialmente. Composto por sais de ácidos graxos, glicerol, água e solventes.",
+        "whyItMatters": "Elimina o risco de manipular soda cáustica, mas introduz desafios térmicos e de compatibilidade química com aditivos.",
+        "commonMistake": "Achar que base transparente pode ferver. Acima de 70°C, a água evapora e a base perde transparência permanentemente.",
+        "practicalSignal": "Base turva ou com bolhas após resfriamento = superaquecimento ou agitação excessiva."
+      },
+      {
+        "title": "Higroscopia da Glicerina",
+        "definition": "A glicerina atrai água do ar. Em ambientes úmidos (>60% UR), a superfície do sabão acumula gotículas.",
+        "whyItMatters": "Sabonetes mal embalados suam e perdem qualidade estética e durabilidade.",
+        "commonMistake": "Deixar o sabão sem embalagem após o preparo. Filme PVC não é opcional — é barreira física.",
+        "practicalSignal": "Gotículas na superfície após alguns dias = sinérese por alta umidade."
+      }
+    ],
+    "quickReview": [
+      "A base já está saponificada — não há reação química nova, apenas fusão e moldagem.",
+      "Temperatura máxima: 70°C. Acima disso, perde transparência.",
+      "Glicerina é higroscópica: embalar em filme PVC imediatamente.",
+      "Aditivos líquidos acima de 10% podem impedir a solidificação.",
+      "Bolhas se eliminam com borrifada de álcool antes de despejar.",
+      "Fragrância deve ser adicionada quando a base estiver líquida, não fervendo."
+    ],
+    "quiz": [
+      {
+        "id": "mp1",
+        "type": "multiple-choice",
+        "question": "O que acontece se a base glicerinada for aquecida acima de 75-80°C?",
+        "options": [
+          "Ela derrete mais rápido e fica mais transparente.",
+          "A água evapora, a base perde transparência e pode caramelizar.",
+          "Ela se transforma em sabão líquido.",
+          "Nada — a base é resistente até 100°C."
+        ],
+        "correctAnswer": "A água evapora, a base perde transparência e pode caramelizar.",
+        "explanation": "Acima de 75°C, a água e o álcool da base evaporam. Isso quebra a estrutura cristalina homogênea, deixando o sabão opaco e quebradiço."
+      },
+      {
+        "id": "mp2",
+        "type": "true-false",
+        "question": "O fenômeno de \"suor\" na base glicerinada ocorre porque a glicerina é higroscópica e atrai umidade do ar.",
+        "correctAnswer": true,
+        "explanation": "Correto. A glicerina é um umectante natural. Em ambientes com umidade relativa acima de 60%, ela absorve água da atmosfera, formando gotículas na superfície."
+      },
+      {
+        "id": "mp3",
+        "type": "short",
+        "question": "Qual a principal diferença entre a base glicerinada e o Cold Process?",
+        "correctAnswer": "no cold process a saponificacao acontece na bancada",
+        "explanation": "Na base glicerinada, a saponificação já ocorreu industrialmente. No Cold Process, a reação entre óleos e NaOH acontece na bancada do saboeiro."
+      }
+    ],
+    "beforePracticeChecklist": [
+      "Sei que o risco principal é queimadura por base quente (não soda).",
+      "Sei que a variável crítica é a temperatura (não passar de 70°C).",
+      "Sei que o erro comum é não embalar em filme PVC após o preparo.",
+      "Sei que vou observar a transparência e a presença de bolhas."
+    ]
   },
   {
     "id": 2,
@@ -61,14 +139,27 @@
     "summary": "Reciclagem de óleo de cozinha para produção de sabão de limpeza. Módulo focado em saneantes, não cosméticos.",
     "objective": "Transformar óleo residual de fritura em sabão de limpeza doméstico, compreendendo a degradação do óleo e a variação do índice de saponificação.",
     "scope_warning": "AVISO: Este produto NÃO é cosmético. É um saneante doméstico artesanal. Não deve ser usado na pele corporal devido a impurezas, agentes oxidativos e risco de soda livre.",
-    "prerequisites": ["Leitura do Nível 1 para entendimento básico de moldagem e segurança."],
+    "prerequisites": [
+      "Leitura do Nível 1 para entendimento básico de moldagem e segurança."
+    ],
     "chemical_fundamentals": [
       "Óleo de cozinha usado sofre oxidação térmica. Formam-se compostos polares, peróxidos e ácidos graxos livres (FFA).",
       "O aumento de FFA altera o Índice de Saponificação (SAP). Óleo degradado consome mais soda, mas o cálculo exato é impossível sem titulação laboratorial.",
       "Para segurança (sem soda livre) em óleo usado, usa-se um superfat alto (10-15%), resultando em sabão macio e alcalino, adequado para limpeza pesada."
     ],
-    "materials": ["Óleo usado filtrado", "Água destilada", "NaOH (soda cáustica)", "Essência de limpeza (opcional)"],
-    "equipment": ["Balança digital", "Panela de aço inoxidável", "Filtro (pano fino ou peneira)", "Mixer de cozinha (opcional)", "Colher de silicone"],
+    "materials": [
+      "Óleo usado filtrado",
+      "Água destilada",
+      "NaOH (soda cáustica)",
+      "Essência de limpeza (opcional)"
+    ],
+    "equipment": [
+      "Balança digital",
+      "Panela de aço inoxidável",
+      "Filtro (pano fino ou peneira)",
+      "Mixer de cozinha (opcional)",
+      "Colher de silicone"
+    ],
     "safety": [
       "EPI obrigatório: luvas nitrílicas, óculos de proteção e máscara para vapores.",
       "O óleo usado pode conter água residual de fritura. Ao adicionar a soda, pode haver reação exotérmica violenta com projeção.",
@@ -103,8 +194,67 @@
       "Realizar a filtragem correta e a ordem segura da mistura."
     ],
     "related_recipes": [],
-    "related_glossary": ["Saponificação", "Soda livre", "Oxidação lipídica", "SAP"],
-    "references": ["Manual de Boas Práticas para Fabricação de Sabão Ecológico (literatura técnica)."]
+    "related_glossary": [
+      "Saponificação",
+      "Soda livre",
+      "Oxidação lipídica",
+      "SAP"
+    ],
+    "references": [
+      "Manual de Boas Práticas para Fabricação de Sabão Ecológico (literatura técnica)."
+    ],
+    "studyCards": [
+      {
+        "title": "Degradação Térmica de Óleos",
+        "definition": "Durante a fritura, os triglicerídeos sofrem hidrólise, oxidação e polimerização, formando AGL (ácidos graxos livres), peróxidos e compostos polares.",
+        "whyItMatters": "Óleo degradado tem SAP incerto. Sem titulação, não se sabe exatamente quanto NaOH é necessário.",
+        "commonMistake": "Achar que qualquer óleo usado serve para sabonete corporal. Não serve — é produto de limpeza doméstica.",
+        "practicalSignal": "Sabão de óleo usado bem-feito é duro, escuro, com cheiro neutro ou de essência de limpeza."
+      },
+      {
+        "title": "Superfat Alto para Segurança",
+        "definition": "Para compensar a incerteza do SAP do óleo degradado, usa-se superfat alto (10-15%). Isso garante que não sobre soda livre.",
+        "whyItMatters": "Soda livre causa queimaduras na pele. Em sabão de limpeza, excesso de soda é inaceitável.",
+        "commonMistake": "Usar superfat baixo (5%) igual ao sabonete cosmético. No óleo usado, corre-se risco de soda livre.",
+        "practicalSignal": "Sabão com pH acima de 10 ou que arde na língua no teste de zap = soda livre."
+      }
+    ],
+    "quickReview": [
+      "Óleo usado sofre degradação térmica — SAP é imprevisível.",
+      "Sabão de óleo usado é LIMPEZA DOMÉSTICA, não cosmético.",
+      "Usar superfat alto (10-15%) para margem de segurança.",
+      "Filtrar o óleo ainda morno. Óleo com água residual pode projetar soda.",
+      "Cura: 4 semanas. Testar pH antes de usar.",
+      "Nunca usar sabão de óleo usado no corpo."
+    ],
+    "quiz": [
+      {
+        "id": "ou1",
+        "type": "multiple-choice",
+        "question": "Por que o sabão de óleo usado não deve ser usado como sabonete corporal?",
+        "options": [
+          "Porque a cor escura mancha a pele.",
+          "Porque contém impurezas, agentes oxidativos e risco de soda livre devido ao SAP incerto.",
+          "Porque o cheiro é desagradável.",
+          "Porque não faz espuma suficiente."
+        ],
+        "correctAnswer": "Porque contém impurezas, agentes oxidativos e risco de soda livre devido ao SAP incerto.",
+        "explanation": "Óleo de cozinha usado contém produtos de oxidação, resíduos de alimentos e polímeros de degradação. O SAP é incerto, então o cálculo de soda é menos preciso que com óleos virgens."
+      },
+      {
+        "id": "ou2",
+        "type": "true-false",
+        "question": "Para compensar a variação do SAP no óleo usado, recomenda-se usar superfat baixo (0-3%).",
+        "correctAnswer": false,
+        "explanation": "Falso. Para compensar a incerteza do SAP, usa-se superfat alto (10-15%). Isso garante que não haja soda livre no sabão final."
+      }
+    ],
+    "beforePracticeChecklist": [
+      "Sei que este sabão é de LIMPEZA, não cosmético.",
+      "Sei que o SAP do óleo usado é imprevisível.",
+      "Sei que o erro comum é não filtrar o óleo adequadamente.",
+      "Sei que vou usar superfat alto (10-15%) para segurança."
+    ]
   },
   {
     "id": 3,
@@ -115,7 +265,9 @@
     "summary": "Saponificação a frio para cosméticos. Reação química real na bancada, controle de traço e temperatura.",
     "objective": "Executar uma saponificação a frio controlada, entendendo triglicerídeos, solução alcalina, fases do traço e cura.",
     "scope_warning": "Produto cosmético para uso corporal. Exige rigor na pesagem, qualidade das matérias-primas e cura mínima de 4 semanas.",
-    "prerequisites": ["Níveis 1 e 2 recomendados para familiaridade com moldes e segurança básica."],
+    "prerequisites": [
+      "Níveis 1 e 2 recomendados para familiaridade com moldes e segurança básica."
+    ],
     "chemical_fundamentals": [
       "Triglicerídeos (glicerol + 3 ácidos graxos) reagem com NaOH em hidrólise alcalina, produzindo sabão e glicerol livre.",
       "Superfat: excesso de óleo não saponificado para garantir que não haja soda livre. Fórmula: NaOH = Peso_Óleo × SAP × (1 - Superfat).",
@@ -171,8 +323,91 @@
       "Executar a mistura de soda na água com segurança e sem hesitação."
     ],
     "related_recipes": [],
-    "related_glossary": ["Triglicerídeos", "Saponificação", "Traço", "Gel Phase", "DOS", "Superfat"],
-    "references": ["Scientific Soapmaking (Kevin Dunn) — cinética e fases do sabão."]
+    "related_glossary": [
+      "Triglicerídeos",
+      "Saponificação",
+      "Traço",
+      "Gel Phase",
+      "DOS",
+      "Superfat"
+    ],
+    "references": [
+      "Scientific Soapmaking (Kevin Dunn) — cinética e fases do sabão."
+    ],
+    "studyCards": [
+      {
+        "title": "Saponificação (Hidrólise Alcalina)",
+        "definition": "Reação onde um triglicerídeo reage com base forte (NaOH), quebrando a ligação éster e formando sal de ácido graxo (sabão) e glicerol.",
+        "whyItMatters": "É a reação fundamental. Sem entendê-la, não há como diagnosticar falhas de trace ou cura.",
+        "commonMistake": "Achar que a água participa da reação. A água é apenas solvente para a soda.",
+        "practicalSignal": "A massa engrossa (trace) conforme os reagentes se consomem e o sabão é formado."
+      },
+      {
+        "title": "Superfat",
+        "definition": "Percentual de óleo planejado para permanecer não saponificado na fórmula final.",
+        "whyItMatters": "Cria margem de segurança contra excesso de soda e altera o sensorial da barra.",
+        "commonMistake": "Achar que mais é sempre melhor. Superfat alto reduz espuma, amolece a barra e aumenta risco de DOS.",
+        "practicalSignal": "Barras com DOS (manchas laranjas) podem ter superfat mal calculado para o perfil de óleos."
+      },
+      {
+        "title": "Trace (Traço)",
+        "definition": "Estágio da emulsão onde a mistura engrossa o suficiente para deixar rastro na superfície ao ser mexida.",
+        "whyItMatters": "É o ponto de não retorno para aditivos. Define se o sabão vai fluido ou espesso para o molde.",
+        "commonMistake": "Confundir emulsão temporária com trace verdadeiro.",
+        "practicalSignal": "Trace leve: textura de leite. Trace médio: rastro claro. Trace pesado: textura de pudim."
+      },
+      {
+        "title": "Cura",
+        "definition": "Período pós-moldagem (mínimo 4 semanas) onde o sabão perde água e a saponificação se completa.",
+        "whyItMatters": "Sabão jovem é macio, dissolve rápido e pode ser alcalino demais na pele.",
+        "commonMistake": "Usar o sabão antes da cura porque endureceu. Dureza não é sinônimo de cura química.",
+        "practicalSignal": "O sabão encolhe ligeiramente e a superfície fica seca ao toque após algumas semanas."
+      }
+    ],
+    "quickReview": [
+      "NaOH = massa do óleo × SAP × (1 - superfat).",
+      "SAP é uma média estatística, não verdade absoluta para todo lote.",
+      "Emulsão (mistura física) não é igual a trace (início do espessamento químico).",
+      "Temperatura altera a velocidade do trace (mais quente = mais rápido).",
+      "Cura melhora dureza e desempenho (evaporação + reação completa).",
+      "INS/DOS são estimativas heuristicas, não medidores laboratoriais.",
+      "Soda SEMPRE vai na água, nunca o contrário."
+    ],
+    "quiz": [
+      {
+        "id": "cp1",
+        "type": "multiple-choice",
+        "question": "Por que a soda cáustica (NaOH) deve sempre ser adicionada à água, e não o contrário?",
+        "options": [
+          "Porque a água dissolve mais rápido a soda se for jogada por cima.",
+          "Porque adicionar água na soda gera calor localizado extremo, causando ebulição instantânea e projeção corrosiva.",
+          "Porque a reação química só ocorre nesta ordem.",
+          "Porque facilita a medição de temperatura."
+        ],
+        "correctAnswer": "Porque adicionar água na soda gera calor localizado extremo, causando ebulição instantânea e projeção corrosiva.",
+        "explanation": "A dissolução do NaOH é altamente exotérmica. Adicionar água à soda aquece a superfície da soda instantaneamente, projetando solução corrosiva. Adicionar soda à água dissipa o calor na massa líquida maior."
+      },
+      {
+        "id": "cp2",
+        "type": "true-false",
+        "question": "Se um sabonete endureceu no molde após 2 dias, significa que a saponificação terminou e está pronto para uso.",
+        "correctAnswer": false,
+        "explanation": "Falso. O endurecimento é físico (perda inicial de água e cristalização). A saponificação residual e a evaporação continuam por semanas (cura). Usar antes resulta em sabão macio e agressivo à pele."
+      },
+      {
+        "id": "cp3",
+        "type": "short",
+        "question": "Qual fenômeno de oxidação aparece como manchas alaranjadas no sabão, associado a óleos insaturados ou superfat alto?",
+        "correctAnswer": "DOS",
+        "explanation": "DOS (Dreaded Orange Spots) é a rancificação oxidativa dos óleos não saponificados. Comum em fórmulas com alto superfat e óleos insaturados armazenados em local quente e úmido."
+      }
+    ],
+    "beforePracticeChecklist": [
+      "Sei que o risco principal é a manipulação da soda cáustica (corrosiva).",
+      "Sei que a variável mais crítica é a precisão da pesagem e a temperatura.",
+      "Sei que o erro comum é deixar o trace passar do ponto antes de moldar.",
+      "Sei que vou observar o comportamento da fragrância (se acelera o trace) e a textura da massa."
+    ]
   },
   {
     "id": 4,

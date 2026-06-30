@@ -3,6 +3,10 @@ import Link from "next/link";
 import learningModules from "@/data/learning-modules.json";
 import { ArrowLeft } from "lucide-react";
 import LevelProgress from "@/components/LevelProgress";
+import StudyCard from "@/components/StudyCard";
+import QuickReviewBox from "@/components/QuickReviewBox";
+import ModuleQuiz from "@/components/ModuleQuiz";
+import BeforePracticeChecklist from "@/components/BeforePracticeChecklist";
 
 interface Module {
   id: number;
@@ -27,6 +31,10 @@ interface Module {
   conclusion_criteria?: string[];
   related_glossary?: string[];
   references?: string[];
+  studyCards?: { title: string; definition: string; whyItMatters: string; commonMistake: string; practicalSignal: string }[];
+  quickReview?: string[];
+  quiz?: { id: string; type: string; question: string; options?: string[]; correctAnswer: string | boolean; explanation: string }[];
+  beforePracticeChecklist?: string[];
 }
 
 export async function generateStaticParams() {
@@ -224,6 +232,46 @@ export default async function ModulePage({ params }: { params: Promise<{ slug: s
           </div>
         </section>
       ) : null}
+
+      {/* Concept cards */}
+      {mod.studyCards && mod.studyCards.length > 0 && (
+        <section className="mb-8">
+          <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+            <span className="w-1 h-5 bg-white rounded-full" />
+            Conceitos Deste Módulo
+          </h2>
+          <div className="grid gap-4">
+            {mod.studyCards.map((card, i) => (
+              <StudyCard key={i} {...card} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Quick review */}
+      {mod.quickReview && mod.quickReview.length > 0 && (
+        <section className="mb-8">
+          <QuickReviewBox points={mod.quickReview} />
+        </section>
+      )}
+
+      {/* Quiz */}
+      {mod.quiz && mod.quiz.length > 0 && (
+        <section className="mb-8">
+          <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+            <span className="w-1 h-5 bg-white rounded-full" />
+            Perguntas de Fixação
+          </h2>
+          <ModuleQuiz questions={mod.quiz} />
+        </section>
+      )}
+
+      {/* Before practice checklist */}
+      {mod.beforePracticeChecklist && mod.beforePracticeChecklist.length > 0 && (
+        <section className="mb-8">
+          <BeforePracticeChecklist items={mod.beforePracticeChecklist} slug={mod.slug} />
+        </section>
+      )}
 
       {/* Practical exercise */}
       {mod.practical_exercise && (
