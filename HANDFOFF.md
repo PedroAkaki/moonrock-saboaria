@@ -105,7 +105,57 @@ Transformar o roadmap atual (5 níveis rasos) em **páginas de estudo detalhadas
 
 ---
 
-## Especificação: Roadmap Interativo (Níveis de Estudo)
+## Decisão de Produto para o Roadmap
+
+Substituir o roadmap atual de 5 níveis pelo currículo de 8 níveis.
+
+O conteúdo deve ser escrito para **Ana**:
+- formada em química (UFMG), portanto pode receber explicações técnicas reais
+- iniciante em saboaria, portanto precisa de passo a passo operacional seguro
+- foco em aprendizado prático, não apenas leitura
+
+**Tom desejado:** técnico, claro, adulto e direto; sem simplificação infantil; sem prometer propriedades terapêuticas; sempre separar sabonete cosmético de sabão/saneante de limpeza.
+
+### MVP do Roadmap Interativo
+1. Criar estrutura de navegação para os 8 níveis
+2. Implementar páginas detalhadas primeiro para os níveis 1, 2 e 3 (Base Glicerinada, Óleo Usado, CP Básico)
+3. Deixar níveis 4 a 8 como "em breve" ou com conteúdo resumido
+4. Cada nível deve terminar com critério prático de conclusão
+
+### Arquitetura desejada
+
+**Rotas:**
+- `/roadmap` — lista os 8 níveis como cards
+- `/roadmap/[slug]` — página detalhada do nível
+
+**Dados:**
+- Preferir JSON estruturado para renderização no app
+- Manter `curriculo.md` como fonte editorial longa
+- Criar `data/learning-modules.json` para consumo da UI
+
+**Cada módulo deve conter no JSON:**
+- id, slug, title, level, difficulty, status, estimated_time, objective
+- prerequisites, chemistry, materials, process_steps
+- safety_notes, common_mistakes, youtube_references
+- bibliography, completion_criteria
+
+### Prompt para implementação
+```
+Leia HANDOFF.md e implemente o Roadmap Interativo.
+Objetivo: substituir o roadmap resumido atual por trilha de 8 níveis baseada em data/curriculo.md.
+
+Escopo:
+1. Criar data/learning-modules.json com os 8 níveis
+2. Criar rota /roadmap/[slug]
+3. Atualizar /roadmap para listar os níveis como cards
+4. Implementar conteúdo completo apenas para níveis 1, 2 e 3
+5. Níveis 4 a 8 como páginas resumidas com status "em breve"
+6. Manter estética MoonRock: dark theme, hexágonos, cards premium
+7. Não alterar calculadora, oils.json nem recipes.json
+8. Separar sabonete cosmético de sabão de limpeza doméstica
+
+Critérios: TypeScript sem erro, build passando, mobile responsivo, conteúdo PT-BR.
+```
 
 ### Contexto
 Ana é química pela UFMG. O roadmap atual em `data/roadmap.json` (5 níveis genéricos) é superficial demais. Precisamos de **páginas de estudo completas** com profundidade técnica real.
