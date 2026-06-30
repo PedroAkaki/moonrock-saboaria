@@ -23,7 +23,7 @@ export interface CalculatorResult {
   /** INS number of the recipe — ideal range: 136-170 */
   ins: number;
   /** Per-oil breakdown of NaOH contribution */
-  naohPerOil: { oilId: string; name: string; naoh: number }[];
+  naohPerOil: { oilId: string; name: string; grams: number; sapNaoh: number; naoh: number; naohBeforeSuperfat: number }[];
 }
 
 /**
@@ -100,13 +100,19 @@ export function calculateSoap(
   });
 
   // NaOH per oil
-  const naohPerOil = oilDetails.map((o) => ({
-    oilId: o.oilId,
-    name: o.name,
-    naoh: +(o.grams * o.sapNaOH).toFixed(2),
-  }));
+  const naohPerOil = oilDetails.map((o) => {
+    const naohBruto = o.grams * o.sapNaOH;
+    return {
+      oilId: o.oilId,
+      name: o.name,
+      grams: +o.grams.toFixed(1),
+      sapNaoh: o.sapNaOH,
+      naohBeforeSuperfat: +naohBruto.toFixed(2),
+      naoh: +(naohBruto * (1 - input.superfat / 100)).toFixed(2),
+    };
+  });
 
-  const totalNaOH = naohPerOil.reduce((sum, o) => sum + o.naoh, 0);
+  const totalNaOH = naohPerOil.reduce((sum, o) => sum + o.naohBeforeSuperfat, 0);
   const naohWithSuperfat = +(totalNaOH * (1 - input.superfat / 100)).toFixed(2);
   const waterGrams = +(naohWithSuperfat * input.waterRatio).toFixed(1);
 
