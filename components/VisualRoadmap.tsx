@@ -63,7 +63,7 @@ export function VisualRoadmap() {
 
               {/* Node */}
               <Link
-                href={isAvailable ? `/roadmap/${mod.slug}` : "#"}
+                href={isAvailable ? `/aprendizado/${mod.slug}` : "#"}
                 className={`
                   relative w-10 h-10 rounded-full flex items-center justify-center z-10 transition-all shrink-0
                   ${status === "done" ? "bg-green-500" :
@@ -90,7 +90,7 @@ export function VisualRoadmap() {
             {/* Content card */}
             <div className="ml-4 pb-8 flex-1">
               <Link
-                href={isAvailable ? `/roadmap/${mod.slug}` : "#"}
+                href={isAvailable ? `/aprendizado/${mod.slug}` : "#"}
                 className={`
                   block p-4 rounded-xl border transition-all
                   ${status === "done"

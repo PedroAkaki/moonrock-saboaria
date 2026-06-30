@@ -27,7 +27,7 @@ export default function Home() {
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/roadmap"
+              href="/aprendizado"
               className="group inline-flex items-center justify-center gap-2 bg-white text-moon-900 font-semibold px-6 py-3.5 rounded-xl hover:bg-moon-100 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
             >
               <BookOpen className="w-5 h-5" />
@@ -35,7 +35,7 @@ export default function Home() {
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </Link>
             <Link
-              href="/roadmap"
+              href="/aprendizado"
               className="group inline-flex items-center justify-center gap-2 border border-moon-500 text-moon-200 font-semibold px-6 py-3.5 rounded-xl hover:bg-moon-700 transition-all hover:-translate-y-0.5"
             >
               <Map className="w-5 h-5" />
@@ -99,7 +99,7 @@ export default function Home() {
           </Link>
 
           <Link
-            href="/roadmap"
+            href="/aprendizado"
             className="group relative bg-moon-700/40 backdrop-blur rounded-xl border border-moon-600 hover:border-white/30 p-6 transition-all hover:shadow-lg hover:-translate-y-1 overflow-hidden"
           >
             <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />

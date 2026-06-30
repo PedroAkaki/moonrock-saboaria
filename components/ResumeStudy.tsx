@@ -53,7 +53,7 @@ export default function ResumeStudy() {
 
     if (!found) {
       // All done - suggest review
-      setNextSlug("roadmap");
+      setNextSlug("aprendizado");
       setNextTitle("revisar roadmap");
     }
   }, []);
@@ -62,7 +62,7 @@ export default function ResumeStudy() {
 
   return (
     <Link
-      href={`/roadmap${nextSlug === "roadmap" ? "" : `/${nextSlug}`}`}
+      href={`/aprendizado${nextSlug === "aprendizado" ? "" : `/${nextSlug}`}`}
       className="group block bg-white/10 backdrop-blur border border-white/20 rounded-xl p-4 hover:bg-white/15 transition-all hover:-translate-y-0.5"
     >
       <div className="flex items-center gap-3">
@@ -74,7 +74,7 @@ export default function ResumeStudy() {
             {hasProgress ? "Continuar Estudo" : "Começar"}
           </p>
           <p className="text-white font-semibold text-sm">
-            {nextSlug === "roadmap" ? "Revisar Estudo" : nextTitle}
+            {nextSlug === "aprendizado" ? "Revisar Estudo" : nextTitle}
           </p>
         </div>
         <ArrowRight className="w-5 h-5 text-moon-300 group-hover:translate-x-0.5 transition-transform" />
