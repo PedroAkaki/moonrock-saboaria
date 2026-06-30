@@ -7,6 +7,7 @@ import StudyCard from "@/components/StudyCard";
 import QuickReviewBox from "@/components/QuickReviewBox";
 import ModuleQuiz from "@/components/ModuleQuiz";
 import BeforePracticeChecklist from "@/components/BeforePracticeChecklist";
+import ModuleTracker from "@/components/ModuleTracker";
 
 interface Module {
   id: number;
@@ -53,9 +54,9 @@ export default async function ModulePage({ params }: { params: Promise<{ slug: s
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
-      {/* Back nav */}
+      <ModuleTracker slug={mod.slug} />
       <Link
-        href="/roadmap"
+        href="/aprendizado"
         className="inline-flex items-center gap-1.5 text-sm text-moon-400 hover:text-white mb-8 transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
@@ -262,7 +263,7 @@ export default async function ModulePage({ params }: { params: Promise<{ slug: s
             <span className="w-1 h-5 bg-white rounded-full" />
             Perguntas de Fixação
           </h2>
-          <ModuleQuiz questions={mod.quiz} />
+          <ModuleQuiz slug={mod.slug} questions={mod.quiz} />
         </section>
       )}
 

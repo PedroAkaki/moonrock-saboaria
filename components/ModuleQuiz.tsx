@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getProgress, updateQuizAnswer } from "@/lib/progress";
 
 interface QuizQuestion {
   id: string;
@@ -11,12 +12,22 @@ interface QuizQuestion {
   explanation: string;
 }
 
-export default function ModuleQuiz({ questions }: { questions: QuizQuestion[] }) {
+export default function ModuleQuiz({ slug, questions }: { slug: string; questions: QuizQuestion[] }) {
   const [answers, setAnswers] = useState<Record<string, string | boolean>>({});
   const [submitted, setSubmitted] = useState<Record<string, boolean>>({});
 
+  // Restore saved answers on mount
+  useEffect(() => {
+    const p = getProgress();
+    const saved = p.modules[slug]?.quizAnswers;
+    if (saved && Object.keys(saved).length > 0) {
+      setAnswers(saved);
+    }
+  }, [slug]);
+
   const handleInputChange = (id: string, value: string | boolean) => {
     setAnswers((prev) => ({ ...prev, [id]: value }));
+    updateQuizAnswer(slug, id, value);
   };
 
   const handleSubmit = (id: string) => {

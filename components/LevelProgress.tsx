@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { getProgress, updateChecklist, setModuleStatus } from "@/lib/progress";
 
 interface LevelProgressProps {
   slug: string;
@@ -11,21 +12,38 @@ export default function LevelProgress({ slug, checklist }: LevelProgressProps) {
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
   const storageKey = `moonrock-progress-${slug}`;
 
+  // Load from centralized progress first, fallback to old key
   useEffect(() => {
-    const saved = localStorage.getItem(storageKey);
-    if (saved) {
-      try {
-        setCheckedItems(JSON.parse(saved));
-      } catch {}
+    const p = getProgress();
+    if (p.modules[slug]?.checklist && Object.keys(p.modules[slug].checklist).length > 0) {
+      setCheckedItems(p.modules[slug].checklist);
+    } else {
+      const saved = localStorage.getItem(storageKey);
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          setCheckedItems(parsed);
+          // Migrate to centralized
+          for (const [item, val] of Object.entries(parsed)) {
+            updateChecklist(slug, "checklist", item, val as boolean);
+          }
+        } catch {}
+      }
     }
-  }, [storageKey]);
+  }, [slug]);
 
   const toggleCheck = (item: string) => {
-    setCheckedItems((prev) => {
-      const next = { ...prev, [item]: !prev[item] };
-      localStorage.setItem(storageKey, JSON.stringify(next));
-      return next;
-    });
+    const newChecked = !checkedItems[item];
+    const newState = { ...checkedItems, [item]: newChecked };
+    setCheckedItems(newState);
+    updateChecklist(slug, "checklist", item, newChecked);
+
+    const completedCount = Object.values(newState).filter(Boolean).length;
+    if (completedCount === checklist.length) {
+      setModuleStatus(slug, "completed");
+    } else if (completedCount > 0) {
+      setModuleStatus(slug, "in-progress");
+    }
   };
 
   const completedCount = Object.values(checkedItems).filter(Boolean).length;

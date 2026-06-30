@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Check, Lock, ChevronRight, BookOpen } from "lucide-react";
 import learningModules from "@/data/learning-modules.json";
+import { getProgress } from "@/lib/progress";
 
 interface Module {
   id: number;
@@ -15,25 +16,19 @@ interface Module {
 
 export function VisualRoadmap() {
   const modules = learningModules as Module[];
-  const [progress, setProgress] = useState<Record<string, Record<string, boolean>>>({});
+  const [progress, setProgress] = useState(getProgress());
 
   useEffect(() => {
-    const all: Record<string, Record<string, boolean>> = {};
-    for (const m of modules) {
-      const saved = localStorage.getItem(`moonrock-progress-${m.slug}`);
-      if (saved) {
-        try { all[m.slug] = JSON.parse(saved); } catch {}
-      }
-    }
-    setProgress(all);
+    const update = () => setProgress(getProgress());
+    update();
+    window.addEventListener("moonrock-progress-updated", update);
+    return () => window.removeEventListener("moonrock-progress-updated", update);
   }, []);
 
   const isModuleComplete = (slug: string) => {
     const mod = modules.find((m) => m.slug === slug);
     if (!mod || !(mod as any).conclusion_criteria) return false;
-    const criteria = (mod as any).conclusion_criteria as string[];
-    const checked = progress[slug] ?? {};
-    return criteria.length > 0 && criteria.every((c: string) => checked[c]);
+    return progress.modules[slug]?.status === "completed";
   };
 
   const getNextModule = () => {

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, BookOpen } from "lucide-react";
 import learningModules from "@/data/learning-modules.json";
+import { getProgress } from "@/lib/progress";
 
 interface Module {
   id: number;
@@ -16,45 +17,42 @@ interface Module {
 export default function ResumeStudy() {
   const [nextSlug, setNextSlug] = useState<string | null>(null);
   const [nextTitle, setNextTitle] = useState<string | null>(null);
-  const [hasProgress, setHasProgress] = useState(false);
 
   useEffect(() => {
     const modules = learningModules as Module[];
+    const p = getProgress();
     let found = false;
 
-    for (const m of modules) {
-      if (m.status !== "available") break;
-      const saved = localStorage.getItem(`moonrock-progress-${m.slug}`);
-      if (saved) {
-        try {
-          const data = JSON.parse(saved);
-          const vals = Object.values(data).filter(Boolean).length;
-          if (vals > 0) {
-            setHasProgress(true);
-          }
-        } catch {}
+    // Try last visited module first
+    if (p.lastModuleSlug) {
+      const lastMod = modules.find((m) => m.slug === p.lastModuleSlug);
+      if (lastMod && lastMod.status === "available") {
+        const status = p.modules[p.lastModuleSlug]?.status;
+        if (status !== "completed") {
+          setNextSlug(p.lastModuleSlug);
+          setNextTitle(lastMod.title);
+          found = true;
+        }
       }
-      const key = `moonrock-progress-${m.slug}`;
-      const stored = localStorage.getItem(key);
-      const checked = stored ? Object.values(JSON.parse(stored)).filter(Boolean).length : 0;
+    }
 
-      // Get conclusion criteria length from the module
-      const mod = modules.find((x) => x.slug === m.slug) as any;
-      const total = mod?.conclusion_criteria?.length ?? 0;
-      const isComplete = total > 0 && checked >= total;
-
-      if (!isComplete) {
-        setNextSlug(m.slug);
-        setNextTitle(m.title);
-        found = true;
-        break;
+    // Fallback: find first incomplete
+    if (!found) {
+      for (const m of modules) {
+        if (m.status !== "available") break;
+        const status = p.modules[m.slug]?.status;
+        if (status !== "completed") {
+          setNextSlug(m.slug);
+          setNextTitle(m.title);
+          found = true;
+          break;
+        }
       }
     }
 
     if (!found) {
-      // All done - suggest review
       setNextSlug("aprendizado");
-      setNextTitle("revisar roadmap");
+      setNextTitle("Revisar Estudo");
     }
   }, []);
 
@@ -71,7 +69,7 @@ export default function ResumeStudy() {
         </div>
         <div className="flex-1">
           <p className="text-xs text-moon-300 uppercase tracking-wider">
-            {hasProgress ? "Continuar Estudo" : "Começar"}
+            {nextSlug === "aprendizado" ? "Revisar" : "Continuar Estudo"}
           </p>
           <p className="text-white font-semibold text-sm">
             {nextSlug === "aprendizado" ? "Revisar Estudo" : nextTitle}

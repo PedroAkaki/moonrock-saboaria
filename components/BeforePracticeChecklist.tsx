@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { getProgress, updateChecklist } from "@/lib/progress";
 
 export default function BeforePracticeChecklist({
   items,
@@ -12,22 +13,33 @@ export default function BeforePracticeChecklist({
   const [checked, setChecked] = useState<boolean[]>(() => items.map(() => false));
   const storageKey = `moonrock-before-practice-${slug}`;
 
+  // Load from centralized progress first, fallback to old key
   useEffect(() => {
-    const saved = localStorage.getItem(storageKey);
-    if (saved) {
-      try {
-        setChecked(JSON.parse(saved));
-      } catch {}
+    const p = getProgress();
+    if (p.modules[slug]?.beforePractice && Object.keys(p.modules[slug].beforePractice).length > 0) {
+      const saved = p.modules[slug].beforePractice;
+      setChecked(items.map((item) => !!saved[item]));
+    } else {
+      const saved = localStorage.getItem(storageKey);
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          setChecked(parsed);
+          // Migrate to centralized
+          items.forEach((item, i) => {
+            updateChecklist(slug, "beforePractice", item, parsed[i] === true);
+          });
+        } catch {}
+      }
     }
-  }, [storageKey]);
+  }, [slug]);
 
   const toggle = (index: number) => {
-    setChecked((prev) => {
-      const next = [...prev];
-      next[index] = !next[index];
-      localStorage.setItem(storageKey, JSON.stringify(next));
-      return next;
-    });
+    const newState = [...checked];
+    newState[index] = !newState[index];
+    setChecked(newState);
+    const item = items[index];
+    updateChecklist(slug, "beforePractice", item, newState[index]);
   };
 
   const allDone = checked.every(Boolean);
