@@ -107,11 +107,76 @@ Manter dark theme, hexágonos. Não mexer na calculadora nem oils.json.
 
 ---
 
-## Ordem recomendada de execução
+## NÃO FAZER AGORA (escopo congelado)
 
-1. 🔥 **Roadmap Interativo** (itens 1-7) — o maior gap pedagógico
-2. 🔥 **Calculadora Explicativa** (itens 8-11) — ensinar enquanto calcula
-3. 🔥 **Óleos com Profundidade** (itens 12-16) — biblioteca vira consulta técnica
-4. ⚡ **Modo Cozinha** (itens 17-20) — UX para produção real
-5. ⚡ **Conteúdo** (itens 21-24) — mais receitas, glossário, conexões
-6. 💤 **Avançado** (itens 25-30) — custo, IFRA, PDF, sync
+- ❌ Não adicionar login/autenticação
+- ❌ Não migrar JSON para banco de dados (Turso/PG)
+- ❌ Não criar backend (app 100% estático)
+- ❌ Não refatorar stack (Next.js 16 + Tailwind)
+- ❌ Não alterar engine matemática (`lib/soap/calculator.ts`) sem pedido explícito
+- ❌ Não adicionar claims terapêuticos/cosméticos (proibido ANVISA)
+- ❌ Não misturar sabonete corporal com sabão de limpeza
+- ❌ Não implementar comando de voz agora
+- ❌ Não criar sistema de usuários
+- ❌ Não adicionar animações complexas que prejudiquem performance mobile
+
+## Critérios Globais de Qualidade
+
+- Conteúdo em PT-BR
+- Tom técnico, adulto e rigoroso (Ana é química UFMG, iniciante em saboaria)
+- Explicar fundamentos químicos sem infantilizar
+- Toda prática com NaOH/KOH deve ter alerta de segurança
+- Separar claramente: cosmético / saneante / conteúdo educativo
+- Não prometer benefícios terapêuticos
+- Não inventar valores técnicos sem fonte (consultar `data/curriculo.md` e deep research)
+- Build precisa passar (`npm run build`)
+- Mobile-first (responsivo, touch targets ≥ 48px)
+- PWA/offline deve continuar funcionando
+
+## Definition of Done — Roadmap Interativo
+
+1. `/roadmap` lista 8 níveis como cards clicáveis
+2. Cada nível abre em `/roadmap/[slug]`
+3. Níveis 1, 2 e 3 têm conteúdo completo (objetivo, química, materiais, processo, segurança, erros, exercício, conclusão)
+4. Níveis 4 a 8 têm estrutura e status "em breve"
+5. Nível de óleo usado deixa claro: **sabão de limpeza, não sabonete corporal**
+6. Layout funciona no celular (scroll, accordion, sem overflow)
+7. Build passa, TypeScript sem erro
+
+## Definition of Done — Calculadora Explicativa
+
+1. Resultado mostra fórmula com valores substituídos (ex: NaOH = 500g × 0.135 × 0.95 = 64.1g)
+2. Campos principais têm tooltip educativo (superfat, SAP, água:soda, INS, DOS)
+3. Alertas deixam claro quando são estimativas heurísticas (INS, DOS)
+4. Inputs/selects no dark theme consistente (sem fundo branco)
+5. Nenhuma mudança quebra os cálculos existentes
+6. Build passa
+
+---
+
+## Fases de Execução (Ordem Recomendada)
+
+### 🔥 Fase 1 — App de Estudo Real
+1. **Roadmap Interativo** (itens 1-7 + 23-24) — trilha de estudo conectada: teoria → receita → cálculo → prática → conclusão
+2. **Corrigir dark theme** da calculadora (item 20)
+3. **Calculadora explicativa** com fórmulas/tooltips (itens 8-9)
+
+### 🔥 Fase 2 — Ferramenta de Bancada
+4. **Receitas ligadas aos módulos** (item 23)
+5. **Biblioteca de óleos** com filtros, função prática, risco DOS (itens 12-16)
+6. **Diário de lote** (item 19)
+
+### ⚡ Fase 3 — Conteúdo e Profundidade
+7. **Níveis 4 a 8 completos** (item 5 invertido)
+8. **Glossário expandido** (item 22)
+9. **Seed de 12-20 receitas** (item 21)
+
+### 💤 Fase 4 — Avançado
+10. **Modo KOH** (item 11)
+11. **Timer de traço e cura** (item 18)
+12. **Calculadora de custo** (item 25)
+13. **IFRA checker** (item 26)
+14. **PDF batch sheet** (item 27)
+15. **Modo Mãos Sujas** (item 17)
+16. **Sync nuvem** (item 28)
+17. **Domínio moonrock.pousadamayon.com** (item 29)
