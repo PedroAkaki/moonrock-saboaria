@@ -2,128 +2,149 @@
 
 ## Contexto
 
-Leia `CONTEXTO_IA.md` e `data/learning-modules.json` antes de responder.
-O app vive em https://moonrock-saboaria.vercel.app
+Leia `CONTEXTO_IA.md`, `data/learning-modules.json` e `lib/soap/calculator.ts` antes de responder.
+
+O app vive em: https://moonrock-saboaria.vercel.app
 Repositório: github.com/PedroAkaki/moonrock-saboaria
 
 ## Problema
 
-A calculadora atual entrega resultados corretos, mas é uma "caixa preta":
-- Mostra números sem explicar como foram calculados
-- Inputs/selects ainda têm fundo claro (quebram o dark theme lunar)
-- Nenhum campo explica o que significa (superfat, SAP, INS, DOS)
-- Ana (química UFMG) quer entender a matemática por trás
+A calculadora atual entrega resultados úteis, mas ainda funciona como uma "caixa preta":
+- mostra números sem explicar como foram calculados
+- inputs/selects ainda têm fundo claro quebram o dark theme lunar
+- campos importantes não explicam seus conceitos
+- Ana (Química UFMG, iniciante em saboaria) quer entender a matemática e os limites dos cálculos
 
-## Tarefa
+## Objetivo
 
-Transformar a calculadora em uma **Calculadora Explicativa** que ensina enquanto calcula.
+Transformar a calculadora em uma **Calculadora Explicativa**:
+- útil na bancada
+- clara no mobile
+- tecnicamente honesta
+- educativa sem ser infantilizada
+- consistente com a identidade MoonRock
 
-### Escopo obrigatório
+## Escopo obrigatório
 
-**1. Exibir fórmulas no resultado**
-Após calcular, mostrar abaixo dos números:
+### 1. Exibir fórmulas no resultado
+
+Após calcular, mostrar abaixo dos resultados principais:
+
+```
+NaOH = massa do óleo × SAP NaOH × (1 - superfat)
+Água = NaOH total × razão água:soda
+```
+
+Mostrar também os valores substituídos.
+
+Exemplo com um óleo:
 ```
 NaOH = 500g × 0,135 × (1 - 0,05) = 64,1g
 Água = 64,1g × 2,2 = 141,0g
 ```
-Detalhar por óleo quando houver múltiplos:
+
+Com múltiplos óleos, detalhar por óleo:
 ```
 Azeite: 500g × 0,135 × 0,95 = 64,1g
 Coco: 200g × 0,183 × 0,95 = 34,8g
-NaOH total: 98,9g
+
+NaOH total = 98,9g
+Água = 98,9g × 2,2 = 217,6g
 ```
 
-**2. Tooltips educativos nos campos**
-Adicionar um ícone `?` ao lado destes campos com tooltip explicativo:
-- **Peso do óleo:** "A pesagem precisa é essencial. Erros alteram todo o cálculo de soda."
-- **Superfat:** "Percentual de óleo não saponificado. Aumenta hidratação mas reduz dureza. Faixa típica: 3-8%."
-- **Razão água:soda:** "Define a concentração da solução alcalina. 2:1 é padrão. Mais água = mais tempo de cura."
-- **SAP (índice de saponificação):** "Valor médio para estimar NaOH necessário. Varia por lote e fornecedor."
-- **INS:** "Índice empírico de qualidade do sabão. Ideal 136-170. Valores fora disso podem indicar barra muito mole ou muito dura."
-- **DOS (Dreaded Orange Spots):** "Risco de rancificação por oxidação de óleos insaturados. Alerta quando superfat > 8% com óleos instáveis."
+### 2. Tooltips educativos nos campos
 
-**3. Correção de dark theme**
-Todos os inputs (`<input>`, `<select>`) e seus containers devem usar o tema escuro:
-- Background: `bg-moon-800` ou similar escuro
-- Borda: `border-moon-500`
-- Texto: `text-white`
-- Placeholder: `placeholder-moon-400`
-- Manter consistência com o resto do app
+Adicionar um ícone `?` ou equivalente ao lado dos campos principais.
 
-**4. Disclaimer heurístico**
-Adicionar frase abaixo de todas as propriedades estimadas (INS, dureza, espuma, etc):
-"Propriedades calculadas são estimativas heurísticas baseadas no perfil de ácidos graxos. Não substituem teste prático e cura adequada."
+**Peso do óleo:**
+"A pesagem precisa é essencial. Erros de massa alteram diretamente o cálculo de soda."
 
-### Restrições
+**Superfat:**
+"Percentual de óleo planejado para permanecer não saponificado. Aumenta margem contra excesso de soda e pode deixar o sensorial mais suave, mas em excesso pode reduzir espuma, dureza e estabilidade."
 
-- ❌ Não alterar `lib/soap/calculator.ts` (engine matemática)
-- ❌ Não alterar `data/oils.json` (banco de óleos)
-- ❌ Não alterar `data/learning-modules.json` (módulos de estudo)
-- ❌ Não criar backend, login, banco de dados
-- ❌ Não adicionar dependências pesadas
-- ✅ Manter dark theme lunar, hexágonos, mobile-first
-- ✅ Build precisa passar (`npm run build`)
+**Razão água:soda:**
+"Define a concentração da solução alcalina. Faixas comuns: 2:1 a 2,7:1. Menos água acelera endurecimento/trace; mais água aumenta fluidez e tempo de cura."
 
-### Definition of Done
+**SAP:**
+"Valor médio usado para estimar quanto NaOH/KOH um óleo exige para saponificação. Pode variar por lote, origem e fornecedor."
+
+**INS:**
+"Índice empírico usado por calculadoras de sabão para comparar fórmulas. Faixas de referência ajudam, mas não são medição laboratorial nem garantia de qualidade."
+
+**DOS:**
+"Risco de oxidação/rancidez, especialmente com óleos muito insaturados, superfat alto, matéria-prima velha ou armazenamento ruim."
+
+**Tamanho da forma:**
+"Volume estimado da forma. A calculadora converte cm³ em massa aproximada de sabão, mas o rendimento real varia com fórmula, água e perdas."
+
+### 3. Correção de dark theme
+
+Todos os inputs, selects e seus containers devem respeitar o tema escuro:
+- background escuro (ex: `bg-moon-800`)
+- borda coerente (ex: `border-moon-500`)
+- texto claro (`text-white`)
+- placeholder discreto (`placeholder-moon-400`)
+- foco visível e acessível
+- consistente no mobile
+
+### 4. Disclaimer heurístico
+
+Adicionar abaixo das propriedades estimadas:
+
+"Propriedades calculadas são estimativas heurísticas baseadas no perfil de ácidos graxos. Elas ajudam na formulação, mas não substituem teste prático, cura adequada e avaliação do lote."
+
+Esse aviso deve aparecer perto de INS, dureza, limpeza, espuma, condicionamento, cremosidade e DOS.
+
+### 5. Segurança
+
+Manter ou reforçar o alerta de segurança:
+"NaOH/KOH são bases cáusticas. Use EPIs, trabalhe em local ventilado e sempre adicione a soda à água, nunca água sobre a soda."
+
+## Restrições
+
+- Não alterar `data/oils.json`
+- Não alterar `data/recipes.json`
+- Não alterar `data/learning-modules.json`
+- Não criar backend, login ou banco de dados
+- Não adicionar dependências pesadas
+- Não refatorar a arquitetura geral
+- **Não alterar a lógica matemática dos cálculos**
+- Se for necessário alterar `lib/soap/calculator.ts`, apenas expor breakdown/metadata dos cálculos mantendo os resultados numéricos idênticos
+- Manter dark theme lunar, hexágonos e mobile-first
+- Build precisa passar com `npm run build`
+
+## Antes de implementar (análise prévia)
+
+1. Onde a calculadora calcula NaOH, água, INS e DOS?
+2. A UI já tem dados suficientes para montar o breakdown?
+3. É melhor calcular o breakdown na página ou expor isso pelo helper do calculator.ts sem mudar a matemática?
+4. Há componente de tooltip existente (ex: GlossaryTerm.tsx) que pode ser reaproveitado?
+5. Quais inputs/selects ainda quebram o dark theme?
+
+## Definition of Done
 
 1. Resultado mostra fórmula com valores substituídos
-2. Tooltips explicativos nos campos principais
-3. Inputs/selects no dark theme (sem fundo branco)
-4. Disclaimer heurístico visível nas propriedades
-5. Calculadora continua funcionando (nenhum resultado quebrado)
-6. Build passa (`npm run build`)
-7. Mobile responsivo
+2. Fórmula de NaOH aparece por óleo quando houver múltiplos
+3. Água aparece com fórmula e valores substituídos
+4. Tooltips explicativos nos campos principais
+5. Inputs/selects seguem o dark theme
+6. Disclaimer heurístico perto das propriedades estimadas
+7. Alerta de segurança continua visível
+8. Calculadora continua funcionando (nenhum resultado numérico muda)
+9. Mobile responsivo
+10. `npm run build` passa
 
 ## Entregável esperado
 
-- Código completo para implementar (ou diff claro)
-- Quais arquivos criar/alterar
-- Análise de riscos
-- Estimativa de tempo/esforço
+Se for resposta de council/revisão:
+1. Avalie o plano
+2. Aponte riscos técnicos e pedagógicos
+3. Sugira a implementação mais simples
+4. Diga quais arquivos provavelmente serão alterados
+5. Dê critérios de aceite
 
----
-
-## Informações extras
-
-### Arquivo principal
-`app/calculadora/page.tsx` (~5KB, 200+ linhas) — a página inteira da calculadora.
-
-### Engine matemática (NÃO ALTERAR)
-`lib/soap/calculator.ts` — exporta `calculateSoap()`, `calculateMold()`, `validateInput()`.
-
-### Estrutura do resultado
-```typescript
-interface CalculatorResult {
-  oils: { oilId: string; name: string; grams: number; percentage: number }[];
-  totalOilsGrams: number;
-  naoh: number;
-  naohWithSuperfat: number;
-  waterGrams: number;
-  waterRatio: number;
-  superfatPercent: number;
-  ins: number;
-  insStatus: "low" | "ideal" | "high";
-}
-```
-
-### Estrutura do input
-```typescript
-interface CalculatorInput {
-  oils: { oilId: string; grams: number }[];
-  superfat: number;
-  waterRatio: number;
-}
-```
-
-### Componentes existentes (consultar antes de recriar)
-- `components/GlossaryTerm.tsx` — tooltip de glossário (hover reveal)
-- `components/SafetyChecklist.tsx` — modal de segurança EPI
-- Ambos em `components/` — podem servir de referência para o TooltipInfo
-
-### Estilo
-Usar classes Tailwind do tema lunar:
-- `bg-moon-800` / `bg-moon-700/50 backdrop-blur` para containers
-- `border-moon-600` / `border-moon-500` para bordas
-- `text-moon-100` / `text-moon-300` / `text-moon-400` para textos
-- `text-white` para títulos
-- Inputs escuros: `bg-moon-800 border-moon-500 text-white placeholder-moon-400`
+Se for execução via agente de código:
+1. Liste arquivos alterados
+2. Faça mudanças pequenas e focadas
+3. Rode `npm run build`
+4. Reporte se algum cálculo mudou
