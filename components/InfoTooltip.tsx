@@ -1,53 +1,62 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface InfoTooltipProps {
   text: string;
 }
 
 export default function InfoTooltip({ text }: InfoTooltipProps) {
-  const [show, setShow] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
 
-  // Fecha ao clicar fora (essencial no mobile)
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent | TouchEvent) {
+    function handlePointerDown(event: PointerEvent) {
       if (ref.current && !ref.current.contains(event.target as Node)) {
-        setShow(false);
+        setIsOpen(false);
       }
     }
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("touchstart", handleClickOutside);
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("touchstart", handleClickOutside);
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
 
   return (
-    <span ref={ref} className="relative inline-flex items-center ml-1.5">
+    <span
+      ref={ref}
+      className="relative inline-flex items-center ml-1.5"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
       <button
         type="button"
-        onClick={(e) => {
-          e.stopPropagation();
-          setShow((prev) => !prev);
+        onClick={(event) => {
+          event.stopPropagation();
+          setIsOpen((value) => !value);
         }}
-        onMouseEnter={() => setShow(true)}
-        onMouseLeave={() => setShow(false)}
-        className="w-5 h-5 rounded-full bg-moon-600 text-moon-200 text-[10px] font-bold flex items-center justify-center hover:bg-moon-500 active:bg-moon-400 transition-colors cursor-pointer shrink-0 focus:outline-none focus:ring-1 focus:ring-white/30"
+        className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-moon-400 text-[10px] leading-none text-moon-300 transition-colors hover:border-white hover:text-white focus:outline-none focus:ring-1 focus:ring-white/50 active:bg-moon-600"
         aria-label="Mais informações"
+        aria-expanded={isOpen}
       >
         ?
       </button>
-      {show && (
-        <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2.5 w-60 pointer-events-none">
-          <div className="bg-moon-900 border border-moon-500 text-moon-200 text-xs rounded-lg p-3 shadow-xl leading-relaxed pointer-events-auto">
-            {text}
-          </div>
-          {/* Seta */}
-          <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-moon-500" />
-        </div>
+
+      {isOpen && (
+        <span className="absolute bottom-full left-1/2 z-50 mb-2 w-60 -translate-x-1/2 rounded-lg border border-moon-500 bg-moon-900 px-3 py-2.5 text-xs leading-relaxed text-moon-200 shadow-xl">
+          {text}
+          <span className="absolute left-1/2 top-full -mt-px h-2 w-2 -translate-x-1/2 rotate-45 border-b border-r border-moon-500 bg-moon-900" />
+        </span>
       )}
     </span>
   );
