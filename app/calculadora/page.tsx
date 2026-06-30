@@ -402,7 +402,7 @@ export default function CalculadoraPage() {
                   </div>
                   <div className="text-sm text-moon-300">Soda Cáustica (NaOH)</div>
                   <div className="text-xs text-moon-500">
-                    (sem superfat: {result.naoh!.toFixed(2)}g)
+                    (sem superfat: {result.naoh.toFixed(2)}g)
                   </div>
                 </div>
                 <div className="bg-moon-700 rounded-lg p-3 text-center border border-moon-600">
