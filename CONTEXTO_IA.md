@@ -47,18 +47,19 @@ Dark theme lunar (preto+branco+hexágonos).
 
 ## Pendências (o que ainda falta)
 
-### 🔥 Fase 1 — App de Estudo (próxima tarefa)
-Corrigir dark theme dos inputs/selects da calculadora →
-Tornar calculadora explicativa (mostrar fórmulas + tooltips) →
-Conectar receitas aos módulos de aprendizado.
+### 🔥 Fase 1 — App de Estudo (prioridade atual)
+**Estudo Interativo v1** — fortalecer fundamentos com:
+- Quiz de fixação nos níveis 1-3
+- Cards de conceitos (definição + por que importa + erro comum)
+- Revisão rápida (5-8 pontos essenciais)
+- Checklist "Antes de praticar"
 
-Detalhes:
-- Calculadora explicativa (mostrar fórmula no resultado)
-- Tooltips educativos nos campos da calculadora
-- Dark theme dos inputs/selects (alguns ainda claros)
+Depois:
+- Corrigir dark theme dos inputs/selects da calculadora (se ainda houver)
 - Níveis 4 a 8: conteúdo existe em `data/curriculo.md`, falta passar para `learning-modules.json`
 
 ### ⚡ Fase 2 — Ferramenta de Bancada
+- Calculadora explicativa (fórmulas + tooltips) — ✅ CONCLUÍDO
 - Receitas ligadas aos módulos de estudo
 - Biblioteca de óleos com função prática + substituições + risco DOS
 - Diário de lote (registro de produção)
