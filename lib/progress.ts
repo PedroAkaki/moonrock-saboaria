@@ -42,16 +42,6 @@ function normalizeProgress(raw: any): AppProgress {
   };
 }
 
-function parseMaybeJsonString(value: string | null): string | null {
-  if (!value) return null;
-  try {
-    const parsed = JSON.parse(value);
-    return typeof parsed === "string" ? parsed : null;
-  } catch {
-    return value;
-  }
-}
-
 function migrateOldKeys(): AppProgress | null {
   if (typeof window === "undefined") return null;
 
