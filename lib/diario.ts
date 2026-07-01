@@ -2,7 +2,7 @@ export type BatchStatus = "draft" | "made" | "curing" | "ready" | "failed" | "ar
 
 export type SoapMethod = "melt_and_pour" | "used_oil" | "cold_process" | "hot_process" | "other";
 
-export type AlkaliType = "naoh" | "koh";
+export type AlkaliType = "naoh" | "koh" | "mixed";
 
 export interface BatchOil {
   oilId: string | null;
@@ -234,7 +234,7 @@ export function duplicateBatch(id: string): Batch | null {
     method: original.method,
     batchDate: new Date().toISOString().slice(0, 10),
     source: { type: "duplicate_batch", sourceBatchId: original.id },
-    formula: { ...original.formula, oils: original.formula.oils.map((o) => ({ ...o })) },
+    formula: { ...original.formula, oils: (original.formula.oils ?? []).map((o) => ({ ...o })) },
     process: original.process ? { ...original.process } : undefined,
     yield: original.yield ? { ...original.yield } : undefined,
     cureDays: original.cure.daysPlanned,

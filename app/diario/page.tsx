@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { Plus, Filter, FlaskConical, Trash2, Copy, FileText } from "lucide-react";
+import { Plus, FlaskConical, Trash2, Copy } from "lucide-react";
 import {
   getAllBatches,
   createBatch,
@@ -62,22 +62,33 @@ export default function DiarioPage() {
   const [formSuperfat, setFormSuperfat] = useState(5);
   const [formOilList, setFormOilList] = useState<BatchOil[]>([]);
   const [formSourceType, setFormSourceType] = useState<"free_formula" | "calculator">("free_formula");
+  const [formFormulaOpen, setFormFormulaOpen] = useState(false);
   const [formObs, setFormObs] = useState("");
 
+  // Snapshot da fórmula vinda da calculadora
+  interface CalcSnapshot {
+    totalOilWeight: number;
+    naohGrams?: number;
+    waterGrams: number;
+    superfatPercent: number;
+    oils?: BatchOil[];
+  }
+
   // Pre-fill from calculator when available
+  // NÃO remover a chave aqui — só após createBatch() com sourceType "calculator"
   useEffect(() => {
     if (typeof window === "undefined") return;
     try {
       const saved = localStorage.getItem("moonrock:calculator:lastFormula:v1");
       if (saved) {
-        const formula = JSON.parse(saved);
+        const formula: CalcSnapshot = JSON.parse(saved);
         setFormOilWeight(formula.totalOilWeight ?? 500);
         setFormNaoh(formula.naohGrams ?? 0);
         setFormWater(formula.waterGrams ?? 0);
         setFormSuperfat(formula.superfatPercent ?? 5);
         setFormOilList(formula.oils ?? []);
         setFormSourceType("calculator");
-        localStorage.removeItem("moonrock:calculator:lastFormula:v1");
+        setFormFormulaOpen(true);
         setShowForm(true);
       }
     } catch { /* ignore */ }
@@ -111,6 +122,12 @@ export default function DiarioPage() {
     };
 
     createBatch(input);
+
+    // Só remove a chave da calculadora DEPOIS de criar o lote
+    if (formSourceType === "calculator") {
+      localStorage.removeItem("moonrock:calculator:lastFormula:v1");
+    }
+
     load();
     setShowForm(false);
     setFormName("");
@@ -122,6 +139,7 @@ export default function DiarioPage() {
     setFormSuperfat(5);
     setFormOilList([]);
     setFormSourceType("free_formula");
+    setFormFormulaOpen(false);
     setFormObs("");
   };
 
@@ -204,9 +222,13 @@ export default function DiarioPage() {
             </div>
           </div>
 
-          <details className="group">
-            <summary className="text-sm font-semibold text-moon-300 cursor-pointer hover:text-white transition-colors list-none flex items-center gap-2">
-              <span className="group-open:rotate-90 transition-transform">▶</span> Fórmula
+          <details className="group" open={formFormulaOpen}>
+            <summary className="text-sm font-semibold text-moon-300 cursor-pointer hover:text-white transition-colors list-none flex items-center gap-2"
+              onClick={(e) => { e.preventDefault(); setFormFormulaOpen(!formFormulaOpen); }}>
+              <span className={`transition-transform ${formFormulaOpen ? "rotate-90" : ""}`}>▶</span> Fórmula
+              {formSourceType === "calculator" && formOilList.length > 0 && (
+                <span className="ml-auto text-[10px] px-2 py-0.5 rounded-full bg-amber-900/30 text-amber-300 border border-amber-700">Calculadora</span>
+              )}
             </summary>
             <div className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-3">
               <div>
@@ -230,6 +252,19 @@ export default function DiarioPage() {
                   className="w-full bg-moon-800 border border-moon-500 rounded-lg px-3 py-2 text-sm text-white" />
               </div>
             </div>
+
+                    {/* Imported oils list */}
+                    {formOilList.length > 0 && (
+                      <div className="mt-3 space-y-1.5">
+                        <p className="text-xs font-semibold text-moon-500 uppercase tracking-wider">Óleos importados</p>
+                        {formOilList.map((oil, i) => (
+                          <div key={i} className="flex items-center justify-between text-xs text-moon-300 bg-moon-800 rounded-lg px-3 py-1.5">
+                            <span>{oil.name}</span>
+                            <span className="font-mono text-moon-400">{oil.grams}g ({oil.percentage}%)</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
           </details>
 
           <div>
@@ -293,6 +328,9 @@ export default function DiarioPage() {
                       <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full border ${STATUS_COLORS[batch.status]}`}>
                         {STATUS_LABELS[batch.status]}
                       </span>
+                      {batch.source.type === "calculator" && (
+                        <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-amber-900/30 text-amber-300 border border-amber-700">Calculadora</span>
+                      )}
                     </div>
                     <h3 className="font-semibold text-white truncate">{batch.name}</h3>
                     <p className="text-xs text-moon-400">{METHOD_LABELS[batch.method]} · {batch.batchDate}</p>
