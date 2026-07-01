@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Check, Lock, ChevronRight, BookOpen, CircleDot } from "lucide-react";
+import { Check, Lock, ChevronRight } from "lucide-react";
 import learningModules from "@/data/learning-modules.json";
 import { getProgress } from "@/lib/progress";
 import { getModuleLearningProgress, getClientProgress } from "@/lib/learning";

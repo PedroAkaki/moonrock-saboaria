@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { VisualRoadmap } from "@/components/VisualRoadmap";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Check, Play, Award, Sparkles, BarChart3 } from "lucide-react";
+import { ArrowRight, Check, Play, Award, Sparkles, BarChart3 } from "lucide-react";
 import learningModules from "@/data/learning-modules.json";
 import { getProgress } from "@/lib/progress";
 import {
@@ -24,14 +24,12 @@ interface Module {
 export default function AprendizadoPage() {
   const modules = learningModules as Module[];
   const [progress, setProgress] = useState(getClientProgress());
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const update = () => {
       setProgress(getProgress());
     };
     update();
-    setMounted(true);
     window.addEventListener("moonrock-progress-updated", update);
     return () => window.removeEventListener("moonrock-progress-updated", update);
   }, []);
@@ -65,7 +63,7 @@ export default function AprendizadoPage() {
           <div className="text-xl font-bold text-moon-300">
             {stats.available + stats.locked}
           </div>
-          <div className="text-xs text-moon-400">Disponíveis</div>
+          <div className="text-xs text-moon-400">Na trilha</div>
         </div>
       </div>
 

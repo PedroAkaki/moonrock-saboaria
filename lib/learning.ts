@@ -1,4 +1,5 @@
 import { AppProgress, getProgress } from "./progress";
+import type { ModuleProgress } from "./progress";
 
 interface RecipeLike {
   id: string;
@@ -65,7 +66,7 @@ export interface Achievement {
  */
 function hasRelatedRecipeForSlug(slug: string): boolean {
   try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     const data = require("@/data/recipes.json") as { recipes: RecipeLike[] };
     return data.recipes.some((r) => r.relatedModuleSlugs?.includes(slug));
   } catch {
@@ -81,7 +82,7 @@ export function getModuleLearningProgress(
   progress: AppProgress
 ): ModuleLearningProgress {
   const mp = progress.modules[mod.slug];
-  const quizTotal = (mod.quiz as any[])?.length ?? 0;
+  const quizTotal = Array.isArray(mod.quiz) ? mod.quiz.length : 0;
   const checklistTotal = mod.conclusion_criteria?.length ?? 0;
   const bpTotal = mod.beforePracticeChecklist?.length ?? 0;
 
@@ -89,7 +90,7 @@ export function getModuleLearningProgress(
   let quizDone = 0;
   if (mp?.quizAnswers) {
     quizDone = Object.values(mp.quizAnswers).filter(
-      (v: any) => v !== undefined && v !== ""
+      (v: string | boolean) => v !== undefined && v !== ""
     ).length;
   }
 
@@ -161,14 +162,19 @@ export function getNextAction(
   progress: AppProgress
 ): NextAction | null {
   if (mod.status !== "available") return null;
-  const mp = progress.modules[mod.slug];
+  const mp: ModuleProgress | undefined = progress.modules[mod.slug];
 
   // If already completed, suggest review
-  if ((mp as any)?.status === "completed") {
+  if (mp?.status === "completed") {
     return { slug: mod.slug, label: "Revisar módulo", href: `/aprendizado/${mod.slug}` };
   }
 
-  // 1. Quiz first — unfinished quiz
+  // 1. Module not started — suggest starting first
+  if (!mp || (detail.quizDone === 0 && detail.checklistDone === 0 && detail.bpDone === 0)) {
+    return { slug: mod.slug, label: "Começar este módulo", href: `/aprendizado/${mod.slug}` };
+  }
+
+  // 2. Quiz first — unfinished quiz
   if (detail.quizTotal > 0 && detail.quizDone < detail.quizTotal) {
     const remaining = detail.quizTotal - detail.quizDone;
     return {
@@ -203,11 +209,6 @@ export function getNextAction(
       label: `Finalizar critérios de conclusão (${detail.checklistDone}/${detail.checklistTotal})`,
       href: `/aprendizado/${mod.slug}`,
     };
-  }
-
-  // 5. If module is new, suggest starting
-  if (!mp || (detail.quizDone === 0 && detail.checklistDone === 0)) {
-    return { slug: mod.slug, label: "Começar este módulo", href: `/aprendizado/${mod.slug}` };
   }
 
   return null;
