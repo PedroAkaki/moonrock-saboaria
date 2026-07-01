@@ -13,6 +13,7 @@ import {
   BatchStatus,
   SoapMethod,
   CreateBatchInput,
+  BatchOil,
 } from "@/lib/diario";
 
 const STATUS_LABELS: Record<string, string> = {
@@ -59,6 +60,8 @@ export default function DiarioPage() {
   const [formNaoh, setFormNaoh] = useState(0);
   const [formWater, setFormWater] = useState(0);
   const [formSuperfat, setFormSuperfat] = useState(5);
+  const [formOilList, setFormOilList] = useState<BatchOil[]>([]);
+  const [formSourceType, setFormSourceType] = useState<"free_formula" | "calculator">("free_formula");
   const [formObs, setFormObs] = useState("");
 
   // Pre-fill from calculator when available
@@ -72,6 +75,8 @@ export default function DiarioPage() {
         setFormNaoh(formula.naohGrams ?? 0);
         setFormWater(formula.waterGrams ?? 0);
         setFormSuperfat(formula.superfatPercent ?? 5);
+        setFormOilList(formula.oils ?? []);
+        setFormSourceType("calculator");
         localStorage.removeItem("moonrock:calculator:lastFormula:v1");
         setShowForm(true);
       }
@@ -92,14 +97,14 @@ export default function DiarioPage() {
       name: formName.trim(),
       method: formMethod,
       batchDate: formDate,
-      source: { type: "free_formula" },
+      source: { type: formSourceType },
       formula: {
         totalOilWeight: formOilWeight,
-        alkaliType: formNaoh > 0 ? "naoh" : "naoh",
+        alkaliType: "naoh" as const,
         naohGrams: formNaoh || undefined,
         waterGrams: formWater,
         superfatPercent: formSuperfat,
-        oils: [],
+        oils: formOilList,
       },
       observations: formObs.trim() || undefined,
       status: "curing",
@@ -115,6 +120,8 @@ export default function DiarioPage() {
     setFormNaoh(0);
     setFormWater(0);
     setFormSuperfat(5);
+    setFormOilList([]);
+    setFormSourceType("free_formula");
     setFormObs("");
   };
 
@@ -298,6 +305,7 @@ export default function DiarioPage() {
                   {batch.formula.naohGrams && <span>{batch.formula.naohGrams}g NaOH</span>}
                   <span>{batch.formula.waterGrams}g água</span>
                   <span>{batch.formula.superfatPercent}% superfat</span>
+                  {batch.formula.oils.length > 0 && <span>{batch.formula.oils.length} óleo(s)</span>}
                 </div>
 
                 {/* Cure info */}
