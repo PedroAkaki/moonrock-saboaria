@@ -10,7 +10,8 @@ Dark theme lunar (preto+branco+hexágonos). Tailwind sem config JS — tudo em `
 
 ## Rotas principais
 - `/` → Home com "Vamos Estudar" + "Continuar de onde parou"
-- `/aprendizado` → Timeline visual de estudo (estilo roadmap.sh)
+- `/roadmap` → Mapa visual global da jornada (estilo roadmap.sh)
+- `/aprendizado` → Timeline visual de estudo (motor linear)
 - `/aprendizado/[slug]` → Página de detalhe de cada nível/módulo
 - `/calculadora` → Calculadora de saponificação
 - `/oleos` → Biblioteca de 37 óleos
@@ -38,6 +39,11 @@ Dark theme lunar (preto+branco+hexágonos). Tailwind sem config JS — tudo em `
 - Barra de progresso percentual por módulo
 - Badges de conquista discretos ("Segurança validada", "CP desbloqueado")
 - Helpers em `lib/learning.ts`: `getModuleLearningProgress`, `getNextAction`, `getLearningStats`, `getAchievements`, `getContinueNowAction`
+### ✅ Roadmap Visual v1 — /roadmap como mapa global
+- Página `/roadmap` com visão panorâmica dos 8 níveis
+- Componente `RoadmapMap.tsx` — nós principais + tópicos laterais + links
+- Conexões entre módulos, receitas, calculadora e óleos
+- Botão "Começar Estudo" → `/aprendizado`, "Ver Mapa Completo" → `/roadmap`
 - `relatedModuleSlugs`, `technique`, `category`, `safetyLevel`, `studyGoal`, `requiresCalculatorValidation` em recipes.json
 - `components/RelatedRecipes.tsx` — filtra receitas por módulo, mostra badges + estudo + alertas
 - Seção "Receitas para praticar" em /aprendizado/[slug]

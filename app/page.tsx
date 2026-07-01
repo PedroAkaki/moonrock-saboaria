@@ -31,15 +31,15 @@ export default function Home() {
               className="group inline-flex items-center justify-center gap-2 bg-white text-moon-900 font-semibold px-6 py-3.5 rounded-xl hover:bg-moon-100 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
             >
               <BookOpen className="w-5 h-5" />
-              Vamos Estudar
+              Começar Estudo
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </Link>
             <Link
-              href="/aprendizado"
+              href="/roadmap"
               className="group inline-flex items-center justify-center gap-2 border border-moon-500 text-moon-200 font-semibold px-6 py-3.5 rounded-xl hover:bg-moon-700 transition-all hover:-translate-y-0.5"
             >
               <Map className="w-5 h-5" />
-              Ver Estudo
+              Ver Mapa Completo
             </Link>
           </div>
         </div>

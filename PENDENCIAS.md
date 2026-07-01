@@ -54,9 +54,20 @@
 
 ---
 
+## ✅ Roadmap Visual v1 — Mapa completo da jornada (CONCLUÍDO)
+
+| # | Tarefa | Status | Descrição |
+|---|--------|--------|-----------|
+| 29 | Criar `app/roadmap/page.tsx` | ✅ | Rota /roadmap com metadata |
+| 30 | Criar `components/RoadmapMap.tsx` | ✅ | Mapa visual com nós expandíveis, tópicos e links |
+| 31 | Atualizar home | ✅ | Botões: Começar Estudo → /aprendizado, Ver Mapa Completo → /roadmap |
+| 32 | Atualizar documentação | ✅ | Diferenciação clara entre /aprendizado e /roadmap |
+
+---
+
 ## 🔥 PRÓXIMO — Biblioteca de Óleos Avançada
 
-Transformar a biblioteca de tabela para mentora de formulação.
+Transformar a biblioteca de tabela para mentora de formulação:
 
 | # | Tarefa | Status | Descrição |
 |---|--------|--------|-----------|
