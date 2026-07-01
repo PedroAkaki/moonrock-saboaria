@@ -181,7 +181,11 @@ export default function OleosPage() {
             oil.availability === "media" ? "text-yellow-400" : "text-red-400";
 
           return (
-            <div key={oil.id} className="bg-moon-700/50 backdrop-blur rounded-xl border border-moon-600 p-5 space-y-3">
+            <div key={oil.id} className={`rounded-xl border p-5 space-y-3 transition-colors ${
+              oil.dosRisk === "alto" || oil.confidenceLevel === "bloqueado"
+                ? "bg-red-900/5 border-red-700/70"
+                : "bg-moon-700/50 backdrop-blur border-moon-600"
+            }`}>
               {/* Header */}
               <div className="flex items-start justify-between">
                 <div className="min-w-0 flex-1">
@@ -214,6 +218,9 @@ export default function OleosPage() {
               )}
               {oil.beginnerNote && (
                 <p className="text-xs text-purple-300/80 leading-relaxed">💡 {oil.beginnerNote}</p>
+              )}
+              {oil.recommendedUse && (
+                <p className="text-xs text-moon-400 italic leading-relaxed">Uso recomendado: {oil.recommendedUse}</p>
               )}
 
               {/* Substitutions */}
@@ -269,6 +276,7 @@ export default function OleosPage() {
                 <span className="bg-moon-800 rounded-full px-2 py-1 text-moon-400">
                   {TYPE_NAMES[oil.type] ?? oil.type}
                 </span>
+                <span className="bg-moon-800 rounded-full px-2 py-1 text-moon-400">Vida: {oil.shelfLife}</span>
               </div>
 
               {/* Notes */}

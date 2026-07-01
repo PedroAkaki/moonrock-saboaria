@@ -67,6 +67,8 @@ export function validateInput(
       errors.push(`Óleo "${oilInput.oilId}" não encontrado na biblioteca`);
     } else if (oilInput.percentage <= 0) {
       errors.push(`Percentual do óleo ${found.name} deve ser maior que zero`);
+    } else if (oilInput.percentage > found.maxPercent) {
+      errors.push(`${found.name} excede o limite recomendado de ${found.maxPercent}%`);
     }
   }
 

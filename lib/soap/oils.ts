@@ -70,20 +70,6 @@ export function getOilById(oils: Oil[], id: string): Oil | undefined {
 /**
  * Get the recommended max percentage for an oil in a recipe
  */
-export function getRecommendedMax(oilId: string): number {
-  // Use maxPercent from the oil data directly
-  return 100;
-}
-
-/**
- * Get the difficulty level of using an oil based on properties
- */
-export function getOilDifficulty(oil: Oil): "iniciante" | "intermediario" | "avancado" {
-  if (oil.stability === "muito-baixa") return "avancado";
-  if (oil.availability === "dificil" || oil.availability === "muito-baixa") return "intermediario";
-  if (oil.maxPercent < 10) return "intermediario";
-  return "iniciante";
-}
 
 /**
  * Get the oil type translated to Portuguese
