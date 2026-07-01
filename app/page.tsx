@@ -152,7 +152,7 @@ export default function Home() {
           </div>
           <div className="group bg-moon-700/30 backdrop-blur rounded-xl p-4 border border-moon-600 hover:border-white/20 transition-all">
             <BookMarked className="w-5 h-5 text-moon-300 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-white">3</div>
+            <div className="text-2xl font-bold text-white">9</div>
             <div className="text-moon-400 text-xs mt-0.5">Receitas guiadas</div>
           </div>
           <div className="group bg-moon-700/30 backdrop-blur rounded-xl p-4 border border-moon-600 hover:border-white/20 transition-all">

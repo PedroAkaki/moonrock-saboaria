@@ -76,6 +76,206 @@
       "usingCalculator": true,
       "superfat": 8,
       "waterRatio": 2.2
+    },
+    {
+      "id": "base-glicerina-transparente",
+      "name": "Base Glicerinada Transparente — Primeiro Teste",
+      "level": "mix-pronto",
+      "difficulty": "iniciante",
+      "yield": "100g (2 sabonetes de 50g)",
+      "relatedModuleSlugs": ["base-glicerinada"],
+      "technique": "melt-and-pour",
+      "category": "cosmetic",
+      "safetyLevel": "baixo",
+      "studyGoal": "Praticar derretimento controlado, evitar superaquecimento e observar a transparência da base. Primeiro contato com a técnica M&P.",
+      "requiresCalculatorValidation": false,
+      "ingredients": [
+        { "oilId": "base-glicerinada", "name": "Base Glicerinada Transparente", "percentage": 96, "grams": 96 },
+        { "oilId": "essencia", "name": "Essência de sua preferência (opcional)", "percentage": 2, "grams": 2 },
+        { "oilId": "corante", "name": "Corante Líquido (opcional, 2-3 gotas)", "percentage": 2, "grams": 2 }
+      ],
+      "steps": [
+        "Corte a base em cubos pequenos (quanto menor, mais uniforme o derretimento)",
+        "Derreta no micro-ondas em ciclos de 20 segundos, mexendo entre cada ciclo. Não deixar ferver.",
+        "Se for usar essência e corante, adicione quando a base estiver líquida, mas não fervendo (≈60°C)",
+        "Borrife álcool na superfície para eliminar bolhas",
+        "Despeje na forma e borrife álcool novamente",
+        "Aguarde 1-2h até endurecer completamente",
+        "Desenforme e embale imediatamente em filme PVC",
+        "Cura: 24h"
+      ],
+      "safety": [
+        "A base derretida está quente (60-70°C) — manuseie com cuidado",
+        "Não aquecer acima de 80°C: a base perde transparência permanentemente"
+      ],
+      "notes": "Receita mínima para aprender o comportamento da base. Faça sem corante e sem essência na primeira vez para observar a transparência pura."
+    },
+    {
+      "id": "base-glicerina-camadas",
+      "name": "Base Glicerinada com Camadas Simples",
+      "level": "mix-pronto",
+      "difficulty": "iniciante",
+      "yield": "200g (4 sabonetes de 50g)",
+      "relatedModuleSlugs": ["base-glicerinada"],
+      "technique": "melt-and-pour",
+      "category": "cosmetic",
+      "safetyLevel": "baixo",
+      "studyGoal": "Praticar técnica de camadas: temperatura entre camadas, uso de álcool para aderência e planejamento visual.",
+      "requiresCalculatorValidation": false,
+      "ingredients": [
+        { "oilId": "base-glicerinada", "name": "Base Glicerinada Transparente (lote 1)", "percentage": 48, "grams": 96 },
+        { "oilId": "base-glicerinada", "name": "Base Glicerinada Transparente (lote 2)", "percentage": 48, "grams": 96 },
+        { "oilId": "corante", "name": "Corante de duas cores (ex: azul e verde)", "percentage": 4, "grams": 8 }
+      ],
+      "steps": [
+        "Corte a base em cubos. Separe em dois recipientes iguais.",
+        "Derreta o primeiro lote (20s no micro-ondas, mexa, repita). Adicione a primeira cor.",
+        "Despeje na forma até metade. Borrife álcool e aguarde 10-15 min até firmar.",
+        "Derreta o segundo lote. Adicione a segunda cor.",
+        "Toque a superfície da primeira camada — deve estar morna, não quente (<40°C).",
+        "Borrife álcool sobre a primeira camada para garantir aderência.",
+        "Despeje a segunda camada. Borrife álcool.",
+        "Aguarde 1-2h, desenforme e embale em filme PVC.",
+        "Cura: 24h"
+      ],
+      "safety": [
+        "A base derretida está quente — cuidado ao manusear",
+        "Se a primeira camada ainda estiver muito quente ao despejar a segunda, as camadas podem se fundir"
+      ],
+      "notes": "Para um efeito visual mais nítido, use cores contrastantes. O segredo está na temperatura da primeira camada: morna ao toque, mas ainda não fria."
+    },
+    {
+      "id": "base-glicerina-aveia",
+      "name": "Base Glicerinada com Aveia",
+      "level": "mix-pronto",
+      "difficulty": "iniciante",
+      "yield": "150g (3 sabonetes de 50g)",
+      "relatedModuleSlugs": ["base-glicerinada"],
+      "technique": "melt-and-pour",
+      "category": "cosmetic",
+      "safetyLevel": "baixo",
+      "studyGoal": "Praticar incorporação de aditivos sólidos (aveia) e entender o limite de aditivos em base M&P.",
+      "requiresCalculatorValidation": false,
+      "ingredients": [
+        { "oilId": "base-glicerinada", "name": "Base Glicerinada Transparente", "percentage": 90, "grams": 135 },
+        { "oilId": "aveia", "name": "Aveia fina (ou farinha de aveia)", "percentage": 5, "grams": 7.5 },
+        { "oilId": "mel", "name": "Mel (opcional)", "percentage": 3, "grams": 4.5 },
+        { "oilId": "essencia", "name": "Essência de baunilha ou mel (opcional)", "percentage": 2, "grams": 3 }
+      ],
+      "steps": [
+        "Corte a base em cubos e derreta em ciclos de 20s no micro-ondas",
+        "Adicione a aveia fina e misture bem. A aveia não vai dissolver — fica em suspensão.",
+        "Se for usar mel, adicione quando a base estiver em torno de 60°C (mel queima acima de 70°C)",
+        "Adicione a essência e misture suavemente para não incorporar bolhas",
+        "Borrife álcool, despeje nas formas e borrife novamente",
+        "Aguarde 1-2h, desenforme e embale em filme PVC",
+        "Cura: 24h. Use em até 3 meses para evitar ranço da aveia."
+      ],
+      "safety": [
+        "A base derretida está quente — cuidado ao manusear",
+        "A aveia pode oxidar com o tempo — não armazenar por mais de 3 meses"
+      ],
+      "notes": "A aveia não se dissolve, então o sabão terá textura levemente granulosA. Use aveia fina (não flocos grandes) para uma esfoliação suave. O mel pode escurecer levemente a base."
+    },
+    {
+      "id": "sabao-oleo-usado-pequeno",
+      "name": "Sabão de Óleo Usado — Lote Pequeno",
+      "level": "oleo-usado",
+      "difficulty": "iniciante",
+      "yield": "500g de sabão (~5 barras de 100g)",
+      "relatedModuleSlugs": ["sabao-de-oleo-usado"],
+      "technique": "cleaning-soap",
+      "category": "cleaning",
+      "safetyLevel": "alto",
+      "studyGoal": "Praticar o processo completo em lote reduzido: EPI, filtragem, soda na água, trace e cura. Primeiro contato com soda cáustica.",
+      "requiresCalculatorValidation": true,
+      "ingredients": [
+        { "oilId": "oleo-usado", "name": "Óleo de Cozinha Usado (filtrado)", "percentage": 90, "grams": 360 },
+        { "oilId": "coco", "name": "Óleo de Coco (opcional, melhora espuma)", "percentage": 10, "grams": 40 },
+        { "oilId": "soda", "name": "Soda Cáustica (NaOH)", "percentage": 0, "grams": 0 },
+        { "oilId": "agua", "name": "Água Filtrada", "percentage": 0, "grams": 0 }
+      ],
+      "notes": "Lote pequeno e seguro. Calcule NaOH e água na calculadora com superfat 15% e água 2,5:1. Use SAP médio 0,136 para o óleo usado. Produto de LIMPEZA DOMÉSTICA — não usar no corpo.",
+      "safety": [
+        "EPI OBRIGATÓRIO: luvas nitrílicas, óculos de proteção, máscara, avental, calçados fechados",
+        "SEMPRE adicione a soda na água, nunca o contrário",
+        "Ventilação cruzada obrigatória — vapores de soda são irritantes",
+        "Produto de LIMPEZA DOMÉSTICA — não usar no corpo",
+        "Testar pH após cura (ideal até 10,5 para sabão de limpeza)",
+        "Vinagre apenas para superfícies, nunca pele ou olhos"
+      ]
+    },
+    {
+      "id": "sabao-oleo-usado-limpeza-pesada",
+      "name": "Sabão de Óleo Usado — Limpeza Pesada",
+      "level": "oleo-usado",
+      "difficulty": "iniciante",
+      "yield": "1kg de sabão (~10 barras de 100g)",
+      "relatedModuleSlugs": ["sabao-de-oleo-usado"],
+      "technique": "cleaning-soap",
+      "category": "cleaning",
+      "safetyLevel": "alto",
+      "studyGoal": "Produzir sabão de limpeza pesada para uso doméstico (pia, chão, panos). Reforçar segurança, superfat alto e identificação de soda livre.",
+      "requiresCalculatorValidation": true,
+      "ingredients": [
+        { "oilId": "oleo-usado", "name": "Óleo de Cozinha Usado (filtrado)", "percentage": 85, "grams": 680 },
+        { "oilId": "coco", "name": "Óleo de Coco", "percentage": 15, "grams": 120 },
+        { "oilId": "soda", "name": "Soda Cáustica (NaOH)", "percentage": 0, "grams": 0 },
+        { "oilId": "agua", "name": "Água Filtrada", "percentage": 0, "grams": 0 }
+      ],
+      "notes": "Lote maior para estoque. Use superfat 15% para margem de segurança contra variação do SAP. Produto de LIMPEZA DOMÉSTICA. Não usar no corpo. Testar pH antes de usar.",
+      "safety": [
+        "EPI OBRIGATÓRIO: luvas nitrílicas, óculos de proteção, máscara, avental, calçados fechados",
+        "SEMPRE adicione a soda na água, nunca o contrário",
+        "Ventilação cruzada obrigatória",
+        "Produto de LIMPEZA DOMÉSTICA — não usar no corpo",
+        "Testar pH após cura (ideal até 10,5)",
+        "Vinagre apenas para superfícies, nunca pele ou olhos"
+      ]
+    },
+    {
+      "id": "cp-simples-azeite-coco",
+      "name": "Cold Process Simples — Azeite & Coco",
+      "level": "cold-process",
+      "difficulty": "iniciante",
+      "yield": "400g de óleos (~580g de sabão)",
+      "relatedModuleSlugs": ["cold-process-basico"],
+      "technique": "cold-process",
+      "category": "cosmetic",
+      "safetyLevel": "alto",
+      "studyGoal": "Praticar um Cold Process com apenas dois óleos, ideal para quem já fez o Módulo 3 e quer repetir o processo com uma fórmula mais simples.",
+      "requiresCalculatorValidation": true,
+      "usingCalculator": true,
+      "superfat": 8,
+      "waterRatio": 2.2,
+      "ingredients": [
+        { "oilId": "azeite", "name": "Azeite de Oliva", "percentage": 75, "grams": 300 },
+        { "oilId": "coco", "name": "Óleo de Coco", "percentage": 25, "grams": 100 },
+        { "oilId": "soda", "name": "Soda Cáustica (NaOH)", "percentage": 0, "grams": 0 },
+        { "oilId": "agua", "name": "Água Filtrada", "percentage": 0, "grams": 0 }
+      ],
+      "steps": [
+        "Separe EPI completo e prepare a bancada",
+        "Pese 300g de azeite e 100g de coco em recipientes separados",
+        "Calcule NaOH e água na calculadora MoonRock (superfat 8%, água 2,2:1)",
+        "Prepare a solução alcalina: adicione NaOH na água, nunca o contrário. Deixe esfriar até 40°C",
+        "Derreta o óleo de coco (se sólido) e misture com o azeite. Aqueça levemente até 40°C",
+        "Quando ambos estiverem entre 35-45°C, despeje a solução alcalina nos óleos",
+        "Emulsione com mixer em pulsos curtos até atingir trace leve",
+        "Despeje na forma, cubra com plástico filme e isole com manta por 24h",
+        "Desenforme após 24-48h. Corte em barras.",
+        "Cura: 4-6 semanas em local arejado e sem luz direta",
+        "Testar pH ou zap test antes de usar"
+      ],
+      "safety": [
+        "EPI OBRIGATÓRIO: luvas nitrílicas, óculos de proteção, máscara PFF2, avental, calçados fechados",
+        "SEMPRE adicione a soda na água, nunca o contrário",
+        "Ventilação cruzada obrigatória ao manusear soda e solução alcalina",
+        "A reação é exotérmica — a massa pode atingir 60-80°C durante o gel phase",
+        "Vinagre apenas para superfícies, nunca pele ou olhos",
+        "Cura mínima de 4 semanas antes do primeiro uso"
+      ],
+      "notes": "Fórmula de 2 óleos: azeite (75%) condiciona e amacia; coco (25%) limpa e faz espuma. INS estimado: 146 (faixa verde). Ideal para iniciantes em CP que já fizeram o Módulo 3 e querem repetir o processo com segurança."
     }
   ]
 }
