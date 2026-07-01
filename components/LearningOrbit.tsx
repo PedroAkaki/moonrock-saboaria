@@ -78,7 +78,7 @@ export default function LearningOrbit({
         <div className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full border border-moon-500/20" />
 
         {/* Center planet */}
-        <div className="absolute left-1/2 top-1/2 z-10 flex aspect-square w-28 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border border-amber-300/60 bg-moon-800 text-center shadow-[0_0_44px_rgba(191,149,48,0.35)]">
+        <div className="absolute left-1/2 top-1/2 z-10 flex aspect-square w-28 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border border-amber-300/60 bg-moon-800 text-center shadow-[0_0_44px_rgba(191,149,48,0.35)] motion-moon-pulse">
           {centerIcon ?? <Circle className="mb-1 h-5 w-5 text-amber-200" />}
           <span className="text-xs font-semibold text-white leading-tight px-1">{centerLabel}</span>
           {centerSubLabel && (

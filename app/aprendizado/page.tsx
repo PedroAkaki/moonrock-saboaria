@@ -50,7 +50,7 @@ export default function AprendizadoPage() {
       </header>
 
       {/* Stats bar */}
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-3 gap-3 motion-enter-up">
         <div className="bg-moon-700/40 backdrop-blur rounded-xl p-3 text-center border border-moon-600">
           <div className="text-xl font-bold text-white">{stats.completed}</div>
           <div className="text-xs text-moon-400">Concluídos</div>
@@ -71,7 +71,7 @@ export default function AprendizadoPage() {
       {continueAction && (
         <Link
           href={continueAction.href}
-          className="group block bg-white/10 backdrop-blur border border-white/20 rounded-xl p-5 hover:bg-white/15 transition-all hover:-translate-y-0.5"
+          className="group block bg-white/10 backdrop-blur border border-white/20 rounded-xl p-5 hover:bg-white/15 transition-all hover:-translate-y-0.5 motion-shimmer-border motion-enter-up delay-1"
         >
           <div className="flex items-start gap-4">
             <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center shrink-0">
@@ -92,7 +92,7 @@ export default function AprendizadoPage() {
 
       {/* Achievements */}
       {earnedAchievements.length > 0 && (
-        <div className="bg-moon-700/30 backdrop-blur rounded-xl border border-moon-600 p-4">
+        <div className="bg-moon-700/30 backdrop-blur rounded-xl border border-moon-600 p-4 motion-enter-up delay-2">
           <h2 className="text-sm font-semibold text-moon-300 uppercase tracking-wider mb-3 flex items-center gap-2">
             <Award className="w-4 h-4" /> Conquistas
           </h2>
@@ -110,7 +110,7 @@ export default function AprendizadoPage() {
       )}
 
       {/* Learning Orbit */}
-      <section>
+      <section className="motion-enter-up delay-3">
         <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
           <BarChart3 className="w-5 h-5 text-moon-300" /> Mapa da Jornada
         </h2>

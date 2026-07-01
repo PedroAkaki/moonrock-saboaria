@@ -30,3 +30,77 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='52' viewBox='0 0 60 52'%3E%3Cpath d='M30 0L60 15v22L30 52 0 37V15z' fill='none' stroke='%232a2a2a' stroke-width='0.5'/%3E%3C/svg%3E");
   background-size: 60px 52px;
 }
+
+/* ── Motion System ───────────────────────────────── */
+
+@keyframes moon-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(191, 149, 48, 0.35); }
+  50% { box-shadow: 0 0 32px rgba(191, 149, 48, 0.55); }
+}
+
+@keyframes orbit-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes soft-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes progress-shine {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes enter-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer-border {
+  0%, 100% { border-color: rgba(252, 211, 77, 0.4); }
+  50% { border-color: rgba(252, 211, 77, 0.7); }
+}
+
+@keyframes check-pop {
+  0% { transform: scale(0.8); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* Utility classes */
+.motion-moon-pulse {
+  animation: moon-pulse 3s ease-in-out infinite;
+}
+
+.motion-soft-float {
+  animation: soft-float 4s ease-in-out infinite;
+}
+
+.motion-enter-up {
+  animation: enter-up 0.4s ease-out both;
+}
+
+.motion-shimmer-border {
+  animation: shimmer-border 2.5s ease-in-out infinite;
+}
+
+.motion-check-pop {
+  animation: check-pop 0.3s ease-out;
+}
+
+/* Staggered delays */
+.delay-1 { animation-delay: 0.08s; }
+.delay-2 { animation-delay: 0.16s; }
+.delay-3 { animation-delay: 0.24s; }
+.delay-4 { animation-delay: 0.32s; }
+
+/* Acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
