@@ -145,7 +145,6 @@ export default function RoadmapMap() {
   const modulesRaw = learningModules as { id: number; slug: string; level: number; title: string; status: string; summary?: string }[];
   const continueAction = useMemo(() => getContinueNowAction(modulesRaw, progress), [modulesRaw, progress]);
 
-  let lastSection = "";
   const availableModules = modules.filter((m) => m.status === "available");
   const completedCount = availableModules.filter((m) => progress.modules[m.slug]?.status === "completed").length;
   const progressPercent = availableModules.length > 0 ? Math.round((completedCount / availableModules.length) * 100) : 0;
@@ -183,8 +182,8 @@ export default function RoadmapMap() {
 
         {roadmapNodes.map((node, idx) => {
           const status = getSlugStatus(node, progress, modules);
-          const showSection = node.section && node.section !== lastSection;
-          if (node.section) lastSection = node.section;
+          const prevSection = idx > 0 ? roadmapNodes[idx - 1].section : null;
+          const showSection = node.section && node.section !== prevSection;
           const isLocked = status === "locked";
 
           return (
