@@ -115,7 +115,7 @@ export default function LearningOrbit({
                       onNodeClick(node);
                     }
                   }}
-                  className="block -translate-x-1/2 -translate-y-1/2 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60 rounded-full"
+                  className="block -translate-x-1/2 -translate-y-1/2 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60 rounded-full active:scale-95 transition-transform"
                 >
                   {content}
                 </a>
@@ -123,7 +123,7 @@ export default function LearningOrbit({
                 <button
                   type="button"
                   onClick={() => onNodeClick?.(node)}
-                  className="-translate-x-1/2 -translate-y-1/2 cursor-pointer"
+                  className="-translate-x-1/2 -translate-y-1/2 cursor-pointer active:scale-95 transition-transform"
                   aria-label={node.label}
                 >
                   {content}
@@ -141,7 +141,7 @@ export default function LearningOrbit({
           <div className="flex-1">
             <p className="text-sm text-moon-300">Progresso</p>
             <div className="mt-2 h-2 rounded-full bg-moon-700">
-              <div className="h-2 rounded-full bg-amber-300 transition-all" style={{ width: `${progressPercent}%` }} />
+              <div className="h-2 rounded-full bg-amber-300 transition-all duration-700 ease-out" style={{ width: `${progressPercent}%` }} />
             </div>
             <p className="mt-2 text-xs text-moon-500">
               <span className="text-green-400">{completedCount}</span> de {totalCount} concluídos.

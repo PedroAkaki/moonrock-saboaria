@@ -185,7 +185,7 @@ export default function ModuleOrbitMap({ slug, module }: ModuleOrbitMapProps) {
 
       {/* Active node detail */}
       {activeNode && (
-        <div className="px-4 pb-4 -mt-4">
+        <div className="px-4 pb-4 -mt-4 motion-enter-up">
           <div className="rounded-xl border border-moon-600 bg-moon-900/70 p-3">
             <div className="flex items-center justify-between gap-3">
               <p className="font-semibold text-white">{activeNode.label}</p>
@@ -222,7 +222,7 @@ export default function ModuleOrbitMap({ slug, module }: ModuleOrbitMapProps) {
 
       {/* Continue button */}
       <div className="px-4 pb-4">
-        <a href="#conteudo-modulo" className="flex w-full items-center justify-center rounded-xl bg-amber-300 px-4 py-3 text-sm font-bold text-moon-900 transition-colors hover:bg-amber-200">
+        <a href="#conteudo-modulo" className="flex w-full items-center justify-center rounded-xl bg-amber-300 px-4 py-3 text-sm font-bold text-moon-900 transition-all hover:bg-amber-200 active:scale-[0.99]">
           Continuar Estudo
         </a>
       </div>

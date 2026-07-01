@@ -70,7 +70,7 @@ export default function LevelProgress({ slug, checklist }: LevelProgressProps) {
           <button
             key={index}
             onClick={() => toggleCheck(item)}
-            className="flex items-start gap-3 w-full text-left group"
+            className="flex items-start gap-3 w-full text-left group active:scale-[0.99] transition-transform"
           >
             <div
               className={`mt-0.5 w-5 h-5 rounded border flex items-center justify-center shrink-0 transition-all ${
@@ -80,7 +80,7 @@ export default function LevelProgress({ slug, checklist }: LevelProgressProps) {
               }`}
             >
               {checkedItems[item] && (
-                <svg className="w-3 h-3 text-moon-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                <svg className="w-3 h-3 text-moon-900 motion-check-pop" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               )}
