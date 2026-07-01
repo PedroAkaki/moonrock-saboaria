@@ -305,7 +305,7 @@
     ],
     "critical_parameters": [
       "Temperatura de mistura: 35-45°C (abaixo: falso trace; acima: trace muito rápido).",
-      "Relação água:soda: 2:1 a 2,5:1 (mais água = traço mais lento, menos água = traço mais rápido e cura mais curta).",
+      "Relação água:soda: 2,2:1 a 2,5:1 para iniciantes (mais água = traço mais lento e mais tempo para técnicas de design; menos água = traço mais rápido e cura física mais curta, mas maior risco de soda ash).",
       "Superfat: 5-8% para cosméticos; 0% para limpeza.",
       "Ponto de Krafft da formulação: afeta a solubilidade em água fria (sabões com alto C18 precisam de água morna)."
     ],
@@ -410,7 +410,7 @@
       "Cura melhora dureza e desempenho (evaporação + reação completa).",
       "INS/DOS são estimativas heuristicas, não medidores laboratoriais.",
       "Soda SEMPRE vai na água, nunca o contrário.",
-      "Relação água:soda padrão 2:1 — menos água acelera o trace, mais água da mais tempo para design."
+      "Relação água:soda para iniciantes 2,2:1 a 2,5:1 — mais água da tempo para técnicas, menos água acelera o trace."
     ],
     "quiz": [
       {
