@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, Fragment } from "react";
 import Link from "next/link";
 import {
   Check,
@@ -22,13 +22,11 @@ import { getContinueNowAction, getClientProgress } from "@/lib/learning";
 
 type RoadmapStatus = "completed" | "current" | "in-progress" | "not-started" | "locked";
 
-type MainNode = {
-  slug: string;
-  level: number;
-  title: string;
-  status: string;
-  href?: string;
-};
+type RoadmapItem =
+  | { type: "module"; slug: string; title: string; level: number; status: string }
+  | { type: "submodule"; id: string; title: string; subtitle: string };
+
+type SupportLink = { label: string; href: string; icon: React.ReactNode };
 
 const MODULE_ICONS: Record<string, React.ReactNode> = {
   "base-glicerinada": <Droplets className="h-5 w-5" />,
@@ -41,11 +39,12 @@ const MODULE_ICONS: Record<string, React.ReactNode> = {
   "syndet-avancado": <Sparkles className="h-5 w-5" />,
 };
 
-type SupportLink = {
-  label: string;
-  href: string;
-  icon: React.ReactNode;
-};
+const SUBMODULE_FLOW: RoadmapItem[] = [
+  { type: "submodule", id: "temp-bolhas", title: "Temperatura, bolhas e umidade", subtitle: "Controle de fusão e acabamento" },
+  { type: "submodule", id: "filtragem-sap", title: "Filtragem, SAP incerto e segurança", subtitle: "Óleo degradado e superfat de proteção" },
+  { type: "submodule", id: "soda-trace-cura", title: "Soda, trace e cura", subtitle: "NaOH, emulsão e tempo de maturação" },
+  { type: "submodule", id: "ins-dos-equilibrio", title: "INS, DOS e equilíbrio", subtitle: "Ácidos graxos e perfil da fórmula" },
+];
 
 const LEFT_LINKS: SupportLink[] = [
   { label: "EPI & Boas Práticas", href: "/aprendizado/cold-process-basico", icon: <ShieldCheck className="h-4 w-4" /> },
@@ -62,11 +61,11 @@ const RIGHT_LINKS: SupportLink[] = [
 ];
 
 function StatusDot({ status }: { status: RoadmapStatus }) {
-  if (status === "completed") return <span className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-green-400 bg-green-500/20 text-green-300"><Check className="h-3 w-3" /></span>;
-  if (status === "current") return <span className="h-5 w-5 rounded-full border-2 border-amber-300 bg-amber-300/20 shadow-[0_0_18px_rgba(252,211,77,0.35)]" />;
-  if (status === "in-progress") return <span className="h-5 w-5 rounded-full border-2 border-purple-400 bg-purple-500/20" />;
-  if (status === "locked") return <span className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-moon-500 text-moon-500"><Lock className="h-3 w-3" /></span>;
-  return <span className="h-5 w-5 rounded-full border border-moon-500" />;
+  if (status === "completed") return <span className="inline-flex h-4 w-4 items-center justify-center rounded-full border border-green-400 bg-green-500/20 text-green-300"><Check className="h-2.5 w-2.5" /></span>;
+  if (status === "current") return <span className="h-4 w-4 rounded-full border-2 border-amber-300 bg-amber-300/20 shadow-[0_0_12px_rgba(252,211,77,0.35)]" />;
+  if (status === "in-progress") return <span className="h-4 w-4 rounded-full border-2 border-purple-400 bg-purple-500/20" />;
+  if (status === "locked") return <span className="inline-flex h-4 w-4 items-center justify-center rounded-full border border-moon-500 text-moon-500"><Lock className="h-2.5 w-2.5" /></span>;
+  return <span className="h-4 w-4 rounded-full border border-moon-500" />;
 }
 
 function statusClasses(status: RoadmapStatus): string {
@@ -79,19 +78,64 @@ function statusClasses(status: RoadmapStatus): string {
   }
 }
 
-function MainNodeCard({ node, status }: { node: MainNode; status: RoadmapStatus }) {
+/** Segmento da linha amarela — só aparece entre elementos, nunca atrás */
+function BackboneSegment({ height = 28 }: { height?: number }) {
+  return (
+    <div className="mx-auto w-1 shrink-0 rounded-full bg-amber-300/70 shadow-[0_0_16px_rgba(252,211,77,0.35)]" style={{ height }} />
+  );
+}
+
+function MainNodeCard({ item, status }: { item: RoadmapItem & { type: "module" }; status: RoadmapStatus }) {
   const content = (
     <div className={`relative rounded-2xl border px-4 py-3 text-center transition-all ${statusClasses(status)}`}>
       <div className="mb-1.5 flex items-center justify-center gap-2">
-        <span className={status === "current" ? "text-amber-200" : "text-moon-300"}>{MODULE_ICONS[node.slug] ?? <FlaskConical className="h-5 w-5" />}</span>
+        <span className={status === "current" ? "text-amber-200" : "text-moon-300"}>{MODULE_ICONS[item.slug] ?? <FlaskConical className="h-5 w-5" />}</span>
         <StatusDot status={status} />
       </div>
-      <h3 className="text-sm font-bold leading-tight text-white">{node.title}</h3>
-      <p className="mt-0.5 text-[10px] leading-tight text-moon-500 font-mono">NÍVEL {node.level}</p>
+      <h3 className="text-sm font-bold leading-tight text-white">{item.title}</h3>
+      <p className="mt-0.5 text-[10px] leading-tight text-moon-500 font-mono">NÍVEL {item.level}</p>
     </div>
   );
-  if (node.href && status !== "locked") return <Link href={node.href} className="block hover:-translate-y-0.5 transition-transform">{content}</Link>;
+  if (status !== "locked") return <Link href={`/aprendizado/${item.slug}`} className="block hover:-translate-y-0.5 transition-transform">{content}</Link>;
   return content;
+}
+
+function SubmoduleNode({ item }: { item: RoadmapItem & { type: "submodule" } }) {
+  return (
+    <div className="rounded-xl border border-amber-300/30 bg-moon-900/60 px-4 py-2.5 text-center">
+      <p className="text-xs font-semibold text-amber-100">{item.title}</p>
+      <p className="text-[10px] text-moon-400 mt-0.5">{item.subtitle}</p>
+    </div>
+  );
+}
+
+function SupportPanel({ title, icon, items, accent }: {
+  title: string; icon: React.ReactNode; items: SupportLink[]; accent: "purple" | "blue";
+}) {
+  const text = accent === "purple" ? "text-purple-300" : "text-blue-300";
+  const border = accent === "purple" ? "border-purple-500/60" : "border-blue-500/60";
+
+  return (
+    <section className={`rounded-2xl border ${border} bg-moon-900/70 p-3 shadow-xl shadow-black/20`}>
+      <div className="mb-3 flex items-start gap-2">
+        <span className={text}>{icon}</span>
+        <div>
+          <h3 className={`text-sm font-bold uppercase tracking-wide ${text}`}>{title}</h3>
+          <p className="text-xs text-moon-400">Apoio prático</p>
+        </div>
+      </div>
+      <div className="space-y-2">
+        {items.map((item) => (
+          <Link key={item.label} href={item.href}
+            className="flex min-h-10 items-center gap-2 rounded-xl border border-moon-700 bg-moon-800/70 px-3 py-2 hover:border-moon-500 transition-colors">
+            <span className={text}>{item.icon}</span>
+            <span className="text-xs leading-tight text-moon-200 flex-1">{item.label}</span>
+            <ArrowRight className="h-3 w-3 text-moon-500 shrink-0" />
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
 }
 
 export default function RoadmapMap() {
@@ -104,39 +148,47 @@ export default function RoadmapMap() {
     return () => window.removeEventListener("moonrock-progress-updated", update);
   }, []);
 
-  const modules = learningModules as MainNode[];
+  const allModules = (learningModules as any[]) as (RoadmapItem & { type: "module"; slug: string; level: number; title: string; status: string })[];
+  const modules: (RoadmapItem & { type: "module"; slug: string; level: number; title: string; status: string })[] = allModules.map(m => ({ ...m, type: "module" as const }));
   const modulesRaw = learningModules as { id: number; slug: string; level: number; title: string; status: string; summary?: string }[];
   const availableModules = modules.filter((m) => m.status === "available");
   const totalAvailable = availableModules.length;
 
+  // Monta fluxo intercalado: módulo → submódulo → módulo → submódulo ...
+  const flow = useMemo(() => {
+    const items: (RoadmapItem & { type: "module" | "submodule" })[] = [];
+    modules.forEach((mod, idx) => {
+      items.push(mod);
+      if (idx < SUBMODULE_FLOW.length) items.push(SUBMODULE_FLOW[idx]);
+    });
+    return items;
+  }, [modules]);
+
   const moduleStatusBySlug = useMemo(() => {
     const firstIncomplete = availableModules.find((m) => progress.modules[m.slug]?.status !== "completed");
     const acc: Record<string, RoadmapStatus> = {};
-    for (const node of modules) {
-      const saved = progress.modules[node.slug]?.status;
-      if (node.status !== "available") acc[node.slug] = "locked";
-      else if (saved === "completed") acc[node.slug] = "completed";
-      else if (saved === "in-progress") acc[node.slug] = "in-progress";
-      else if (firstIncomplete?.slug === node.slug) acc[node.slug] = "current";
-      else acc[node.slug] = "not-started";
+    for (const mod of modules) {
+      const saved = progress.modules[mod.slug]?.status;
+      if (mod.status !== "available") acc[mod.slug] = "locked";
+      else if (saved === "completed") acc[mod.slug] = "completed";
+      else if (saved === "in-progress") acc[mod.slug] = "in-progress";
+      else if (firstIncomplete?.slug === mod.slug) acc[mod.slug] = "current";
+      else acc[mod.slug] = "not-started";
     }
     return acc;
   }, [progress, availableModules, modules]);
 
   const continueAction = useMemo(() => getContinueNowAction(modulesRaw, progress), [modulesRaw, progress]);
-
   const completedCount = availableModules.filter((m) => moduleStatusBySlug[m.slug] === "completed").length;
   const progressPercent = totalAvailable > 0 ? Math.round((completedCount / totalAvailable) * 100) : 0;
 
   return (
     <div className="w-full overflow-x-auto pb-6">
       <div className="relative mx-auto min-w-[760px] max-w-[820px] px-4 py-6">
-        {/* CTA — Continue now */}
+        {/* CTA */}
         {continueAction && continueAction.slug !== "aprendizado" && (
-          <Link
-            href={continueAction.href}
-            className="group mb-6 flex items-center gap-3 rounded-xl border border-amber-300/40 bg-amber-300/10 px-4 py-3 hover:bg-amber-300/20 transition-colors"
-          >
+          <Link href={continueAction.href}
+            className="group mb-6 flex items-center gap-3 rounded-xl border border-amber-300/40 bg-amber-300/10 px-4 py-3 hover:bg-amber-300/20 transition-colors">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-300/20">
               <Play className="h-5 w-5 text-amber-200 ml-0.5" />
             </div>
@@ -148,79 +200,38 @@ export default function RoadmapMap() {
           </Link>
         )}
 
-        {/* Top backbone label */}
-        <div className="relative mx-auto mb-8 flex w-72 items-center justify-center gap-3 rounded-2xl border border-amber-300/40 bg-moon-900/80 px-5 py-3 shadow-[0_0_28px_rgba(252,211,77,0.18)]">
-          <Moon className="h-7 w-7 text-amber-200" />
-          <span className="text-xl font-bold tracking-[0.24em] text-amber-200">TRILHA</span>
-        </div>
-
-        {/* Horizontal branch line */}
-        <div className="absolute left-[120px] right-[120px] top-[86px] h-0.5 bg-amber-300/70 shadow-[0_0_18px_rgba(252,211,77,0.35)]" style={{ top: continueAction?.slug !== "aprendizado" ? "170px" : "86px" }} />
-        <div className="absolute left-[150px]" style={{ top: continueAction?.slug !== "aprendizado" ? "170px" : "86px" }}>
-          <div className="h-10 border-l border-dashed border-purple-400/80" />
-        </div>
-        <div className="absolute right-[150px]" style={{ top: continueAction?.slug !== "aprendizado" ? "170px" : "86px" }}>
-          <div className="h-10 border-l border-dashed border-blue-400/80" />
+        {/* FUNDAÇÃO label */}
+        <div className="relative mx-auto mb-6 flex w-64 items-center justify-center gap-3 rounded-2xl border border-amber-300/40 bg-moon-900/80 px-5 py-3 shadow-[0_0_28px_rgba(252,211,77,0.18)]">
+          <Moon className="h-6 w-6 text-amber-200" />
+          <span className="text-lg font-bold tracking-[0.24em] text-amber-200">TRILHA</span>
         </div>
 
         {/* 3-column grid */}
-        <div className="grid grid-cols-[220px_240px_220px] items-start gap-6">
+        <div className="grid grid-cols-[200px_1fr_200px] gap-6">
           {/* Left column */}
-          <div className="relative pt-12">
-            <div className="absolute -right-6 top-28 w-6 border-t border-dashed border-purple-400/80" />
-            <section className="rounded-2xl border border-purple-500/60 bg-moon-900/70 p-3 shadow-xl shadow-black/20">
-              <div className="mb-3 flex items-start gap-2">
-                <ShieldCheck className="h-6 w-6 text-purple-300" />
-                <div>
-                  <h3 className="text-sm font-bold uppercase tracking-wide text-purple-300">Segurança</h3>
-                  <p className="text-xs text-moon-400">Base essencial</p>
-                </div>
-              </div>
-              <div className="space-y-2">
-                {LEFT_LINKS.map((item) => (
-                  <Link key={item.label} href={item.href}
-                    className="flex min-h-10 items-center gap-2 rounded-xl border border-moon-700 bg-moon-800/70 px-3 py-2 hover:border-moon-500 transition-colors">
-                    <span className="text-purple-300">{item.icon}</span>
-                    <span className="text-xs leading-tight text-moon-200 flex-1">{item.label}</span>
-                    <ArrowRight className="h-3 w-3 text-moon-500 shrink-0" />
-                  </Link>
-                ))}
-              </div>
-            </section>
+          <div className="pt-2">
+            <SupportPanel title="Segurança" icon={<ShieldCheck className="h-6 w-6" />} accent="purple" items={LEFT_LINKS} />
           </div>
 
-          {/* Center — backbone */}
-          <div className="relative">
-            <div className="absolute left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 rounded-full bg-amber-300/60 shadow-[0_0_20px_rgba(252,211,77,0.35)]" />
-            <div className="relative z-10 space-y-4">
-              {modules.map((node) => (
-                <MainNodeCard key={node.slug} node={node} status={moduleStatusBySlug[node.slug]} />
-              ))}
-            </div>
+          {/* Center column — backbone segmentado */}
+          <div className="flex flex-col items-center">
+            {flow.map((item, idx) => (
+              <Fragment key={"type" in item && item.type === "module" ? item.slug : (item as any).id ?? idx}>
+                {/* Segmento amarelo entre elementos */}
+                {idx > 0 && <BackboneSegment height={24} />}
+
+                {item.type === "module" ? (
+                  <MainNodeCard item={item} status={moduleStatusBySlug[item.slug]} />
+                ) : (
+                  <SubmoduleNode item={item} />
+                )}
+              </Fragment>
+            ))}
           </div>
 
           {/* Right column */}
-          <div className="relative pt-12">
-            <div className="absolute -left-6 top-56 w-6 border-t border-dashed border-blue-400/80" />
-            <section className="rounded-2xl border border-blue-500/60 bg-moon-900/70 p-3 shadow-xl shadow-black/20">
-              <div className="mb-3 flex items-start gap-2">
-                <BookOpen className="h-6 w-6 text-blue-300" />
-                <div>
-                  <h3 className="text-sm font-bold uppercase tracking-wide text-blue-300">Ferramentas</h3>
-                  <p className="text-xs text-moon-400">Apoio prático</p>
-                </div>
-              </div>
-              <div className="space-y-2">
-                {RIGHT_LINKS.map((item) => (
-                  <Link key={item.label} href={item.href}
-                    className="flex min-h-10 items-center gap-2 rounded-xl border border-moon-700 bg-moon-800/70 px-3 py-2 hover:border-moon-500 transition-colors">
-                    <span className="text-blue-300">{item.icon}</span>
-                    <span className="text-xs leading-tight text-moon-200 flex-1">{item.label}</span>
-                    <ArrowRight className="h-3 w-3 text-moon-500 shrink-0" />
-                  </Link>
-                ))}
-              </div>
-            </section>
+          <div className="pt-2">
+            <SupportPanel title="Ferramentas" icon={<BookOpen className="h-6 w-6" />} accent="blue" items={RIGHT_LINKS} />
           </div>
         </div>
 
