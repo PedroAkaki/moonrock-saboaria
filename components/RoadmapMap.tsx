@@ -113,11 +113,17 @@ function TopicGroup({ topics, position }: { topics: RoadmapTopic[]; position: "l
 function CenterNode({ node, status }: { node: RoadmapNode; status: RoadmapStatus }) {
   const badge = typeBadge(node.type);
   const isLocked = status === "locked";
+  const isCurrent = status === "current";
   const content = (
-    <div className={`rounded-2xl border px-5 py-3.5 text-center transition-all relative ${statusClasses(status)} ${isLocked ? "opacity-70" : ""}`}>
+    <div className={`rounded-2xl border px-5 py-3.5 text-center transition-all relative ${statusClasses(status)} ${isLocked ? "opacity-70" : ""} ${isCurrent ? "animate-pulse" : ""}`}>
       {isLocked && (
         <div className="absolute -top-2.5 -right-2.5 flex items-center gap-1 rounded-full bg-moon-700 border border-moon-600 px-2 py-0.5 text-[9px] font-medium text-moon-400 shadow-sm">
           <Lock className="h-3 w-3" /> Em breve
+        </div>
+      )}
+      {isCurrent && (
+        <div className="absolute -top-2.5 -left-2.5 flex items-center gap-1 rounded-full bg-amber-400/20 border border-amber-500/40 px-2 py-0.5 text-[9px] font-semibold text-amber-300 shadow-sm">
+          ◉ Você está aqui
         </div>
       )}
       <div className="flex items-center justify-center gap-2 mb-1">
@@ -125,9 +131,12 @@ function CenterNode({ node, status }: { node: RoadmapNode; status: RoadmapStatus
         <span className={`text-sm font-bold leading-tight ${isLocked ? "text-moon-500" : "text-white"}`}>{node.title}</span>
       </div>
       <span className={`text-[9px] font-medium px-2 py-0.5 rounded-full ${badge.className}`}>{badge.label}</span>
+      {isLocked && (
+        <p className="text-[9px] text-moon-600 mt-2 leading-tight max-w-[140px] mx-auto">Complete os módulos anteriores para desbloquear</p>
+      )}
     </div>
   );
-  if (node.href && !isLocked) return <Link href={node.href} className="block hover:-translate-y-0.5 transition-transform">{content}</Link>;
+  if (node.href && !isLocked) return <Link href={node.href} className="block hover:-translate-y-0.5 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60 rounded-2xl">{content}</Link>;
   return content;
 }
 
@@ -150,7 +159,9 @@ export default function RoadmapMap() {
   const progressPercent = availableModules.length > 0 ? Math.round((completedCount / availableModules.length) * 100) : 0;
 
   return (
-    <div className="w-full overflow-x-auto pb-8">
+    <div className="w-full overflow-x-auto pb-8 relative">
+      {/* Mobile scroll hint — right edge fade */}
+      <div className="pointer-events-none absolute right-0 top-0 bottom-8 w-16 bg-gradient-to-l from-moon-900/60 to-transparent z-20 md:hidden" />
       <div className="relative mx-auto min-w-[880px] max-w-[1024px] px-8 py-4">
         {/* Continue CTA */}
         {continueAction && continueAction.slug !== "aprendizado" && (
