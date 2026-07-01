@@ -33,16 +33,23 @@ const DOS_LABELS: Record<string, { label: string; color: string }> = {
   alto: { label: "Alto", color: "text-red-300 bg-red-900/30 border-red-700" },
 };
 
-type FilterKey = "type" | "stability" | "availability" | "dosRisk";
+const CONFIDENCE_LABELS: Record<string, string> = {
+  liberado: "Liberado",
+  alerta: "Alerta",
+  bloqueado: "Bloqueado",
+};
+
+type FilterKey = "type" | "stability" | "availability" | "dosRisk" | "confidence";
 
 export default function OleosPage() {
   const oils = oilsData.oils as (typeof oilsData.oils[0] & {
     dosRisk?: string; formulaRole?: string; substitutionNotes?: string;
-    beginnerNote?: string; recommendedUse?: string;
+    beginnerNote?: string; recommendedUse?: string; confidenceLevel?: string;
+    substitutions?: string[];
   })[];
   const [search, setSearch] = useState("");
   const [filters, setFilters] = useState<Record<FilterKey, string>>({
-    type: "", stability: "", availability: "", dosRisk: "",
+    type: "", stability: "", availability: "", dosRisk: "", confidence: "",
   });
 
   const unique = <T,>(arr: T[]): T[] => [...new Set(arr)];
@@ -55,6 +62,7 @@ export default function OleosPage() {
     (a, b) => ["alta", "media", "dificil", "muito-baixa"].indexOf(a) - ["alta", "media", "dificil", "muito-baixa"].indexOf(b)
   );
   const dosOptions = unique(oils.map((o) => o.dosRisk ?? "")).filter(Boolean).sort();
+  const confOptions = unique(oils.map((o) => o.confidenceLevel ?? "")).filter(Boolean).sort();
 
   const filtered = useMemo(() => {
     return oils.filter((o) => {
@@ -72,6 +80,7 @@ export default function OleosPage() {
       if (filters.stability && o.stability !== filters.stability) return false;
       if (filters.availability && o.availability !== filters.availability) return false;
       if (filters.dosRisk && (o.dosRisk ?? "") !== filters.dosRisk) return false;
+      if (filters.confidence && (o.confidenceLevel ?? "") !== filters.confidence) return false;
       return true;
     });
   }, [search, filters, oils]);
@@ -82,7 +91,7 @@ export default function OleosPage() {
 
   const clearAll = () => {
     setSearch("");
-    setFilters({ type: "", stability: "", availability: "", dosRisk: "" });
+    setFilters({ type: "", stability: "", availability: "", dosRisk: "", confidence: "" });
   };
 
   const activeFilters = Object.values(filters).filter(Boolean).length + (search ? 1 : 0);
@@ -142,6 +151,13 @@ export default function OleosPage() {
             <option value="">Risco DOS: todos</option>
             {dosOptions.map((d) => (<option key={d} value={d}>{DOS_LABELS[d]?.label ?? d}</option>))}
           </select>
+
+          {/* Confiança */}
+          <select value={filters.confidence} onChange={(e) => setFilter("confidence", e.target.value)}
+            className="bg-moon-800 border border-moon-500 rounded-lg px-2 py-2 text-xs text-white appearance-none">
+            <option value="">Confiança: todas</option>
+            {confOptions.map((c) => (<option key={c} value={c}>{CONFIDENCE_LABELS[c] ?? c}</option>))}
+          </select>
         </div>
 
         {/* Clear + count */}
@@ -173,6 +189,16 @@ export default function OleosPage() {
                   <p className="text-xs text-moon-500 italic truncate">{oil.inci}</p>
                 </div>
                 <div className="flex flex-col items-end gap-1 shrink-0 ml-2">
+                  {/* Confidence badge */}
+                  {oil.confidenceLevel && oil.confidenceLevel !== "liberado" && (
+                    <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${
+                      oil.confidenceLevel === "alerta"
+                        ? "bg-amber-900/40 text-amber-300 border border-amber-700"
+                        : "bg-red-900/40 text-red-300 border border-red-700"
+                    }`}>
+                      {CONFIDENCE_LABELS[oil.confidenceLevel]}
+                    </span>
+                  )}
                   <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${stabilityColor} bg-moon-800`}>
                     {STABILITY_NAMES[oil.stability] ?? oil.stability}
                   </span>
@@ -191,8 +217,14 @@ export default function OleosPage() {
               )}
 
               {/* Substitutions */}
+              {oil.substitutions && oil.substitutions.length > 0 && (
+                <div className="text-xs text-moon-400 leading-relaxed">
+                  <span className="text-moon-500">↔ Substitui por: </span>
+                  {oil.substitutions.join(", ")}
+                </div>
+              )}
               {oil.substitutionNotes && (
-                <p className="text-xs text-moon-400 italic leading-relaxed">↔ {oil.substitutionNotes}</p>
+                <p className="text-xs text-moon-500 italic leading-relaxed">💡 {oil.substitutionNotes}</p>
               )}
 
               {/* SAP grid */}

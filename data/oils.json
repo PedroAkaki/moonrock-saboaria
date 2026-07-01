@@ -30,7 +30,13 @@
       "formulaRole": "condiciona a pele, espuma baixa.",
       "substitutionNotes": "Girassol alto oleico, abacate ou canola (perfil oleico similar)",
       "beginnerNote": "Ótimo para começar. Cura mais longa (6-8 semanas).",
-      "recommendedUse": "Base para sabonetes hidratantes e Castela"
+      "recommendedUse": "Base para sabonetes hidratantes e Castela",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Girassol alto oleico",
+        "Abacate",
+        "Canola"
+      ]
     },
     {
       "id": "coco",
@@ -60,7 +66,12 @@
       "formulaRole": "dá dureza à barra, aumenta o poder de limpeza, gera espuma abundante.",
       "substitutionNotes": "Babacu, palmiste (palm kernel) — perfil láurico similar",
       "beginnerNote": "Essencial para espuma, mas resseca acima de 25%.",
-      "recommendedUse": "Espuma e limpeza em sabonetes corporais"
+      "recommendedUse": "Espuma e limpeza em sabonetes corporais",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Babacu",
+        "Palmiste (palm kernel)"
+      ]
     },
     {
       "id": "palma",
@@ -91,7 +102,14 @@
       "formulaRole": "dá dureza à barra, dá cremosidade à espuma.",
       "substitutionNotes": "Sebo, banha, babacu ou murumuru (perfil palmítico/esteárico)",
       "beginnerNote": "Polêmica ambiental — preferir certificada RSPO.",
-      "recommendedUse": "Dureza e cremosidade em barras"
+      "recommendedUse": "Dureza e cremosidade em barras",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Sebo",
+        "Banha",
+        "Babacu",
+        "Murumuru"
+      ]
     },
     {
       "id": "girassol-alto-oleico",
@@ -121,7 +139,12 @@
       "formulaRole": "deixa o sabão macio, condiciona a pele.",
       "substitutionNotes": "Azeite ou canola",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Azeite",
+        "Canola"
+      ]
     },
     {
       "id": "karite",
@@ -152,7 +175,12 @@
       "formulaRole": "condiciona a pele, dá cremosidade à espuma.",
       "substitutionNotes": "Cacau ou cupuaçu (manteigas emolientes com perfil esteárico/oleico)",
       "beginnerNote": "Emoliente excelente. Derreter antes de misturar.",
-      "recommendedUse": "Peles sensíveis e receitas superhidratantes"
+      "recommendedUse": "Peles sensíveis e receitas superhidratantes",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Cacau",
+        "Cupuaçu"
+      ]
     },
     {
       "id": "cacau",
@@ -183,7 +211,12 @@
       "formulaRole": "dá dureza à barra, condiciona a pele, dá cremosidade à espuma.",
       "substitutionNotes": "Karité ou cupuaçu",
       "beginnerNote": "Dá dureza. Não passar de 15% ou deixa o sabão quebradiço.",
-      "recommendedUse": "Barras duras com toque de chocolate"
+      "recommendedUse": "Barras duras com toque de chocolate",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Karité",
+        "Cupuaçu"
+      ]
     },
     {
       "id": "mamona",
@@ -213,7 +246,9 @@
       "formulaRole": "deixa o sabão macio, condiciona a pele, gera espuma abundante, dá cremosidade à espuma.",
       "substitutionNotes": "Não há substituto direto — único óleo com ácido ricinoleico",
       "beginnerNote": "Acelera o traço. Adicionar por último na receita.",
-      "recommendedUse": "Espuma cremosa e condicionamento"
+      "recommendedUse": "Espuma cremosa e condicionamento",
+      "confidenceLevel": "liberado",
+      "substitutions": []
     },
     {
       "id": "soja",
@@ -243,7 +278,13 @@
       "formulaRole": "deixa o sabão macio, espuma baixa.",
       "substitutionNotes": "Canola, girassol regular ou milho (perfil linoleico, mesmo cuidado com DOS)",
       "beginnerNote": "Barato, mas risco alto de DOS. Usar com antioxidante.",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Canola",
+        "Girassol regular",
+        "Milho"
+      ]
     },
     {
       "id": "girassol-regular",
@@ -273,7 +314,12 @@
       "formulaRole": "deixa o sabão macio, espuma baixa.",
       "substitutionNotes": "Soja ou milho — todos têm risco de DOS",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Soja",
+        "Milho"
+      ]
     },
     {
       "id": "milho",
@@ -303,7 +349,12 @@
       "formulaRole": "deixa o sabão macio, espuma baixa.",
       "substitutionNotes": "Soja ou girassol regular",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Soja",
+        "Girassol regular"
+      ]
     },
     {
       "id": "canola",
@@ -334,7 +385,12 @@
       "formulaRole": "deixa o sabão macio, condiciona a pele.",
       "substitutionNotes": "Girassol alto oleico ou azeite",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Girassol alto oleico",
+        "Azeite"
+      ]
     },
     {
       "id": "linhaca",
@@ -364,7 +420,9 @@
       "formulaRole": "deixa o sabão macio, espuma baixa.",
       "substitutionNotes": "Não há substituto — usar no máximo 5% com antioxidantes",
       "beginnerNote": "Muito instável. Nunca usar acima de 5%.",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": []
     },
     {
       "id": "gergelim",
@@ -395,7 +453,12 @@
       "formulaRole": "deixa o sabão macio, condiciona a pele.",
       "substitutionNotes": "Amêndoas doces ou abacate",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Amêndoas doces",
+        "Abacate"
+      ]
     },
     {
       "id": "amendoas",
@@ -426,7 +489,12 @@
       "formulaRole": "condiciona a pele.",
       "substitutionNotes": "Gergelim ou abacate",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Gergelim",
+        "Abacate"
+      ]
     },
     {
       "id": "abacate",
@@ -457,7 +525,12 @@
       "formulaRole": "condiciona a pele.",
       "substitutionNotes": "Amêndoas doces ou azeite",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Amêndoas doces",
+        "Azeite"
+      ]
     },
     {
       "id": "jojoba",
@@ -485,7 +558,9 @@
       "formulaRole": "deixa o sabão macio, condiciona a pele, espuma baixa.",
       "substitutionNotes": "Não há substituto direto — usar como aditivo, não óleo base",
       "beginnerNote": "Não saponifica de fato (é cera). Usar como aditivo pós-traço.",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": []
     },
     {
       "id": "babassu",
@@ -515,7 +590,12 @@
       "formulaRole": "dá dureza à barra, aumenta o poder de limpeza, gera espuma abundante, dá cremosidade à espuma.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Coco",
+        "Palmiste"
+      ]
     },
     {
       "id": "buriti",
@@ -545,7 +625,9 @@
       "formulaRole": "condiciona a pele.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": []
     },
     {
       "id": "ucuuba",
@@ -575,7 +657,9 @@
       "formulaRole": "dá dureza à barra.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": []
     },
     {
       "id": "andiroba",
@@ -606,7 +690,9 @@
       "formulaRole": "condiciona a pele.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "alerta",
+      "substitutions": []
     },
     {
       "id": "copaiba",
@@ -634,7 +720,9 @@
       "formulaRole": "condiciona a pele, espuma baixa.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "alerta",
+      "substitutions": []
     },
     {
       "id": "pracaxi",
@@ -664,7 +752,9 @@
       "formulaRole": "condiciona a pele.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "alerta",
+      "substitutions": []
     },
     {
       "id": "tucuma",
@@ -694,7 +784,12 @@
       "formulaRole": "dá dureza à barra, dá cremosidade à espuma.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Murumuru",
+        "Cupuaçu"
+      ]
     },
     {
       "id": "murumuru",
@@ -724,7 +819,12 @@
       "formulaRole": "condiciona a pele.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Tucuma",
+        "Cupuaçu"
+      ]
     },
     {
       "id": "cupuacu",
@@ -754,7 +854,12 @@
       "formulaRole": "condiciona a pele, dá cremosidade à espuma.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Karité",
+        "Cacau"
+      ]
     },
     {
       "id": "manga",
@@ -784,7 +889,12 @@
       "formulaRole": "condiciona a pele, dá cremosidade à espuma.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Karité",
+        "Cupuaçu"
+      ]
     },
     {
       "id": "pataua",
@@ -814,7 +924,9 @@
       "formulaRole": "condiciona a pele.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "alerta",
+      "substitutions": []
     },
     {
       "id": "sebo",
@@ -845,7 +957,12 @@
       "formulaRole": "dá dureza à barra.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Banha",
+        "Palma"
+      ]
     },
     {
       "id": "banha",
@@ -876,7 +993,12 @@
       "formulaRole": "dá dureza à barra, condiciona a pele.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Sebo",
+        "Palma"
+      ]
     },
     {
       "id": "dende",
@@ -907,7 +1029,11 @@
       "formulaRole": "dá dureza à barra.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Palma (perfil similar)"
+      ]
     },
     {
       "id": "argan",
@@ -938,7 +1064,9 @@
       "formulaRole": "deixa o sabão macio, condiciona a pele.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": []
     },
     {
       "id": "rosa-mosqueta",
@@ -968,7 +1096,9 @@
       "formulaRole": "deixa o sabão macio, condiciona a pele, espuma baixa.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": []
     },
     {
       "id": "semente-uva",
@@ -998,7 +1128,12 @@
       "formulaRole": "deixa o sabão macio, espuma baixa.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Girassol regular",
+        "Soja"
+      ]
     },
     {
       "id": "maracuja",
@@ -1028,7 +1163,9 @@
       "formulaRole": "deixa o sabão macio, espuma baixa.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": []
     },
     {
       "id": "castanha-para",
@@ -1059,7 +1196,12 @@
       "formulaRole": "condiciona a pele.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Cacau",
+        "Karité"
+      ]
     },
     {
       "id": "neem",
@@ -1087,7 +1229,9 @@
       "formulaRole": "condiciona a pele.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": []
     },
     {
       "id": "canhamo",
@@ -1117,7 +1261,11 @@
       "formulaRole": "deixa o sabão macio, condiciona a pele, espuma baixa.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Linhaça (perfil similar, mesma instabilidade)"
+      ]
     },
     {
       "id": "pequi",
@@ -1147,7 +1295,9 @@
       "formulaRole": "condiciona a pele.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": []
     },
     {
       "id": "palmiste",
@@ -1175,7 +1325,12 @@
       "formulaRole": "dá dureza à barra, aumenta o poder de limpeza, gera espuma abundante.",
       "substitutionNotes": "Consultar biblioteca para alternativas",
       "beginnerNote": "",
-      "recommendedUse": "Formulação geral em saboaria"
+      "recommendedUse": "Formulação geral em saboaria",
+      "confidenceLevel": "liberado",
+      "substitutions": [
+        "Coco",
+        "Babacu"
+      ]
     }
   ]
 }
