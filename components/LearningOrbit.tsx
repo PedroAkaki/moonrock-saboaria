@@ -62,7 +62,7 @@ export default function LearningOrbit({
   const orbitContent = (
     <>
       {/* Orbit area */}
-      <div className="relative mx-auto h-[390px] max-w-[430px] overflow-hidden">
+      <div className="relative mx-auto h-[350px] sm:h-[390px] max-w-[430px] overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(191,149,48,0.14),transparent_34%),radial-gradient(circle_at_center,rgba(255,255,255,0.06),transparent_55%)]" />
 
         {/* Rings */}
@@ -94,7 +94,7 @@ export default function LearningOrbit({
               <span className="mb-0.5">
                 {node.status === "completed" ? <Check className="h-4 w-4 sm:h-5 sm:w-5" /> : node.icon ?? <Circle className="h-4 w-4 sm:h-5 sm:w-5" />}
               </span>
-              <span className="max-w-[4.5rem] text-[9px] font-medium leading-tight sm:text-[10px]">
+              <span className="max-w-[4.5rem] text-[10px] font-semibold leading-tight">
                 {node.shortLabel ?? node.label}
               </span>
             </div>
@@ -148,7 +148,7 @@ export default function LearningOrbit({
               {totalLabel && <span className="ml-1 text-moon-500">· {totalLabel}</span>}
             </p>
           </div>
-          <div className="text-4xl font-bold text-white">{progressPercent}%</div>
+          <div className={`font-bold text-white ${embedded ? "text-3xl" : "text-4xl"}`}>{progressPercent}%</div>
         </div>
 
         {/* Legend */}

@@ -163,7 +163,7 @@ export default function ModuleOrbitMap({ slug, module }: ModuleOrbitMapProps) {
 
   return (
     <>
-      <div className="px-4 pt-3 pb-1 text-center">
+      <div className="px-4 pt-2 pb-0 text-center">
         <p className="text-[10px] uppercase tracking-[0.22em] text-amber-400/70">Órbita de aprendizado</p>
       </div>
 
