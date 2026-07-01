@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { Plus, FlaskConical, Trash2, Copy } from "lucide-react";
+import { Plus, FlaskConical, Trash2, Copy, Download, Upload } from "lucide-react";
 import {
   getAllBatches,
   createBatch,
@@ -15,6 +15,7 @@ import {
   CreateBatchInput,
   BatchOil,
 } from "@/lib/diario";
+import { exportBackup, importBackup, downloadJson, readJsonFile } from "@/lib/storage/backup";
 
 const STATUS_LABELS: Record<string, string> = {
   draft: "Rascunho",
@@ -64,6 +65,7 @@ export default function DiarioPage() {
   const [formSourceType, setFormSourceType] = useState<"free_formula" | "calculator">("free_formula");
   const [formFormulaOpen, setFormFormulaOpen] = useState(false);
   const [formObs, setFormObs] = useState("");
+  const [importMessage, setImportMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
   // Snapshot da fórmula vinda da calculadora
   interface CalcSnapshot {
@@ -160,6 +162,30 @@ export default function DiarioPage() {
     load();
   };
 
+  const handleExport = () => {
+    const filename = `moonrock-backup-${new Date().toISOString().slice(0, 10)}.json`;
+    const data = exportBackup();
+    downloadJson(filename, data);
+  };
+
+  const handleImport = async () => {
+    try {
+      const content = await readJsonFile();
+      const result = importBackup(content);
+      if (result.success) {
+        setImportMessage({ type: "success", text: "Backup importado com sucesso! Dados restaurados." });
+        load();
+      } else {
+        setImportMessage({ type: "error", text: result.error });
+      }
+    } catch (e) {
+      setImportMessage({
+        type: "error",
+        text: e instanceof Error ? e.message : "Erro ao selecionar arquivo.",
+      });
+    }
+  };
+
   const filtered = statusFilter === "all" ? batches : batches.filter((b) => b.status === statusFilter);
 
   // Status counts
@@ -180,14 +206,44 @@ export default function DiarioPage() {
           <h1 className="text-3xl font-bold text-white">📓 Diário de Lote</h1>
           <p className="text-moon-400 mt-1">Registre e acompanhe seus lotes de sabão</p>
         </div>
-        <button
-          onClick={() => setShowForm(!showForm)}
-          className="inline-flex items-center gap-2 bg-white hover:bg-moon-200 text-moon-900 px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors"
-        >
-          <Plus className="w-4 h-4" />
-          {showForm ? "Cancelar" : "Novo Lote"}
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleExport}
+            className="inline-flex items-center gap-1.5 bg-moon-700 hover:bg-moon-600 text-moon-200 px-3 py-2 rounded-xl text-xs font-medium transition-colors border border-moon-600"
+            title="Exportar dados"
+          >
+            <Download className="w-3.5 h-3.5" />
+            Exportar
+          </button>
+          <button
+            onClick={handleImport}
+            className="inline-flex items-center gap-1.5 bg-moon-700 hover:bg-moon-600 text-moon-200 px-3 py-2 rounded-xl text-xs font-medium transition-colors border border-moon-600"
+            title="Importar dados"
+          >
+            <Upload className="w-3.5 h-3.5" />
+            Importar
+          </button>
+          <button
+            onClick={() => setShowForm(!showForm)}
+            className="inline-flex items-center gap-2 bg-white hover:bg-moon-200 text-moon-900 px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors"
+          >
+            <Plus className="w-4 h-4" />
+            {showForm ? "Cancelar" : "Novo Lote"}
+          </button>
+        </div>
       </div>
+
+      {/* Import feedback */}
+      {importMessage && (
+        <div className={`rounded-lg p-3 text-sm ${
+          importMessage.type === "success"
+            ? "bg-green-900/30 border border-green-700 text-green-300"
+            : "bg-red-900/30 border border-red-700 text-red-300"
+        }`}>
+          {importMessage.text}
+          <button onClick={() => setImportMessage(null)} className="ml-2 underline text-xs">Fechar</button>
+        </div>
+      )}
 
       {/* New batch form */}
       {showForm && (
