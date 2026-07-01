@@ -143,9 +143,10 @@
       "Leitura do Nível 1 para entendimento básico de moldagem e segurança."
     ],
     "chemical_fundamentals": [
-      "Óleo de cozinha usado sofre oxidação térmica. Formam-se compostos polares, peróxidos e ácidos graxos livres (FFA).",
-      "O aumento de FFA altera o Índice de Saponificação (SAP). Óleo degradado consome mais soda, mas o cálculo exato é impossível sem titulação laboratorial.",
-      "Para segurança (sem soda livre) em óleo usado, usa-se um superfat alto (10-15%), resultando em sabão macio e alcalino, adequado para limpeza pesada."
+      "Óleo de cozinha usado sofre oxidação térmica. Formam-se compostos polares, peróxidos e ácidos graxos livres (FFA). Quanto mais usado o óleo, maior o índice de acidez e maior o consumo de NaOH. Um óleo muito degradado pode consumir até 15-20% mais soda que o SAP tabelado do óleo virgem.",
+      "O índice de acidez mede a quantidade de KOH (ou NaOH) necessária para neutralizar os ácidos graxos livres presentes no óleo. Cada ponto percentual de FFA consome aproximadamente 0,14g de NaOH adicional por 100g de óleo. Sem essa correção, o sabão pode ficar com soda livre, resultando em barras agressivas e irritantes.",
+      "O cálculo seguro para óleo usado adota um superfat alto (10-15%) para absorver a variação do SAP sem deixar soda livre. A fórmula: NaOH = (Peso_Óleo × SAP_médio_estimado × (1 - Superfat)) + Correção_FFA. Na prática, usa-se a média do SAP do óleo mais comum da região (ex: soja 0,142, palma 0,142) e aplica-se superfat de segurança.",
+      "A purificação do óleo melhora o resultado final. A degomagem (remoção de fosfolipídios com água quente a 70°C) e a neutralização (lavagem com solução alcalina diluída) reduzem impurezas e uniformizam o SAP. A filtração com terra de diatomácea ou sílica clarifica o óleo e remove partículas em suspensão."
     ],
     "materials": [
       "Óleo usado filtrado",
@@ -176,7 +177,8 @@
     ],
     "critical_parameters": [
       "Temperatura da mistura: ~40°C. Óleo quente demais acelera o trace descontroladamente.",
-      "Relação água:soda: usar 2:1 ou 3:1 para garantir dissolução total."
+      "Relação água:soda: 2,2:1 a 2,5:1 (seguir faixa iniciante do Módulo 3 para consistência).",
+      "Superfat alto: 10-15% para absorver variação do SAP do óleo degradado."
     ],
     "visual_criteria": [
       "Trace pode ser mais ralo e escuro que o normal devido a impurezas.",
@@ -187,6 +189,10 @@
       "Camada de soda no fundo: mistura insuficiente ou soda mal dissolvida."
     ],
     "troubleshooting": "Se a massa separar (óleo e soda), leve ao fogo baixo em banho-maria e mexa vigorosamente (Hot Process de resgate).",
+    "trace_diagnosis": {
+      "trace_oleo_usado": "Trace mais escuro e ralo que o normal. A cor marrom/preta do óleo degradado mascara o clareamento natural do trace. Confie na textura: a massa deve emulsificar e engrossar, mesmo que a cor não mude.",
+      "falso_trace_oleo": "Massa engrossa mas volta a separar ao parar de mexer. Causa: óleo com água residual (de fritura ou lavagem). Solução: aquecer o óleo a 80°C antes de usar para evaporar a água, ou deixar decantar por 24h."
+    },
     "practical_exercise": "Fabrique 1kg de sabão de óleo usado. Deixe curar 4 semanas. Teste dureza e poder de limpeza em superfície engordurada.",
     "conclusion_criteria": [
       "Entender por que o óleo usado não serve para sabonete corporal.",
@@ -217,6 +223,20 @@
         "whyItMatters": "Soda livre causa queimaduras na pele. Em sabão de limpeza, excesso de soda é inaceitável.",
         "commonMistake": "Usar superfat baixo (5%) igual ao sabonete cosmético. No óleo usado, corre-se risco de soda livre.",
         "practicalSignal": "Sabão com pH acima de 10 ou que arde na língua no teste de zap = soda livre."
+      },
+      {
+        "title": "Índice de Acidez e Correção de Soda",
+        "definition": "Mede a quantidade de ácidos graxos livres (FFA) no óleo. Cada 1% de FFA consome ~0,14g extra de NaOH por 100g de óleo. A titulação caseira (com fenolftaleína e NaOH padronizado) estima o índice de acidez.",
+        "whyItMatters": "Ignorar o FFA leva a erro sistemático no cálculo de soda. Óleo muito usado (FFA > 5%) pode deixar soda livre mesmo com superfat alto.",
+        "commonMistake": "Achar que o SAP do óleo virgem vale para o óleo usado. A degradação térmica cria ácidos graxos que consomem soda extra.",
+        "practicalSignal": "Se o sabão ficou muito duro, quebradiço e com pH elevado (> 10), provavelmente o FFA do óleo usado não foi considerado no cálculo."
+      },
+      {
+        "title": "Purificação do Óleo Usado",
+        "definition": "Processo de remoção de impurezas antes da saponificação: filtração grosseira (peneira), filtração fina (pano/coador de papel), degomagem (água quente a 70°C) e opcionalmente clarificação com terra de diatomácea.",
+        "whyItMatters": "Óleo mais limpo produz sabão mais duro, com cor mais clara, cheiro mais neutro e trace mais previsível.",
+        "commonMistake": "Pular a filtragem fina e tentar saponificar óleo com resíduos sólidos. Partículas de alimento podem apodrecer no sabão.",
+        "practicalSignal": "Óleo bem filtrado passa pelo coador de papel sem entupir. Se entope, filtre novamente com pano mais grosso primeiro."
       }
     ],
     "quickReview": [
@@ -224,7 +244,9 @@
       "Sabão de óleo usado é LIMPEZA DOMÉSTICA, não cosmético.",
       "Usar superfat alto (10-15%) para margem de segurança.",
       "Filtrar o óleo ainda morno. Óleo com água residual pode projetar soda.",
-      "Cura: 4 semanas. Testar pH antes de usar.",
+      "Cada 1% de FFA consome ~0,14g extra de NaOH por 100g de óleo.",
+      "Degomagem a 70°C remove fosfolipídios e melhora a qualidade do sabão.",
+      "Cura: 4 semanas. Testar pH antes de usar (ideal até 10,5).",
       "Nunca usar sabão de óleo usado no corpo."
     ],
     "quiz": [
@@ -247,6 +269,26 @@
         "question": "Para compensar a variação do SAP no óleo usado, recomenda-se usar superfat baixo (0-3%).",
         "correctAnswer": false,
         "explanation": "Falso. Para compensar a incerteza do SAP, usa-se superfat alto (10-15%). Isso garante que não haja soda livre no sabão final."
+      },
+      {
+        "id": "ou3",
+        "type": "multiple-choice",
+        "question": "Qual o risco principal de saponificar óleo de cozinha usado sem considerar o índice de acidez (FFA)?",
+        "options": [
+          "O sabão pode ficar com cheiro de fritura.",
+          "O consumo extra de NaOH pelos ácidos graxos livres pode deixar soda livre na barra.",
+          "A cor do sabão fica mais escura que o normal.",
+          "O sabão não vai endurecer, independentemente do superfat."
+        ],
+        "correctAnswer": "O consumo extra de NaOH pelos ácidos graxos livres pode deixar soda livre na barra.",
+        "explanation": "Óleos degradados têm ácidos graxos livres que consomem NaOH adicional. Sem essa correção, parte da soda calculada para saponificar os triglicerídeos é desviada para neutralizar os FFA, podendo deixar soda livre no sabão final."
+      },
+      {
+        "id": "ou4",
+        "type": "true-false",
+        "question": "Sabão de óleo usado pode ser usado como sabonete líquido corporal se for diluído em água.",
+        "correctAnswer": false,
+        "explanation": "Falso. Sabão de óleo usado contém impurezas, agentes oxidativos e risco de soda livre devido ao SAP incerto. Mesmo diluído, não é seguro para uso corporal. Deve ser usado exclusivamente para limpeza doméstica."
       }
     ],
     "beforePracticeChecklist": [
