@@ -51,23 +51,39 @@ export function importBackup(
       return { success: false, error: "Versão do backup inválida ou ausente." };
     }
 
-    if (typeof data.progress !== "object" || data.progress === null || Array.isArray(data.progress)) {
-      return { success: false, error: "Campo 'progress' inválido ou ausente." };
-    }
+    // Legacy support: backup with only batches (no progress)
+    const hasProgress = data.progress !== undefined && data.progress !== null;
+    const hasBatches = Array.isArray(data.batches);
 
-    if (!Array.isArray(data.batches)) {
+    if (!hasBatches) {
       return { success: false, error: "Campo 'batches' inválido ou ausente." };
     }
 
-    // Validate progress has the expected shape
-    const progress = data.progress as Record<string, unknown>;
-    if (typeof progress.version !== "number") {
-      return { success: false, error: "Progresso inválido: campo 'version' ausente." };
+    if (hasProgress) {
+      if (typeof data.progress !== "object" || Array.isArray(data.progress)) {
+        return { success: false, error: "Campo 'progress' inválido." };
+      }
+      const progress = data.progress as Record<string, unknown>;
+      if (typeof progress.version !== "number") {
+        return { success: false, error: "Progresso inválido: campo 'version' ausente." };
+      }
     }
 
-    // Everything validated — write to localStorage
+    // Confirm before overwriting
+    if (typeof window !== "undefined" && typeof window.confirm === "function") {
+      const msg = hasProgress
+        ? "Importar este backup substituirá os lotes e o progresso salvos neste navegador. Deseja continuar?"
+        : "Importar este backup substituirá os lotes salvos neste navegador. Deseja continuar?";
+      if (!window.confirm(msg)) {
+        return { success: false, error: "Importação cancelada pelo usuário." };
+      }
+    }
+
+    // Write to localStorage
     if (typeof window !== "undefined") {
-      window.localStorage.setItem("moonrock:progress:v1", JSON.stringify(data.progress));
+      if (hasProgress) {
+        window.localStorage.setItem("moonrock:progress:v1", JSON.stringify(data.progress));
+      }
       window.localStorage.setItem("moonrock:diario:batches:v1", JSON.stringify(data.batches));
       window.dispatchEvent(new Event("moonrock-progress-updated"));
     }
