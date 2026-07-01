@@ -26,6 +26,14 @@ export interface CalculatorResult {
   naohPerOil: { oilId: string; name: string; grams: number; sapNaoh: number; naoh: number; naohBeforeSuperfat: number }[];
 }
 
+export type FormulaWarning = {
+  severity: "info" | "warning" | "danger";
+  oilId?: string;
+  title: string;
+  message: string;
+  blocking?: boolean;
+};
+
 /**
  * Validate calculator input
  */
@@ -67,12 +75,76 @@ export function validateInput(
       errors.push(`Óleo "${oilInput.oilId}" não encontrado na biblioteca`);
     } else if (oilInput.percentage <= 0) {
       errors.push(`Percentual do óleo ${found.name} deve ser maior que zero`);
-    } else if (oilInput.percentage > found.maxPercent) {
-      errors.push(`${found.name} excede o limite recomendado de ${found.maxPercent}%`);
     }
   }
 
   return errors;
+}
+
+/**
+ * Validate formula warnings from oil library metadata
+ */
+export function validateFormulaWarnings(
+  input: CalculatorInput,
+  oilLibrary: Oil[]
+): FormulaWarning[] {
+  const warnings: FormulaWarning[] = [];
+  const oilMap = new Map(oilLibrary.map((o) => [o.id, o]));
+
+  for (const oilInput of input.oils) {
+    const found = oilMap.get(oilInput.oilId);
+    if (!found) continue;
+
+    // maxPercent check
+    if (oilInput.percentage > found.maxPercent) {
+      const exceed = oilInput.percentage - found.maxPercent;
+      warnings.push({
+        severity: exceed <= 5 ? "warning" : "danger",
+        oilId: found.id,
+        title: `${found.name} acima do limite`,
+        message: `${oilInput.percentage}% usado — máximo recomendado: ${found.maxPercent}%. ${exceed > 5 ? "Reduza o percentual para evitar desequilíbrio na fórmula." : "Use com cautela: óleos acima do limite podem comprometer dureza, espuma ou estabilidade."}`,
+      });
+    }
+
+    // confidenceLevel check
+    if (found.confidenceLevel === "alerta") {
+      warnings.push({
+        severity: "warning",
+        oilId: found.id,
+        title: `${found.name} requer atenção`,
+        message: found.beginnerNote
+          ? found.beginnerNote
+          : "Óleo de uso mais complexo. Para iniciantes, considere substituir ou reduzir o percentual.",
+      });
+    } else if (found.confidenceLevel === "bloqueado") {
+      warnings.push({
+        severity: "danger",
+        blocking: true,
+        oilId: found.id,
+        title: `${found.name} não recomendado`,
+        message: found.beginnerNote
+          ? found.beginnerNote
+          : "Este óleo não é recomendado para saponificação sem validação técnica adicional. Remova-o da fórmula antes de calcular.",
+      });
+    }
+  }
+
+  // DOS risk: sum of high-risk oils
+  const highDosOils = input.oils
+    .map((o) => ({ oil: o, found: oilMap.get(o.oilId) }))
+    .filter((x) => x.found && x.found.dosRisk === "alto");
+  const dosPercent = highDosOils.reduce((sum, x) => sum + x.oil.percentage, 0);
+
+  if (dosPercent >= 10) {
+    const isDanger = dosPercent >= 20 || (dosPercent >= 10 && input.superfat > 8);
+    warnings.push({
+      severity: isDanger ? "danger" : "warning",
+      title: isDanger ? "Risco alto de DOS" : "Risco moderado de DOS",
+      message: `${dosPercent.toFixed(0)}% da receita é composta por óleos com alto risco de oxidação (DOS).${isDanger ? " Combine com antioxidantes (vitamina E) e armazene em local seco, escuro e fresco." : " Monitore sinais de ranço durante a cura."}`,
+    });
+  }
+
+  return warnings;
 }
 
 /**

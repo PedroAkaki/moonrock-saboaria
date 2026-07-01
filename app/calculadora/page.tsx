@@ -7,6 +7,8 @@ import {
   CalculatorResult,
   calculateSoap,
   validateInput,
+  validateFormulaWarnings,
+  FormulaWarning,
   calculateMold,
   MoldResult,
 } from "@/lib/soap/calculator";
@@ -31,6 +33,7 @@ export default function CalculadoraPage() {
   const [loading, setLoading] = useState(true);
   const [result, setResult] = useState<CalculatorResult | null>(null);
   const [errors, setErrors] = useState<string[]>([]);
+  const [warnings, setWarnings] = useState<FormulaWarning[]>([]);
 
   const [totalWeight, setTotalWeight] = useState(500);
   const [superfat, setSuperfat] = useState(8);
@@ -79,9 +82,13 @@ export default function CalculadoraPage() {
     };
 
     const validationErrors = validateInput(input, oils);
+    const formulaWarnings = validateFormulaWarnings(input, oils);
     setErrors(validationErrors);
+    setWarnings(formulaWarnings);
 
-    if (validationErrors.length === 0) {
+    const hasBlocking = formulaWarnings.some((w) => w.blocking);
+
+    if (validationErrors.length === 0 && !hasBlocking) {
       setResult(calculateSoap(input, oils));
     } else {
       setResult(null);
@@ -340,6 +347,37 @@ export default function CalculadoraPage() {
                   <li key={i}>• {e}</li>
                 ))}
               </ul>
+            </div>
+          )}
+
+          {/* Warnings */}
+          {warnings.length > 0 && (
+            <div className="space-y-2">
+              {warnings.map((w, i) => {
+                const colors = w.severity === "danger"
+                  ? { bg: "bg-red-900/20", border: "border-red-700", text: "text-red-300" }
+                  : w.severity === "warning"
+                  ? { bg: "bg-amber-900/20", border: "border-amber-700", text: "text-amber-300" }
+                  : { bg: "bg-moon-700/30", border: "border-moon-600", text: "text-moon-200" };
+                return (
+                  <div key={i} className={`${colors.bg} border ${colors.border} rounded-lg p-4`}>
+                    <div className="flex items-start gap-2">
+                      <span className="text-lg shrink-0">
+                        {w.blocking ? "🚫" : w.severity === "danger" ? "🔴" : w.severity === "warning" ? "🟡" : "ℹ️"}
+                      </span>
+                      <div className="min-w-0">
+                        <p className={`font-semibold text-sm ${colors.text}`}>{w.title}</p>
+                        <p className={`text-sm mt-0.5 ${w.severity === "danger" ? "text-red-400" : w.severity === "warning" ? "text-amber-400" : "text-moon-400"}`}>
+                          {w.message}
+                        </p>
+                        {w.blocking && (
+                          <p className="text-xs text-red-500 mt-1 font-medium">Cálculo bloqueado — remova o óleo para prosseguir.</p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           )}
         </div>
