@@ -68,10 +68,6 @@ export function getOilById(oils: Oil[], id: string): Oil | undefined {
 }
 
 /**
- * Get the recommended max percentage for an oil in a recipe
- */
-
-/**
  * Get the oil type translated to Portuguese
  */
 export function getOilTypeName(type: OilType): string {
