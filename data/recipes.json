@@ -73,7 +73,9 @@
         { "oilId": "agua", "name": "Água Filtrada", "percentage": 0, "grams": 0 }
       ],
       "notes": "Esta receita usa a calculadora — os valores de soda e água são calculados dinamicamente com base no superfat e concentração escolhidos.",
-      "usingCalculator": true
+      "usingCalculator": true,
+      "superfat": 8,
+      "waterRatio": 2.2
     }
   ]
 }

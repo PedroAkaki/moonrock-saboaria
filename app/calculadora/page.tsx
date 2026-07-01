@@ -16,6 +16,7 @@ import { Oil, getOils } from "@/lib/soap/oils";
 import GlossaryTerm from "@/components/GlossaryTerm";
 import SafetyChecklist from "@/components/SafetyChecklist";
 import InfoTooltip from "@/components/InfoTooltip";
+import type { RecipeCalculatorPayload } from "@/components/UseRecipeInCalculatorButton";
 
 const TOOLTIPS = {
   peso: "A pesagem precisa é essencial. Erros de massa alteram diretamente o cálculo de soda.",
@@ -48,6 +49,46 @@ export default function CalculadoraPage() {
     getOils().then((o) => {
       setOils(o);
       setLoading(false);
+
+      // Check for recipe payload from localStorage
+      try {
+        const raw = localStorage.getItem("moonrock:recipe:calculator:v1");
+        if (raw) {
+          localStorage.removeItem("moonrock:recipe:calculator:v1");
+          const payload: unknown = JSON.parse(raw);
+          if (
+            payload &&
+            typeof payload === "object" &&
+            (payload as Record<string, unknown>).source === "recipe" &&
+            typeof (payload as Record<string, unknown>).recipeId === "string" &&
+            typeof (payload as Record<string, unknown>).recipeName === "string" &&
+            typeof (payload as Record<string, unknown>).totalOilWeight === "number" &&
+            typeof (payload as Record<string, unknown>).superfat === "number" &&
+            typeof (payload as Record<string, unknown>).waterRatio === "number" &&
+            Array.isArray((payload as Record<string, unknown>).oils)
+          ) {
+            const p = payload as RecipeCalculatorPayload;
+            const oilIds = new Set(o.map((x) => x.id));
+            const allOilsValid = p.oils.every(
+              (oil) => oilIds.has(oil.oilId) && typeof oil.percentage === "number" && oil.percentage > 0
+            );
+            if (allOilsValid) {
+              const sum = p.oils.reduce((s, o) => s + o.percentage, 0);
+              if (Math.abs(sum - 100) < 0.5) {
+                setSelectedOils(p.oils);
+                setTotalWeight(p.totalOilWeight > 0 ? p.totalOilWeight : 500);
+                setSuperfat(p.superfat);
+                setWaterRatio(p.waterRatio);
+                setWarnings([]);
+                setErrors([]);
+                setResult(null);
+              }
+            }
+          }
+        }
+      } catch {
+        // Invalid payload — silently ignore
+      }
     });
   }, []);
 

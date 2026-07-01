@@ -1,5 +1,7 @@
 import Link from "next/link";
 import recipesData from "@/data/recipes.json";
+import oilsData from "@/data/oils.json";
+import UseRecipeInCalculatorButton from "@/components/UseRecipeInCalculatorButton";
 
 const difficultyColors: Record<string, string> = {
   iniciante: "bg-green-900/50 text-green-300 border border-green-700",
@@ -18,6 +20,31 @@ const levelIcons: Record<string, string> = {
   "oleo-usado": "♻️",
   "cold-process": "🧪",
 };
+
+const validOilIds = new Set(oilsData.oils.map((o) => o.id));
+
+function getRecipeCalculatorProps(recipe: (typeof recipesData.recipes)[0]) {
+  const oilsPayload: { oilId: string; percentage: number }[] = [];
+  for (const ing of recipe.ingredients) {
+    if (ing.oilId && validOilIds.has(ing.oilId) && typeof ing.percentage === "number" && ing.percentage > 0) {
+      oilsPayload.push({ oilId: ing.oilId, percentage: ing.percentage });
+    }
+  }
+  if (oilsPayload.length === 0) return null;
+  const sum = oilsPayload.reduce((s, o) => s + o.percentage, 0);
+  if (Math.abs(sum - 100) > 0.5) return null;
+  const totalOilWeight = recipe.ingredients
+    .filter((i) => i.oilId && validOilIds.has(i.oilId))
+    .reduce((s, i) => s + (i.grams ?? 0), 0);
+  return {
+    recipeId: recipe.id,
+    recipeName: recipe.name,
+    totalOilWeight: totalOilWeight > 0 ? totalOilWeight : 500,
+    superfat: recipe.superfat ?? 5,
+    waterRatio: recipe.waterRatio ?? 2.2,
+    oils: oilsPayload,
+  };
+}
 
 export default function ReceitasPage() {
   return (
@@ -163,18 +190,27 @@ export default function ReceitasPage() {
               )}
 
               {/* Using calculator note */}
-              {recipe.usingCalculator && (
-                <div className="bg-moon-800 border border-moon-500 rounded-lg p-3 text-sm text-moon-300">
-                  Esta receita usa a calculadora — ajuste superfat e tamanho da
-                  forma.
-                  <Link
-                    href="/calculadora"
-                    className="block mt-1 font-semibold text-white underline"
-                  >
-                    Abrir Calculadora →
-                  </Link>
-                </div>
-              )}
+              {recipe.usingCalculator && (() => {
+                const calcProps = getRecipeCalculatorProps(recipe);
+                return (
+                  <div className="bg-moon-800 border border-moon-500 rounded-lg p-3 text-sm text-moon-300">
+                    Esta receita usa a calculadora — ajuste superfat e tamanho da
+                    forma.
+                    <div className="mt-2">
+                      {calcProps ? (
+                        <UseRecipeInCalculatorButton {...calcProps} />
+                      ) : (
+                        <Link
+                          href="/calculadora"
+                          className="font-semibold text-white underline"
+                        >
+                          Abrir Calculadora →
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                );
+              })()}
 
               {/* Notes */}
               {recipe.notes && (
