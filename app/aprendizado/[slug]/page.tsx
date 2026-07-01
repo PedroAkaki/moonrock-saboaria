@@ -76,7 +76,7 @@ export default async function ModulePage({ params }: { params: Promise<{ slug: s
         <p className="text-moon-400 leading-relaxed">{mod.summary}</p>
       </header>
 
-      <ModuleOrbitMap slug={mod.slug} title={mod.title} module={mod} />
+      <ModuleOrbitMap slug={mod.slug} module={mod} />
       <div id="conteudo-modulo" />
 
       {/* Scope warning */}
