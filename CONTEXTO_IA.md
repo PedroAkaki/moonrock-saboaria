@@ -8,18 +8,9 @@
 Next.js 16 (App Router) + Tailwind v4 + TypeScript + JSON estático + Vercel + PWA.
 Dark theme lunar (preto+branco+hexágonos). Tailwind sem config JS — tudo em `app/globals.css` com `@theme`.
 
-## Rotas principais
-- `/` → Home com "Vamos Estudar" + "Continuar de onde parou"
-- `/roadmap` → Mapa visual global da jornada (estilo roadmap.sh)
-- `/aprendizado` → Timeline visual de estudo (motor linear)
-- `/aprendizado/[slug]` → Página de detalhe de cada nível/módulo
-- `/calculadora` → Calculadora de saponificação
-- `/oleos` → Biblioteca de 37 óleos
-- `/receitas` → Catálogo de receitas
-
 ## Features já implementadas
 
-### ✅ Fase 1 — App de Estudo
+### ✅ Fase 1 — App de Estudo (concluída)
 - Estudo Interativo v1 (quiz, cards, revisão, checklist pré-bancada)
 - Calculadora explicativa (breakdown, tooltips, dark theme)
 - Progresso unificado (`lib/progress.ts` — chave única localStorage, migração de chaves antigas)
@@ -31,86 +22,104 @@ Dark theme lunar (preto+branco+hexágonos). Tailwind sem config JS — tudo em `
 - InfoTooltip com pointerdown + Escape + hover
 - GlossaryTerm com tooltips (35 termos)
 
-### ✅ Motor de Estudo v1 — /aprendizado como painel de progressão
-- Stats gerais na página: concluídos / em andamento / disponíveis
+### ✅ Motor de Estudo v1 — /aprendizado como painel
+- Stats gerais: concluídos / em andamento / disponíveis
 - Card "Continuar agora" com próxima ação recomendada
-- Progresso granular por módulo (quiz, checklist pré-bancada, conclusão)
-- Micro-status em cada nó do VisualRoadmap ("Quiz 2/3", "Receita disponível")
+- Progresso granular por módulo (quiz, checklist, conclusão)
+- Micro-status em cada nó do VisualRoadmap
 - Barra de progresso percentual por módulo
-- Badges de conquista discretos ("Segurança validada", "CP desbloqueado")
-- Helpers em `lib/learning.ts`: `getModuleLearningProgress`, `getNextAction`, `getLearningStats`, `getAchievements`, `getContinueNowAction`
+- Badges de conquista discretos
+- Helpers em `lib/learning.ts`
+
 ### ✅ Roadmap Visual v1 — /roadmap como mapa global
 - Página `/roadmap` com visão panorâmica dos 8 níveis
-- Componente `RoadmapMap.tsx` — nós principais + tópicos laterais + links
+- `RoadmapMap.tsx` — nós principais + tópicos laterais + links
 - Conexões entre módulos, receitas, calculadora e óleos
-- Botão "Começar Estudo" → `/aprendizado`, "Ver Mapa Completo" → `/roadmap`
-- `relatedModuleSlugs`, `technique`, `category`, `safetyLevel`, `studyGoal`, `requiresCalculatorValidation` em recipes.json
-- `components/RelatedRecipes.tsx` — filtra receitas por módulo, mostra badges + estudo + alertas
-- Seção "Receitas para praticar" em /aprendizado/[slug]
+
+### ✅ Fase 2 v1 — Receitas Ligadas aos Módulos (concluída)
+- `relatedModuleSlugs`, `technique`, `category`, `safetyLevel`, `studyGoal` em recipes.json
+- `RelatedRecipes.tsx` — filtra receitas por módulo
 - Badges em /receitas (categoria, técnica, dificuldade, segurança)
 - Separação cosmético vs limpeza com alerta visual
-- Alerta de validação da calculadora para receitas com NaOH
+
+### ✅ v23.1 — Biblioteca de Óleos Avançada (majoritariamente concluída)
+- Função prática (`formulaRole`, `beginnerNote`, `recommendedUse`) em 39 óleos
+- Substituições (`substitutions` + `substitutionNotes`)
+- Risco de DOS por óleo (`dosRisk`: baixo/medio/alto)
+- Busca + 5 filtros (tipo, estabilidade, disponibilidade, DOS, confiança)
+- Classificação (`confidenceLevel`: liberado/alerta/bloqueado)
+- Borda vermelha em óleos com DOS alto ou bloqueado
+- Exibe `shelfLife` nos cards
+
+### ✅ v24 — Calculator Guardrails (concluído)
+- `validateFormulaWarnings()` — maxPercent, confidenceLevel, DOS risk
+- Warnings UI com severidade info/warning/danger + blocking
+- Óleo bloqueado impede cálculo; maxPercent/DOS alertam mas não bloqueiam
+
+### ✅ v25 — Receita → Calculadora (concluído)
+- `UseRecipeInCalculatorButton.tsx` — botão âmbar, salva payload no localStorage
+- Chave `moonrock:recipe:calculator:v1` (separada de `lastFormula:v1`)
+- Calculadora lê, valida sem `any`, pré-preenche e remove chave
+- Só receita CP Clássico (azeite+coco+mamona) compatível
 
 ### ✅ Base (sempre presente)
 - Calculadora NaOH com superfat, INS (alerta), DOS (alerta), forma (cm³→g→barras)
-- 37 óleos com SAP, INCI, INS, perfil FA, disponibilidade BR
+- 39 óleos com SAP, INCI, INS, perfil FA, disponibilidade BR
 - PWA offline + ícone + splash screen
 - Modal segurança EPI obrigatório
+
+## Rotas principais
+- `/` → Home com "Vamos Estudar" + "Continuar de onde parou"
+- `/roadmap` → Mapa visual global
+- `/aprendizado` → Timeline de estudo (motor linear)
+- `/aprendizado/[slug]` → Detalhe de cada nível
+- `/calculadora` → Calculadora com guardrails v24
+- `/oleos` → Biblioteca de 39 óleos com filtros e DOS
+- `/receitas` → Catálogo com botão "Usar na Calculadora"
 
 ## Arquivos essenciais
 
 | Arquivo | Conteúdo |
 |---------|----------|
-| `app/aprendizado/page.tsx` | Página inicial do estudo (timeline visual) |
-| `app/aprendizado/[slug]/page.tsx` | Página de detalhe de cada nível |
-| `components/VisualRoadmap.tsx` | Timeline vertical com nós conectados |
-| `components/RelatedRecipes.tsx` | Receitas relacionadas ao módulo (Fase 2) |
-| `components/LevelProgress.tsx` | Checklist interativo com localStorage |
-| `components/ModuleQuiz.tsx` | Quiz interativo (multiple, true/false, short) |
-| `components/StudyCard.tsx` | Card de conceito com definição, erro, prática |
-| `components/ResumeStudy.tsx` | Card "Continuar de onde parou" |
-| `data/learning-modules.json` | 8 níveis (3 completos, 5 esqueleto) |
-| `data/curriculo.md` | Conteúdo editorial completo dos 8 níveis |
-| `data/oils.json` | 37 óleos |
-| `data/recipes.json` | Receitas com metadados da Fase 2 |
-| `lib/soap/calculator.ts` | Engine matemático (NaOH, INS, DOS) |
-| `lib/progress.ts` | Progresso unificado localStorage |
+| `app/aprendizado/page.tsx` | Timeline visual de estudo |
+| `app/aprendizado/[slug]/page.tsx` | Detalhe de cada nível |
+| `components/VisualRoadmap.tsx` | Timeline com nós conectados |
+| `components/RelatedRecipes.tsx` | Receitas relacionadas ao módulo |
+| `components/ModuleQuiz.tsx` | Quiz interativo |
+| `components/StudyCard.tsx` | Card de conceito |
+| `components/UseRecipeInCalculatorButton.tsx` | Botão receita → calculadora (v25) |
+| `data/learning-modules.json` | 8 níveis (3 completos) |
+| `data/curriculo.md` | Currículo completo |
+| `data/oils.json` | 39 óleos |
+| `data/recipes.json` | 3 receitas (1 compatível) |
+| `lib/soap/calculator.ts` | Engine + guardrails v24 |
+| `lib/progress.ts` | Progresso unificado |
 
 ## Comandos úteis
 - `npm run dev` — desenvolvimento
 - `npm run build` — build de produção
 - Slug real do módulo de óleo usado: `sabao-de-oleo-usado` (não `sabao-oleo-usado`)
 
-### 🔥 PRÓXIMO — Biblioteca de Óleos Avançada (após Motor de Estudo)
-Transformar a biblioteca de tabela para mentora de formulação:
-- função prática de cada óleo na fórmula
-- substituições possíveis
-- risco de DOS por óleo
-- busca/filtro (nome, tipo, disponibilidade)
-- classificação GPT (liberado / alerta / bloqueado)
+### 🔥 Próximo — Módulo 4: Controle de Formulação
+Migrar de `data/curriculo.md` para `learning-modules.json`.
 
 ### ⚡ Depois
-- Diário de Lote (registro de produção)
-- Completar níveis 4 a 8 (conteúdo existe em curriculo.md)
-- Expandir glossário para 50+ termos
-- Seed de 12-20 receitas
+- Seed de 5-6 novas receitas compatíveis com Calculadora
+- Glossário expandido (45+ termos): Ponto de Krafft, Índice de acidez, Quelante, Fase alfa/beta, DOS
+- Módulos 5 a 8 (um por vez)
 
 ### 💤 Futuro
-- Modo KOH, Timer, Calculadora de custo, IFRA, PDF batch sheet
-- Modo Mãos Sujas, Sincronia nuvem, Domínio próprio
+Modo KOH, Timer, Calculadora de custo, IFRA, PDF batch sheet, Modo Mãos Sujas, Sincronia nuvem, Domínio próprio.
 
 ## 🚫 Não fazer agora
 Login, backend, banco de dados, claims terapêuticos, comando de voz, Supabase, SaaS, sistema de usuários, marketplace.
 
 ## Regras de ouro
-- Conteúdo técnico, adulto e prático: Ana é química, mas iniciante em saboaria
-- Nada de resumo genérico, blog superficial ou tom de TikTok
-- Sempre separar: cosmético corporal (ex: Cold Process) vs sabão/saneante doméstico (ex: óleo usado)
+- Conteúdo técnico, adulto e prático — Ana é química, iniciante em saboaria
+- Separar cosmético corporal vs sabão/saneante doméstico
 - Toda prática com NaOH/KOH deve ter alerta de segurança
-- INS, dureza, espuma, limpeza e condicionamento são **estimativas heurísticas**, não medição laboratorial
+- INS, dureza, espuma, limpeza = **estimativas heurísticas**, não medição laboratorial
 - Não inventar fontes, normas, valores SAP, IFRA ou regras ANVISA
-- Quando faltar confiança, marcar como "pendente de validação"
-- Não criar claims terapêuticos, dermatológicos ou medicinais
 - Build precisa passar (`npm run build`)
 - Mobile-first, PWA deve continuar funcionando
-- Slug real do módulo de óleo usado: `sabao-de-oleo-usado` (não `sabao-oleo-usado`)
+- Slug real do módulo de óleo usado: `sabao-de-oleo-usado`

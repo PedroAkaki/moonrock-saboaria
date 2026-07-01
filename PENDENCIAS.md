@@ -65,28 +65,59 @@
 
 ---
 
-## 🔥 PRÓXIMO — Biblioteca de Óleos Avançada
+## ✅ v23.1 — Biblioteca de Óleos Avançada (MAJORITARIAMENTE CONCLUÍDA)
 
 Transformar a biblioteca de tabela para mentora de formulação:
 
 | # | Tarefa | Status | Descrição |
 |---|--------|--------|-----------|
-| 23 | Função prática por óleo | ⬜ | Texto explicativo (ex: "estabiliza espuma") |
-| 24 | Substituições possíveis | ⬜ | "Pode substituir palma por sebo ou banha" |
-| 25 | Risco de DOS por óleo | ⬜ | Alerta visual se o óleo for instável |
-| 26 | Busca/filtro na biblioteca | ⬜ | Por nome, tipo, disponibilidade, propriedades |
-| 27 | Classificação GPT | ⬜ | Status: liberado / alerta / bloqueado |
+| 23 | Função prática por óleo | ✅ | `formulaRole`, `beginnerNote`, `recommendedUse` em 39 óleos |
+| 24 | Substituições possíveis | ✅ | `substitutions` (25/39) + `substitutionNotes` (39/39) |
+| 25 | Risco de DOS por óleo | ✅ | `dosRisk` (baixo/medio/alto) derivado de iodine + stability |
+| 26 | Busca/filtro na biblioteca | ✅ | Por nome/INCI/descrição + 5 filtros: tipo, estabilidade, disponibilidade, DOS, confiança |
+| 27 | Classificação por confiança | ✅ | `confidenceLevel` (liberado/alerta/bloqueado) com badge visual |
+
+**Pendente:** maxPercent < 10 com alerta especial, modo comparação entre óleos, link óleo → calculadora, `fattyAcids` em tooltip expansível, `cost`/`meltingPoint` com disclosure progressivo.
 
 ---
 
-## ⚡ SEGUINTE — Conteúdo e Profundidade
+## ✅ v24 — Calculator Guardrails (CONCLUÍDO)
 
 | # | Tarefa | Status | Descrição |
 |---|--------|--------|-----------|
-| 28 | Diário de lote | ⬜ | Cadastro: data, receita, peso, temperatura, pH, observações |
-| 29 | Completar níveis 4 a 8 | ⬜ | Conteúdo existe em `curriculo.md`, falta migrar para learning-modules.json |
-| 30 | Glossário expandido (50+ termos) | ⬜ | Expandir de 35 para 50+ |
-| 31 | Seed de 12-20 receitas | ⬜ | A partir dos templates do GPT |
+| 28 | `validateFormulaWarnings` | ✅ | Warnings por maxPercent, confidenceLevel, DOS risk |
+| 29 | Warnings UI na calculadora | ✅ | Severidade info/warning/danger + blocking |
+| 30 | Bloqueio por óleo bloqueado | ✅ | `confidenceLevel === "bloqueado"` impede cálculo |
+
+---
+
+## ✅ v25 — Receita → Calculadora (CONCLUÍDO)
+
+| # | Tarefa | Status | Descrição |
+|---|--------|--------|-----------|
+| 31 | `UseRecipeInCalculatorButton` | ✅ | Botão que salva payload no localStorage e redireciona |
+| 32 | Pré-preenchimento na calculadora | ✅ | Leitura + validação + preenchimento automático |
+| 33 | Chave exclusiva | ✅ | `moonrock:recipe:calculator:v1` — separada de `lastFormula:v1` |
+
+---
+
+## 🔥 PRÓXIMO — Módulo 4: Controle de Formulação
+
+| # | Tarefa | Status | Descrição |
+|---|--------|--------|-----------|
+| 34 | Conteúdo do Módulo 4 | ⬜ | Migrar de `data/curriculo.md` para `learning-modules.json` |
+| 35 | Quiz, cards, checklist | ⬜ | Mesmo padrão dos módulos 1-3 |
+| 36 | Integração com Biblioteca de Óleos | ⬜ | Links para óleos específicos |
+
+---
+
+## ⚡ SEGUINTE
+
+| # | Tarefa | Status | Descrição |
+|---|--------|--------|-----------|
+| 37 | Seed de 5-6 novas receitas compatíveis com Calculadora | ⬜ | Receitas que passam pelos guardrails v24 |
+| 38 | Glossário expandido (45+ termos) | 🔄 | Adicionar Ponto de Krafft, Índice de acidez, Quelante, Fase alfa/beta, DOS |
+| 39 | Completar módulos 5 a 8 | ⬜ | Um por vez, começando pelo 5 após o 4 |
 
 ---
 
@@ -94,15 +125,15 @@ Transformar a biblioteca de tabela para mentora de formulação:
 
 | # | Tarefa | Status | Descrição |
 |---|--------|--------|-----------|
-| 32 | Modo KOH na calculadora | ⬜ | Alternar entre NaOH e KOH |
-| 33 | Timer de traço e cura | ⬜ | Cronômetro + notificação |
-| 34 | Calculadora de custo por barra | ⬜ | Input preço/kg → custo por barra |
-| 35 | IFRA checker | ⬜ | Validar dosagem de fragrância por categoria |
-| 36 | Exportar ficha técnica PDF | ⬜ | Batch sheet |
-| 37 | Modo "Mãos Sujas" | ⬜ | Botões gigantes, tela sempre acesa |
-| 38 | Sincronização em nuvem | ⬜ | Turso ou similar |
-| 39 | Domínio moonrock.pousadamayon.com | ⬜ | Só falta CNAME no Cloudflare |
-| 40 | Modo iniciante vs avançado | ⬜ | Esconder dual lye, KOH, syndet |
+| 40 | Modo KOH na calculadora | ⬜ | Alternar entre NaOH e KOH |
+| 41 | Timer de traço e cura | ⬜ | Cronômetro + notificação |
+| 42 | Calculadora de custo por barra | ⬜ | Input preço/kg → custo por barra |
+| 43 | IFRA checker | ⬜ | Validar dosagem de fragrância por categoria |
+| 44 | Exportar ficha técnica PDF | ⬜ | Batch sheet |
+| 45 | Modo "Mãos Sujas" | ⬜ | Botões gigantes, tela sempre acesa |
+| 46 | Sincronização em nuvem | ⬜ | Turso ou similar |
+| 47 | Domínio moonrock.pousadamayon.com | ⬜ | Só falta CNAME no Cloudflare |
+| 48 | Modo iniciante vs avançado | ⬜ | Esconder dual lye, KOH, syndet |
 
 ---
 
