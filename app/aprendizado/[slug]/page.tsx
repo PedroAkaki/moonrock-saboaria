@@ -9,6 +9,7 @@ import ModuleQuiz from "@/components/ModuleQuiz";
 import BeforePracticeChecklist from "@/components/BeforePracticeChecklist";
 import ModuleTracker from "@/components/ModuleTracker";
 import RelatedRecipes from "@/components/RelatedRecipes";
+import ModuleOrbitMap from "@/components/ModuleOrbitMap";
 
 interface Module {
   id: number;
@@ -74,6 +75,9 @@ export default async function ModulePage({ params }: { params: Promise<{ slug: s
         <h1 className="text-2xl md:text-3xl font-bold text-white mb-3">{mod.title}</h1>
         <p className="text-moon-400 leading-relaxed">{mod.summary}</p>
       </header>
+
+      <ModuleOrbitMap slug={mod.slug} title={mod.title} module={mod} />
+      <div id="conteudo-modulo" />
 
       {/* Scope warning */}
       {mod.scope_warning && (
