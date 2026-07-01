@@ -182,14 +182,14 @@
     "status": "available",
     "summary": "Reciclagem de óleo de cozinha para produção de sabão de limpeza. Módulo focado em saneantes, não cosméticos.",
     "objective": "Transformar óleo residual de fritura em sabão de limpeza doméstico, compreendendo a degradação do óleo e a variação do índice de saponificação.",
-    "scope_warning": "AVISO: Este produto NÃO é cosmético. É um saneante doméstico artesanal. Não deve ser usado na pele corporal devido a impurezas, agentes oxidativos e risco de soda livre.",
+    "scope_warning": "AVISO: Este produto NÃO é cosmético. É um saneante doméstico artesanal. Não deve ser usado na pele corporal devido à composição variável, impurezas, compostos oxidados e baixa previsibilidade da matéria-prima.",
     "prerequisites": [
       "Leitura do Nível 1 para entendimento básico de moldagem e segurança."
     ],
     "chemical_fundamentals": [
       "Óleo de cozinha usado sofre oxidação térmica. Formam-se compostos polares, peróxidos e ácidos graxos livres (FFA). Quanto mais usado o óleo, maior o índice de acidez e maior o consumo de NaOH. Um óleo muito degradado pode consumir até 15-20% mais soda que o SAP tabelado do óleo virgem.",
       "O índice de acidez mede a quantidade de KOH (ou NaOH) necessária para neutralizar os ácidos graxos livres presentes no óleo. Cada ponto percentual de FFA consome aproximadamente 0,14g de NaOH adicional por 100g de óleo. Essa soda é desviada da saponificação dos triglicerídeos para neutralizar os AGL — o que reduz a soda disponível para a reação principal. O resultado não é soda livre, mas sim excesso de gordura não saponificada, gerando barras moles, oleosas, com pouca espuma e baixa previsibilidade.",
-      "O cálculo seguro para óleo usado adota um superfat alto (10-15%) para absorver a variação do SAP sem risco de soda livre. A fórmula prática: NaOH = Peso_Óleo × SAP_estimado × (1 - Superfat_alto). A correção individual do FFA exige titulação — para iniciantes, superfat alto e uso exclusivo em limpeza doméstica são a abordagem recomendada.",
+      "O cálculo seguro para óleo usado adota um superfat alto (10-15%) para aumentar a margem de segurança contra excesso de alcalinidade. A fórmula prática: NaOH = Peso_Óleo × SAP_estimado × (1 - Superfat_alto). A correção individual do FFA exige titulação — para iniciantes, superfat alto e uso exclusivo em limpeza doméstica são a abordagem recomendada, mas não substituem a padronização do óleo.",
       "A purificação do óleo melhora o resultado final. A degomagem (remoção de fosfolipídios com água quente a 70°C) e a neutralização (lavagem com solução alcalina diluída) reduzem impurezas e uniformizam o SAP. A filtração com terra de diatomácea ou sílica clarifica o óleo e remove partículas em suspensão."
     ],
     "materials": [
@@ -300,11 +300,11 @@
         "question": "Por que o sabão de óleo usado não deve ser usado como sabonete corporal?",
         "options": [
           "Porque a cor escura mancha a pele.",
-          "Porque contém impurezas, agentes oxidativos e risco de soda livre devido ao SAP incerto.",
-          "Porque o cheiro é desagradável.",
-          "Porque não faz espuma suficiente."
+          "Porque contém impurezas, agentes oxidativos e composição variável que tornam a matéria-prima imprevisível.",
+          "Porque o cheiro é desagradável.",
+          "Porque não faz espuma suficiente."
         ],
-        "correctAnswer": "Porque contém impurezas, agentes oxidativos e risco de soda livre devido ao SAP incerto.",
+        "correctAnswer": "Porque contém impurezas, agentes oxidativos e composição variável que tornam a matéria-prima imprevisível.",
         "explanation": "Óleo de cozinha usado contém produtos de oxidação, resíduos de alimentos e polímeros de degradação. O SAP é incerto, então o cálculo de soda é menos preciso que com óleos virgens."
       },
       {
@@ -332,7 +332,7 @@
         "type": "true-false",
         "question": "Sabão de óleo usado pode ser usado como sabonete líquido corporal se for diluído em água.",
         "correctAnswer": false,
-        "explanation": "Falso. Sabão de óleo usado contém impurezas, agentes oxidativos e risco de soda livre devido ao SAP incerto. Mesmo diluído, não é seguro para uso corporal. Deve ser usado exclusivamente para limpeza doméstica."
+        "explanation": "Falso. Sabão de óleo usado contém impurezas, agentes oxidativos e composição variável com baixa previsibilidade. Mesmo diluído, não é seguro para uso corporal. Deve ser usado exclusivamente para limpeza doméstica."
       }
     ],
     "beforePracticeChecklist": [
