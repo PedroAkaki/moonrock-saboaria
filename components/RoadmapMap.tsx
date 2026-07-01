@@ -7,17 +7,17 @@ import {
   Lock,
   ChevronDown,
   ChevronRight,
+  BookOpen,
   FlaskConical,
   AlertTriangle,
   Beaker,
   Calculator,
   Droplets,
-  ChevronLeft,
 } from "lucide-react";
 import learningModules from "@/data/learning-modules.json";
 import recipesData from "@/data/recipes.json";
 import { getProgress } from "@/lib/progress";
-import { getModuleLearningProgress, getClientProgress } from "@/lib/learning";
+import { getClientProgress } from "@/lib/learning";
 
 interface Module {
   id: number;
