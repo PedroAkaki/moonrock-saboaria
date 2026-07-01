@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState, Fragment } from "react";
 import Link from "next/link";
-import { Check, Lock, Play, ArrowRight, ShieldCheck, FlaskConical, BookOpen, Sparkles } from "lucide-react";
+import { Check, Lock, Play, ArrowRight, ShieldCheck, FlaskConical, BookOpen, Sparkles, ChefHat, AlertTriangle, Lightbulb, Gavel } from "lucide-react";
 import { roadmapNodes, RoadmapNode, RoadmapTopic } from "@/data/roadmap-nodes";
 import learningModules from "@/data/learning-modules.json";
 import { getProgress } from "@/lib/progress";
@@ -51,37 +51,29 @@ function typeBadge(type: string): { label: string; className: string } {
   }
 }
 
-function centerBorderByType(type: string, status: RoadmapStatus): string {
-  const base = statusClasses(status);
-  switch (type) {
-    case "foundation": return `${base} ring-1 ring-amber-300/30`;
-    case "tool": return `${base} ring-1 ring-blue-400/20`;
-    case "milestone": return `${base} ring-1 ring-purple-400/20`;
-    default: return base;
-  }
-}
-
 function statusClasses(status: RoadmapStatus): string {
   switch (status) {
     case "completed": return "border-green-500/50 bg-green-900/10 text-green-200 ring-1 ring-green-500/30";
     case "current": return "border-amber-300 bg-amber-300/10 text-amber-100 shadow-[0_0_24px_rgba(252,211,77,0.25)] ring-1 ring-amber-300/40";
-    case "in-progress": return "border-purple-500/60 bg-purple-900/20 text-purple-100";
-    case "locked": return "border-moon-700 bg-moon-900/50 text-moon-500";
-    default: return "border-moon-600 bg-moon-800/70 text-moon-200";
+    case "in-progress": return "border-purple-500/60 bg-purple-900/20 text-purple-100 ring-1 ring-purple-500/20";
+    case "locked": return "border-moon-700 bg-moon-900/50 text-moon-500 ring-0";
+    default: return "border-moon-600 bg-moon-800/70 text-moon-200 ring-1 ring-moon-500/10";
   }
 }
 
-const TOPIC_TYPE_COLORS: Record<string, string> = {
-  safety: "border-red-700/50 bg-red-900/15",
-  tool: "border-blue-700/50 bg-blue-900/15",
-  recipe: "border-green-700/50 bg-green-900/15",
-  checklist: "border-purple-700/50 bg-purple-900/15",
+const TOPIC_CLUSTER: Record<string, { icon: React.ReactNode; label: string; wrapper: string }> = {
+  concept: { icon: <Lightbulb className="h-3.5 w-3.5" />, label: "Conceito", wrapper: "border-moon-600 bg-moon-800/60" },
+  safety: { icon: <AlertTriangle className="h-3.5 w-3.5" />, label: "Segurança", wrapper: "border-red-700/50 bg-red-900/15" },
+  tool: { icon: <BookOpen className="h-3.5 w-3.5" />, label: "Ferramenta", wrapper: "border-blue-700/50 bg-blue-900/15" },
+  recipe: { icon: <ChefHat className="h-3.5 w-3.5" />, label: "Receita", wrapper: "border-green-700/50 bg-green-900/15" },
+  checklist: { icon: <Gavel className="h-3.5 w-3.5" />, label: "Checklist", wrapper: "border-purple-700/50 bg-purple-900/15" },
 };
 
 function TopicPill({ topic }: { topic: RoadmapTopic }) {
-  const color = TOPIC_TYPE_COLORS[topic.type] ?? "border-moon-600 bg-moon-800/70";
+  const cluster = TOPIC_CLUSTER[topic.type] ?? TOPIC_CLUSTER.concept;
   const content = (
-    <div className={`flex items-center gap-1.5 rounded-xl border px-3 py-2 text-xs leading-tight transition-colors ${color} ${topic.href ? "hover:brightness-125 cursor-pointer" : ""}`}>
+    <div className={`flex items-center gap-1.5 rounded-xl border px-3 py-2 text-xs leading-tight transition-colors ${cluster.wrapper} ${topic.href ? "hover:brightness-125 cursor-pointer" : ""}`}>
+      {cluster.icon}
       <span>{topic.title}</span>
       {topic.importance === "secondary" && <span className="text-[9px] text-moon-500">(extra)</span>}
     </div>
@@ -90,18 +82,52 @@ function TopicPill({ topic }: { topic: RoadmapTopic }) {
   return <div>{content}</div>;
 }
 
+function TopicGroup({ topics, position }: { topics: RoadmapTopic[]; position: "left" | "right" }) {
+  const groups: Record<string, RoadmapTopic[]> = {};
+  for (const t of topics) {
+    if (!groups[t.type]) groups[t.type] = [];
+    groups[t.type].push(t);
+  }
+  const order = ["concept", "safety", "tool", "recipe", "checklist"];
+  return (
+    <div className={`flex flex-col gap-3 ${position === "left" ? "items-end" : "items-start"}`}>
+      {order.map((type) => {
+        const items = groups[type];
+        if (!items?.length) return null;
+        const cluster = TOPIC_CLUSTER[type] ?? TOPIC_CLUSTER.concept;
+        return (
+          <div key={type} className={`flex flex-col gap-1.5 ${position === "left" ? "items-end" : "items-start"}`}>
+            <span className={`text-[9px] font-medium uppercase tracking-wider text-moon-500 ${position === "left" ? "text-right" : "text-left"}`}>
+              {cluster.icon} {cluster.label}
+            </span>
+            {items.map((topic) => (
+              <TopicPill key={topic.id} topic={topic} />
+            ))}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 function CenterNode({ node, status }: { node: RoadmapNode; status: RoadmapStatus }) {
   const badge = typeBadge(node.type);
+  const isLocked = status === "locked";
   const content = (
-    <div className={`rounded-2xl border px-5 py-3.5 text-center transition-all ${centerBorderByType(node.type, status)}`}>
+    <div className={`rounded-2xl border px-5 py-3.5 text-center transition-all relative ${statusClasses(status)} ${isLocked ? "opacity-70" : ""}`}>
+      {isLocked && (
+        <div className="absolute -top-2.5 -right-2.5 flex items-center gap-1 rounded-full bg-moon-700 border border-moon-600 px-2 py-0.5 text-[9px] font-medium text-moon-400 shadow-sm">
+          <Lock className="h-3 w-3" /> Em breve
+        </div>
+      )}
       <div className="flex items-center justify-center gap-2 mb-1">
-        {status === "completed" ? <Check className="h-5 w-5 text-green-300" /> : status === "locked" ? <Lock className="h-5 w-5 text-moon-500" /> : typeIcon(node.type)}
-        <span className="text-sm font-bold leading-tight text-white">{node.title}</span>
+        {status === "completed" ? <Check className="h-5 w-5 text-green-300" /> : isLocked ? <Lock className="h-5 w-5 text-moon-600" /> : typeIcon(node.type)}
+        <span className={`text-sm font-bold leading-tight ${isLocked ? "text-moon-500" : "text-white"}`}>{node.title}</span>
       </div>
       <span className={`text-[9px] font-medium px-2 py-0.5 rounded-full ${badge.className}`}>{badge.label}</span>
     </div>
   );
-  if (node.href && status !== "locked") return <Link href={node.href} className="block hover:-translate-y-0.5 transition-transform">{content}</Link>;
+  if (node.href && !isLocked) return <Link href={node.href} className="block hover:-translate-y-0.5 transition-transform">{content}</Link>;
   return content;
 }
 
@@ -126,11 +152,11 @@ export default function RoadmapMap() {
 
   return (
     <div className="w-full overflow-x-auto pb-8">
-      <div className="relative mx-auto min-w-[800px] max-w-[900px] px-6 py-4">
-        {/* CTA */}
+      <div className="relative mx-auto min-w-[880px] max-w-[1024px] px-8 py-4">
+        {/* Continue CTA */}
         {continueAction && continueAction.slug !== "aprendizado" && (
           <Link href={continueAction.href}
-            className="group mb-5 flex items-center gap-3 rounded-xl border border-amber-300/40 bg-amber-300/10 px-4 py-3 hover:bg-amber-300/20 transition-colors">
+            className="group mb-6 flex items-center gap-3 rounded-xl border border-amber-300/40 bg-amber-300/10 px-4 py-3 hover:bg-amber-300/20 transition-colors">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-300/20">
               <Play className="h-5 w-5 text-amber-200 ml-0.5" />
             </div>
@@ -142,54 +168,68 @@ export default function RoadmapMap() {
           </Link>
         )}
 
-        {/* Mini header */}
-        <div className="text-center mb-5">
+        {/* Section header */}
+        <div className="text-center mb-6">
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-300/70">Trilha Principal</span>
         </div>
 
-        {/* Continuous backbone — behind everything */}
-        <div className="absolute left-1/2 top-20 bottom-28 w-0.5 -translate-x-1/2 rounded-full bg-amber-300/40 shadow-[0_0_20px_rgba(252,211,77,0.15)]" />
+        {/* Vertical backbone with gradient fade */}
+        <div className="absolute left-1/2 top-24 bottom-32 w-0.5 -translate-x-1/2 rounded-full"
+          style={{
+            background: "linear-gradient(to bottom, rgba(252,211,77,0.6), rgba(252,211,77,0.3), rgba(252,211,77,0.1))",
+            boxShadow: "0 0 20px rgba(252,211,77,0.15)",
+          }}
+        />
 
         {roadmapNodes.map((node, idx) => {
           const status = getSlugStatus(node, progress, modules);
           const showSection = node.section && node.section !== lastSection;
           if (node.section) lastSection = node.section;
+          const isLocked = status === "locked";
 
           return (
             <Fragment key={node.id}>
-              {/* Section label */}
+              {/* Section divider */}
               {showSection && (
-                <div className="relative z-10 flex items-center gap-4 my-5">
-                  <div className="flex-1 h-px bg-moon-600" />
-                  <span className="text-xs font-bold uppercase tracking-[0.2em] text-moon-400 shrink-0">{node.section}</span>
-                  <div className="flex-1 h-px bg-moon-600" />
+                <div className="relative z-10 flex items-center gap-4 my-6">
+                  <div className="flex-1 h-px" style={{
+                    background: "linear-gradient(to right, transparent, rgba(120,113,98,0.5), transparent)",
+                  }} />
+                  <span className="text-xs font-bold uppercase tracking-[0.2em] text-moon-400 shrink-0 px-2">{node.section}</span>
+                  <div className="flex-1 h-px" style={{
+                    background: "linear-gradient(to right, transparent, rgba(120,113,98,0.5), transparent)",
+                  }} />
                 </div>
               )}
 
-              {/* Row with dashed connectors */}
-              <div className="relative grid grid-cols-[240px_1fr_240px] gap-6 items-center my-3">
-                {/* Dashed horizontal connector behind everything */}
-                <div className="absolute left-[250px] right-[250px] top-1/2 border-t border-dashed border-moon-500/25 -translate-y-1/2 z-0" />
+              {/* Row */}
+              <div className={`relative grid grid-cols-[260px_1fr_260px] gap-6 items-center my-3 ${isLocked ? "opacity-60" : ""}`}>
+                {/* Horizontal dashed connector */}
+                <div className="absolute left-[270px] right-[270px] top-1/2 border-t border-dashed border-moon-500/30 -translate-y-1/2 z-0" />
 
-                {/* Left topics */}
-                <div className="relative z-10 flex flex-col items-end gap-2">
-                  {node.leftTopics?.map((topic) => (
-                    <TopicPill key={topic.id} topic={topic} />
-                  ))}
+                {/* Left side topics */}
+                <div className="relative z-10">
+                  {node.leftTopics && node.leftTopics.length > 0 && (
+                    <TopicGroup topics={node.leftTopics} position="left" />
+                  )}
                 </div>
 
-                {/* Center node — masked from backbone */}
+                {/* Center node */}
                 <div className="relative z-10 flex flex-col items-center">
-                  <div className="bg-moon-800 rounded-2xl px-1 py-0.5">
+                  {isLocked ? (
                     <CenterNode node={node} status={status} />
-                  </div>
+                  ) : (
+                    <div className="bg-moon-800 rounded-2xl px-1 py-0.5">
+                      <CenterNode node={node} status={status} />
+                    </div>
+                  )}
                 </div>
 
-                {/* Right topics */}
-                <div className="relative z-10 flex flex-col items-start gap-2">
-                  {node.rightTopics?.map((topic) => (
-                    <TopicPill key={topic.id} topic={topic} />
-                  ))}
+                {/* Right side topics */}
+                <div className="relative z-10">
+                  {node.rightTopics && node.rightTopics.length > 0 && (
+                    <TopicGroup topics={node.rightTopics} position="right" />
+                  )}
                 </div>
               </div>
             </Fragment>
@@ -197,21 +237,21 @@ export default function RoadmapMap() {
         })}
 
         {/* End cap */}
-        <div className="relative z-10 text-center mt-4">
-          <div className="inline-flex items-center gap-2 rounded-xl border border-moon-700 bg-moon-900/70 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-moon-500">
-            <Lock className="h-3.5 w-3.5" /> Em breve
+        <div className="relative z-10 text-center mt-6">
+          <div className="inline-flex items-center gap-2 rounded-xl border border-moon-700 bg-moon-900/70 px-5 py-3 text-xs font-bold uppercase tracking-wider text-moon-500">
+            <Lock className="h-3.5 w-3.5" /> Mais módulos em breve
           </div>
         </div>
 
-        {/* Progress */}
+        {/* Progress bar */}
         <div className="relative z-10 mt-8 rounded-2xl border border-moon-700 bg-moon-900/80 p-5">
           <div className="flex items-center justify-between gap-4">
-            <div>
+            <div className="shrink-0">
               <p className="text-3xl font-bold text-white">{progressPercent}%</p>
               <p className="text-xs text-moon-400">{completedCount} de {availableModules.length} módulos</p>
             </div>
-            <div className="h-2.5 flex-1 rounded-full bg-moon-800">
-              <div className="h-2.5 rounded-full bg-purple-400" style={{ width: `${progressPercent}%` }} />
+            <div className="h-2.5 flex-1 rounded-full bg-moon-800 overflow-hidden">
+              <div className="h-2.5 rounded-full bg-gradient-to-r from-purple-500 to-purple-300 transition-all duration-500" style={{ width: `${progressPercent}%` }} />
             </div>
           </div>
         </div>
@@ -222,6 +262,7 @@ export default function RoadmapMap() {
           <span className="inline-flex items-center gap-1.5"><span className="h-3 w-3 rounded-full border-2 border-amber-300" /> Atual</span>
           <span className="inline-flex items-center gap-1.5"><span className="h-3 w-3 rounded-full bg-purple-400" /> Andamento</span>
           <span className="inline-flex items-center gap-1.5"><span className="h-3 w-3 rounded-full border border-moon-500" /> Disponível</span>
+          <span className="inline-flex items-center gap-1.5"><Lock className="h-3 w-3 text-moon-600" /> Em breve</span>
         </div>
       </div>
     </div>
