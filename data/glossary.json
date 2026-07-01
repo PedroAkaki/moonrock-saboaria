@@ -35,6 +35,13 @@
     { "term": "soleseife", "definition": "Sabonete com alta concentração de sal (50-100% do peso dos óleos). Barra muito dura, espuma cremosa, efeito detox.", "en": "Brine Soap" },
     { "term": "castela", "definition": "Sabonete 100% azeite de oliva. Muito suave, espuma baixa, cura muito longa (6-12 meses).", "en": "Castile" },
     { "term": "acing", "definition": "Quando a essência ou fragrância faz o sabão engrossar abruptamente, formando grumos (como queijo cottage).", "en": "Ricing" },
-    { "term": "vanilina", "definition": "Composto presente em fragrâncias doces (baunilha, chocolate, caramelo) que escurece o sabão com o tempo.", "en": "Vanillin" }
+    { "term": "vanilina", "definition": "Composto presente em fragrâncias doces (baunilha, chocolate, caramelo) que escurece o sabão com o tempo.", "en": "Vanillin" },
+    { "term": "gel phase", "definition": "Fase onde o sabão atinge altas temperaturas (60-80°C) dentro da forma, tornando-se translúcido e mais duro após o resfriamento.", "en": "Gel Phase" },
+    { "term": "glicerol", "definition": "Álcool de cadeia curta, subproduto natural da saponificação. Também chamado de glicerina. Hidrata a pele e é higroscópico.", "en": "Glycerol" },
+    { "term": "higroscópico", "definition": "Propriedade de absorver umidade do ar. A glicerina é higroscópica, por isso sabonetes de base precisam ser embalados em filme PVC.", "en": "Hygroscopic" },
+    { "term": "oxidação lipídica", "definition": "Processo químico que degrada os óleos por exposição ao oxigênio, gerando compostos voláteis e ranço. Causa principal do DOS.", "en": "Lipid Oxidation" },
+    { "term": "sap", "definition": "Índice de Saponificação. Quantidade de NaOH (ou KOH) necessária para saponificar completamente 1g de óleo. Valor médio, varia por lote e fornecedor.", "en": "Saponification Value" },
+    { "term": "soda livre", "definition": "NaOH residual não consumido na reação de saponificação. Causa queimaduras na pele, pH elevado e ardência no teste de zap. Deve ser zero em sabão pronto.", "en": "Free Lye" },
+    { "term": "triglicerídeos", "definition": "Moléculas compostas por glicerol + 3 ácidos graxos. São o principal componente dos óleos e gorduras vegetais/animais. A saponificação hidrolisa os triglicerídeos em sabão + glicerol.", "en": "Triglycerides" }
   ]
 }
