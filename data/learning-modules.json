@@ -269,10 +269,11 @@
       "Níveis 1 e 2 recomendados para familiaridade com moldes e segurança básica."
     ],
     "chemical_fundamentals": [
-      "Triglicerídeos (glicerol + 3 ácidos graxos) reagem com NaOH em hidrólise alcalina, produzindo sabão e glicerol livre.",
-      "Superfat: excesso de óleo não saponificado para garantir que não haja soda livre. Fórmula: NaOH = Peso_Óleo × SAP × (1 - Superfat).",
-      "A água atua como solvente para a soda, não participa da reação. Sua proporção afeta a velocidade do traço e a dureza final.",
-      "Gel Phase: fase onde a massa atinge ~80°C internamente. Acelera a saponificação e altera a transparência do sabão."
+      "A saponificação é uma reação de hidrólise alcalina de ésteres, de segunda ordem global: a velocidade depende da concentração de ambos os reagentes (triglicerídeo e OH⁻). A taxa é descrita por v = k [éster][OH⁻]. A constante k aumenta com a temperatura – aproximadamente dobra a cada 10°C (regra de Arrhenius). Isso explica por que misturas mais quentes traçam mais rápido e por que a gel phase acelera a reação residual.",
+      "A agitação mecânica (mixer de imersão) não afeta a constante de velocidade, mas aumenta drasticamente a área de contato entre as fases (óleo e solução alcalina), reduzindo o tempo necessário para a emulsão e acelerando a reação global. O 'trace' não é um ponto químico definido, mas uma transição reológica: a viscosidade aumenta porque os primeiros cristais de sabão formam uma rede que aprisiona a fase dispersa.",
+      "A temperatura de mistura ideal (35-45°C) equilibra dois fatores: abaixo de 35°C, óleos sólidos (palma, coco) podem cristalizar parcialmente, causando falso traço; acima de 50°C, a reação é tão rápida que o trace pode passar do ponto em segundos, além de aumentar a evaporação de água e a volatilização de fragrâncias.",
+      "O ponto de Krafft é a temperatura abaixo da qual um sabão (sal de ácido graxo) não forma micelas em solução, permanecendo cristalizado. Sabões com cadeias mais longas (C18) têm ponto de Krafft mais alto que cadeias curtas (C12). Isso significa que um sabão rico em ácido esteárico (sebo, palma) dissolve mais lentamente em água fria, enquanto sabões com coco (C12) dissolvem rapidamente. Na prática, barras com alto teor de coco produzem espuma imediata, mas podem ressecar a pele; barras com alto teor de oleico (azeite) dissolvem melhor em água morna e são mais suaves.",
+      "A cura (4-6 semanas) envolve três processos simultâneos: (1) evaporação de água livre, que reduz a plasticidade e aumenta a dureza; (2) transformação cristalina – os sabões passam de uma fase metaestável (cristais α ou β') para a fase estável (cristais β) com empacotamento mais denso, liberando calor (cristalização exotérmica); (3) conclusão da saponificação residual (menos de 5% da reação total), que consome os últimos vestígios de álcali. A dureza final não é atingida apenas pela perda de água; a organização cristalina é igualmente determinante."
     ],
     "materials": [
       "Óleos vegetais (azeite, coco, palma, etc.) pesados com precisão",
@@ -303,9 +304,10 @@
       "Despeje no molde. Isolamento térmico opcional para forçar gel phase."
     ],
     "critical_parameters": [
-      "Temperatura de mistura: 35-45°C (muito quente acelera o traço; muito frio não emulsiona bem).",
-      "Relação água:soda: 2:1 é padrão (ex: 100g NaOH → 200g água).",
-      "Cura: mínimo 28 dias. Durante a cura, perde-se água, o sabão endurece e a saponificação se completa."
+      "Temperatura de mistura: 35-45°C (abaixo: falso trace; acima: trace muito rápido).",
+      "Relação água:soda: 2:1 a 2,5:1 (mais água = traço mais lento, menos água = traço mais rápido e cura mais curta).",
+      "Superfat: 5-8% para cosméticos; 0% para limpeza.",
+      "Ponto de Krafft da formulação: afeta a solubilidade em água fria (sabões com alto C18 precisam de água morna)."
     ],
     "visual_criteria": [
       "Traço claro e brilhante no ponto de adição de fragrância.",
@@ -316,7 +318,7 @@
       "Rancificação (DOS): manchas alaranjadas por oxidação de óleos insaturados. Causa: óleos velhos."
     ],
     "troubleshooting": "Se o sabão não saponificar após 48h (óleo separado), erro de cálculo de soda. Levar ao forno em Hot Process para forçar a reação.",
-    "practical_exercise": "Faça 500g de sabonete com azeite e coco (5% superfat). Controle a temperatura da soda e documente o tempo de traço.",
+    "practical_exercise": "Faça 500g de sabonete com 60% azeite, 30% coco e 10% mamona (5% superfat). Divida a massa em dois recipientes assim que atingir o trace leve. Mantenha um recipiente em banho-maria a 40°C e o outro em banho de gelo. Observe e documente a diferença de tempo de trace, textura e cor (gel phase). Ao final da cura, compare a dureza e a espuma dos dois lotes.",
     "conclusion_criteria": [
       "Diferenciar traço leve, médio e pesado visualmente.",
       "Compreender que o pH sozinho não garante segurança.",
@@ -362,8 +364,35 @@
         "whyItMatters": "Sabão jovem é macio, dissolve rápido e pode ser alcalino demais na pele.",
         "commonMistake": "Usar o sabão antes da cura porque endureceu. Dureza não é sinônimo de cura química.",
         "practicalSignal": "O sabão encolhe ligeiramente e a superfície fica seca ao toque após algumas semanas."
+      },
+      {
+        "title": "Cinética da Saponificação",
+        "definition": "Reação de segunda ordem: v = k [triglicerídeo][OH⁻]. A temperatura e a agitação controlam a velocidade. O trace marca a transição para uma rede cristalina que aprisiona a emulsão.",
+        "whyItMatters": "Entender a cinética permite prever o tempo de trace e ajustar a temperatura para evitar aceleração ou falso trace.",
+        "commonMistake": "Achar que a gel phase é essencial. Ela acelera a reação mas não é obrigatória; barras sem gel podem ser igualmente boas.",
+        "practicalSignal": "Se a massa engrossa em menos de 2 minutos, a temperatura ou a fragrância estão acelerando o processo. Se não engrossa após 10 minutos, a emulsão pode estar incompleta (óleo separado)."
+      },
+      {
+        "title": "Ponto de Krafft",
+        "definition": "Temperatura crítica abaixo da qual o sabão não forma micelas, permanecendo como cristal sólido em solução.",
+        "whyItMatters": "Influencia diretamente a solubilidade e a espuma do sabão em água fria ou morna. Sabões com cadeias longas (C18) têm ponto de Krafft mais alto, dissolvendo melhor em água quente.",
+        "commonMistake": "Pensar que um sabão 'não faz espuma' porque a receita é ruim. Muitas vezes é a temperatura da água que está abaixo do ponto de Krafft da formulação.",
+        "practicalSignal": "Sabonetes com alto teor de azeite ou sebo produzem pouca espuma em água fria, mas espuma cremosa em água morna. Sabonetes com coco espumam em qualquer temperatura."
+      },
+      {
+        "title": "Fases da Cura",
+        "definition": "Período pós-desenforme onde ocorre evaporação de água, rearranjo cristalino (transição α→β) e conclusão da saponificação residual.",
+        "whyItMatters": "A cura determina a dureza, a solubilidade e a suavidade final do sabão. Usar antes do tempo resulta em barra mole e alcalina.",
+        "commonMistake": "Confundir endurecimento físico (perda de água) com cura química. A barra pode estar firme em 48h, mas a cura leva semanas.",
+        "practicalSignal": "Pese uma barra no início da cura e anote. Quando o peso estabilizar (após 4-6 semanas), a perda de água terminou e o sabão está pronto."
       }
     ],
+    "trace_diagnosis": {
+      "trace_leve": "Textura de leite condensado. O rastro desaparece em 5-10 segundos. Ideal para adicionar fragrâncias e fazer swirls.",
+      "trace_medio": "O rastro permanece visível por 10-20 segundos. A massa ainda é fluida, mas já está mais espessa. Bom para camadas.",
+      "trace_pesado": "O rastro fica marcado e a massa tem consistência de pudim. Difícil de despejar – pode causar bolhas e imperfeições.",
+      "falso_trace": "A massa engrossa rapidamente, mas ao aquecer (banho-maria) volta a ficar líquida. Causado por cristalização de óleos sólidos (palma, sebo) em temperaturas baixas."
+    },
     "quickReview": [
       "NaOH = massa do óleo × SAP × (1 - superfat).",
       "SAP é uma média estatística, não verdade absoluta para todo lote.",
@@ -395,11 +424,24 @@
         "explanation": "Falso. O endurecimento é físico (perda inicial de água e cristalização). A saponificação residual e a evaporação continuam por semanas (cura). Usar antes resulta em sabão macio e agressivo à pele."
       },
       {
-        "id": "cp3",
+        "id": "cp4",
+        "type": "multiple-choice",
+        "question": "O que explica o fato de um sabão rico em azeite (oleico) produzir menos espuma em água fria do que um sabão com alto teor de coco (láurico)?",
+        "options": [
+          "O azeite saponifica mais lentamente, deixando resíduos que inibem a espuma.",
+          "O ponto de Krafft do oleato de sódio é mais alto que o do laurato de sódio; em água fria, o sabão não forma micelas eficientemente.",
+          "O azeite tem mais insaturações, que reduzem a tensão superficial da água.",
+          "O coco contém glicerina natural que potencializa a espuma."
+        ],
+        "correctAnswer": "O ponto de Krafft do oleato de sódio é mais alto que o do laurato de sódio; em água fria, o sabão não forma micelas eficientemente.",
+        "explanation": "O laurato de sódio (C12) tem ponto de Krafft baixo (≈25°C), dissolvendo bem em água fria. O oleato (C18:1) tem ponto de Krafft mais alto (≈40°C), exigindo água morna para formar micelas e espumar."
+      },
+      {
+        "id": "cp5",
         "type": "short",
-        "question": "Qual fenômeno de oxidação aparece como manchas alaranjadas no sabão, associado a óleos insaturados ou superfat alto?",
-        "correctAnswer": "DOS",
-        "explanation": "DOS (Dreaded Orange Spots) é a rancificação oxidativa dos óleos não saponificados. Comum em fórmulas com alto superfat e óleos insaturados armazenados em local quente e úmido."
+        "question": "Se uma receita de CP está demorando mais de 15 minutos para atingir o trace, e a temperatura está em 35°C, qual ajuste você faria para acelerar a reação sem alterar a receita?",
+        "correctAnswer": "aumentar a temperatura",
+        "explanation": "Aumentar a temperatura para ~40-45°C acelera a cinética (a constante k aumenta com a temperatura). Alternativamente, verificar se a emulsão está bem formada (mixer suficiente)."
       }
     ],
     "beforePracticeChecklist": [
