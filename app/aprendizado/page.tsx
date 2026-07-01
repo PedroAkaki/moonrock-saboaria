@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { VisualRoadmap } from "@/components/VisualRoadmap";
+import MainLearningOrbit from "@/components/MainLearningOrbit";
 import Link from "next/link";
 import { ArrowRight, Check, Play, Award, Sparkles, BarChart3 } from "lucide-react";
 import learningModules from "@/data/learning-modules.json";
@@ -109,12 +109,12 @@ export default function AprendizadoPage() {
         </div>
       )}
 
-      {/* Visual Roadmap */}
+      {/* Learning Orbit */}
       <section>
         <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
           <BarChart3 className="w-5 h-5 text-moon-300" /> Mapa da Jornada
         </h2>
-        <VisualRoadmap />
+        <MainLearningOrbit />
       </section>
 
       {/* Bottom: revisão completa */}
