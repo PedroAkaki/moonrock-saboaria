@@ -61,13 +61,6 @@ export default function LearningOrbit({
 
   const orbitContent = (
     <>
-      {/* Label */}
-      {embedded && (
-        <div className="px-4 pt-3 pb-1 text-center">
-          <p className="text-[10px] uppercase tracking-[0.22em] text-amber-400/70">Órbita de aprendizado</p>
-        </div>
-      )}
-
       {/* Orbit area */}
       <div className="relative mx-auto h-[390px] max-w-[430px] overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(191,149,48,0.14),transparent_34%),radial-gradient(circle_at_center,rgba(255,255,255,0.06),transparent_55%)]" />
