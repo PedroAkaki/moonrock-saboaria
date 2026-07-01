@@ -25,12 +25,14 @@ interface LearningOrbitProps {
   progressPercent: number;
   completedCount: number;
   totalCount: number;
+  totalLabel?: string;
+  embedded?: boolean;
 }
 
 const STATUS_CLASSES: Record<OrbitStatus, string> = {
   completed: "border-green-400/60 bg-green-500/30 text-green-100 shadow-[0_0_20px_rgba(34,197,94,0.25)]",
-  "in-progress": "border-purple-400/70 bg-purple-500/30 text-purple-100 shadow-[0_0_20px_rgba(168,85,247,0.25)]",
-  "not-started": "border-moon-400/50 bg-moon-900/70 text-moon-200",
+  "in-progress": "border-purple-400/70 bg-purple-500/30 text-purple-100 shadow-[0_0_20px_rgba(168,85,247,0.25)] ring-2 ring-purple-400/30",
+  "not-started": "border-moon-400/50 bg-moon-900/70 text-moon-100",
   locked: "border-moon-700 bg-moon-900/50 text-moon-500 opacity-60",
 };
 
@@ -51,12 +53,21 @@ export default function LearningOrbit({
   progressPercent,
   completedCount,
   totalCount,
+  totalLabel,
+  embedded = false,
 }: LearningOrbitProps) {
   const RING_RADIUS = 145;
   const COUNT = nodes.length;
 
-  return (
-    <section className="mb-8 rounded-2xl border border-moon-600 bg-moon-900/70 overflow-hidden shadow-2xl shadow-black/20">
+  const orbitContent = (
+    <>
+      {/* Label */}
+      {embedded && (
+        <div className="px-4 pt-3 pb-1 text-center">
+          <p className="text-[10px] uppercase tracking-[0.22em] text-amber-400/70">Órbita de aprendizado</p>
+        </div>
+      )}
+
       {/* Orbit area */}
       <div className="relative mx-auto h-[390px] max-w-[430px] overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(191,149,48,0.14),transparent_34%),radial-gradient(circle_at_center,rgba(255,255,255,0.06),transparent_55%)]" />
@@ -141,6 +152,7 @@ export default function LearningOrbit({
             </div>
             <p className="mt-2 text-xs text-moon-500">
               <span className="text-green-400">{completedCount}</span> de {totalCount} concluídos.
+              {totalLabel && <span className="ml-1 text-moon-500">· {totalLabel}</span>}
             </p>
           </div>
           <div className="text-4xl font-bold text-white">{progressPercent}%</div>
@@ -153,6 +165,16 @@ export default function LearningOrbit({
           <span className="inline-flex items-center gap-1.5"><span className="h-3 w-3 rounded-full border border-moon-300" /> Disponível</span>
         </div>
       </div>
+    </>
+  );
+
+  if (embedded) {
+    return orbitContent;
+  }
+
+  return (
+    <section className="mb-8 rounded-2xl border border-moon-600 bg-moon-900/70 overflow-hidden shadow-2xl shadow-black/20">
+      {orbitContent}
     </section>
   );
 }

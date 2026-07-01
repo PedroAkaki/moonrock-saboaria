@@ -162,14 +162,15 @@ export default function ModuleOrbitMap({ slug, module }: ModuleOrbitMapProps) {
   }));
 
   return (
-    <section className="mb-8 rounded-2xl border border-moon-600 bg-moon-900/70 overflow-hidden shadow-2xl shadow-black/20">
-      {/* Mini label */}
+    <>
       <div className="px-4 pt-3 pb-1 text-center">
         <p className="text-[10px] uppercase tracking-[0.22em] text-amber-400/70">Órbita de aprendizado</p>
       </div>
 
       <LearningOrbit
-        centerLabel="Módulo Principal"
+        embedded
+        centerLabel="Módulo"
+        centerSubLabel="Principal"
         centerIcon={<FlaskConical className="mb-1 h-5 w-5 text-amber-200" />}
         nodes={orbitDefs}
         onNodeClick={(node) => {
@@ -225,6 +226,6 @@ export default function ModuleOrbitMap({ slug, module }: ModuleOrbitMapProps) {
           Continuar Estudo
         </a>
       </div>
-    </section>
+    </>
   );
 }

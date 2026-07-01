@@ -83,6 +83,7 @@ export default function MainLearningOrbit() {
       progressPercent={progressPercent}
       completedCount={completedCount}
       totalCount={available.length}
+      totalLabel={`${modules.length} no total`}
     />
   );
 }
