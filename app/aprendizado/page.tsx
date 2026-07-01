@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import MainLearningOrbit from "@/components/MainLearningOrbit";
 import Link from "next/link";
-import { ArrowRight, Check, Play, Award, Sparkles, BarChart3 } from "lucide-react";
+import { ArrowRight, Check, Play, Award, Sparkles } from "lucide-react";
 import learningModules from "@/data/learning-modules.json";
 import { getProgress } from "@/lib/progress";
 import {
@@ -40,34 +40,22 @@ export default function AprendizadoPage() {
   const earnedAchievements = achievements.filter((a) => a.earned);
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8 space-y-8">
-      {/* Header */}
-      <header className="text-center">
+    <div className="max-w-3xl mx-auto px-4 py-8 space-y-6">
+      {/* Header compacto */}
+      <header className="text-center space-y-1">
         <h1 className="text-3xl font-bold text-white">🌙 MoonRock Estudo</h1>
-        <p className="text-moon-400 mt-2">
-          Sua trilha de aprendizado em saboaria artesanal
+        <p className="text-sm text-moon-400">
+          Sua jornada de aprendizado em saboaria artesanal
         </p>
       </header>
 
-      {/* Stats bar */}
-      <div className="grid grid-cols-3 gap-3 motion-enter-up">
-        <div className="bg-moon-700/40 backdrop-blur rounded-xl p-3 text-center border border-moon-600">
-          <div className="text-xl font-bold text-white">{stats.completed}</div>
-          <div className="text-xs text-moon-400">Concluídos</div>
-        </div>
-        <div className="bg-moon-700/40 backdrop-blur rounded-xl p-3 text-center border border-moon-600">
-          <div className="text-xl font-bold text-amber-300">{stats.inProgress}</div>
-          <div className="text-xs text-moon-400">Em andamento</div>
-        </div>
-        <div className="bg-moon-700/40 backdrop-blur rounded-xl p-3 text-center border border-moon-600">
-          <div className="text-xl font-bold text-moon-300">
-            {stats.available + stats.locked}
-          </div>
-          <div className="text-xs text-moon-400">Na trilha</div>
-        </div>
-      </div>
+      {/* Hero: Learning Orbit */}
+      <section className="motion-enter-up">
+        <h2 className="text-[10px] uppercase tracking-[0.22em] text-amber-400/70 text-center mb-3">Mapa da Jornada</h2>
+        <MainLearningOrbit />
+      </section>
 
-      {/* Continue now card */}
+      {/* Continue CTA */}
       {continueAction && (
         <Link
           href={continueAction.href}
@@ -90,9 +78,20 @@ export default function AprendizadoPage() {
         </Link>
       )}
 
+      {/* Stats compactas */}
+      <div className="motion-enter-up delay-2">
+        <div className="flex items-center justify-center gap-6 text-sm text-moon-400">
+          <span><strong className="text-white">{stats.completed}</strong> concluídos</span>
+          <span className="text-moon-600">·</span>
+          <span><strong className="text-amber-300">{stats.inProgress}</strong> em andamento</span>
+          <span className="text-moon-600">·</span>
+          <span><strong className="text-moon-300">{stats.available + stats.locked}</strong> na trilha</span>
+        </div>
+      </div>
+
       {/* Achievements */}
       {earnedAchievements.length > 0 && (
-        <div className="bg-moon-700/30 backdrop-blur rounded-xl border border-moon-600 p-4 motion-enter-up delay-2">
+        <div className="bg-moon-700/30 backdrop-blur rounded-xl border border-moon-600 p-4 motion-enter-up delay-3">
           <h2 className="text-sm font-semibold text-moon-300 uppercase tracking-wider mb-3 flex items-center gap-2">
             <Award className="w-4 h-4" /> Conquistas
           </h2>
@@ -109,15 +108,7 @@ export default function AprendizadoPage() {
         </div>
       )}
 
-      {/* Learning Orbit */}
-      <section className="motion-enter-up delay-3">
-        <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-          <BarChart3 className="w-5 h-5 text-moon-300" /> Mapa da Jornada
-        </h2>
-        <MainLearningOrbit />
-      </section>
-
-      {/* Bottom: revisão completa */}
+      {/* Bottom: conclusão completa */}
       {stats.completed > 0 && stats.inProgress === 0 && (
         <div className="text-center py-4">
           <div className="inline-flex items-center gap-2 text-sm text-green-400 bg-green-900/20 border border-green-700/30 rounded-xl px-5 py-3">
