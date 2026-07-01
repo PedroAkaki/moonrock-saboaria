@@ -81,7 +81,7 @@ export default async function ModulePage({ params }: { params: Promise<{ slug: s
       </Link>
 
       {/* Header */}
-      <header className="mb-8 border-b border-moon-700 pb-6">
+      <header className="mb-5 sm:mb-7 border-b border-moon-700 pb-5 sm:pb-6">
         <div className="flex items-center gap-2 text-xs text-moon-500 font-mono mb-2">
           <span>NÍVEL {mod.level}</span><span>•</span><span>MÓDULO TÉCNICO</span>
         </div>

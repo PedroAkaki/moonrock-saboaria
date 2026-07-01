@@ -56,13 +56,13 @@ export default function LearningOrbit({
   totalLabel,
   embedded = false,
 }: LearningOrbitProps) {
-  const RING_RADIUS = 132;
+  const ringRadius = embedded ? 125 : 132;
   const COUNT = nodes.length;
 
   const orbitContent = (
     <>
       {/* Orbit area */}
-      <div className="relative mx-auto h-[320px] sm:h-[380px] max-w-[430px] overflow-hidden">
+      <div className={`relative mx-auto ${embedded ? "h-[300px] sm:h-[350px]" : "h-[320px] sm:h-[380px]"} max-w-[430px] overflow-hidden`}>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(191,149,48,0.14),transparent_34%),radial-gradient(circle_at_center,rgba(255,255,255,0.06),transparent_55%)]" />
 
         {/* Rings */}
@@ -82,8 +82,8 @@ export default function LearningOrbit({
         {/* Orbiting nodes */}
         {nodes.map((node, index) => {
           const angle = (index / COUNT) * Math.PI * 2 - Math.PI / 2;
-          const x = Math.cos(angle) * RING_RADIUS;
-          const y = Math.sin(angle) * RING_RADIUS;
+          const x = Math.cos(angle) * ringRadius;
+          const y = Math.sin(angle) * ringRadius;
           const isLocked = node.status === "locked";
           const isActive = activeNodeId === node.id;
 
@@ -135,7 +135,7 @@ export default function LearningOrbit({
       </div>
 
       {/* Bottom panel */}
-      <div className="border-t border-moon-700 bg-moon-800/60 p-4">
+      <div className={`border-t border-moon-700 bg-moon-800/60 ${embedded ? "p-3" : "p-4"}`}>
         {/* Progress */}
         <div className="flex items-end justify-between gap-4">
           <div className="flex-1">
