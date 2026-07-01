@@ -24,6 +24,16 @@ export interface Oil {
   cost: string;
   shelfLife: string;
   notes: string;
+  /** Função prática do óleo na fórmula (ex: "Dá dureza e cremosidade") */
+  formulaRole?: string;
+  /** Substituições possíveis (ex: "Pode substituir palma por sebo ou banha") */
+  substitutionNotes?: string;
+  /** Risco de DOS derivado do iodine + stability */
+  dosRisk?: "baixo" | "medio" | "alto";
+  /** Nota para iniciante sobre uso */
+  beginnerNote?: string;
+  /** Uso recomendado resumido */
+  recommendedUse?: string;
 }
 
 export interface OilsData {

@@ -194,7 +194,7 @@ export function getNextAction(
   }
 
   // 3. Try a related recipe
-  if (detail.hasRelatedRecipe && mp?.status !== "completed") {
+  if (detail.hasRelatedRecipe && mp) {
     return {
       slug: mod.slug,
       label: "Praticar com receita relacionada",
