@@ -12,9 +12,10 @@
       "Nenhum. Módulo inicial absoluto."
     ],
     "chemical_fundamentals": [
-      "A base glicerinada já passou pelo processo de saponificação industrial. É composta por sais de ácidos graxos, glicerol, água e, frequentemente, álcool ou açúcares para aumentar a transparência.",
-      "A glicerina é higroscópica, atraindo água do ambiente, o que causa o fenômeno de 'suor' na superfície do sabão.",
-      "O superaquecimento (acima de 70-80°C) causa evaporação da água e quebra da estrutura cristalina, deixando a base opaca e quebradiça."
+      "A base glicerinada já passou pelo processo de saponificação industrial. É composta por sais de ácidos graxos, glicerol, água e, frequentemente, álcool ou açúcares (sorbitol, propilenoglicol) que atuam como plastificantes e preservam a transparência ao inibir a cristalização dos sabões.",
+      "A glicerina é higroscópica, atraindo água do ambiente, o que causa o fenômeno de 'suor' na superfície do sabão (sinérese). A taxa de absorção de umidade depende da umidade relativa do ar: acima de 60% UR, o suor aparece em dias; abaixo de 50% UR, a base pode ressecar e rachar.",
+      "O superaquecimento (acima de 70-80°C) causa evaporação da água e quebra da estrutura cristalina, deixando a base opaca e quebradiça. A transparência da base depende do tamanho dos cristais de sabão: cristais pequenos e desorganizados dispersam menos luz. O resfriamento lento favorece cristais maiores e mais organizados, podendo reduzir a transparência.",
+      "Aditivos líquidos (óleos, extratos, fragrâncias) acima de 5-10% do peso da base diluem a matriz de sabão e plastificantes, impedindo a solidificação. Cada tipo de base tem um limite diferente: bases transparentes geralmente suportam menos aditivos que bases brancas (que contêm mais TiO₂ e estrutura mais robusta)."
     ],
     "materials": [
       "Base glicerinada (transparente ou branca)",
@@ -84,6 +85,20 @@
         "whyItMatters": "Sabonetes mal embalados suam e perdem qualidade estética e durabilidade.",
         "commonMistake": "Deixar o sabão sem embalagem após o preparo. Filme PVC não é opcional — é barreira física.",
         "practicalSignal": "Gotículas na superfície após alguns dias = sinérese por alta umidade."
+      },
+      {
+        "title": "Limite de Aditivos em M&P",
+        "definition": "A base glicerinada tem uma capacidade máxima de incorporação de aditivos líquidos (óleos, extratos, fragrâncias). Esse limite varia de 5% a 10% do peso total, dependendo da formulação da base (transparente ou branca).",
+        "whyItMatters": "Exceder o limite impede a solidificação, resultando em pasta pegajosa que não desenforma. O sabão fica inutilizável como barra.",
+        "commonMistake": "Achar que 'um pouco mais' de óleo essencial ou extrato não faz diferença. A diferença entre 8% e 12% de aditivo pode ser o ponto de não solidificação.",
+        "practicalSignal": "Se após 2 horas a base ainda estiver mole ou pegajosa no fundo, o limite de aditivos foi excedido. Use como pasta de limpeza ou sabão líquido."
+      },
+      {
+        "title": "Técnicas de Design com M&P",
+        "definition": "Camadas, embutidos e marmorizado são as três técnicas principais. Camadas exigem esperar cada camada esfriar parcialmente (~10 min a 30°C) para não fundir a anterior. Embutidos (embeds) precisam de base em temperatura ligeiramente mais baixa (~50°C) para não derreter a peça inserida. Marmorizado usa movimentos suaves de vai-e-vem com espátula, sem misturar completamente.",
+        "whyItMatters": "Design não é só estética — técnicas bem executadas evitam separação de camadas, bolhas e derretimento de embeds.",
+        "commonMistake": "Despejar a segunda camada muito quente sobre a primeira ainda mole: as camadas se fundem e o efeito visual some.",
+        "practicalSignal": "Toque levemente a superfície da camada anterior com o dorso da mão. Se estiver morninha (< 40°C) e firme, está pronta para receber a próxima camada."
       }
     ],
     "quickReview": [
@@ -92,7 +107,10 @@
       "Glicerina é higroscópica: embalar em filme PVC imediatamente.",
       "Aditivos líquidos acima de 10% podem impedir a solidificação.",
       "Bolhas se eliminam com borrifada de álcool antes de despejar.",
-      "Fragrância deve ser adicionada quando a base estiver líquida, não fervendo."
+      "Fragrância deve ser adicionada quando a base estiver líquida, não fervendo.",
+      "Bases transparentes aceitam menos aditivos que bases brancas (5-10% max).",
+      "Camadas e embutidos exigem temperatura controlada (~50°C) para não fundir a anterior.",
+      "Sorbitol e propilenoglicol atuam como plastificantes — inibem cristalização e preservam transparência."
     ],
     "quiz": [
       {
@@ -121,6 +139,32 @@
         "question": "Qual a principal diferença entre a base glicerinada e o Cold Process?",
         "correctAnswer": "no cold process a saponificacao acontece na bancada",
         "explanation": "Na base glicerinada, a saponificação já ocorreu industrialmente. No Cold Process, a reação entre óleos e NaOH acontece na bancada do saboeiro."
+      },
+      {
+        "id": "mp4",
+        "type": "multiple-choice",
+        "question": "Qual o limite máximo recomendado de aditivos líquidos (óleos, extratos, fragrâncias) em base glicerinada transparente?",
+        "options": [
+          "15-20% do peso da base.",
+          "5-10% do peso da base — acima disso, a solidificação pode ser comprometida.",
+          "Até 30% — a base sempre solidifica, independentemente da quantidade.",
+          "Não há limite — a base aceita qualquer proporção de aditivos."
+        ],
+        "correctAnswer": "5-10% do peso da base — acima disso, a solidificação pode ser comprometida.",
+        "explanation": "Bases transparentes têm estrutura cristalina mais sensível. Acima de 10% de aditivos líquidos, a matriz de sabão e plastificantes se dilui e a base não solidifica corretamente."
+      },
+      {
+        "id": "mp5",
+        "type": "multiple-choice",
+        "question": "Por que sabonetes de base glicerinada devem ser embalados em filme PVC imediatamente após o preparo?",
+        "options": [
+          "Para evitar que o cheiro da fragrância se dissipe.",
+          "Para proteger a superfície contra arranhões durante o transporte.",
+          "Porque a glicerina é higroscópica: sem barreira, atrai umidade do ar e forma gotículas (suor).",
+          "Para acelerar o resfriamento e endurecimento da base."
+        ],
+        "correctAnswer": "Porque a glicerina é higroscópica: sem barreira, atrai umidade do ar e forma gotículas (suor).",
+        "explanation": "A glicerina presente na base absorve água do ambiente em UR acima de 60%. O filme PVC funciona como barreira física contra a umidade, prevenindo a sinérese."
       }
     ],
     "beforePracticeChecklist": [
