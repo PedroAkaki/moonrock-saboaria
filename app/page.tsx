@@ -93,7 +93,7 @@ export default function Home() {
               Óleos
             </h2>
             <p className="text-moon-400 text-sm mt-1">
-              Biblioteca de 37 óleos com SAP values e propriedades
+              Biblioteca de 39 óleos com SAP values e propriedades
             </p>
             <ArrowRight className="absolute bottom-4 right-4 w-4 h-4 text-moon-500 opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-0.5" />
           </Link>
@@ -147,7 +147,7 @@ export default function Home() {
         <div className="mt-8 grid grid-cols-3 gap-4 text-center">
           <div className="group bg-moon-700/30 backdrop-blur rounded-xl p-4 border border-moon-600 hover:border-white/20 transition-all">
             <Database className="w-5 h-5 text-moon-300 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-white">37</div>
+            <div className="text-2xl font-bold text-white">39</div>
             <div className="text-moon-400 text-xs mt-0.5">Óleos na biblioteca</div>
           </div>
           <div className="group bg-moon-700/30 backdrop-blur rounded-xl p-4 border border-moon-600 hover:border-white/20 transition-all">
