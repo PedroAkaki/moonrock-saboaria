@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import {
   CalculatorInput,
   CalculatorResult,
   calculateSoap,
   validateInput,
-  scaleToMold,
   calculateMold,
   MoldResult,
 } from "@/lib/soap/calculator";
@@ -26,6 +26,7 @@ const TOOLTIPS = {
 };
 
 export default function CalculadoraPage() {
+  const router = useRouter();
   const [oils, setOils] = useState<Oil[]>([]);
   const [loading, setLoading] = useState(true);
   const [result, setResult] = useState<CalculatorResult | null>(null);
@@ -34,7 +35,6 @@ export default function CalculadoraPage() {
   const [totalWeight, setTotalWeight] = useState(500);
   const [superfat, setSuperfat] = useState(8);
   const [waterRatio, setWaterRatio] = useState(2.2);
-  const [moldVolume, setMoldVolume] = useState<number | "">("");
   const [moldDims, setMoldDims] = useState({ length: "", width: "", height: "" });
   const [moldResult, setMoldResult] = useState<MoldResult | null>(null);
   const [selectedOils, setSelectedOils] = useState<
@@ -88,13 +88,6 @@ export default function CalculadoraPage() {
     }
   }, [totalWeight, selectedOils, superfat, waterRatio, oils]);
 
-  const handleMoldScale = useCallback(() => {
-    if (moldVolume && moldVolume > 0) {
-      const weight = scaleToMold(moldVolume);
-      setTotalWeight(weight);
-    }
-  }, [moldVolume]);
-
   const handleMoldByDimensions = useCallback(() => {
     const l = Number(moldDims.length);
     const w = Number(moldDims.width);
@@ -108,6 +101,29 @@ export default function CalculadoraPage() {
 
   const totalPercentage = selectedOils.reduce((sum, o) => sum + o.percentage, 0);
   const percentageValid = Math.abs(totalPercentage - 100) < 0.5;
+
+  const handleSaveToDiario = useCallback(() => {
+    if (!result) return;
+    const formula = {
+      totalOilWeight: result.totalOilsGrams,
+      alkaliType: "naoh" as const,
+      naohGrams: result.naohWithSuperfat,
+      waterGrams: result.waterGrams,
+      superfatPercent: result.superfatPercent,
+      oils: result.oils.map((o) => {
+        const oil = oils.find((x) => x.id === o.oilId);
+        return {
+          oilId: o.oilId,
+          name: o.name,
+          grams: o.grams,
+          percentage: o.percentage,
+          sapNaoh: oil?.sapNaOH,
+        };
+      }),
+    };
+    localStorage.setItem("moonrock:calculator:lastFormula:v1", JSON.stringify(formula));
+    router.push("/diario");
+  }, [result, oils, router]);
 
   if (loading) {
     return (
@@ -306,22 +322,6 @@ export default function CalculadoraPage() {
                 <p className="text-moon-400">~{moldResult.bars100g} barras de 100g</p>
               </div>
             )}
-          </div>
-
-          {/* Total weight input */}
-          <div className="bg-moon-700/50 backdrop-blur rounded-xl border border-moon-600 p-4 space-y-3">
-            <h2 className="font-semibold text-moon-100">Peso Total dos Óleos</h2>
-            <div className="flex items-center gap-3">
-              <input
-                type="number"
-                value={totalWeight}
-                onChange={(e) => setTotalWeight(Number(e.target.value))}
-                className="flex-1 bg-moon-800 border border-moon-500 rounded-lg px-3 py-2 text-lg font-bold text-white"
-                min={100}
-                max={50000}
-              />
-              <span className="text-moon-400 font-semibold">g</span>
-            </div>
           </div>
 
           {/* Calculate button */}
@@ -524,6 +524,14 @@ export default function CalculadoraPage() {
                 INS, dureza, limpeza, espuma e condicionamento são <strong>estimativas heurísticas</strong> baseadas no perfil de ácidos graxos. 
                 Ajudam na formulação, mas não substituem teste prático, cura adequada e avaliação do lote.
               </div>
+
+              {/* Save to diary */}
+              <button
+                onClick={handleSaveToDiario}
+                className="w-full bg-amber-300 hover:bg-amber-200 text-moon-900 font-semibold py-3 px-6 rounded-xl text-sm transition-colors"
+              >
+                📓 Salvar no Diário de Lote
+              </button>
             </div>
           </div>
         )}

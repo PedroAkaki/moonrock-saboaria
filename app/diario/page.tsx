@@ -61,6 +61,23 @@ export default function DiarioPage() {
   const [formSuperfat, setFormSuperfat] = useState(5);
   const [formObs, setFormObs] = useState("");
 
+  // Pre-fill from calculator when available
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      const saved = localStorage.getItem("moonrock:calculator:lastFormula:v1");
+      if (saved) {
+        const formula = JSON.parse(saved);
+        setFormOilWeight(formula.totalOilWeight ?? 500);
+        setFormNaoh(formula.naohGrams ?? 0);
+        setFormWater(formula.waterGrams ?? 0);
+        setFormSuperfat(formula.superfatPercent ?? 5);
+        localStorage.removeItem("moonrock:calculator:lastFormula:v1");
+        setShowForm(true);
+      }
+    } catch { /* ignore */ }
+  }, []);
+
   const load = useCallback(() => setBatches(getAllBatches()), []);
 
   useEffect(() => {

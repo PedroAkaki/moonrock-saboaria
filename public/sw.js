@@ -7,6 +7,7 @@ const PRECACHE_URLS = [
   "/oleos",
   "/aprendizado",
   "/roadmap",
+  "/diario",
   "/manifest.json",
 ];
 
