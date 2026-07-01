@@ -385,13 +385,22 @@
         "whyItMatters": "A cura determina a dureza, a solubilidade e a suavidade final do sabão. Usar antes do tempo resulta em barra mole e alcalina.",
         "commonMistake": "Confundir endurecimento físico (perda de água) com cura química. A barra pode estar firme em 48h, mas a cura leva semanas.",
         "practicalSignal": "Pese uma barra no início da cura e anote. Quando o peso estabilizar (após 4-6 semanas), a perda de água terminou e o sabão está pronto."
+      },
+      {
+        "title": "Relação Água:Soda (Concentração da Lixívia)",
+        "definition": "A proporção entre água e NaOH na solução alcalina. A relação mais comum é 2:1 (2g de água para 1g de NaOH), equivalente a 33% de concentração. Relações entre 1,5:1 (40%) e 3:1 (25%) são usadas para fins específicos.",
+        "whyItMatters": "Menos água (ex: 1,5:1) acelera o traço, reduz o encolhimento e encurta a cura, mas pode dificultar a dissolução completa da soda e aumentar o risco de soda ash. Mais água (ex: 3:1) desacelera o traço, dá mais tempo para técnicas de design, mas prolonga a cura e aumenta o encolhimento.",
+        "commonMistake": "Achar que a relação água:soda é a mesma que water:lye ratio usada em calculadoras internacionais. É a mesma grandeza. Confundir com 'água como percentual dos óleos' — que é outro método de cálculo, não recomendado por ser menos preciso.",
+        "practicalSignal": "Se o traço chega em menos de 1 minuto e a massa está muito quente (> 55°C), a concentração pode estar muito alta (água insuficiente). Se o traço demora mais de 20 minutos mesmo com temperatura adequada, a concentração pode estar baixa demais."
       }
     ],
     "trace_diagnosis": {
       "trace_leve": "Textura de leite condensado. O rastro desaparece em 5-10 segundos. Ideal para adicionar fragrâncias e fazer swirls.",
       "trace_medio": "O rastro permanece visível por 10-20 segundos. A massa ainda é fluida, mas já está mais espessa. Bom para camadas.",
       "trace_pesado": "O rastro fica marcado e a massa tem consistência de pudim. Difícil de despejar – pode causar bolhas e imperfeições.",
-      "falso_trace": "A massa engrossa rapidamente, mas ao aquecer (banho-maria) volta a ficar líquida. Causado por cristalização de óleos sólidos (palma, sebo) em temperaturas baixas."
+      "falso_trace": "A massa engrossa rapidamente, mas ao aquecer (banho-maria) volta a ficar líquida. Causado por cristalização de óleos sólidos (palma, sebo) em temperaturas baixas. Solução: aquecer a mistura lentamente até 40-45°C para redissolver os cristais antes de continuar.",
+      "aceleracao": "O traço chega em menos de 2 minutos. Causas comuns: fragrância aceleradora (canela, cravo, menta), temperatura da mistura acima de 50°C, ou solução alcalina muito concentrada (relação água:soda < 1,8:1). Ação preventiva: preparar formas e todos os aditivos antes de iniciar a emulsão. Se ocorrer, despejar imediatamente no molde — não insistir em swirls.",
+      "separacao": "A massa parece 'quebrada', com óleo separado e textura granular. Causa: emulsão incompleta (mixer insuficiente), temperaturas muito diferentes entre óleos e lixívia (diferença > 10°C), ou superfat muito alto (> 15%). Solução imediata: continuar emulsionando com mixer em pulsos. Se não recuperar após 5 minutos, levar ao forno (Hot Process forçado) a 80°C por 1 hora para completar a reação."
     },
     "quickReview": [
       "NaOH = massa do óleo × SAP × (1 - superfat).",
@@ -400,7 +409,8 @@
       "Temperatura altera a velocidade do trace (mais quente = mais rápido).",
       "Cura melhora dureza e desempenho (evaporação + reação completa).",
       "INS/DOS são estimativas heuristicas, não medidores laboratoriais.",
-      "Soda SEMPRE vai na água, nunca o contrário."
+      "Soda SEMPRE vai na água, nunca o contrário.",
+      "Relação água:soda padrão 2:1 — menos água acelera o trace, mais água da mais tempo para design."
     ],
     "quiz": [
       {
@@ -442,6 +452,19 @@
         "question": "Se uma receita de CP está demorando mais de 15 minutos para atingir o trace, e a temperatura está em 35°C, qual ajuste você faria para acelerar a reação sem alterar a receita?",
         "correctAnswer": "aumentar a temperatura",
         "explanation": "Aumentar a temperatura para ~40-45°C acelera a cinética (a constante k aumenta com a temperatura). Alternativamente, verificar se a emulsão está bem formada (mixer suficiente)."
+      },
+      {
+        "id": "cp6",
+        "type": "multiple-choice",
+        "question": "Durante uma saponificação CP, a massa engrossou em menos de 1 minuto, chegando a trace pesado antes de você adicionar a fragrância. Qual é a causa mais provável?",
+        "options": [
+          "A água estava contaminada com sais minerais, acelerando a reação.",
+          "A temperatura da mistura estava acima de 50°C ou a fragrância escolhida é aceleradora (ex: canela, cravo).",
+          "O superfat estava muito baixo (menos de 3%), forçando a reação a completar mais rápido.",
+          "O mixer de imersão estava com a potência muito alta, quebrando as moléculas de óleo."
+        ],
+        "correctAnswer": "A temperatura da mistura estava acima de 50°C ou a fragrância escolhida é aceleradora (ex: canela, cravo).",
+        "explanation": "Temperaturas acima de 50°C aceleram significativamente a cinética de saponificação (a constante k dobra a cada ~10°C). Fragrâncias com fenóis (canela, cravo, menta) catalisam a reação. A prevenção é preparar todos os aditivos e formas antes de iniciar a emulsão."
       }
     ],
     "beforePracticeChecklist": [
