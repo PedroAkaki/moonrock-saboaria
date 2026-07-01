@@ -56,13 +56,13 @@ export default function LearningOrbit({
   totalLabel,
   embedded = false,
 }: LearningOrbitProps) {
-  const RING_RADIUS = 145;
+  const RING_RADIUS = 132;
   const COUNT = nodes.length;
 
   const orbitContent = (
     <>
       {/* Orbit area */}
-      <div className="relative mx-auto h-[350px] sm:h-[390px] max-w-[430px] overflow-hidden">
+      <div className="relative mx-auto h-[320px] sm:h-[380px] max-w-[430px] overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(191,149,48,0.14),transparent_34%),radial-gradient(circle_at_center,rgba(255,255,255,0.06),transparent_55%)]" />
 
         {/* Rings */}
