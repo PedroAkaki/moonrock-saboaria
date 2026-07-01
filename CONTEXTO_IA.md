@@ -30,7 +30,14 @@ Dark theme lunar (preto+branco+hexágonos). Tailwind sem config JS — tudo em `
 - InfoTooltip com pointerdown + Escape + hover
 - GlossaryTerm com tooltips (35 termos)
 
-### ✅ Fase 2 v1 — Receitas Ligadas aos Módulos
+### ✅ Motor de Estudo v1 — /aprendizado como painel de progressão
+- Stats gerais na página: concluídos / em andamento / disponíveis
+- Card "Continuar agora" com próxima ação recomendada
+- Progresso granular por módulo (quiz, checklist pré-bancada, conclusão)
+- Micro-status em cada nó do VisualRoadmap ("Quiz 2/3", "Receita disponível")
+- Barra de progresso percentual por módulo
+- Badges de conquista discretos ("Segurança validada", "CP desbloqueado")
+- Helpers em `lib/learning.ts`: `getModuleLearningProgress`, `getNextAction`, `getLearningStats`, `getAchievements`, `getContinueNowAction`
 - `relatedModuleSlugs`, `technique`, `category`, `safetyLevel`, `studyGoal`, `requiresCalculatorValidation` em recipes.json
 - `components/RelatedRecipes.tsx` — filtra receitas por módulo, mostra badges + estudo + alertas
 - Seção "Receitas para praticar" em /aprendizado/[slug]
@@ -66,11 +73,9 @@ Dark theme lunar (preto+branco+hexágonos). Tailwind sem config JS — tudo em `
 ## Comandos úteis
 - `npm run dev` — desenvolvimento
 - `npm run build` — build de produção
-- `bash scripts/build-project-doc.sh ~/Desktop/destino.md` — gerar .md completo do projeto
+- Slug real do módulo de óleo usado: `sabao-de-oleo-usado` (não `sabao-oleo-usado`)
 
-## Pendências (próximas)
-
-### 🔥 Próximo: Biblioteca de Óleos Avançada
+### 🔥 PRÓXIMO — Biblioteca de Óleos Avançada (após Motor de Estudo)
 Transformar a biblioteca de tabela para mentora de formulação:
 - função prática de cada óleo na fórmula
 - substituições possíveis

@@ -41,6 +41,19 @@
 
 ---
 
+## ✅ Motor de Estudo v1 — /aprendizado como painel (CONCLUÍDO)
+
+| # | Tarefa | Status | Descrição |
+|---|--------|--------|-----------|
+| 23 | Criar `lib/learning.ts` | ✅ | Helpers: progresso granular, próxima ação, stats, badges |
+| 24 | Stats bar em /aprendizado | ✅ | Concluídos / em andamento / disponíveis |
+| 25 | Card "Continuar agora" | ✅ | Próxima ação recomendada com link |
+| 26 | Progresso granular no VisualRoadmap | ✅ | % + micro-status em cada módulo |
+| 27 | Badges de conquista | ✅ | Primeiro módulo, Segurança validada, CP desbloqueado |
+| 28 | Atualizar documentação | ✅ | CONTEXTO_IA.md e PENDENCIAS.md |
+
+---
+
 ## 🔥 PRÓXIMO — Biblioteca de Óleos Avançada
 
 Transformar a biblioteca de tabela para mentora de formulação.
