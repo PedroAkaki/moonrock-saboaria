@@ -6,248 +6,126 @@ MVP ativo em https://moonrock-saboaria.vercel.app
 Dark theme lunar (preto+branco+hexágonos).
 
 ## Stack
-Next.js 16 (App Router), Tailwind CSS, TypeScript, JSON estático, Vercel, PWA.
+Next.js 16 (App Router), Tailwind CSS v4, TypeScript, JSON estático, Vercel, PWA.
 
 ## Estrutura do Repo
 ```
 moonrock-saboaria/
 ├── app/
-│   ├── page.tsx              → Landing page
-│   ├── layout.tsx            → Layout escuro + PWA + hex-bg
-│   ├── globals.css           → Tema escuro (moon-* colors)
-│   ├── calculadora/page.tsx  → Calculadora NaOH+INS+DOS+FORMA
-│   ├── oleos/page.tsx        → Biblioteca 37 óleos
-│   ├── receitas/page.tsx     → Catálogo receitas
-│   └── roadmap/page.tsx      → Roadmap atual (5 níveis, resumido)
+│   ├── page.tsx                  → Landing page (hero + cards + "Continuar Estudo")
+│   ├── layout.tsx                → Layout escuro + PWA + hex-bg
+│   ├── globals.css               → Tema escuro (moon-* colors via @theme)
+│   ├── aprendizado/
+│   │   ├── page.tsx              → Timeline visual de estudo (8 níveis)
+│   │   └── [slug]/page.tsx       → Página de detalhe de cada nível/módulo
+│   ├── calculadora/page.tsx      → Calculadora NaOH+INS+DOS+FORMA
+│   ├── oleos/page.tsx            → Biblioteca 37 óleos
+│   └── receitas/page.tsx         → Catálogo receitas (com badges Fase 2)
 ├── components/
-│   ├── GlossaryTerm.tsx      → Tooltips de glossário
-│   └── SafetyChecklist.tsx   → Modal segurança EPI
-├── lib/soap/
-│   ├── calculator.ts         → Engine matemático (NaOH/KOH, INS, DOS, forma)
-│   └── oils.ts               → Tipos e helpers dos óleos
+│   ├── VisualRoadmap.tsx         → Timeline com nós + status (locked/available/done)
+│   ├── LevelProgress.tsx         → Checklist de conclusão (localStorage)
+│   ├── StudyCard.tsx             → Card de conceito (definição, erro, prática)
+│   ├── ModuleQuiz.tsx            → Quiz (multiple-choice, true-false, short)
+│   ├── QuickReviewBox.tsx        → Revisão rápida em tópicos
+│   ├── BeforePracticeChecklist.tsx → Checklist pré-bancada
+│   ├── ModuleTracker.tsx         → Rastreia último módulo visitado
+│   ├── ResumeStudy.tsx           → Card "Continuar de onde parou"
+│   ├── RelatedRecipes.tsx        → Receitas relacionadas ao módulo (Fase 2)
+│   ├── InfoTooltip.tsx           → Tooltip de info (?) com clickOutside
+│   ├── GlossaryTerm.tsx          → Tooltip de glossário (hover)
+│   └── SafetyChecklist.tsx       → Modal segurança EPI obrigatório
+├── lib/
+│   ├── progress.ts               → Progresso unificado (localStorage, migração)
+│   └── soap/
+│       ├── calculator.ts         → Engine: NaOH/KOH, INS, DOS, forma, mold
+│       └── oils.ts               → Tipos e helpers dos óleos
 ├── data/
-│   ├── oils.json             → 37 óleos com SAP, INS, FA, disponibilidade
-│   ├── recipes.json          → 3 receitas
-│   ├── roadmap.json          → 5 níveis resumidos
-│   ├── glossary.json         → 35 termos
-│   └── curriculo.md          → Currículo completo (8 níveis detalhados)
+│   ├── learning-modules.json     → 8 níveis (3 completos, 5 "em breve")
+│   ├── oils.json                 → 37 óleos com SAP, INS, FA, disponibilidade
+│   ├── recipes.json              → 3 receitas (com metadados Fase 2)
+│   ├── glossary.json             → 35 termos
+│   ├── curriculo.md              → Currículo completo (8 níveis + apêndice químico)
+│   ├── roadmap.json              → Roadmap antigo (5 níveis, manter histórico)
+│   └── deep-research-prompt.md   → Prompt usado nas pesquisas
 ├── public/
-│   ├── icon-192/512.png      → Ícone PWA (moon+rock)
-│   ├── card-crystal.png      → Imagem card receita
-│   ├── texture-craters.png   → Textura calculadora
-│   ├── splash-crescent.png   → Splash screen
-│   └── texture-veil.png      → Textura fundo telas
-└── graphify-out/             → Grafo AST (156 nós, 151 arestas)
+│   ├── manifest.json             → PWA manifest
+│   ├── sw.js                     → Service worker (precache /aprendizado)
+│   ├── icon-192/512.png          → Ícone PWA
+│   └── splash-crescent.png       → Splash screen
+├── scripts/
+│   └── build-project-doc.sh      → Gera .md completo do projeto (~190KB)
+├── CONTEXTO_IA.md                → Contexto rápido para IAs
+├── HANDFOFF.md                   → Este arquivo
+└── PENDENCIAS.md                 → Lista de pendências
 ```
 
-## Features Implementadas
+## Estado Atual (01/07/2026)
+
+### ✅ Fase 1 — App de Estudo (concluída)
+- 8 níveis de estudo em `data/learning-modules.json` (3 completos, 5 "em breve")
+- Rotas: `/aprendizado` (timeline) e `/aprendizado/[slug]` (detalhe)
+- Quiz, cards de conceito, revisão rápida, checklist pré-bancada e checklist de conclusão
+- Progresso unificado via localStorage (`lib/progress.ts`) com migração de chaves antigas
+- ModuleTracker + ResumeStudy ("Continuar de onde parou")
+- Calculadora com breakdown passo a passo, tooltips, dark theme completo
+
+### ✅ Fase 2 v1 — Receitas Ligadas aos Módulos (concluída)
+- `data/recipes.json`: campos `relatedModuleSlugs`, `technique`, `category`, `safetyLevel`, `studyGoal`, `requiresCalculatorValidation`
+- `components/RelatedRecipes.tsx`: filtra receitas por módulo, mostra badges + estudo + alertas
+- `/aprendizado/[slug]` exibe "Receitas para praticar este módulo"
+- `/receitas` com badges (categoria, técnica, dificuldade) e alertas (limpeza, validação)
+- Separação cosmético vs limpeza com alerta visual
+- Alerta de validação da calculadora para receitas com NaOH
+
+### Features de base
 - Calculadora: NaOH, superfat, ratio água, INS (alerta), DOS (alerta), forma (cm³→g→barras)
 - 37 óleos com SAP, INS, perfil FA, disponibilidade BR, estabilidade
-- Modal segurança EPI (obrigatório antes de ver resultados)
+- Modal segurança EPI obrigatório (8 itens de checklist)
 - Glossário com tooltips hover (35 termos)
-- PWA (service worker + manifest, offline)
-- Dark theme completo
-- Planos no vault e PROJECT_PLAN.md
-
-## Pesquisa Realizada (208KB)
-11 arquivos em ~/Desktop/MoonRock/Deep Research/
-Provedores: DeepSeek, Gemini, Z.ai GLM-5.2, GPT
-Classificação GPT: óleos em 3 status (liberado / alerta / bloqueado)
-
-## Próxima Etapa: Roadmap Interativo
-
-Transformar o roadmap atual (5 níveis rasos) em **páginas de estudo detalhadas** para Ana.
-
-### O que cada nível precisa ter:
-- **Fundamentos** — química profunda (não básica — ela é formada em química)
-- **Matérias-primas** — detalhes pertinentes ao nível
-- **Processos** — passo a passo com temperaturas, tempos, mecanismos
-- **Canais YouTube** — referências em vídeo
-- **Referências** — artigos científicos, livros, normas
-- **Critério de conclusão** — prático (produziu + aprovou)
-
-### Os 8 níveis do currículo (`data/curriculo.md`):
-1. Base Glicerinada (M&P)
-2. Sabão de Óleo Usado
-3. Cold Process Básico
-4. Controle de Formulação
-5. Hot Process
-6. Cold Process Avançado (swirls, cores)
-7. Saboaria Líquida (KOH)
-8. Syndet e Formulação Avançada
-
-### Sugestão de implementação:
-- Cada nível do roadmap atual vira um link para `/roadmap/[id]/`
-- Página de nível com seções expansíveis (accordion)
-- Componente reutilizável `LevelDetail.tsx` que recebe dados do `curriculo.md`
-- Checklist de progresso (localStorage)
-- Links para calculadora quando aplicável
+- PWA (service worker + manifest, offline, precache de 6 rotas)
+- Dark theme completo com hexágonos
 
 ## Convenções
 - UI em português, código em inglês
 - "use client" só quando necessário (interatividade)
-- Cores: moon-900 a moon-50 (globals.css)
+- Cores: moon-900 a moon-50 (definidas em globals.css via @theme)
 - Dados estáticos em JSON em data/
-- Tipos em lib/soap/oils.ts
+- Tipos em lib/soap/oils.ts e interfaces in-line nos componentes
+- Tailwind v4: sem config JS, tudo em globals.css com `@theme`
 
 ## Links
 - App: https://moonrock-saboaria.vercel.app
 - GitHub: https://github.com/PedroAkaki/moonrock-saboaria
 - Project plan: PROJECT_PLAN.md
 - Currículo completo: data/curriculo.md
+- Gerador de doc completa: `bash scripts/build-project-doc.sh ~/Desktop/destino.md`
 
-## Próximos passos sugeridos
-1. Criar `/roadmap/[id]/page.tsx` para cada nível
-2. Componente `LevelDetail` com abas/seções
-3. Populary conteúdo de `curriculo.md` nos níveis
-4. Sistema de progresso (checklist por nível)
-5. Vincular calculadora e receitas nos níveis
+## Próximos passos (ordem recomendada)
 
----
+### 🔥 1. Biblioteca de Óleos Avançada
+Transformar a biblioteca de tabela para mentora de formulação:
+- Função prática de cada óleo na fórmula (ex: "estabiliza espuma")
+- Substituições possíveis (ex: "palma → sebo ou banha")
+- Risco de DOS por óleo (alerta visual se instável)
+- Busca/filtro (nome, tipo, disponibilidade, propriedades)
+- Classificação GPT (liberado / alerta / bloqueado)
 
-## Decisão de Produto para o Roadmap
+### ⚡ 2. Diário de Lote
+Registro de produção: data, receita, peso, temperatura, fotos, pH, observações.
 
-Substituir o roadmap atual de 5 níveis pelo currículo de 8 níveis.
+### ⚡ 3. Completar níveis 4 a 8
+Conteúdo existe em `data/curriculo.md`, precisa passar para `learning-modules.json`.
 
-O conteúdo deve ser escrito para **Ana**:
-- formada em química (UFMG), portanto pode receber explicações técnicas reais
-- iniciante em saboaria, portanto precisa de passo a passo operacional seguro
-- foco em aprendizado prático, não apenas leitura
+### 💤 4. Glossário expandido (50+ termos)
+### 💤 5. Seed de 12-20 receitas
+### 💤 6. Modo KOH, Timer, Calculadora de custo, IFRA, PDF
 
-**Tom desejado:** técnico, claro, adulto e direto; sem simplificação infantil; sem prometer propriedades terapêuticas; sempre separar sabonete cosmético de sabão/saneante de limpeza.
+## 🚫 Não fazer agora
+Login, backend, banco de dados, claims terapêuticos, comando de voz, Supabase, SaaS, sistema de usuários, marketplace.
 
-### MVP do Roadmap Interativo
-1. Criar estrutura de navegação para os 8 níveis
-2. Implementar páginas detalhadas primeiro para os níveis 1, 2 e 3 (Base Glicerinada, Óleo Usado, CP Básico)
-3. Deixar níveis 4 a 8 como "em breve" ou com conteúdo resumido
-4. Cada nível deve terminar com critério prático de conclusão
-
-### Arquitetura desejada
-
-**Rotas:**
-- `/roadmap` — lista os 8 níveis como cards
-- `/roadmap/[slug]` — página detalhada do nível
-
-**Dados:**
-- Preferir JSON estruturado para renderização no app
-- Manter `curriculo.md` como fonte editorial longa
-- Criar `data/learning-modules.json` para consumo da UI
-
-**Cada módulo deve conter no JSON:**
-- id, slug, title, level, difficulty, status, estimated_time, objective
-- prerequisites, chemistry, materials, process_steps
-- safety_notes, common_mistakes, youtube_references
-- bibliography, completion_criteria
-
-### Prompt para implementação
-```
-Leia HANDOFF.md e implemente o Roadmap Interativo.
-Objetivo: substituir o roadmap resumido atual por trilha de 8 níveis baseada em data/curriculo.md.
-
-Escopo:
-1. Criar data/learning-modules.json com os 8 níveis
-2. Criar rota /roadmap/[slug]
-3. Atualizar /roadmap para listar os níveis como cards
-4. Implementar conteúdo completo apenas para níveis 1, 2 e 3
-5. Níveis 4 a 8 como páginas resumidas com status "em breve"
-6. Manter estética MoonRock: dark theme, hexágonos, cards premium
-7. Não alterar calculadora, oils.json nem recipes.json
-8. Separar sabonete cosmético de sabão de limpeza doméstica
-
-Critérios: TypeScript sem erro, build passando, mobile responsivo, conteúdo PT-BR.
-```
-
-### Contexto
-Ana é química pela UFMG. O roadmap atual em `data/roadmap.json` (5 níveis genéricos) é superficial demais. Precisamos de **páginas de estudo completas** com profundidade técnica real.
-
-### Fonte de dados
-`data/curriculo.md` contém o conteúdo completo de 8 níveis, cada um com:
-- **Fundamentos** — química aplicada (cinética, diagramas de fase, mecanismos)
-- **Matérias-primas** — detalhes pertinentes ao nível com viés químico
-- **Processos** — passo a passo com temperaturas, tempos, reações
-- **Canais YouTube** — referências brasileiras e internacionais
-- **Referências** — artigos científicos (JAOCS, Langmuir, Embrapa), livros, normas ABNT
-- **Critério de conclusão** — prático (produziu + aprovou no teste)
-
-### Arquitetura Sugerida
-
-#### Dados
-Converter `data/curriculo.md` para `data/curriculo.json` (estruturado) com:
-```json
-{
-  "levels": [
-    {
-      "id": "base-glicerinada",
-      "title": "Base Glicerinada (Melt & Pour)",
-      "order": 1,
-      "color": "green",
-      "icon": "cube",
-      "sections": [
-        {
-          "id": "fundamentos",
-          "title": "Fundamentos",
-          "content": "...",
-          "chemicalFormulas": ["..."],
-          "keyConcepts": ["Ponto de fusão", "Recristalização"]
-        },
-        {
-          "id": "materias-primas",
-          "title": "Matérias-Primas",
-          "content": "...",
-          "items": [
-            { "name": "Base Transparente", "details": "...", "chemistry": "..." }
-          ]
-        },
-        {
-          "id": "processos",
-          "title": "Processos",
-          "steps": ["Passo 1...", "Passo 2..."]
-        },
-        {
-          "id": "referencias",
-          "title": "Referências",
-          "youtube": ["Canal X", "Canal Y"],
-          "papers": ["Título - Autor - Ano"],
-          "books": ["Título - Autor"]
-        }
-      ],
-      "completionCriteria": "Produzir 3 barras sem bolhas...",
-      "linkedRecipes": ["base-glicerina-mel"],
-      "linkedCalculator": true
-    }
-  ]
-}
-```
-
-#### Componentes
-- **LevelCard** — card na página do roadmap que leva pro detalhe
-- **LevelPage** — `/roadmap/[id]` com seções expansíveis (accordion)
-- **LevelProgress** — checklist salvo em localStorage
-- **ScientificFormula** — componente pra renderizar fórmulas químicas (LaTeX ou Unicode)
-- **ReferenceLink** — link externo com ícone (YouTube, PDF, artigo)
-
-#### Páginas
-- `/roadmap` — mantém a visão geral com cards melhores
-- `/roadmap/[id]` — página de detalhe com seções
-
-### Fluxo do Usuário
-1. Abre `/roadmap` → vê os 8 níveis como cards
-2. Clica em um nível → vai pra `/roadmap/base-glicerinada`
-3. Vê as seções: Fundamentos → MPs → Processos → Referências
-4. Marca checklist de conclusão (salva no localStorage)
-5. Avança para o próximo nível
-
-### Implementação Priorizada
-
-**Fase 1 (MVP do currículo):**
-1. Estruturar `curriculo.json` a partir do `curriculo.md`
-2. Criar `app/roadmap/[id]/page.tsx` com accordion sections
-3. Melhorar `/roadmap` com cards linkando pros detalhes
-4. Adicionar `levelProgress` no localStorage
-
-**Fase 2 (Rico):**
-5. Componente `ScientificFormula` para renderizar equações
-6. Vídeos embutidos do YouTube
-7. PDF/print de cada nível
-8. Sistema de "nível concluído → desbloqueia próximo"
-
+## Notas importantes
+- Slug real do módulo de óleo usado: `sabao-de-oleo-usado` (não `sabao-oleo-usado`)
+- Rota de estudo é `/aprendizado`, não `/roadmap` (rota antiga removida)
+- Service worker faz precache de `/aprendizado` (não `/roadmap`)
+- O componente `RelatedRecipes` usa `recipesData.recipes` (formato `{ description, recipes }`)
+- `requiresCalculatorValidation` é diferente de `usingCalculator`: o primeiro é usado na UI de alerta da Fase 2

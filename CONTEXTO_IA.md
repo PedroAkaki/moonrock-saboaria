@@ -5,8 +5,8 @@
 > GitHub: github.com/PedroAkaki/moonrock-saboaria
 
 ## Stack
-Next.js 16 (App Router) + Tailwind + TypeScript + JSON estático + Vercel + PWA.
-Dark theme lunar (preto+branco+hexágonos).
+Next.js 16 (App Router) + Tailwind v4 + TypeScript + JSON estático + Vercel + PWA.
+Dark theme lunar (preto+branco+hexágonos). Tailwind sem config JS — tudo em `app/globals.css` com `@theme`.
 
 ## Rotas principais
 - `/` → Home com "Vamos Estudar" + "Continuar de onde parou"
@@ -17,57 +17,76 @@ Dark theme lunar (preto+branco+hexágonos).
 - `/receitas` → Catálogo de receitas
 
 ## Features já implementadas
+
+### ✅ Fase 1 — App de Estudo
+- Estudo Interativo v1 (quiz, cards, revisão, checklist pré-bancada)
+- Calculadora explicativa (breakdown, tooltips, dark theme)
+- Progresso unificado (`lib/progress.ts` — chave única localStorage, migração de chaves antigas)
+- 3 níveis completos (Base Glicerinada, Sabão de Óleo Usado, Cold Process Básico)
+- 5 níveis "Em Breve" (estruturados)
+- Roadmap visual (timeline vertical com nós, status locked/available/done)
+- "Continuar Estudo" na home (retoma de onde parou)
+- ModuleTracker (último módulo visitado)
+- InfoTooltip com pointerdown + Escape + hover
+- GlossaryTerm com tooltips (35 termos)
+
+### ✅ Fase 2 v1 — Receitas Ligadas aos Módulos
+- `relatedModuleSlugs`, `technique`, `category`, `safetyLevel`, `studyGoal`, `requiresCalculatorValidation` em recipes.json
+- `components/RelatedRecipes.tsx` — filtra receitas por módulo, mostra badges + estudo + alertas
+- Seção "Receitas para praticar" em /aprendizado/[slug]
+- Badges em /receitas (categoria, técnica, dificuldade, segurança)
+- Separação cosmético vs limpeza com alerta visual
+- Alerta de validação da calculadora para receitas com NaOH
+
+### ✅ Base (sempre presente)
 - Calculadora NaOH com superfat, INS (alerta), DOS (alerta), forma (cm³→g→barras)
 - 37 óleos com SAP, INCI, INS, perfil FA, disponibilidade BR
 - PWA offline + ícone + splash screen
 - Modal segurança EPI obrigatório
-- Glossário com tooltips (35 termos hover)
-- Roadmap visual estilo roadmap.sh (timeline vertical com nós)
-- 3 níveis de estudo completos (Base Glicerinada, Sabão de Óleo Usado, Cold Process Básico)
-- 5 níveis "Em Breve" (estruturados)
-- Checklist de progresso (localStorage)
-- "Continuar Estudo" na home (retoma de onde parou)
 
-## Arquivos essenciais (saber que existem)
+## Arquivos essenciais
 
 | Arquivo | Conteúdo |
 |---------|----------|
 | `app/aprendizado/page.tsx` | Página inicial do estudo (timeline visual) |
 | `app/aprendizado/[slug]/page.tsx` | Página de detalhe de cada nível |
 | `components/VisualRoadmap.tsx` | Timeline vertical com nós conectados |
+| `components/RelatedRecipes.tsx` | Receitas relacionadas ao módulo (Fase 2) |
 | `components/LevelProgress.tsx` | Checklist interativo com localStorage |
+| `components/ModuleQuiz.tsx` | Quiz interativo (multiple, true/false, short) |
+| `components/StudyCard.tsx` | Card de conceito com definição, erro, prática |
+| `components/ResumeStudy.tsx` | Card "Continuar de onde parou" |
 | `data/learning-modules.json` | 8 níveis (3 completos, 5 esqueleto) |
 | `data/curriculo.md` | Conteúdo editorial completo dos 8 níveis |
 | `data/oils.json` | 37 óleos |
+| `data/recipes.json` | Receitas com metadados da Fase 2 |
 | `lib/soap/calculator.ts` | Engine matemático (NaOH, INS, DOS) |
+| `lib/progress.ts` | Progresso unificado localStorage |
 
 ## Comandos úteis
 - `npm run dev` — desenvolvimento
 - `npm run build` — build de produção
+- `bash scripts/build-project-doc.sh ~/Desktop/destino.md` — gerar .md completo do projeto
 
-## Pendências (o que ainda falta)
+## Pendências (próximas)
 
-### 🔥 Fase 2 — Ferramenta de Bancada (próxima)
-**Receitas Ligadas aos Módulos v1** — fechar o ciclo: estudar → escolher receita → calcular → praticar.
+### 🔥 Próximo: Biblioteca de Óleos Avançada
+Transformar a biblioteca de tabela para mentora de formulação:
+- função prática de cada óleo na fórmula
+- substituições possíveis
+- risco de DOS por óleo
+- busca/filtro (nome, tipo, disponibilidade)
+- classificação GPT (liberado / alerta / bloqueado)
 
-Detalhes:
-- Adicionar `relatedModuleSlugs` em recipes.json
-- Seção "Receitas para praticar" em /aprendizado/[slug]
-- Separar cosmético vs limpeza nas receitas
-- Badges em /receitas
+### ⚡ Depois
+- Diário de Lote (registro de produção)
+- Completar níveis 4 a 8 (conteúdo existe em curriculo.md)
+- Expandir glossário para 50+ termos
+- Seed de 12-20 receitas
 
-Depois:
-- Biblioteca de óleos com função prática + substituições + risco DOS
-- Diário de lote (registro de produção)
-
-### ✅ Fase 1 — App de Estudo (CONCLUÍDO)
-- Estudo Interativo v1 (quiz, cards, revisão, checklist pré-bancada)
-- Calculadora explicativa (breakdown, tooltips, dark theme)
-- Progresso unificado (lib/progress.ts — chave única localStorage)
-- 3 níveis completos com estudo ativo
-
-### 💤 Fase 3 — Avançado
-- KOH, timer, custo, IFRA, PDF, modo mãos sujas
+### 💤 Futuro
+- Modo KOH, Timer, Calculadora de custo, IFRA, PDF batch sheet
+- Modo Mãos Sujas, Sincronia nuvem, Domínio próprio
 
 ## 🚫 Não fazer agora
 Login, backend, banco de dados, claims terapêuticos, comando de voz, Supabase, SaaS, sistema de usuários, marketplace.
@@ -83,3 +102,4 @@ Login, backend, banco de dados, claims terapêuticos, comando de voz, Supabase, 
 - Não criar claims terapêuticos, dermatológicos ou medicinais
 - Build precisa passar (`npm run build`)
 - Mobile-first, PWA deve continuar funcionando
+- Slug real do módulo de óleo usado: `sabao-de-oleo-usado` (não `sabao-oleo-usado`)

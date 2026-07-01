@@ -5,120 +5,97 @@
 
 ---
 
-## 🔥 PRIORIDADE MÁXIMA — Roadmap Interativo
+## ✅ Fase 1 — App de Estudo (CONCLUÍDA)
 
 | # | Tarefa | Status | Descrição |
 |---|--------|--------|-----------|
-| 1 | Criar `data/learning-modules.json` | ⬜ | Estruturar JSON com 8 níveis a partir de `data/curriculo.md` |
-| 2 | Rota `/roadmap/[slug]` | ⬜ | Página dinâmica para cada nível de estudo |
-| 3 | Atualizar `/roadmap` com cards | ⬜ | Listar 8 níveis como cards clicáveis, com status (bloqueado/disponível/concluído) |
-| 4 | Implementar níveis 1, 2, 3 completos | ⬜ | Base Glicerinada, Óleo Usado, CP Básico — com todas as seções |
-| 5 | Níveis 4 a 8 como "em breve" | ⬜ | Estrutura pronta, conteúdo resumido |
-| 6 | Componente `LevelProgress` | ⬜ | Checklist salvo em localStorage |
-| 7 | Separar sabonete cosmético de sabão de limpeza | ⬜ | Alertas visuais diferentes no nível de óleo usado |
-
-**Prompt para IA:**
-```
-Leia HANDFOFF.md e data/curriculo.md. Implemente o Roadmap Interativo: criar
-data/learning-modules.json, rota /roadmap/[slug], atualizar /roadmap com cards.
-Conteúdo completo apenas para níveis 1, 2, 3. Níveis 4-8 como "em breve".
-Manter dark theme, hexágonos. Não mexer na calculadora nem oils.json.
-```
+| 1 | Criar `data/learning-modules.json` | ✅ | 8 níveis a partir de `data/curriculo.md` |
+| 2 | Rota `/aprendizado/[slug]` | ✅ | Página dinâmica para cada nível de estudo |
+| 3 | Timeline visual `/aprendizado` | ✅ | 8 níveis como cards clicáveis, status bloqueado/disponível/concluído |
+| 4 | Níveis 1, 2, 3 completos | ✅ | Base Glicerinada, Óleo Usado, CP Básico |
+| 5 | Níveis 4 a 8 como "em breve" | ✅ | Estrutura pronta, conteúdo resumido |
+| 6 | Componente `LevelProgress` | ✅ | Checklist salvo em localStorage |
+| 7 | Separar cosmético de limpeza | ✅ | Alertas visuais no módulo de óleo usado |
+| 8 | Calculadora explicativa (breakdown) | ✅ | Fórmula passo a passo no resultado |
+| 9 | Tooltips educativos nos campos | ✅ | Superfat, SAP, INS, DOS, água:soda |
+| 10 | Dark theme completo | ✅ | Inputs/selects consistentes (sem fundo branco) |
+| 11 | Estudo Interativo v1 | ✅ | Quiz, cards de conceito, revisão, checklist pré-bancada |
+| 12 | Progresso Unificado | ✅ | `lib/progress.ts` com chave única + migração |
+| 13 | InfoTooltip | ✅ | pointerdown + Escape + hover |
+| 14 | ModuleTracker + ResumeStudy | ✅ | Último módulo + "Continuar de onde parou" |
+| 15 | PWA + ícone + splash | ✅ | manifest.json + sw.js + ícones |
 
 ---
 
-## 🔥 PRIORIDADE MÁXIMA — Calculadora Explicativa
+## ✅ Fase 2 v1 — Receitas Ligadas aos Módulos (CONCLUÍDA)
 
 | # | Tarefa | Status | Descrição |
 |---|--------|--------|-----------|
-| 8 | Mostrar fórmula do cálculo no resultado | ⬜ | Ex: "NaOH = 500g × 0.135 × (1 - 0.05) = 64.1g" |
-| 9 | Tooltip explicativo em cada campo | ⬜ | "Superfat: % de óleo não saponificado. Aumenta hidratação mas reduz dureza" |
-| 10 | Mostrar contribuição de cada óleo | ⬜ | Gráfico/barra de quanto cada óleo contribui pra dureza, espuma, etc. |
-| 11 | Modo "KOH" na calculadora | ⬜ | Alternar entre NaOH e KOH (já temos a fórmula em calculator.ts) |
+| 16 | `relatedModuleSlugs` em recipes.json | ✅ | Cada receita aponta para o(s) módulo(s) que pratica |
+| 17 | Seção "Receitas para praticar" | ✅ | Em `/aprendizado/[slug]` via `RelatedRecipes.tsx` |
+| 18 | Badges em `/receitas` | ✅ | Categoria, técnica, dificuldade, segurança |
+| 19 | Separação cosmético vs limpeza | ✅ | Alerta visual + badge vermelho/roxo |
+| 20 | Alerta de validação calculadora | ✅ | `requiresCalculatorValidation` para receitas com NaOH |
+| 21 | `studyGoal` em recipes.json | ✅ | Objetivo pedagógico de cada receita |
+| 22 | SW precache corrigido | ✅ | `/roadmap` → `/aprendizado` |
 
 ---
 
-## 🔥 MÉDIA — Biblioteca de Óleos
+## 🔥 PRÓXIMO — Biblioteca de Óleos Avançada
+
+Transformar a biblioteca de tabela para mentora de formulação.
 
 | # | Tarefa | Status | Descrição |
 |---|--------|--------|-----------|
-| 12 | Adicionar campo "função na fórmula" | ⬜ | Texto explicativo por óleo (ex: "estabiliza espuma") |
-| 13 | Adicionar "substituições possíveis" | ⬜ | "Pode substituir palma por sebo ou banha" |
-| 14 | Adicionar "risco de DOS" por óleo | ⬜ | Alerta visual se o óleo for instável |
-| 15 | Busca/filtro na biblioteca | ⬜ | Por nome, tipo, disponibilidade, propriedades |
-| 16 | Aplicar classificação GPT | ⬜ | Status: liberado / alerta / bloqueado (copaíba, pracaxi, patauá) |
+| 23 | Função prática por óleo | ⬜ | Texto explicativo (ex: "estabiliza espuma") |
+| 24 | Substituições possíveis | ⬜ | "Pode substituir palma por sebo ou banha" |
+| 25 | Risco de DOS por óleo | ⬜ | Alerta visual se o óleo for instável |
+| 26 | Busca/filtro na biblioteca | ⬜ | Por nome, tipo, disponibilidade, propriedades |
+| 27 | Classificação GPT | ⬜ | Status: liberado / alerta / bloqueado |
 
 ---
 
-## ⚡ MÉDIA — Experiência na Cozinha
+## ⚡ SEGUINTE — Conteúdo e Profundidade
 
 | # | Tarefa | Status | Descrição |
 |---|--------|--------|-----------|
-| 17 | Modo "Mãos Sujas" | ⬜ | Botões gigantes, comando de voz, tela sempre acesa |
-| 18 | Timer de traço e cura | ⬜ | Cronômetro na tela + notificação quando a cura terminar |
-| 19 | Diário de lote | ⬜ | Cadastro: data, receita, peso, temperatura, fotos, pH, observações |
-| 20 | Modo escuro completo | 🔄 | Calculadora ainda tem inputs com background claro |
+| 28 | Diário de lote | ⬜ | Cadastro: data, receita, peso, temperatura, pH, observações |
+| 29 | Completar níveis 4 a 8 | ⬜ | Conteúdo existe em `curriculo.md`, falta migrar para learning-modules.json |
+| 30 | Glossário expandido (50+ termos) | ⬜ | Expandir de 35 para 50+ |
+| 31 | Seed de 12-20 receitas | ⬜ | A partir dos templates do GPT |
 
 ---
 
-## ⚡ MÉDIA — Dados e Conteúdo
+## 💤 FUTURO — Features Avançadas
 
 | # | Tarefa | Status | Descrição |
 |---|--------|--------|-----------|
-| 21 | Seed de 12-20 receitas | ⬜ | A partir dos templates do GPT em `deep-research-response.md` |
-| 22 | Glossário completo (50+ termos) | ⬜ | Expandir de 35 para 50+ (Z.ai P3 tem 64 termos) |
-| 23 | Receitas ligadas aos módulos | ⬜ | Cada nível do roadmap linkar pras receitas correspondentes |
-| 24 | Conteúdo do apêndice químico na UI | ⬜ | Renderizar fórmulas químicas do `curriculo.md` nas páginas |
-
----
-
-## 💤 BAIXA — Features Avançadas
-
-| # | Tarefa | Status | Descrição |
-|---|--------|--------|-----------|
-| 25 | Calculadora de custo por barra | ⬜ | Input preço/kg dos insumos → custo por barra |
-| 26 | IFRA checker | ⬜ | Validar dosagem de fragrância por categoria |
-| 27 | Exportar ficha técnica PDF | ⬜ | Batch sheet para conformidade BPF |
-| 28 | Sincronização em nuvem (Turso) | ⬜ | Salvar receitas na nuvem pra acessar de outro dispositivo |
-| 29 | Domínio moonrock.pousadamayon.com | ⬜ | Só falta CNAME no Cloudflare |
-| 30 | Modo "iniciante" vs "avançado" | ⬜ | Esconder dual lye, KOH, syndet do modo iniciante |
-
----
-
-## ✅ JÁ FEITO (não refazer)
-
-- Calculadora NaOH com superfat, ratio água:soda
-- Cálculo INS com alerta colorido
-- Alerta DOS
-- Calculadora de forma (cm³ → g → barras)
-- 37 óleos com SAP, INCI, INS, FA
-- Modal segurança EPI (obrigatório)
-- Glossário com tooltips (35 termos)
-- Roadmap atual (5 níveis — será substituído)
-- 3 receitas guiadas
-- PWA (manifest + service worker)
-- Dark theme lunar
-- Ícone PWA
-- Imagens: card-crystal, splash-crescent, texture-craters, texture-veil
-- Project plan no GitHub + vault
-- Graphify (grafo AST do código)
-- Handoff para IAs (HANDFOFF.md)
-- Currículo completo (curriculo.md, 8 níveis + apêndice químico)
+| 32 | Modo KOH na calculadora | ⬜ | Alternar entre NaOH e KOH |
+| 33 | Timer de traço e cura | ⬜ | Cronômetro + notificação |
+| 34 | Calculadora de custo por barra | ⬜ | Input preço/kg → custo por barra |
+| 35 | IFRA checker | ⬜ | Validar dosagem de fragrância por categoria |
+| 36 | Exportar ficha técnica PDF | ⬜ | Batch sheet |
+| 37 | Modo "Mãos Sujas" | ⬜ | Botões gigantes, tela sempre acesa |
+| 38 | Sincronização em nuvem | ⬜ | Turso ou similar |
+| 39 | Domínio moonrock.pousadamayon.com | ⬜ | Só falta CNAME no Cloudflare |
+| 40 | Modo iniciante vs avançado | ⬜ | Esconder dual lye, KOH, syndet |
 
 ---
 
 ## NÃO FAZER AGORA (escopo congelado)
 
-- ❌ Não adicionar login/autenticação
-- ❌ Não migrar JSON para banco de dados (Turso/PG)
-- ❌ Não criar backend (app 100% estático)
-- ❌ Não refatorar stack (Next.js 16 + Tailwind)
-- ❌ Não alterar engine matemática (`lib/soap/calculator.ts`) sem pedido explícito
-- ❌ Não adicionar claims terapêuticos/cosméticos (proibido ANVISA)
-- ❌ Não misturar sabonete corporal com sabão de limpeza
-- ❌ Não implementar comando de voz agora
-- ❌ Não criar sistema de usuários
-- ❌ Não adicionar animações complexas que prejudiquem performance mobile
+- ❌ Login/autenticação
+- ❌ Banco de dados (Turso/PG) — app 100% estático
+- ❌ Backend
+- ❌ Refatorar stack (Next.js 16 + Tailwind)
+- ❌ Alterar engine matemática (`lib/soap/calculator.ts`) sem pedido explícito
+- ❌ Claims terapêuticos/cosméticos (proibido ANVISA)
+- ❌ Misturar sabonete corporal com sabão de limpeza
+- ❌ Comando de voz
+- ❌ Sistema de usuários
+- ❌ Animações complexas que prejudiquem performance mobile
+
+---
 
 ## Critérios Globais de Qualidade
 
@@ -133,57 +110,9 @@ Manter dark theme, hexágonos. Não mexer na calculadora nem oils.json.
 - Mobile-first (responsivo, touch targets ≥ 48px)
 - PWA/offline deve continuar funcionando
 
-## Definition of Done — Roadmap Interativo
-
-1. `/roadmap` lista 8 níveis como cards clicáveis
-2. Cada nível abre em `/roadmap/[slug]`
-3. Níveis 1, 2 e 3 têm conteúdo completo (objetivo, química, materiais, processo, segurança, erros, exercício, conclusão)
-4. Níveis 4 a 8 têm estrutura e status "em breve"
-5. Nível de óleo usado deixa claro: **sabão de limpeza, não sabonete corporal**
-6. Layout funciona no celular (scroll, accordion, sem overflow)
-7. Build passa, TypeScript sem erro
-
-## Definition of Done — Calculadora Explicativa
-
-1. Resultado mostra fórmula com valores substituídos (ex: NaOH = 500g × 0.135 × 0.95 = 64.1g)
-2. Campos principais têm tooltip educativo (superfat, SAP, água:soda, INS, DOS)
-3. Alertas deixam claro quando são estimativas heurísticas (INS, DOS)
-4. Inputs/selects no dark theme consistente (sem fundo branco)
-5. Nenhuma mudança quebra os cálculos existentes
-6. Build passa
-
 ---
 
-## Fases de Execução (Ordem Recomendada)
-
-### 🔥 Fase 1 — App de Estudo Real
-1. **Roadmap Interativo** (itens 1-7 + 23-24) — trilha de estudo conectada: teoria → receita → cálculo → prática → conclusão
-2. **Corrigir dark theme** da calculadora (item 20)
-3. **Calculadora explicativa** com fórmulas/tooltips (itens 8-9)
-
-### 🔥 Fase 2 — Ferramenta de Bancada
-4. **Receitas ligadas aos módulos** (item 23)
-5. **Biblioteca de óleos** com filtros, função prática, risco DOS (itens 12-16)
-6. **Diário de lote** (item 19)
-
-### ⚡ Fase 3 — Conteúdo e Profundidade
-7. **Níveis 4 a 8 completos** (item 5 invertido)
-8. **Glossário expandido** (item 22)
-9. **Seed de 12-20 receitas** (item 21)
-
-### 💤 Fase 4 — Avançado
-10. **Modo KOH** (item 11)
-11. **Timer de traço e cura** (item 18)
-12. **Calculadora de custo** (item 25)
-13. **IFRA checker** (item 26)
-14. **PDF batch sheet** (item 27)
-15. **Modo Mãos Sujas** (item 17)
-16. **Sync nuvem** (item 28)
-17. **Domínio moonrock.pousadamayon.com** (item 29)
-
----
-
-## Decisões Técnicas Confirmadas (pesquisa GPT v0.1)
+## Decisões Técnicas Confirmadas
 
 - Saponificação = hidrólise alcalina de triglicerídeos → sais de ácidos graxos + glicerol
 - NaOH = sabão sólido/barra; KOH = sabão líquido/macio (não intercambiáveis)
@@ -193,3 +122,4 @@ Manter dark theme, hexágonos. Não mexer na calculadora nem oils.json.
 - Fragrâncias devem respeitar limite do fornecedor/IFRA; percentual genérico ≠ permissão universal
 - Segurança: EPIs, soda na água (nunca inverso), lavar com água corrente em contato (nunca vinagre na pele)
 - Regulatório ANVISA: pendente de validação primária antes de texto final sobre venda
+- Slug real do óleo usado: `sabao-de-oleo-usado` (não `sabao-oleo-usado`)
