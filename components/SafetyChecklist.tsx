@@ -15,7 +15,7 @@ const EPI_ITEMS = [
   { id: "calcados", label: "Calçados fechados" },
   { id: "ventilacao", label: "Ambiente ventilado (janelas abertas ou exaustor)" },
   { id: "ordem", label: "SEMPRE soda na água, NUNCA água na soda" },
-  { id: "vinagre", label: "Vinagre próximo (para neutralizar respingos em superfícies)" },
+  { id: "vinagre", label: "Vinagre apenas para superfícies (nunca pele ou olhos)" },
 ];
 
 export default function SafetyChecklist({ onAcknowledge, children }: SafetyChecklistProps) {

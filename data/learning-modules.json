@@ -188,8 +188,8 @@
     ],
     "chemical_fundamentals": [
       "Óleo de cozinha usado sofre oxidação térmica. Formam-se compostos polares, peróxidos e ácidos graxos livres (FFA). Quanto mais usado o óleo, maior o índice de acidez e maior o consumo de NaOH. Um óleo muito degradado pode consumir até 15-20% mais soda que o SAP tabelado do óleo virgem.",
-      "O índice de acidez mede a quantidade de KOH (ou NaOH) necessária para neutralizar os ácidos graxos livres presentes no óleo. Cada ponto percentual de FFA consome aproximadamente 0,14g de NaOH adicional por 100g de óleo. Sem essa correção, o sabão pode ficar com soda livre, resultando em barras agressivas e irritantes.",
-      "O cálculo seguro para óleo usado adota um superfat alto (10-15%) para absorver a variação do SAP sem deixar soda livre. A fórmula: NaOH = (Peso_Óleo × SAP_médio_estimado × (1 - Superfat)) + Correção_FFA. Na prática, usa-se a média do SAP do óleo mais comum da região (ex: soja 0,142, palma 0,142) e aplica-se superfat de segurança.",
+      "O índice de acidez mede a quantidade de KOH (ou NaOH) necessária para neutralizar os ácidos graxos livres presentes no óleo. Cada ponto percentual de FFA consome aproximadamente 0,14g de NaOH adicional por 100g de óleo. Essa soda é desviada da saponificação dos triglicerídeos para neutralizar os AGL — o que reduz a soda disponível para a reação principal. O resultado não é soda livre, mas sim excesso de gordura não saponificada, gerando barras moles, oleosas, com pouca espuma e baixa previsibilidade.",
+      "O cálculo seguro para óleo usado adota um superfat alto (10-15%) para absorver a variação do SAP sem risco de soda livre. A fórmula prática: NaOH = Peso_Óleo × SAP_estimado × (1 - Superfat_alto). A correção individual do FFA exige titulação — para iniciantes, superfat alto e uso exclusivo em limpeza doméstica são a abordagem recomendada.",
       "A purificação do óleo melhora o resultado final. A degomagem (remoção de fosfolipídios com água quente a 70°C) e a neutralização (lavagem com solução alcalina diluída) reduzem impurezas e uniformizam o SAP. A filtração com terra de diatomácea ou sílica clarifica o óleo e remove partículas em suspensão."
     ],
     "materials": [
@@ -265,14 +265,14 @@
         "title": "Superfat Alto para Segurança",
         "definition": "Para compensar a incerteza do SAP do óleo degradado, usa-se superfat alto (10-15%). Isso garante que não sobre soda livre.",
         "whyItMatters": "Soda livre causa queimaduras na pele. Em sabão de limpeza, excesso de soda é inaceitável.",
-        "commonMistake": "Usar superfat baixo (5%) igual ao sabonete cosmético. No óleo usado, corre-se risco de soda livre.",
+        "commonMistake": "Usar superfat baixo (5%) igual ao sabonete cosmético. No óleo usado, superfat baixo pode deixar a barra agressiva e imprevisível. Prefira 10-15% para margem de segurança.",
         "practicalSignal": "Sabão com pH acima de 10 ou que arde na língua no teste de zap = soda livre."
       },
       {
         "title": "Índice de Acidez e Correção de Soda",
         "definition": "Mede a quantidade de ácidos graxos livres (FFA) no óleo. Cada 1% de FFA consome ~0,14g extra de NaOH por 100g de óleo. A titulação caseira (com fenolftaleína e NaOH padronizado) estima o índice de acidez.",
-        "whyItMatters": "Ignorar o FFA leva a erro sistemático no cálculo de soda. Óleo muito usado (FFA > 5%) pode deixar soda livre mesmo com superfat alto.",
-        "commonMistake": "Achar que o SAP do óleo virgem vale para o óleo usado. A degradação térmica cria ácidos graxos que consomem soda extra.",
+        "whyItMatters": "Ignorar o FFA leva a erro sistemático no cálculo de soda. Óleo muito usado (FFA > 5%) pode gerar sabão mole, oleoso e imprevisível por falta de soda disponível para saponificar os triglicerídeos.",
+        "commonMistake": "Achar que o SAP do óleo virgem vale para o óleo usado. A degradação térmica cria ácidos graxos que consomem soda extra, reduzindo a soda disponível para saponificar os triglicerídeos. O resultado não é soda livre — é sabão mole e oleoso.",
         "practicalSignal": "Se o sabão ficou muito duro, quebradiço e com pH elevado (> 10), provavelmente o FFA do óleo usado não foi considerado no cálculo."
       },
       {
@@ -317,15 +317,15 @@
       {
         "id": "ou3",
         "type": "multiple-choice",
-        "question": "Qual o risco principal de saponificar óleo de cozinha usado sem considerar o índice de acidez (FFA)?",
+        "question": "Qual é o principal risco de usar óleo de cozinha usado sem conhecer seu índice de acidez (AGL/FFA)?",
         "options": [
-          "O sabão pode ficar com cheiro de fritura.",
-          "O consumo extra de NaOH pelos ácidos graxos livres pode deixar soda livre na barra.",
-          "A cor do sabão fica mais escura que o normal.",
-          "O sabão não vai endurecer, independentemente do superfat."
+          "O sabão pode ficar com soda livre, causando queimaduras na pele.",
+          "Os ácidos graxos livres consomem parte do NaOH desviado da saponificação, reduzindo a soda disponível e gerando sabão mole, oleoso e imprevisível.",
+          "A cor do sabão fica mais escura que o normal, indicando contaminação.",
+          "O sabão não vai endurecer por causa do excesso de impurezas insolúveis."
         ],
-        "correctAnswer": "O consumo extra de NaOH pelos ácidos graxos livres pode deixar soda livre na barra.",
-        "explanation": "Óleos degradados têm ácidos graxos livres que consomem NaOH adicional. Sem essa correção, parte da soda calculada para saponificar os triglicerídeos é desviada para neutralizar os FFA, podendo deixar soda livre no sabão final."
+        "correctAnswer": "Os ácidos graxos livres consomem parte do NaOH desviado da saponificação, reduzindo a soda disponível e gerando sabão mole, oleoso e imprevisível.",
+        "explanation": "Os AGL reagem com NaOH em reação de neutralização, consumindo soda que deveria saponificar os triglicerídeos. O resultado não é soda livre, mas sim falta de soda para a reação principal — gerando excesso de gordura não saponificada, barra mole, oleosa e imprevisível. Por isso, óleo usado deve ser tratado como material variável e usado apenas para limpeza doméstica."
       },
       {
         "id": "ou4",
