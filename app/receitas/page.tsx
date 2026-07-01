@@ -7,6 +7,12 @@ const difficultyColors: Record<string, string> = {
   avancado: "bg-red-900/50 text-red-300 border border-red-700",
 };
 
+const techniqueLabels: Record<string, string> = {
+  "melt-and-pour": "Melt & Pour",
+  "cleaning-soap": "Limpeza",
+  "cold-process": "Cold Process (CP)",
+};
+
 const levelIcons: Record<string, string> = {
   "mix-pronto": "🧼",
   "oleo-usado": "♻️",
@@ -32,84 +38,151 @@ export default function ReceitasPage() {
       </div>
 
       <div className="grid grid-cols-1 gap-6">
-        {recipesData.recipes.map((recipe) => (
-          <div
-            key={recipe.id}
-            className="bg-moon-700/50 backdrop-blur rounded-xl border border-moon-600 p-6 space-y-4"
-          >
-            <div className="flex items-start justify-between">
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">{levelIcons[recipe.level] ?? "📄"}</span>
-                <div>
-                  <h2 className="text-xl font-semibold text-white">{recipe.name}</h2>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span
-                      className={`text-xs font-medium px-2 py-0.5 rounded-full ${
-                        difficultyColors[recipe.difficulty] ?? "bg-moon-800 text-moon-400"
-                      }`}
-                    >
-                      {recipe.difficulty}
-                    </span>
-                    <span className="text-xs text-moon-500">{recipe.yield}</span>
+        {recipesData.recipes.map((recipe) => {
+          const isCleaning = recipe.category === "cleaning";
+
+          return (
+            <div
+              key={recipe.id}
+              className={`bg-moon-700/50 backdrop-blur rounded-xl border p-6 space-y-4 ${
+                isCleaning ? "border-red-700/50" : "border-moon-600"
+              }`}
+            >
+              <div className="flex items-start justify-between">
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">
+                    {levelIcons[recipe.level] ?? "📄"}
+                  </span>
+                  <div>
+                    <h2 className="text-xl font-semibold text-white">
+                      {recipe.name}
+                    </h2>
+                    <div className="flex flex-wrap items-center gap-2 mt-2">
+                      {/* Categoria */}
+                      <span
+                        className={`text-xs font-medium px-2 py-0.5 rounded-full ${
+                          isCleaning
+                            ? "bg-red-900/40 text-red-300"
+                            : "bg-purple-900/40 text-purple-300"
+                        }`}
+                      >
+                        {isCleaning ? "Limpeza" : "Cosmético"}
+                      </span>
+                      {/* Técnica */}
+                      <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-moon-800 text-moon-300">
+                        {techniqueLabels[recipe.technique]}
+                      </span>
+                      {/* Dificuldade */}
+                      <span
+                        className={`text-xs font-medium px-2 py-0.5 rounded-full ${
+                          difficultyColors[recipe.difficulty] ??
+                          "bg-moon-800 text-moon-400"
+                        }`}
+                      >
+                        {recipe.difficulty}
+                      </span>
+                      {/* Rendimento */}
+                      <span className="text-xs text-moon-500">
+                        {recipe.yield}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Ingredients */}
-            <div>
-              <h3 className="text-sm font-semibold text-moon-400 uppercase mb-2">Ingredientes</h3>
-              <div className="grid grid-cols-2 gap-2 text-sm">
-                {recipe.ingredients.map((ing, i) => (
-                  <div key={i} className="flex justify-between border-b border-moon-700 py-1">
-                    <span className="text-moon-200">{ing.name}</span>
-                    {ing.grams > 0 && (
-                      <span className="font-mono text-moon-400">{ing.grams}g</span>
-                    )}
-                    {ing.percentage > 0 && (
-                      <span className="text-moon-500">{ing.percentage}%</span>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
+              {/* Cleaning alert */}
+              {isCleaning && (
+                <div className="bg-red-900/20 border border-red-800/50 rounded-lg p-3 text-sm text-red-300 font-medium">
+                  ⚠️ Produto de limpeza doméstica. Não usar como sabonete
+                  corporal.
+                </div>
+              )}
 
-            {/* Steps */}
-            {recipe.steps && (
+              {/* Calculator validation alert */}
+              {recipe.requiresCalculatorValidation && (
+                <div className="bg-amber-900/20 border border-amber-800/50 rounded-lg p-3 text-sm text-amber-300">
+                  ⚠️ Valide NaOH e água na Calculadora MoonRock antes de
+                  produzir. SAP pode variar por lote, fornecedor e composição
+                  real.
+                  <Link
+                    href="/calculadora"
+                    className="block mt-1 font-semibold text-white underline"
+                  >
+                    Abrir Calculadora →
+                  </Link>
+                </div>
+              )}
+
+              {/* Ingredients */}
               <div>
-                <h3 className="text-sm font-semibold text-moon-400 uppercase mb-2">Modo de Fazer</h3>
-                <ol className="list-decimal list-inside space-y-1 text-sm text-moon-300">
-                  {recipe.steps.map((step, i) => (
-                    <li key={i}>{step}</li>
+                <h3 className="text-sm font-semibold text-moon-400 uppercase mb-2">
+                  Ingredientes
+                </h3>
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  {recipe.ingredients.map((ing, i) => (
+                    <div
+                      key={i}
+                      className="flex justify-between border-b border-moon-700 py-1"
+                    >
+                      <span className="text-moon-200">{ing.name}</span>
+                      {ing.grams > 0 && (
+                        <span className="font-mono text-moon-400">
+                          {ing.grams}g
+                        </span>
+                      )}
+                      {ing.percentage > 0 && (
+                        <span className="text-moon-500">
+                          {ing.percentage}%
+                        </span>
+                      )}
+                    </div>
                   ))}
-                </ol>
+                </div>
               </div>
-            )}
 
-            {recipe.safety && recipe.safety.length > 0 && (
-              <div className="bg-amber-900/30 border border-amber-700 rounded-lg p-3 text-sm text-amber-300">
-                <span className="font-semibold">⚠️ </span>
-                {recipe.safety.join(" | ")}
-              </div>
-            )}
+              {/* Steps */}
+              {recipe.steps && (
+                <div>
+                  <h3 className="text-sm font-semibold text-moon-400 uppercase mb-2">
+                    Modo de Fazer
+                  </h3>
+                  <ol className="list-decimal list-inside space-y-1 text-sm text-moon-300">
+                    {recipe.steps.map((step, i) => (
+                      <li key={i}>{step}</li>
+                    ))}
+                  </ol>
+                </div>
+              )}
 
-            {recipe.usingCalculator && (
-              <div className="bg-moon-800 border border-moon-500 rounded-lg p-3 text-sm text-moon-300">
-                Esta receita usa a calculadora — ajuste superfat e tamanho da forma.
-                <Link
-                  href="/calculadora"
-                  className="block mt-1 font-semibold text-white underline"
-                >
-                  Abrir Calculadora →
-                </Link>
-              </div>
-            )}
+              {/* Safety */}
+              {recipe.safety && recipe.safety.length > 0 && (
+                <div className="bg-amber-900/30 border border-amber-700 rounded-lg p-3 text-sm text-amber-300">
+                  <span className="font-semibold">⚠️ </span>
+                  {recipe.safety.join(" | ")}
+                </div>
+              )}
 
-            {recipe.notes && (
-              <p className="text-sm text-moon-500 italic">{recipe.notes}</p>
-            )}
-          </div>
-        ))}
+              {/* Using calculator note */}
+              {recipe.usingCalculator && (
+                <div className="bg-moon-800 border border-moon-500 rounded-lg p-3 text-sm text-moon-300">
+                  Esta receita usa a calculadora — ajuste superfat e tamanho da
+                  forma.
+                  <Link
+                    href="/calculadora"
+                    className="block mt-1 font-semibold text-white underline"
+                  >
+                    Abrir Calculadora →
+                  </Link>
+                </div>
+              )}
+
+              {/* Notes */}
+              {recipe.notes && (
+                <p className="text-sm text-moon-500 italic">{recipe.notes}</p>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

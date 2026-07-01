@@ -8,6 +8,7 @@ import QuickReviewBox from "@/components/QuickReviewBox";
 import ModuleQuiz from "@/components/ModuleQuiz";
 import BeforePracticeChecklist from "@/components/BeforePracticeChecklist";
 import ModuleTracker from "@/components/ModuleTracker";
+import RelatedRecipes from "@/components/RelatedRecipes";
 
 interface Module {
   id: number;
@@ -266,6 +267,9 @@ export default async function ModulePage({ params }: { params: Promise<{ slug: s
           <ModuleQuiz slug={mod.slug} questions={mod.quiz} />
         </section>
       )}
+
+      {/* Related recipes */}
+      <RelatedRecipes moduleSlug={mod.slug} />
 
       {/* Before practice checklist */}
       {mod.beforePracticeChecklist && mod.beforePracticeChecklist.length > 0 && (
