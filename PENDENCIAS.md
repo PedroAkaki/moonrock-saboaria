@@ -101,13 +101,22 @@ Transformar a biblioteca de tabela para mentora de formulação:
 
 ---
 
-## 🔥 PRÓXIMO — Módulo 4: Controle de Formulação
+## ✅ v27 — Módulo 4: Controle de Formulação (CONCLUÍDO)
 
 | # | Tarefa | Status | Descrição |
 |---|--------|--------|-----------|
-| 34 | Conteúdo do Módulo 4 | ⬜ | Migrar de `data/curriculo.md` para `learning-modules.json` |
-| 35 | Quiz, cards, checklist | ⬜ | Mesmo padrão dos módulos 1-3 |
-| 36 | Integração com Biblioteca de Óleos | ⬜ | Links para óleos específicos |
+| 34 | Conteúdo do Módulo 4 | ✅ | 5 fundamentos, 6 studyCards, 5 quiz, checklist, exercício prático |
+| 35 | INS, iodo, DOS, maxPercent, substituição | ✅ | Conceitos heurísticos com exemplos práticos |
+| 36 | Integração com calculadora e biblioteca | ✅ | Warnings, maxPercent, confidenceLevel, dosRisk |
+
+---
+
+## 🔥 PRÓXIMO — Módulo 5: Hot Process
+
+| # | Tarefa | Status | Descrição |
+|---|--------|--------|-----------|
+| 37 | Conteúdo do Módulo 5 | ⬜ | Migrar de `data/curriculo.md` |
+| 38 | Quiz, cards, checklist | ⬜ | Mesmo padrão dos módulos 1-4 |
 
 ---
 

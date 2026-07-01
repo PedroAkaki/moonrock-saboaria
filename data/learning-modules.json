@@ -565,8 +565,206 @@
     "slug": "controle-de-formulacao",
     "level": 4,
     "title": "Controle de Formulação",
-    "status": "soon",
-    "summary": "INS, DOS, proporções de ácidos graxos, balanço de propriedades."
+    "status": "available",
+    "summary": "INS, DOS, equilíbrio de ácidos graxos, substituição de óleos e limites de formulação.",
+    "objective": "Aprender a equilibrar uma fórmula de sabão usando propriedades heurísticas (dureza, espuma, condicionamento), entender limites por óleo, interpretar alertas da calculadora e fazer substituições seguras.",
+    "scope_warning": "Este módulo ensina a equilibrar uma fórmula usando heurísticas. Os números ajudam na decisão, mas não substituem teste prático, cura, registro em diário nem garantem segurança cosmética. INS, dureza, espuma e limpeza são estimativas, não medição laboratorial.",
+    "prerequisites": [
+      "Módulo 3 — Cold Process Básico completo.",
+      "Ter usado a calculadora MoonRock ao menos uma vez."
+    ],
+    "chemical_fundamentals": [
+      "Cada óleo tem um perfil de ácidos graxos que determina as propriedades do sabão: dureza (palmítico/esteárico), limpeza/espuma (láurico/mirístico), condicionamento (oleico/linoleico/ricinoleico) e cremosidade (palmítico/esteárico/ricinoleico). A fórmula final é a soma ponderada desses perfis.",
+      "INS (Iodine-Saponification Number) é um índice empírico que relaciona dureza potencial e grau de insaturação. Faixa de referência: 136-170. INS abaixo de 136 indica barra macia demais; acima de 170, dura demais. Não é garantia de qualidade — é uma heurística de comparação.",
+      "O índice de iodo mede o grau de insaturação dos óleos. Quanto maior, maior o risco de oxidação (DOS). Óleos com iodo acima de 100 e estabilidade baixa exigem cautela: limite o percentual, use antioxidantes e armazene em local escuro e fresco.",
+      "maxPercent é o limite recomendado de uso de cada óleo na fórmula. Existem por razões práticas: óleos com alto poder de limpeza (coco) ressecam a pele acima de 30%; óleos muito insaturados (linhaça) oxidam rápido acima de 5%; manteigas muito duras (cacau) deixam o sabão quebradiço acima de 15%.",
+      "Substituir um óleo por outro exige comparar função, não nome. Substitua por perfil de ácidos graxos similar: para dureza, troque palma por sebo ou banha; para espuma, coco por palmiste; para condicionamento, azeite por canola ou girassol alto-oleico. Após qualquer substituição, recalcule na calculadora."
+    ],
+    "materials": [
+      "Óleos variados com perfis graxos distintos (ex: azeite, coco, mamona, palma, cacau)",
+      "Calculadora MoonRock (aberta em outro dispositivo ou janela)",
+      "Diário de Lote para registrar a fórmula e observações",
+      "Biblioteca de Óleos para consultar maxPercent, dosRisk e confidenceLevel"
+    ],
+    "equipment": [
+      "Acesso à calculadora (computador ou celular)",
+      "Acesso à Biblioteca de Óleos do app",
+      "Diário de Lote (papel ou app)",
+      "Balança, termômetro, mixer, formas (se for produzir)"
+    ],
+    "safety": [
+      "INS, iodo e dureza são heurísticas — não substituem EPI, cura e teste de pH.",
+      "Após alterar a fórmula, recalcule sempre a soda. Um óleo substituído pode ter SAP diferente.",
+      "Não confie cegamente em números bonitos na tela. O teste real é na bancada e na cura."
+    ],
+    "process": [
+      "Defina o objetivo da fórmula: uso cosmético (5-8% superfat), limpeza (0%), ou equilíbrio geral.",
+      "Escolha os óleos por função: um óleo base (40-60%), um de espuma/limpeza (15-30%), um condicionante (10-20%) e opcionais (5-15%).",
+      "Abra a calculadora e insira os óleos com percentuais. Observe o INS, a soma dos percentuais e as propriedades heurísticas.",
+      "Verifique os warnings: maxPercent, confidenceLevel e DOS risk. Ajuste percentuais se necessário.",
+      "Anote a fórmula final no Diário. Só produza depois de revisar os alertas e vestir os EPIs.",
+      "Durante a cura (4-6 semanas), compare o resultado real com o previsto: o sabão está na dureza esperada? A espuma é compatível? Há sinais de DOS?"
+    ],
+    "critical_parameters": [
+      "INS da receita: ideal 136-170. Abaixo: macia. Acima: dura. Não é regra absoluta.",
+      "Índice de iodo médio da receita: acima de 70 aumenta risco de DOS com superfat alto.",
+      "Soma de óleos com dosRisk alto: acima de 10% requer atenção; acima de 20% é risco elevado.",
+      "maxPercent de cada óleo: respeitar os limites da biblioteca. Exceder gera warning na calculadora."
+    ],
+    "visual_criteria": [
+      "INS na faixa verde (136-170) na calculadora — indicador de equilíbrio, não garantia.",
+      "Nenhum warning de nível danger ou blocking na calculadora antes de produzir."
+    ],
+    "common_errors": [
+      "Achar que INS ideal = receita perfeita. INS é heurística, não certificado de qualidade.",
+      "Substituir óleo por nome sem verificar perfil graxo. Trocar azeite por óleo de girassol comum (não alto-oleico) altera completamente a estabilidade.",
+      "Ignorar maxPercent: usar coco a 50% produz sabão agressivo que resseca a pele.",
+      "Não recalcular após substituição: trocar palma por cacau muda o SAP e a soda necessária."
+    ],
+    "troubleshooting": "Se o sabão ficou muito macio mesmo após 6 semanas de cura, revise o INS da fórmula (provavelmente abaixo de 130) e o perfil de ácidos graxos (excesso de insaturados). Se ficou quebradiço, INS acima de 170 ou excesso de manteigas duras. Se apareceram manchas laranjas (DOS), o índice de iodo estava alto demais para o superfat escolhido.",
+    "practical_exercise": "Crie uma receita de 500g com os seguintes critérios: INS entre 140-160, superfat 6%, pelo menos 1 óleo com dosRisk baixo, nenhum óleo excedendo maxPercent. Use a calculadora e a biblioteca. Ajuste os percentuais até atingir os critérios. Registre a fórmula final e os warnings observados no Diário. Depois, substitua o óleo condicionante por outro de função similar e recalcule — observe como INS, iodo e warnings mudam.",
+    "conclusion_criteria": [
+      "Entender que INS, iodo e dureza são heurísticas, não medições laboratoriais.",
+      "Saber consultar maxPercent, dosRisk e confidenceLevel na Biblioteca de Óleos.",
+      "Saber substituir um óleo por função (não por nome) e recalcular a soda.",
+      "Saber interpretar warnings da calculadora (maxPercent, DOS, confiança).",
+      "Registrar a fórmula no Diário antes de produzir."
+    ],
+    "related_recipes": [],
+    "related_glossary": [
+      "INS",
+      "DOS",
+      "Índice de iodo",
+      "SAP",
+      "Superfat",
+      "Saponificação",
+      "Traço",
+      "Gel Phase",
+      "Soda livre",
+      "Oxidação lipídica"
+    ],
+    "references": [
+      "Dunn, K. Scientific Soapmaking — formulação e equilíbrio de ácidos graxos.",
+      "SoapCalc — use como ferramenta de estudo complementar.",
+      "Biblioteca de Óleos MoonRock — consulte maxPercent, confidenceLevel e dosRisk de cada óleo.",
+      "Calculadora MoonRock — warnings de formulação (v24)."
+    ],
+    "studyCards": [
+      {
+        "title": "Formulação por Função",
+        "definition": "Cada óleo tem um papel na fórmula: base (azeite, palma), espuma/limpeza (coco, palmiste), condicionamento (mamona, canola), dureza (cacau, sebo), especial (linhaça, rosa mosqueta em baixíssimo %). Uma fórmula equilibrada combina pelo menos 3 funções.",
+        "whyItMatters": "Saber o papel de cada óleo evita fórmulas desbalanceadas — excesso de espuma sem condicionamento, ou dureza sem cremosidade.",
+        "commonMistake": "Usar só azeite (castela). Castela é suave, mas leva 6+ meses de cura e tem espuma baixíssima. Para um primeiro CP, uma mistura de 3-4 óleos é mais didática.",
+        "practicalSignal": "INS entre 136-170 + dureza 3-5 + espuma 3-5 + condicionamento 3-4 = fórmula equilibrada na heurística."
+      },
+      {
+        "title": "INS — Índice de Saponificação e Iodo",
+        "definition": "Número empírico que combina SAP e iodo para estimar dureza. Faixa 136-170 é referência para barra equilibrada. INS < 130: sabão muito macio. INS > 170: muito duro.",
+        "whyItMatters": "Ajuda a comparar fórmulas rapidamente, mas não substitui teste real. Um INS 155 pode produzir sabão excelente ou medíocre, dependendo dos óleos e do processo.",
+        "commonMistake": "Achar que INS é garantia. INS é heurística — a dureza real depende de cura, temperatura, água e técnica.",
+        "practicalSignal": "Na calculadora MoonRock, o INS aparece com cor: verde (136-170), âmbar (> 170), vermelho (< 136)."
+      },
+      {
+        "title": "Índice de Iodo e Risco de DOS",
+        "definition": "O índice de iodo mede o grau de insaturação dos óleos. Quanto mais insaturado, maior o risco de oxidação (DOS). Óleos com iodo > 100 são mais instáveis; acima de 120, muito instáveis.",
+        "whyItMatters": "Uma fórmula com iodo médio alto tem maior chance de desenvolver DOS, especialmente com superfat alto, armazenamento ruim ou óleo velho.",
+        "commonMistake": "Ignorar o iodo porque o INS está bonito. Um INS 150 pode vir de 50% azeite (iodo 85) + 50% coco (iodo 10), ou de 50% linhaça (iodo 185) + 50% sebo (iodo 40). O segundo tem risco altíssimo de DOS.",
+        "practicalSignal": "Se a calculadora mostrar warning de DOS, verifique quais óleos estão contribuindo. Reduza o percentual dos mais insaturados ou adicione antioxidantes."
+      },
+      {
+        "title": "maxPercent — Limite Recomendado por Óleo",
+        "definition": "Percentual máximo recomendado de cada óleo na fórmula. Varia conforme o perfil de ácidos graxos: coco (30%), linhaça (5%), mamona (15%), cacau (15%), palma (40%).",
+        "whyItMatters": "Respeitar maxPercent evita problemas como sabão agressivo (coco excesso), quebradiço (cacau excesso), mole e instável (linhaça excesso).",
+        "commonMistake": "Achar que se um pouco é bom, mais é melhor. Coco a 50% produz sabão que resseca a pele. Linhaça a 20% produz barra mole com alto risco de DOS.",
+        "practicalSignal": "Na calculadora, se um óleo excede maxPercent, aparece warning amarelo (até +5%) ou vermelho (+5%+). Ajuste antes de produzir."
+      },
+      {
+        "title": "Substituição de Óleos por Função",
+        "definition": "Substituir um óleo por outro com perfil de ácidos graxos similar: para dureza (C16/C18 alto), use outro óleo com perfil palmítico/esteárico. Para espuma (C12/C14 alto), use coco, palmiste ou babaçu. Para condicionamento (C18:1 alto), use azeite, canola ou girassol alto-oleico.",
+        "whyItMatters": "Substituir por nome (ex: 'trocar azeite por óleo de amêndoas') pode dar errado se o perfil graxo for diferente. Compare SAP, iodo, INS e função antes de trocar.",
+        "commonMistake": "Trocar azeite (70% oleico, INS 109) por óleo de coco (INS 258). O INS da receita dispara e a fórmula fica desbalanceada.",
+        "practicalSignal": "Use a Biblioteca de Óleos para comparar dois óleos lado a lado antes de substituir. Recalcule sempre na calculadora."
+      },
+      {
+        "title": "Heurística vs Teste Prático",
+        "definition": "INS, dureza, espuma, condicionamento e cremosidade são estimativas baseadas em médias de ácidos graxos. Não substituem o teste real: cura, pH, zap test e uso prolongado.",
+        "whyItMatters": "Números bonitos na tela não garantem sabão bom. O sabão pode ter INS 150 mas soda mal dissolvida, odor de ranço ou pH elevado. A prática e o diário são insubstituíveis.",
+        "commonMistake": "Confiar cegamente na calculadora e pular a cura, o teste de pH ou o registro no diário.",
+        "practicalSignal": "Após a cura, compare: o sabão ficou na dureza esperada? A espuma é compatível? Há sinais de DOS? Anote no diário para a próxima fórmula."
+      }
+    ],
+    "quickReview": [
+      "INS entre 136 e 170 — heurística, não garantia.",
+      "maxPercent existe por razão — respeitar limites evita falhas.",
+      "Substituir por função, não por nome — compare perfil graxo.",
+      "Iodo alto + superfat alto + óleo velho = DOS.",
+      "Warnings na calculadora educam, não bloqueiam — mas preste atenção.",
+      "INS, dureza, espuma e condicionamento são heurísticas, não medidores.",
+      "Depois de qualquer substituição, recalcule a soda."
+    ],
+    "quiz": [
+      {
+        "id": "cf1",
+        "type": "true-false",
+        "question": "INS 150 garante que o sabão será de boa qualidade.",
+        "correctAnswer": false,
+        "explanation": "Falso. INS é uma heurística que ajuda a comparar fórmulas, mas não substitui teste prático, cura adequada, pH equilibrado e segurança no processo."
+      },
+      {
+        "id": "cf2",
+        "type": "multiple-choice",
+        "question": "Você quer substituir azeite de oliva (INS 109, 70% oleico) por outro óleo. Qual a substituição mais adequada para manter o equilíbrio da fórmula?",
+        "options": [
+          "Óleo de coco (INS 258, 50% láurico).",
+          "Manteiga de cacau (INS 157, 35% esteárico).",
+          "Óleo de canola (INS 112, 60% oleico).",
+          "Óleo de palma (INS 145, 44% palmítico)."
+        ],
+        "correctAnswer": "Óleo de canola (INS 112, 60% oleico).",
+        "explanation": "Canola tem perfil graxo similar ao azeite (alto oleico), INS próximo e função condicionante equivalente. Coco mudaria para limpeza/espuma; cacau adicionaria dureza; palma adicionaria dureza e mudaria o perfil."
+      },
+      {
+        "id": "cf3",
+        "type": "multiple-choice",
+        "question": "Sua receita tem 25% de óleo de coco. O maxPercent do coco na biblioteca é 30%. O que isso significa?",
+        "options": [
+          "A receita está dentro do limite. Pode prosseguir com atenção.",
+          "A receita excedeu o limite. O sabão vai ressecar a pele.",
+          "A calculadora vai bloquear o cálculo automaticamente.",
+          "O coco não pode ser usado em sabonete cosmético."
+        ],
+        "correctAnswer": "A receita está dentro do limite. Pode prosseguir com atenção.",
+        "explanation": "25% está abaixo do maxPercent de 30%, então não gera warning. Ainda assim, observe se o perfil geral da fórmula está equilibrado — coco em 25% é seguro, mas acima de 30% exigiria redução."
+      },
+      {
+        "id": "cf4",
+        "type": "short",
+        "question": "Qual o principal risco de usar 40% de óleo de linhaça (iodo 185) em uma receita com superfat 10%?",
+        "correctAnswer": "alto risco de dos",
+        "explanation": "Linhaça tem iodo muito alto (185) e estabilidade muito baixa. A 40% com superfat 10%, o índice de iodo médio da receita fica altíssimo e o superfat alto acelera a oxidação — combinação quase certa de DOS (ranço) durante a cura."
+      },
+      {
+        "id": "cf5",
+        "type": "multiple-choice",
+        "question": "Depois de substituir um óleo na sua fórmula, qual é o próximo passo obrigatório?",
+        "options": [
+          "Produzir imediatamente para testar na prática.",
+          "Recalcular a soda na calculadora porque o SAP do novo óleo pode ser diferente.",
+          "Adicionar mais fragrância para compensar a mudança.",
+          "Aumentar o superfat para garantir maciez."
+        ],
+        "correctAnswer": "Recalcular a soda na calculadora porque o SAP do novo óleo pode ser diferente.",
+        "explanation": "Óleos diferentes têm SAP diferentes. Trocar palma (SAP 0,142) por manteiga de cacau (SAP 0,137) altera a quantidade de NaOH necessária. Sem recalcular, a soda pode ser insuficiente ou excessiva. Sempre recalcule após qualquer substituição."
+      }
+    ],
+    "beforePracticeChecklist": [
+      "Sei que INS, iodo, dureza e espuma são heurísticas, não medições laboratoriais.",
+      "Consultei maxPercent, confidenceLevel e dosRisk de cada óleo na Biblioteca.",
+      "Verifiquei que não há warnings de nível danger ou blocking na calculadora.",
+      "A soma dos percentuais é exatamente 100%.",
+      "Vou registrar a fórmula e os warnings no Diário antes de produzir.",
+      "Tenho EPI completo e ambiente ventilado."
+    ]
   },
   {
     "id": 5,
