@@ -159,6 +159,29 @@ export default function RoadmapMap() {
   const completedCount = availableModules.filter((m) => progress.modules[m.slug]?.status === "completed").length;
   const progressPercent = availableModules.length > 0 ? Math.round((completedCount / availableModules.length) * 100) : 0;
 
+  function MobileCenterCard({ node, status }: { node: RoadmapNode; status: RoadmapStatus }) {
+    const badge = typeBadge(node.type);
+    const isLocked = status === "locked";
+    const isCurrent = status === "current";
+    return (
+      <div className={`w-full rounded-2xl border px-5 py-4 text-center ${statusClasses(status)} ${isLocked ? "opacity-70" : ""}`}>
+        {isCurrent && (
+          <div className="text-[9px] font-semibold text-amber-300 mb-2 flex items-center justify-center gap-1">
+            <span className="h-1.5 w-1.5 rounded-full bg-amber-300 animate-pulse" /> Você está aqui
+          </div>
+        )}
+        <div className="flex items-center justify-center gap-2 mb-1">
+          {status === "completed" ? <Check className="h-5 w-5 text-green-300" /> : isLocked ? <Lock className="h-5 w-5 text-moon-600" /> : typeIcon(node.type)}
+          <span className={`text-sm font-bold leading-tight ${isLocked ? "text-moon-500" : "text-white"}`}>{node.title}</span>
+        </div>
+        <span className={`text-[9px] font-medium px-2 py-0.5 rounded-full ${badge.className}`}>{badge.label}</span>
+        {isLocked && (
+          <div className="text-[9px] text-moon-600 mt-2 leading-tight">🔒 Complete os módulos anteriores para desbloquear</div>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="w-full pb-8">
       <div className="relative mx-auto w-full max-w-[1024px] px-4 py-4 md:min-w-0 md:px-8">
@@ -196,45 +219,9 @@ export default function RoadmapMap() {
           const showSection = node.section && node.section !== prevSection;
           const isLocked = status === "locked";
 
-          /* ── Mobile card stack ── */
-          const mobileTopics = [
-            ...(node.leftTopics ?? []),
-            ...(node.rightTopics ?? []),
-          ];
-          const mobileGroups: Record<string, RoadmapTopic[]> = {};
-          for (const t of mobileTopics) {
-            if (!mobileGroups[t.type]) mobileGroups[t.type] = [];
-            mobileGroups[t.type].push(t);
-          }
-          const topicOrder = ["concept", "safety", "tool", "recipe", "checklist"];
-
-          const isCurrentMobile = status === "current";
-
-          /* Mobile card node — inline status, no absolute badge */
-          const badge = typeBadge(node.type);
-          function MobileCenterCard() {
-            return (
-              <div className={`w-full rounded-2xl border px-5 py-4 text-center ${statusClasses(status)} ${isLocked ? "opacity-70" : ""}`}>
-                {isCurrentMobile && (
-                  <div className="text-[9px] font-semibold text-amber-300 mb-2 flex items-center justify-center gap-1">
-                    <span className="h-1.5 w-1.5 rounded-full bg-amber-300 animate-pulse" /> Você está aqui
-                  </div>
-                )}
-                <div className="flex items-center justify-center gap-2 mb-1">
-                  {status === "completed" ? <Check className="h-5 w-5 text-green-300" /> : isLocked ? <Lock className="h-5 w-5 text-moon-600" /> : typeIcon(node.type)}
-                  <span className={`text-sm font-bold leading-tight ${isLocked ? "text-moon-500" : "text-white"}`}>{node.title}</span>
-                </div>
-                <span className={`text-[9px] font-medium px-2 py-0.5 rounded-full ${badge.className}`}>{badge.label}</span>
-                {isLocked && (
-                  <div className="text-[9px] text-moon-600 mt-2 leading-tight">🔒 Complete os módulos anteriores para desbloquear</div>
-                )}
-              </div>
-            );
-          }
-
           return (
             <Fragment key={node.id}>
-              {/* Section divider */}
+              {/* ── Section divider — visible on both ── */}
               {showSection && (
                 <div className="relative z-10 flex items-center gap-4 my-6">
                   <div className="flex-1 h-px" style={{
@@ -247,20 +234,50 @@ export default function RoadmapMap() {
                 </div>
               )}
 
-              {/* Row */}
-              <div className={`relative grid grid-cols-1 md:grid-cols-[240px_1fr_240px] gap-4 md:gap-6 items-start md:items-center my-3 ${isLocked ? "opacity-60" : ""}`}>
-                {/* Horizontal dashed connector — desktop only */}
-                <div className="hidden md:block absolute left-[250px] right-[250px] top-1/2 border-t border-dashed border-moon-500/30 -translate-y-1/2 z-0" />
+              {/* ── MOBILE: card stack ── */}
+              <div className="md:hidden space-y-3 mt-1 mb-5">
+                <MobileCenterCard node={node} status={status} />
 
-                {/* Left side topics — desktop: left, mobile: below center */}
-                <div className="relative z-10 md:order-1 order-2">
+                {/* Topics grouped by type */}
+                {(() => {
+                  const mobileTopics = [...(node.leftTopics ?? []), ...(node.rightTopics ?? [])];
+                  const mobileGroups: Record<string, RoadmapTopic[]> = {};
+                  for (const t of mobileTopics) {
+                    if (!mobileGroups[t.type]) mobileGroups[t.type] = [];
+                    mobileGroups[t.type].push(t);
+                  }
+                  const topicOrder = ["concept", "safety", "tool", "recipe", "checklist"];
+                  return topicOrder.map((type) => {
+                    const items = mobileGroups[type];
+                    if (!items?.length) return null;
+                    const cluster = TOPIC_CLUSTER[type] ?? TOPIC_CLUSTER.concept;
+                    return (
+                      <div key={type} className="space-y-1.5">
+                        <p className="text-[9px] font-medium uppercase tracking-wider text-moon-500 flex items-center gap-1.5">
+                          {cluster.icon} {cluster.label}
+                        </p>
+                        <div className="flex flex-col gap-1">
+                          {items.map((topic) => (
+                            <TopicPill key={topic.id} topic={topic} />
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  });
+                })()}
+              </div>
+
+              {/* ── DESKTOP: 3-column grid ── */}
+              <div className={`hidden md:grid relative grid-cols-[240px_1fr_240px] gap-6 items-center my-3 ${isLocked ? "opacity-60" : ""}`}>
+                <div className="absolute left-[250px] right-[250px] top-1/2 border-t border-dashed border-moon-500/30 -translate-y-1/2 z-0" />
+
+                <div className="relative z-10">
                   {node.leftTopics && node.leftTopics.length > 0 && (
                     <TopicGroup topics={node.leftTopics} position="left" />
                   )}
                 </div>
 
-                {/* Center node */}
-                <div className="relative z-10 flex flex-col items-center md:order-2 order-1">
+                <div className="relative z-10 flex flex-col items-center">
                   {isLocked ? (
                     <CenterNode node={node} status={status} />
                   ) : (
@@ -270,42 +287,11 @@ export default function RoadmapMap() {
                   )}
                 </div>
 
-                {/* Right side topics */}
-                <div className="relative z-10 md:order-3 order-3">
+                <div className="relative z-10">
                   {node.rightTopics && node.rightTopics.length > 0 && (
                     <TopicGroup topics={node.rightTopics} position="right" />
                   )}
                 </div>
-              </div>
-
-              {/* ── Mobile card: compact vertical ── */}
-              <div className="md:hidden space-y-3 mt-1 mb-5">
-                {/* Section name as compact label */}
-                {showSection && (
-                  <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-moon-500 text-center py-2 border-t border-moon-700/50 -mx-4">{node.section}</div>
-                )}
-
-                {/* Mobile center card — no floating badge */}
-                <MobileCenterCard />
-
-                {/* Topics grouped by type, vertical layout */}
-                {topicOrder.map((type) => {
-                  const items = mobileGroups[type];
-                  if (!items?.length) return null;
-                  const cluster = TOPIC_CLUSTER[type] ?? TOPIC_CLUSTER.concept;
-                  return (
-                    <div key={type} className="space-y-1.5">
-                      <p className="text-[9px] font-medium uppercase tracking-wider text-moon-500 flex items-center gap-1.5">
-                        {cluster.icon} {cluster.label}
-                      </p>
-                      <div className="flex flex-col gap-1">
-                        {items.map((topic) => (
-                          <TopicPill key={topic.id} topic={topic} />
-                        ))}
-                      </div>
-                    </div>
-                  );
-                })}
               </div>
             </Fragment>
           );
