@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import MainLearningOrbit from "@/components/MainLearningOrbit";
 import Link from "next/link";
-import { ArrowRight, Check, Play, Award, Sparkles } from "lucide-react";
+import { ArrowRight, Check, Play, Award, Sparkles, ArrowLeft } from "lucide-react";
 import learningModules from "@/data/learning-modules.json";
 import { getProgress } from "@/lib/progress";
 import {
@@ -41,6 +41,11 @@ export default function AprendizadoPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 space-y-6">
+      {/* Voltar */}
+      <Link href="/" className="inline-flex items-center gap-1.5 text-sm text-moon-400 hover:text-white mb-4 transition-colors">
+        <ArrowLeft className="w-4 h-4" /> Início
+      </Link>
+
       {/* Header compacto */}
       <header className="text-center space-y-1">
         <h1 className="text-3xl font-bold text-white">🌙 MoonRock Estudo</h1>
