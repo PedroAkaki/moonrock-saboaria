@@ -208,6 +208,30 @@ export default function RoadmapMap() {
           }
           const topicOrder = ["concept", "safety", "tool", "recipe", "checklist"];
 
+          const isCurrentMobile = status === "current";
+
+          /* Mobile card node — inline status, no absolute badge */
+          const badge = typeBadge(node.type);
+          function MobileCenterCard() {
+            return (
+              <div className={`w-full rounded-2xl border px-5 py-4 text-center ${statusClasses(status)} ${isLocked ? "opacity-70" : ""}`}>
+                {isCurrentMobile && (
+                  <div className="text-[9px] font-semibold text-amber-300 mb-2 flex items-center justify-center gap-1">
+                    <span className="h-1.5 w-1.5 rounded-full bg-amber-300 animate-pulse" /> Você está aqui
+                  </div>
+                )}
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  {status === "completed" ? <Check className="h-5 w-5 text-green-300" /> : isLocked ? <Lock className="h-5 w-5 text-moon-600" /> : typeIcon(node.type)}
+                  <span className={`text-sm font-bold leading-tight ${isLocked ? "text-moon-500" : "text-white"}`}>{node.title}</span>
+                </div>
+                <span className={`text-[9px] font-medium px-2 py-0.5 rounded-full ${badge.className}`}>{badge.label}</span>
+                {isLocked && (
+                  <div className="text-[9px] text-moon-600 mt-2 leading-tight">🔒 Complete os módulos anteriores para desbloquear</div>
+                )}
+              </div>
+            );
+          }
+
           return (
             <Fragment key={node.id}>
               {/* Section divider */}
@@ -261,12 +285,10 @@ export default function RoadmapMap() {
                   <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-moon-500 text-center py-2 border-t border-moon-700/50 -mx-4">{node.section}</div>
                 )}
 
-                {/* Center node */}
-                <div className="flex justify-center">
-                  <CenterNode node={node} status={status} />
-                </div>
+                {/* Mobile center card — no floating badge */}
+                <MobileCenterCard />
 
-                {/* Topics grouped by type */}
+                {/* Topics grouped by type, vertical layout */}
                 {topicOrder.map((type) => {
                   const items = mobileGroups[type];
                   if (!items?.length) return null;
@@ -276,7 +298,7 @@ export default function RoadmapMap() {
                       <p className="text-[9px] font-medium uppercase tracking-wider text-moon-500 flex items-center gap-1.5">
                         {cluster.icon} {cluster.label}
                       </p>
-                      <div className="flex flex-wrap gap-1.5">
+                      <div className="flex flex-col gap-1">
                         {items.map((topic) => (
                           <TopicPill key={topic.id} topic={topic} />
                         ))}
