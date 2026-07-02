@@ -72,13 +72,13 @@ const TOPIC_CLUSTER: Record<string, { icon: React.ReactNode; label: string; wrap
 function TopicPill({ topic }: { topic: RoadmapTopic }) {
   const cluster = TOPIC_CLUSTER[topic.type] ?? TOPIC_CLUSTER.concept;
   const content = (
-    <div className={`flex items-center gap-1.5 rounded-xl border px-3 py-2 text-xs leading-tight transition-colors ${cluster.wrapper} ${topic.href ? "hover:brightness-125 cursor-pointer" : ""}`}>
+    <div className={`flex items-center gap-1.5 rounded-xl border px-3 py-2.5 md:py-2 text-xs leading-tight transition-colors ${cluster.wrapper} ${topic.href ? "hover:brightness-125 cursor-pointer" : ""}`}>
       {cluster.icon}
       <span>{topic.title}</span>
       {topic.importance === "secondary" && <span className="text-[9px] text-moon-500">(extra)</span>}
     </div>
   );
-  if (topic.href) return <Link href={topic.href}>{content}</Link>;
+  if (topic.href) return <Link href={topic.href} className="focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60 rounded-xl">{content}</Link>;
   return <div>{content}</div>;
 }
 
@@ -89,8 +89,9 @@ function TopicGroup({ topics, position }: { topics: RoadmapTopic[]; position: "l
     groups[t.type].push(t);
   }
   const order = ["concept", "safety", "tool", "recipe", "checklist"];
+  const alignClass = position === "left" ? "items-stretch md:items-end" : "items-stretch md:items-start";
   return (
-    <div className={`flex flex-col gap-3 ${position === "left" ? "items-end" : "items-start"}`}>
+    <div className={`flex flex-col gap-3 ${alignClass}`}>
       {order.map((type) => {
         const items = groups[type];
         if (!items?.length) return null;
@@ -159,10 +160,8 @@ export default function RoadmapMap() {
   const progressPercent = availableModules.length > 0 ? Math.round((completedCount / availableModules.length) * 100) : 0;
 
   return (
-    <div className="w-full overflow-x-auto pb-8 relative">
-      {/* Mobile scroll hint — right edge fade */}
-      <div className="pointer-events-none absolute right-0 top-0 bottom-8 w-16 bg-gradient-to-l from-moon-900/60 to-transparent z-20 md:hidden" />
-      <div className="relative mx-auto min-w-[880px] max-w-[1024px] px-8 py-4">
+    <div className="w-full pb-8">
+      <div className="relative mx-auto w-full max-w-[1024px] px-4 py-4 md:min-w-0 md:px-8">
         {/* Continue CTA */}
         {continueAction && continueAction.slug !== "aprendizado" && (
           <Link href={continueAction.href}
@@ -183,8 +182,8 @@ export default function RoadmapMap() {
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-300/70">Trilha Principal</span>
         </div>
 
-        {/* Vertical backbone with gradient fade */}
-        <div className="absolute left-1/2 top-24 bottom-32 w-0.5 -translate-x-1/2 rounded-full"
+        {/* Vertical backbone with gradient fade — hidden on mobile */}
+        <div className="hidden md:block absolute left-1/2 top-24 bottom-32 w-0.5 -translate-x-1/2 rounded-full"
           style={{
             background: "linear-gradient(to bottom, rgba(252,211,77,0.6), rgba(252,211,77,0.3), rgba(252,211,77,0.1))",
             boxShadow: "0 0 20px rgba(252,211,77,0.15)",
@@ -213,19 +212,19 @@ export default function RoadmapMap() {
               )}
 
               {/* Row */}
-              <div className={`relative grid grid-cols-[260px_1fr_260px] gap-6 items-center my-3 ${isLocked ? "opacity-60" : ""}`}>
-                {/* Horizontal dashed connector */}
-                <div className="absolute left-[270px] right-[270px] top-1/2 border-t border-dashed border-moon-500/30 -translate-y-1/2 z-0" />
+              <div className={`relative grid grid-cols-1 md:grid-cols-[240px_1fr_240px] gap-4 md:gap-6 items-start md:items-center my-3 ${isLocked ? "opacity-60" : ""}`}>
+                {/* Horizontal dashed connector — desktop only */}
+                <div className="hidden md:block absolute left-[250px] right-[250px] top-1/2 border-t border-dashed border-moon-500/30 -translate-y-1/2 z-0" />
 
-                {/* Left side topics */}
-                <div className="relative z-10">
+                {/* Left side topics — desktop: left, mobile: below center */}
+                <div className="relative z-10 md:order-1 order-2">
                   {node.leftTopics && node.leftTopics.length > 0 && (
                     <TopicGroup topics={node.leftTopics} position="left" />
                   )}
                 </div>
 
                 {/* Center node */}
-                <div className="relative z-10 flex flex-col items-center">
+                <div className="relative z-10 flex flex-col items-center md:order-2 order-1">
                   {isLocked ? (
                     <CenterNode node={node} status={status} />
                   ) : (
@@ -236,7 +235,7 @@ export default function RoadmapMap() {
                 </div>
 
                 {/* Right side topics */}
-                <div className="relative z-10">
+                <div className="relative z-10 md:order-3 order-3">
                   {node.rightTopics && node.rightTopics.length > 0 && (
                     <TopicGroup topics={node.rightTopics} position="right" />
                   )}
