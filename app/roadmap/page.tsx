@@ -35,7 +35,10 @@ export default function RoadmapPage() {
           </span>
         </div>
 
-        <p className="mt-3 text-xs text-moon-500">
+        <p className="mt-3 text-xs text-moon-500 md:hidden">
+          Role para explorar a trilha completa.
+        </p>
+        <p className="mt-3 text-xs text-moon-500 hidden md:block">
           Arraste horizontalmente para explorar o mapa completo.
         </p>
       </header>

@@ -196,6 +196,18 @@ export default function RoadmapMap() {
           const showSection = node.section && node.section !== prevSection;
           const isLocked = status === "locked";
 
+          /* ── Mobile card stack ── */
+          const mobileTopics = [
+            ...(node.leftTopics ?? []),
+            ...(node.rightTopics ?? []),
+          ];
+          const mobileGroups: Record<string, RoadmapTopic[]> = {};
+          for (const t of mobileTopics) {
+            if (!mobileGroups[t.type]) mobileGroups[t.type] = [];
+            mobileGroups[t.type].push(t);
+          }
+          const topicOrder = ["concept", "safety", "tool", "recipe", "checklist"];
+
           return (
             <Fragment key={node.id}>
               {/* Section divider */}
@@ -240,6 +252,38 @@ export default function RoadmapMap() {
                     <TopicGroup topics={node.rightTopics} position="right" />
                   )}
                 </div>
+              </div>
+
+              {/* ── Mobile card: compact vertical ── */}
+              <div className="md:hidden space-y-3 mt-1 mb-5">
+                {/* Section name as compact label */}
+                {showSection && (
+                  <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-moon-500 text-center py-2 border-t border-moon-700/50 -mx-4">{node.section}</div>
+                )}
+
+                {/* Center node */}
+                <div className="flex justify-center">
+                  <CenterNode node={node} status={status} />
+                </div>
+
+                {/* Topics grouped by type */}
+                {topicOrder.map((type) => {
+                  const items = mobileGroups[type];
+                  if (!items?.length) return null;
+                  const cluster = TOPIC_CLUSTER[type] ?? TOPIC_CLUSTER.concept;
+                  return (
+                    <div key={type} className="space-y-1.5">
+                      <p className="text-[9px] font-medium uppercase tracking-wider text-moon-500 flex items-center gap-1.5">
+                        {cluster.icon} {cluster.label}
+                      </p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {items.map((topic) => (
+                          <TopicPill key={topic.id} topic={topic} />
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </Fragment>
           );
