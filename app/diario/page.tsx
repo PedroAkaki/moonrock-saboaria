@@ -68,6 +68,8 @@ export default function DiarioPage() {
   const [formObs, setFormObs] = useState("");
   const [importMessage, setImportMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
   const [editBatchId, setEditBatchId] = useState<string | null>(null);
+  const [editBatchCode, setEditBatchCode] = useState<string | null>(null);
+  const [editOriginal, setEditOriginal] = useState<Batch | null>(null);
 
   // Snapshot da fórmula vinda da calculadora
   interface CalcSnapshot {
@@ -109,23 +111,43 @@ export default function DiarioPage() {
     if (!formName.trim()) return;
 
     if (editBatchId) {
-      // Edit mode — update existing batch
+      // Edit mode — update existing batch with safe merge
+      const original = editOriginal;
       const patch: Partial<Batch> = {
         name: formName.trim(),
         method: formMethod,
         batchDate: formDate,
         formula: {
+          ...(original?.formula ?? {} as Batch["formula"]),
           totalOilWeight: formOilWeight,
-          alkaliType: "naoh" as const,
+          alkaliType: original?.formula.alkaliType ?? "naoh",
           naohGrams: formNaoh || undefined,
           waterGrams: formWater,
           superfatPercent: formSuperfat,
           oils: formOilList,
-        },
-        process: undefined,
-        yield: undefined,
-        result: formObs.trim() ? { observations: formObs.trim() } as Batch["result"] : undefined,
+        } as Batch["formula"],
       };
+
+      // Merge result safely — only update observations, preserve ph/rating/etc.
+      if (formObs.trim()) {
+        patch.result = {
+          ...(original?.result ?? {}),
+          observations: formObs.trim(),
+        } as Batch["result"];
+      } else if (original?.result) {
+        // Observations cleared but other result fields exist: keep them
+        const { observations: _o, ...rest } = original.result;
+        if (Object.keys(rest).length > 0) {
+          patch.result = rest as Batch["result"];
+        } else {
+          // result only had observations — safe to remove
+          patch.result = undefined;
+        }
+      }
+
+      // Explicitly preserve fields not in form: process, yield, cure, source, status, tags
+      // (the spread in updateBatch already handles this since we don't include them in the patch)
+
       updateBatch(editBatchId, patch);
       resetForm();
       load();
@@ -190,6 +212,8 @@ export default function DiarioPage() {
 
   const handleEdit = (batch: Batch) => {
     setEditBatchId(batch.id);
+    setEditBatchCode(batch.batchCode);
+    setEditOriginal(batch);
     setFormName(batch.name);
     setFormMethod(batch.method);
     setFormDate(batch.batchDate);
@@ -207,6 +231,8 @@ export default function DiarioPage() {
 
   const resetForm = () => {
     setEditBatchId(null);
+    setEditBatchCode(null);
+    setEditOriginal(null);
     setShowForm(false);
     setFormName("");
     setFormMethod("cold_process");
@@ -307,7 +333,7 @@ export default function DiarioPage() {
       {/* New batch form */}
       {showForm && (
         <div className="bg-moon-700/50 backdrop-blur rounded-xl border border-moon-600 p-5 space-y-4">
-          <h2 className="font-semibold text-white">Novo Lote</h2>
+          <h2 className="font-semibold text-white">{editBatchId ? "Editar Lote" : "Novo Lote"}</h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
@@ -332,7 +358,7 @@ export default function DiarioPage() {
             </div>
             <div>
               <label className="block text-xs font-semibold text-moon-300 mb-1">Código</label>
-              <input type="text" value={generateBatchCode(formMethod)} readOnly
+              <input type="text" value={editBatchCode ?? generateBatchCode(formMethod)} readOnly
                 className="w-full bg-moon-900 border border-moon-600 rounded-lg px-3 py-2 text-sm text-moon-400" />
             </div>
           </div>
