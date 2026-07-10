@@ -146,6 +146,29 @@ Transformar a biblioteca de tabela para mentora de formulação:
 
 ---
 
+## 📋 BACKLOG — Ideias e Feedback
+
+Ideias coletadas de conversas, feedback da Ana e pesquisas. Nada aqui está aprovado para implementação — é apenas registro.
+
+| # | Ideia | Fonte | Descrição |
+|---|-------|-------|-----------|
+| B1 | 🫒 Combinações ideais de óleos | Pesquisa | Sugestões de blends baseadas no perfil desejado (dureza, espuma, condicionamento), tipo "se gosta de X, tente Y" |
+| B2 | 🌴 Óleos para clima BA (quente/úmido) | Feedback Ana | Recomendações de óleos com melhor estabilidade em beira-mar, menos propensos a DOS em clima tropical |
+| B3 | 🧪 Matérias-primas além de óleo/água/soda | Pesquisa | Aditivos, extratos, quelantes (EDTA/citrato), conservantes, vitaminas |
+| B4 | 🫘 Preparo de oleatos | Pesquisa | Técnica de maceração de plantas em óleo para CP — calendário sazonal de plantas |
+| B5 | 🎨 Corantes naturais resistentes ao CP | Pesquisa | Cúrcuma, urucum, espirulina, argilas, carvão — comportamento em pH alcalino, estabilidade UV |
+| B6 | 🌿 Essências que aceleram o traço | Pesquisa | Catálogo de comportamento: canela, cravo, menta, eucalipto, canela em casca vs óleo essencial |
+| B7 | 🌸 Aprofundamento em essências | Feedback Ana | Realidade brasileira: fornecedores locais, custo, IFRA para pequeno produtor, substituições |
+| B8 | 📱 InputMode nos campos numéricos | UX | Forçar teclado numérico em celular nos inputs de peso/percentual |
+| B9 | 🔗 Diário — link para receita usada | UX | Mostrar de qual receita o lote veio, com link |
+| B10 | 📊 Gráfico de cura no Diário | UX | Evolução de pH/dureza ao longo do tempo |
+| B11 | 🧪 Testes unitários da calculadora | Engenharia | Testar validateInput, validateFormulaWarnings, calculateSoap |
+| B12 | 🧭 Navbar global | UX | Navegação persistente entre as seções principais |
+| B13 | 🔒 not-found.tsx com tema dark | UX | Página 404 estilizada |
+| B14 | ⚡ Melhorar contraste moon-400 | Acessibilidade | Revisar cores para legibilidade em ambiente externo |
+
+---
+
 ## NÃO FAZER AGORA (escopo congelado)
 
 - ❌ Login/autenticação
