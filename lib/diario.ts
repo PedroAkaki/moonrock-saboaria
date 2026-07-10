@@ -206,7 +206,9 @@ export function updateBatch(id: string, patch: Partial<Batch>): Batch | null {
   const all = loadAll();
   const idx = all.findIndex((b) => b.id === id);
   if (idx === -1) return null;
-  all[idx] = { ...all[idx], ...patch, updatedAt: new Date().toISOString() };
+  // Never allow batchCode mutation through partial update
+  const { batchCode: _bc, ...safePatch } = patch;
+  all[idx] = { ...all[idx], ...safePatch, updatedAt: new Date().toISOString() };
   saveAll(all);
   return all[idx];
 }
