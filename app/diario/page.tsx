@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { Plus, FlaskConical, Trash2, Copy, Download, Upload } from "lucide-react";
+import { Plus, FlaskConical, Trash2, Copy, Download, Upload, Pencil } from "lucide-react";
 import {
   getAllBatches,
   createBatch,
   deleteBatch,
   duplicateBatch,
   updateBatchStatus,
+  updateBatch,
   generateBatchCode,
   Batch,
   BatchStatus,
@@ -66,6 +67,7 @@ export default function DiarioPage() {
   const [formFormulaOpen, setFormFormulaOpen] = useState(false);
   const [formObs, setFormObs] = useState("");
   const [importMessage, setImportMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
+  const [editBatchId, setEditBatchId] = useState<string | null>(null);
 
   // Snapshot da fórmula vinda da calculadora
   interface CalcSnapshot {
@@ -105,6 +107,30 @@ export default function DiarioPage() {
 
   const handleCreate = () => {
     if (!formName.trim()) return;
+
+    if (editBatchId) {
+      // Edit mode — update existing batch
+      const patch: Partial<Batch> = {
+        name: formName.trim(),
+        method: formMethod,
+        batchDate: formDate,
+        formula: {
+          totalOilWeight: formOilWeight,
+          alkaliType: "naoh" as const,
+          naohGrams: formNaoh || undefined,
+          waterGrams: formWater,
+          superfatPercent: formSuperfat,
+          oils: formOilList,
+        },
+        process: undefined,
+        yield: undefined,
+        result: formObs.trim() ? { observations: formObs.trim() } as Batch["result"] : undefined,
+      };
+      updateBatch(editBatchId, patch);
+      resetForm();
+      load();
+      return;
+    }
 
     const input: CreateBatchInput = {
       name: formName.trim(),
@@ -160,6 +186,39 @@ export default function DiarioPage() {
   const handleStatusChange = (id: string, status: BatchStatus) => {
     updateBatchStatus(id, status);
     load();
+  };
+
+  const handleEdit = (batch: Batch) => {
+    setEditBatchId(batch.id);
+    setFormName(batch.name);
+    setFormMethod(batch.method);
+    setFormDate(batch.batchDate);
+    setFormOilWeight(batch.formula.totalOilWeight);
+    setFormNaoh(batch.formula.naohGrams ?? 0);
+    setFormWater(batch.formula.waterGrams);
+    setFormSuperfat(batch.formula.superfatPercent);
+    setFormOilList(batch.formula.oils ?? []);
+    setFormSourceType(batch.source.type === "calculator" ? "calculator" : "free_formula");
+    setFormObs(batch.result?.observations ?? "");
+    setFormFormulaOpen(true);
+    setShowForm(true);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const resetForm = () => {
+    setEditBatchId(null);
+    setShowForm(false);
+    setFormName("");
+    setFormMethod("cold_process");
+    setFormDate(todayStr());
+    setFormOilWeight(500);
+    setFormNaoh(0);
+    setFormWater(0);
+    setFormSuperfat(5);
+    setFormOilList([]);
+    setFormSourceType("free_formula");
+    setFormFormulaOpen(false);
+    setFormObs("");
   };
 
   const handleExport = () => {
@@ -224,7 +283,7 @@ export default function DiarioPage() {
             Importar
           </button>
           <button
-            onClick={() => setShowForm(!showForm)}
+            onClick={() => { setShowForm(!showForm); if (showForm) resetForm(); }}
             className="inline-flex items-center gap-2 bg-white hover:bg-moon-200 text-moon-900 px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors"
           >
             <Plus className="w-4 h-4" />
@@ -333,7 +392,7 @@ export default function DiarioPage() {
 
           <button onClick={handleCreate} disabled={!formName.trim()}
             className="w-full bg-white hover:bg-moon-200 text-moon-900 font-semibold py-2.5 rounded-xl text-sm transition-colors disabled:opacity-50">
-            Salvar Lote
+            {editBatchId ? "Salvar Alterações" : "Salvar Lote"}
           </button>
         </div>
       )}
@@ -442,6 +501,10 @@ export default function DiarioPage() {
                   <button onClick={() => handleDuplicate(batch.id)}
                     className="text-xs px-3 py-1.5 rounded-lg bg-moon-800 text-moon-400 border border-moon-600 hover:bg-moon-700 transition-colors inline-flex items-center gap-1">
                     <Copy className="w-3 h-3" /> Duplicar
+                  </button>
+                  <button onClick={() => handleEdit(batch)}
+                    className="text-xs px-3 py-1.5 rounded-lg bg-moon-800 text-moon-400 border border-moon-600 hover:bg-moon-700 transition-colors inline-flex items-center gap-1">
+                    <Pencil className="w-3 h-3" /> Editar
                   </button>
                   <button onClick={() => handleDelete(batch.id)}
                     className="text-xs px-3 py-1.5 rounded-lg bg-red-900/20 text-red-400 border border-red-800/50 hover:bg-red-900/40 transition-colors inline-flex items-center gap-1">
