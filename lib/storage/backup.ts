@@ -1,3 +1,5 @@
+import { BATCH_STORAGE_KEY, validateBatchArray } from "@/lib/diario";
+
 const BACKUP_VERSION = 1;
 
 export interface BackupData {
@@ -12,15 +14,21 @@ export interface BackupData {
  * Export all user data to a structured JSON string.
  */
 export function exportBackup(): string {
-  const progress = loadRaw("moonrock:progress:v1");
-  const batches = loadRaw("moonrock:diario:batches:v1");
+  const progress = parseProgressForExport(loadRaw("moonrock:progress:v1"));
+  const storedBatches = parseJsonForExport(loadRaw(BATCH_STORAGE_KEY), []);
+  const validation = validateBatchArray(storedBatches);
+
+  if (!validation.success) {
+    const record = validation.index === null ? "coleção" : `registro ${validation.index + 1}`;
+    throw new Error(`Não foi possível exportar: ${record} de lotes inválido (${validation.reason})`);
+  }
 
   const data: BackupData = {
     version: BACKUP_VERSION,
     exportedAt: new Date().toISOString(),
     app: "moonrock-saboaria",
-    progress: parseOrEmpty(progress),
-    batches: parseArrayOrEmpty(batches),
+    progress,
+    batches: validation.data,
   };
 
   return JSON.stringify(data, null, 2);
@@ -37,7 +45,7 @@ export function importBackup(
   try {
     const parsed: unknown = JSON.parse(jsonString);
 
-    if (!parsed || typeof parsed !== "object") {
+    if (!isRecord(parsed)) {
       return { success: false, error: "JSON inválido: não é um objeto." };
     }
 
@@ -51,18 +59,31 @@ export function importBackup(
       return { success: false, error: "Versão do backup inválida ou ausente." };
     }
 
-    // Legacy support: backup with only batches (no progress)
-    const hasProgress = data.progress !== undefined && data.progress !== null;
-    const hasBatches = Array.isArray(data.batches);
+    if (typeof data.exportedAt !== "string") {
+      return { success: false, error: "Data de exportação inválida ou ausente." };
+    }
 
-    if (!hasBatches) {
-      return { success: false, error: "Campo 'batches' inválido ou ausente." };
+    const batchesValidation = validateBatchArray(data.batches);
+    if (!batchesValidation.success) {
+      const record = batchesValidation.index === null
+        ? "coleção de lotes"
+        : `lote ${batchesValidation.index + 1}`;
+      return {
+        success: false,
+        error: `Backup inválido no ${record}: ${batchesValidation.reason}`,
+      };
+    }
+
+    // Legacy support: backup with only batches (no progress). An empty progress
+    // object is also treated as absent because exportBackup uses it when there
+    // is no saved learning progress.
+    const hasProgress = isNonEmptyRecord(data.progress);
+
+    if (data.progress !== undefined && data.progress !== null && !isRecord(data.progress)) {
+      return { success: false, error: "Campo 'progress' inválido." };
     }
 
     if (hasProgress) {
-      if (typeof data.progress !== "object" || Array.isArray(data.progress)) {
-        return { success: false, error: "Campo 'progress' inválido." };
-      }
       const progress = data.progress as Record<string, unknown>;
       if (typeof progress.version !== "number") {
         return { success: false, error: "Progresso inválido: campo 'version' ausente." };
@@ -84,7 +105,7 @@ export function importBackup(
       if (hasProgress) {
         window.localStorage.setItem("moonrock:progress:v1", JSON.stringify(data.progress));
       }
-      window.localStorage.setItem("moonrock:diario:batches:v1", JSON.stringify(data.batches));
+      window.localStorage.setItem(BATCH_STORAGE_KEY, JSON.stringify(batchesValidation.data));
       window.dispatchEvent(new Event("moonrock-progress-updated"));
     }
 
@@ -147,22 +168,30 @@ function loadRaw(key: string): string | null {
   }
 }
 
-function parseOrEmpty(raw: string | null): Record<string, unknown> {
-  if (!raw) return {};
+function parseJsonForExport(raw: string | null, fallback: unknown): unknown {
+  if (!raw) return fallback;
   try {
-    const p = JSON.parse(raw);
-    return typeof p === "object" && p !== null && !Array.isArray(p) ? p : {};
+    return JSON.parse(raw) as unknown;
   } catch {
-    return {};
+    throw new Error("Não foi possível exportar: dados locais contêm JSON inválido.");
   }
 }
 
-function parseArrayOrEmpty(raw: string | null): unknown[] {
-  if (!raw) return [];
-  try {
-    const p = JSON.parse(raw);
-    return Array.isArray(p) ? p : [];
-  } catch {
-    return [];
+function parseProgressForExport(raw: string | null): Record<string, unknown> {
+  const parsed = parseJsonForExport(raw, {});
+  if (!isRecord(parsed)) {
+    throw new Error("Não foi possível exportar: progresso local inválido.");
   }
+  if (Object.keys(parsed).length > 0 && typeof parsed.version !== "number") {
+    throw new Error("Não foi possível exportar: progresso local sem versão.");
+  }
+  return parsed;
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function isNonEmptyRecord(value: unknown): value is Record<string, unknown> {
+  return isRecord(value) && Object.keys(value).length > 0;
 }

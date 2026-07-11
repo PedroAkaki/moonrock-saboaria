@@ -14,9 +14,14 @@ import {
   BatchStatus,
   SoapMethod,
   CreateBatchInput,
+  UpdateBatchInput,
   BatchOil,
 } from "@/lib/diario";
 import { exportBackup, importBackup, downloadJson, readJsonFile } from "@/lib/storage/backup";
+import {
+  clearCalculatorFormulaForDiary,
+  readCalculatorFormulaForDiary,
+} from "@/lib/storage/calculator-diary";
 
 const STATUS_LABELS: Record<string, string> = {
   draft: "Rascunho",
@@ -71,33 +76,19 @@ export default function DiarioPage() {
   const [editBatchCode, setEditBatchCode] = useState<string | null>(null);
   const [editOriginal, setEditOriginal] = useState<Batch | null>(null);
 
-  // Snapshot da fórmula vinda da calculadora
-  interface CalcSnapshot {
-    totalOilWeight: number;
-    naohGrams?: number;
-    waterGrams: number;
-    superfatPercent: number;
-    oils?: BatchOil[];
-  }
-
   // Pre-fill from calculator when available
   // NÃO remover a chave aqui — só após createBatch() com sourceType "calculator"
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    try {
-      const saved = localStorage.getItem("moonrock:calculator:lastFormula:v1");
-      if (saved) {
-        const formula: CalcSnapshot = JSON.parse(saved);
-        setFormOilWeight(formula.totalOilWeight ?? 500);
-        setFormNaoh(formula.naohGrams ?? 0);
-        setFormWater(formula.waterGrams ?? 0);
-        setFormSuperfat(formula.superfatPercent ?? 5);
-        setFormOilList(formula.oils ?? []);
-        setFormSourceType("calculator");
-        setFormFormulaOpen(true);
-        setShowForm(true);
-      }
-    } catch { /* ignore */ }
+    const formula = readCalculatorFormulaForDiary();
+    if (!formula) return;
+    setFormOilWeight(formula.totalOilWeight);
+    setFormNaoh(formula.naohGrams ?? 0);
+    setFormWater(formula.waterGrams);
+    setFormSuperfat(formula.superfatPercent);
+    setFormOilList(formula.oils ?? []);
+    setFormSourceType("calculator");
+    setFormFormulaOpen(true);
+    setShowForm(true);
   }, []);
 
   const load = useCallback(() => setBatches(getAllBatches()), []);
@@ -113,9 +104,8 @@ export default function DiarioPage() {
     if (editBatchId) {
       // Edit mode — update existing batch with safe merge
       const original = editOriginal;
-      const patch: Partial<Batch> = {
+      const patch: UpdateBatchInput = {
         name: formName.trim(),
-        method: formMethod,
         batchDate: formDate,
         formula: {
           ...(original?.formula ?? {} as Batch["formula"]),
@@ -175,7 +165,7 @@ export default function DiarioPage() {
 
     // Só remove a chave da calculadora DEPOIS de criar o lote
     if (formSourceType === "calculator") {
-      localStorage.removeItem("moonrock:calculator:lastFormula:v1");
+      clearCalculatorFormulaForDiary();
     }
 
     load();
@@ -248,9 +238,16 @@ export default function DiarioPage() {
   };
 
   const handleExport = () => {
-    const filename = `moonrock-backup-${new Date().toISOString().slice(0, 10)}.json`;
-    const data = exportBackup();
-    downloadJson(filename, data);
+    try {
+      const filename = `moonrock-backup-${new Date().toISOString().slice(0, 10)}.json`;
+      const data = exportBackup();
+      downloadJson(filename, data);
+    } catch (error) {
+      setImportMessage({
+        type: "error",
+        text: error instanceof Error ? error.message : "Não foi possível exportar o backup.",
+      });
+    }
   };
 
   const handleImport = async () => {
@@ -344,7 +341,7 @@ export default function DiarioPage() {
             </div>
             <div>
               <label className="block text-xs font-semibold text-moon-300 mb-1">Método</label>
-              <select value={formMethod} onChange={(e) => setFormMethod(e.target.value as SoapMethod)}
+              <select value={formMethod} onChange={(e) => setFormMethod(e.target.value as SoapMethod)} disabled={editBatchId !== null}
                 className="w-full bg-moon-800 border border-moon-500 rounded-lg px-3 py-2 text-sm text-white appearance-none">
                 {Object.entries(METHOD_LABELS).map(([k, v]) => (
                   <option key={k} value={k}>{v}</option>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import { saveCalculatorFormulaForDiary } from "@/lib/storage/calculator-diary";
 import {
   CalculatorInput,
   CalculatorResult,
@@ -169,7 +170,7 @@ export default function CalculadoraPage() {
         };
       }),
     };
-    localStorage.setItem("moonrock:calculator:lastFormula:v1", JSON.stringify(formula));
+    saveCalculatorFormulaForDiary(formula);
     router.push("/diario");
   }, [result, oils, router]);
 
