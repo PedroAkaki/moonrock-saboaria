@@ -98,4 +98,3 @@ unknown → validação estrutural → identificação da versão → normaliza�
 - histórico completo de alterações;
 - motor de regras configurável;
 - IA.
-

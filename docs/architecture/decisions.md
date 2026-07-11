@@ -79,4 +79,3 @@
 **Decisão:** Dados permanecem no navegador com backup JSON; nenhum backend será introduzido no Marco 0.
 
 **Consequência:** Autenticação, sincronização e colaboração permanecem adiadas, enquanto contratos versionados preservam uma evolução futura.
-

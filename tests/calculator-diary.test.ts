@@ -62,4 +62,3 @@ describe("contrato Calculadora para Diário", () => {
     expect(storage.getItem(CALCULATOR_DIARY_STORAGE_KEY)).not.toBeNull();
   });
 });
-

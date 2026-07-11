@@ -144,4 +144,3 @@ Campos opcionais atuais: `process`, `yield`, `result`, `tags`, `photoIds` e prop
 - enviar fórmula da Calculadora ao Diário;
 - exportar e reimportar backup pela seleção de arquivo;
 - confirmar mensagens de erro e sucesso da importação.
-

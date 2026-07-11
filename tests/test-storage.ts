@@ -33,4 +33,3 @@ export class MemoryStorage implements Storage {
     this.writes = 0;
   }
 }
-

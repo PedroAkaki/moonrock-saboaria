@@ -71,4 +71,3 @@ export function clearCalculatorFormulaForDiary(): void {
   if (typeof window === "undefined") return;
   window.localStorage.removeItem(CALCULATOR_DIARY_STORAGE_KEY);
 }
-

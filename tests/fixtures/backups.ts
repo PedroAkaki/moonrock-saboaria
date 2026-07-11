@@ -22,4 +22,3 @@ export const invalidBackupFixtures = {
     batches: [structuredClone(currentBatchFixtures[0]), { id: "incompleto" }],
   },
 };
-
