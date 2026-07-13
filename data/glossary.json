@@ -1,47 +1,230 @@
 {
   "description": "Glossário de saboaria artesanal em português brasileiro",
   "terms": [
-    { "term": "traço", "definition": "Ponto em que a mistura de óleos e lixívia emulsiona e engrossa, deixando um rastro na superfície. Pode ser leve (como leite condensado) ou pesado (como pudim).", "en": "Trace" },
-    { "term": "superfat", "definition": "Percentual de óleos que não são saponificados, deixando o sabão mais hidratante. Também chamado de desconto de soda ou sobreengorduramento.", "en": "Superfat" },
-    { "term": "lixívia", "definition": "Solução de soda cáustica (NaOH) ou potassa (KOH) dissolvida em água.", "en": "Lye" },
-    { "term": "soda cáustica", "definition": "Hidróxido de sódio (NaOH), base forte usada na saponificação para produzir sabão em barra.", "en": "Sodium Hydroxide" },
-    { "term": "potassa", "definition": "Hidróxido de potássio (KOH), usado para produzir sabão líquido ou pasta.", "en": "Potassium Hydroxide" },
-    { "term": "saponificação", "definition": "Reação química entre uma base (soda) e um lipídio (óleo) que produz sabão e glicerina.", "en": "Saponification" },
-    { "term": "cura", "definition": "Período de repouso do sabão após a desforma (4-6 semanas) para evaporação da água e finalização da saponificação.", "en": "Cure" },
-    { "term": "gel", "definition": "Fase onde o sabão atinge altas temperaturas dentro da forma e fica translúcido. Resulta em sabões mais duros e cores mais vibrantes.", "en": "Gel Phase" },
-    { "term": "cold process", "definition": "Método de fazer sabão sem aquecimento externo (processo a frio). A reação exotérmica da soda esquenta a massa naturalmente.", "en": "Cold Process" },
-    { "term": "hot process", "definition": "Método com aquecimento externo (panela elétrica, forno) para acelerar a saponificação. Sabão pode ser usado em 1-2 semanas.", "en": "Hot Process" },
-    { "term": "rebatch", "definition": "Processo de ralar e derreter sabão já curado para reformar ou adicionar novos ingredientes.", "en": "Rebatch" },
-    { "term": "swirl", "definition": "Técnica de criar desenhos marmorizados no sabão misturando cores diferentes na massa.", "en": "Swirl" },
-    { "term": "soda ash", "definition": "Camada branca de carbonato de sódio que aparece na superfície do sabão. Inofensivo, pode ser removido com vapor.", "en": "Soda Ash" },
-    { "term": "dos", "definition": "Dreaded Orange Spots — manchas alaranjadas causadas pela oxidação dos óleos insaturados (rancificação). Não tem conserto.", "en": "DOS" },
-    { "term": "ins", "definition": "Iodine-Saponification Number. Número que indica a dureza potencial do sabão. Faixa ideal: 136-170.", "en": "INS Number" },
-    { "term": "índice de iodo", "definition": "Medida de insaturação dos óleos. Quanto maior, mais macio o sabão e maior o risco de oxidação (DOS).", "en": "Iodine Value" },
-    { "term": "ácido graxo", "definition": "Componentes dos óleos que determinam as propriedades do sabão. Ex: láurico (espuma), oleico (hidratação), esteárico (dureza).", "en": "Fatty Acid" },
-    { "term": "mica", "definition": "Pigmento mineral em pó usado para colorir sabão. Resistente à soda e estável no CP.", "en": "Mica" },
-    { "term": "falso traço", "definition": "Quando a mistura engrossa não por emulsão, mas por óleos sólidos (como palma) cristalizando no frio. Se aquecer, volta a ficar líquido.", "en": "False Trace" },
-    { "term": "zap test", "definition": "Teste simples de alcalinidade: molhar o dedo no sabão e tocar a língua. Se houver choque ou ardência, há soda residual.", "en": "Zap Test" },
-    { "term": "melt & pour", "definition": "Técnica que usa base glicerinada já saponificada. Basta derreter, colorir, aromatizar e moldar. Sem manipulação de soda.", "en": "Melt & Pour" },
-    { "term": "glicerina", "definition": "Subproduto natural da saponificação. Hidratante para a pele. Sabões artesanais retêm a glicerina naturalmente.", "en": "Glycerin" },
-    { "term": "sebo", "definition": "Gordura bovina usada na saboaria. Produz sabão duro e espuma cremosa. Não vegano.", "en": "Tallow" },
-    { "term": "banha", "definition": "Gordura suína usada na saboaria tradicional. Dá espuma cremosa e sabão macio. Não vegano.", "en": "Lard" },
-    { "term": "ifra", "definition": "International Fragrance Association. Define limites máximos seguros de uso de fragrâncias e óleos essenciais em cosméticos.", "en": "IFRA" },
-    { "term": "inci", "definition": "International Nomenclature of Cosmetic Ingredients. Nomenclatura padronizada de ingredientes para rótulos de cosméticos.", "en": "INCI" },
-    { "term": "bpfs", "definition": "Boas Práticas de Fabricação. Conjunto de normas que garantem a qualidade e segurança na produção de cosméticos (RDC 48/2013).", "en": "GMP" },
-    { "term": "anvisa", "definition": "Agência Nacional de Vigilância Sanitária. Órgão regulador brasileiro que fiscaliza cosméticos, alimentos e medicamentos.", "en": "ANVISA" },
-    { "term": "syndet", "definition": "Sabonete sintético (sem soda cáustica). pH neutro (5-6), feito com tensoativos como SCI. Amigável para cabelos.", "en": "Syndet" },
-    { "term": "concentração de lixívia", "definition": "Percentual de soda na solução água+soda. Ex: 33% = 33g de NaOH para 67g de água.", "en": "Lye Concentration" },
-    { "term": "water discount", "definition": "Redução proposital da quantidade de água na receita para acelerar a cura e reduzir soda ash.", "en": "Water Discount" },
-    { "term": "soleseife", "definition": "Sabonete com alta concentração de sal (50-100% do peso dos óleos). Barra muito dura, espuma cremosa, efeito detox.", "en": "Brine Soap" },
-    { "term": "castela", "definition": "Sabonete 100% azeite de oliva. Muito suave, espuma baixa, cura muito longa (6-12 meses).", "en": "Castile" },
-    { "term": "acing", "definition": "Quando a essência ou fragrância faz o sabão engrossar abruptamente, formando grumos (como queijo cottage).", "en": "Ricing" },
-    { "term": "vanilina", "definition": "Composto presente em fragrâncias doces (baunilha, chocolate, caramelo) que escurece o sabão com o tempo.", "en": "Vanillin" },
-    { "term": "gel phase", "definition": "Fase onde o sabão atinge altas temperaturas (60-80°C) dentro da forma, tornando-se translúcido e mais duro após o resfriamento.", "en": "Gel Phase" },
-    { "term": "glicerol", "definition": "Álcool de cadeia curta, subproduto natural da saponificação. Também chamado de glicerina. Hidrata a pele e é higroscópico.", "en": "Glycerol" },
-    { "term": "higroscópico", "definition": "Propriedade de absorver umidade do ar. A glicerina é higroscópica, por isso sabonetes de base precisam ser embalados em filme PVC.", "en": "Hygroscopic" },
-    { "term": "oxidação lipídica", "definition": "Processo químico que degrada os óleos por exposição ao oxigênio, gerando compostos voláteis e ranço. Causa principal do DOS.", "en": "Lipid Oxidation" },
-    { "term": "sap", "definition": "Índice de Saponificação. Quantidade de NaOH (ou KOH) necessária para saponificar completamente 1g de óleo. Valor médio, varia por lote e fornecedor.", "en": "Saponification Value" },
-    { "term": "soda livre", "definition": "NaOH residual não consumido na reação de saponificação. Causa queimaduras na pele, pH elevado e ardência no teste de zap. Deve ser zero em sabão pronto.", "en": "Free Lye" },
-    { "term": "triglicerídeos", "definition": "Moléculas compostas por glicerol + 3 ácidos graxos. São o principal componente dos óleos e gorduras vegetais/animais. A saponificação hidrolisa os triglicerídeos em sabão + glicerol.", "en": "Triglycerides" }
+    {
+      "term": "ácido graxo",
+      "definition": "Componentes dos óleos que determinam as propriedades do sabão. Ex: láurico (espuma), oleico (hidratação), esteárico (dureza).",
+      "en": "Fatty Acid"
+    },
+    {
+      "term": "acing",
+      "definition": "Quando a essência ou fragrância faz o sabão engrossar abruptamente, formando grumos (como queijo cottage).",
+      "en": "Ricing"
+    },
+    {
+      "term": "anvisa",
+      "definition": "Agência Nacional de Vigilância Sanitária. Órgão regulador brasileiro que fiscaliza cosméticos, alimentos e medicamentos.",
+      "en": "ANVISA"
+    },
+    {
+      "term": "banha",
+      "definition": "Gordura suína usada na saboaria tradicional. Dá espuma cremosa e sabão macio. Não vegano.",
+      "en": "Lard"
+    },
+    {
+      "term": "bpfs",
+      "definition": "Boas Práticas de Fabricação. Conjunto de normas que garantem a qualidade e segurança na produção de cosméticos (RDC 48/2013).",
+      "en": "GMP"
+    },
+    {
+      "term": "castela",
+      "definition": "Sabonete 100% azeite de oliva. Muito suave, espuma baixa, cura muito longa (6-12 meses).",
+      "en": "Castile"
+    },
+    {
+      "term": "cold process",
+      "definition": "Método de fazer sabão sem aquecimento externo (processo a frio). A reação exotérmica da soda esquenta a massa naturalmente.",
+      "en": "Cold Process"
+    },
+    {
+      "term": "concentração de lixívia",
+      "definition": "Percentual de soda na solução água+soda. Ex: 33% = 33g de NaOH para 67g de água.",
+      "en": "Lye Concentration"
+    },
+    {
+      "term": "cura",
+      "definition": "Período de repouso do sabão após a desforma (4-6 semanas) para evaporação da água e finalização da saponificação.",
+      "en": "Cure"
+    },
+    {
+      "term": "dos",
+      "definition": "Dreaded Orange Spots — manchas alaranjadas causadas pela oxidação dos óleos insaturados (rancificação). Não tem conserto.",
+      "en": "DOS"
+    },
+    {
+      "term": "falso traço",
+      "definition": "Quando a mistura engrossa não por emulsão, mas por óleos sólidos (como palma) cristalizando no frio. Se aquecer, volta a ficar líquido.",
+      "en": "False Trace"
+    },
+    {
+      "term": "gel",
+      "definition": "Fase onde o sabão atinge altas temperaturas dentro da forma e fica translúcido. Resulta em sabões mais duros e cores mais vibrantes.",
+      "en": "Gel Phase"
+    },
+    {
+      "term": "gel parcial",
+      "definition": "Defeito em que apenas o centro da barra passa pela gel phase, deixando um anel ou mancha escura no meio e bordas mais claras. Causado por uma decisão térmica indefinida. Corrige-se de forma binária: forçar gel total (isolamento/temperatura) ou prevenir o gel totalmente (geladeira).",
+      "en": "Partial Gel"
+    },
+    {
+      "term": "gel phase",
+      "definition": "Fase onde o sabão atinge altas temperaturas (60-80°C) dentro da forma, tornando-se translúcido e mais duro após o resfriamento.",
+      "en": "Gel Phase"
+    },
+    {
+      "term": "glicerina",
+      "definition": "Subproduto natural da saponificação. Hidratante para a pele. Sabões artesanais retêm a glicerina naturalmente.",
+      "en": "Glycerin"
+    },
+    {
+      "term": "glicerol",
+      "definition": "Álcool de cadeia curta, subproduto natural da saponificação. Também chamado de glicerina. Hidrata a pele e é higroscópico.",
+      "en": "Glycerol"
+    },
+    {
+      "term": "higroscópico",
+      "definition": "Propriedade de absorver umidade do ar. A glicerina é higroscópica, por isso sabonetes de base precisam ser embalados em filme PVC.",
+      "en": "Hygroscopic"
+    },
+    {
+      "term": "hot process",
+      "definition": "Método com aquecimento externo (panela elétrica, forno) para acelerar a saponificação. Sabão pode ser usado em 1-2 semanas.",
+      "en": "Hot Process"
+    },
+    {
+      "term": "ifra",
+      "definition": "International Fragrance Association. Define limites máximos seguros de uso de fragrâncias e óleos essenciais em cosméticos.",
+      "en": "IFRA"
+    },
+    {
+      "term": "inci",
+      "definition": "International Nomenclature of Cosmetic Ingredients. Nomenclatura padronizada de ingredientes para rótulos de cosméticos.",
+      "en": "INCI"
+    },
+    {
+      "term": "índice de iodo",
+      "definition": "Medida de insaturação dos óleos. Quanto maior, mais macio o sabão e maior o risco de oxidação (DOS).",
+      "en": "Iodine Value"
+    },
+    {
+      "term": "ins",
+      "definition": "Iodine-Saponification Number. Número que indica a dureza potencial do sabão. Faixa ideal: 136-170.",
+      "en": "INS Number"
+    },
+    {
+      "term": "lixívia",
+      "definition": "Solução de soda cáustica (NaOH) ou potassa (KOH) dissolvida em água.",
+      "en": "Lye"
+    },
+    {
+      "term": "melt & pour",
+      "definition": "Técnica que usa base glicerinada já saponificada. Basta derreter, colorir, aromatizar e moldar. Sem manipulação de soda.",
+      "en": "Melt & Pour"
+    },
+    {
+      "term": "mica",
+      "definition": "Pigmento mineral em pó usado para colorir sabão. Resistente à soda e estável no CP.",
+      "en": "Mica"
+    },
+    {
+      "term": "oxidação lipídica",
+      "definition": "Processo químico que degrada os óleos por exposição ao oxigênio, gerando compostos voláteis e ranço. Causa principal do DOS.",
+      "en": "Lipid Oxidation"
+    },
+    {
+      "term": "potassa",
+      "definition": "Hidróxido de potássio (KOH), usado para produzir sabão líquido ou pasta.",
+      "en": "Potassium Hydroxide"
+    },
+    {
+      "term": "rebatch",
+      "definition": "Processo de ralar e derreter sabão já curado para reformar ou adicionar novos ingredientes.",
+      "en": "Rebatch"
+    },
+    {
+      "term": "ricing",
+      "definition": "Separação localizada em que componentes de uma fragrância cristalizam em grumos parecidos com grãos de arroz cozido, suspensos numa massa ainda fluida. Diferente do seize (espessamento global). Muitas vezes reincorpora com pulsos curtos de mixer; se persistir, conduz-se o lote como hot process forçado.",
+      "en": "Ricing"
+    },
+    {
+      "term": "rios de glicerina",
+      "definition": "Veios ou fissuras translúcidas que aparecem ao redor de partículas de pigmento (micas, dióxido de titânio) no cold process. Causados por excesso de água na formulação combinado com gel phase muito quente, que redistribui água e glicerol em torno dos pigmentos. Defeito estético, não de segurança. Previne-se com menos água, boa dispersão do pigmento e controle da temperatura do gel.",
+      "en": "Glycerin Rivers"
+    },
+    {
+      "term": "sap",
+      "definition": "Índice de Saponificação. Quantidade de NaOH (ou KOH) necessária para saponificar completamente 1g de óleo. Valor médio, varia por lote e fornecedor.",
+      "en": "Saponification Value"
+    },
+    {
+      "term": "saponificação",
+      "definition": "Reação química entre uma base (soda) e um lipídio (óleo) que produz sabão e glicerina.",
+      "en": "Saponification"
+    },
+    {
+      "term": "sebo",
+      "definition": "Gordura bovina usada na saboaria. Produz sabão duro e espuma cremosa. Não vegano.",
+      "en": "Tallow"
+    },
+    {
+      "term": "soda ash",
+      "definition": "Camada branca de carbonato de sódio que aparece na superfície do sabão. Inofensivo, pode ser removido com vapor.",
+      "en": "Soda Ash"
+    },
+    {
+      "term": "soda cáustica",
+      "definition": "Hidróxido de sódio (NaOH), base forte usada na saponificação para produzir sabão em barra.",
+      "en": "Sodium Hydroxide"
+    },
+    {
+      "term": "soda livre",
+      "definition": "NaOH residual não consumido na reação de saponificação. Causa queimaduras na pele, pH elevado e ardência no teste de zap. Deve ser zero em sabão pronto.",
+      "en": "Free Lye"
+    },
+    {
+      "term": "soleseife",
+      "definition": "Sabonete com alta concentração de sal (50-100% do peso dos óleos). Barra muito dura, espuma cremosa, efeito detox.",
+      "en": "Brine Soap"
+    },
+    {
+      "term": "superfat",
+      "definition": "Percentual de óleos que não são saponificados, deixando o sabão mais hidratante. Também chamado de desconto de soda ou sobreengorduramento.",
+      "en": "Superfat"
+    },
+    {
+      "term": "swirl",
+      "definition": "Técnica de criar desenhos marmorizados no sabão misturando cores diferentes na massa.",
+      "en": "Swirl"
+    },
+    {
+      "term": "syndet",
+      "definition": "Sabonete sintético (sem soda cáustica). pH neutro (5-6), feito com tensoativos como SCI. Amigável para cabelos.",
+      "en": "Syndet"
+    },
+    {
+      "term": "traço",
+      "definition": "Ponto em que a mistura de óleos e lixívia emulsiona e engrossa, deixando um rastro na superfície. Pode ser leve (como leite condensado) ou pesado (como pudim).",
+      "en": "Trace"
+    },
+    {
+      "term": "triglicerídeos",
+      "definition": "Moléculas compostas por glicerol + 3 ácidos graxos. São o principal componente dos óleos e gorduras vegetais/animais. A saponificação hidrolisa os triglicerídeos em sabão + glicerol.",
+      "en": "Triglycerides"
+    },
+    {
+      "term": "vanilina",
+      "definition": "Composto presente em fragrâncias doces (baunilha, chocolate, caramelo) que escurece o sabão com o tempo.",
+      "en": "Vanillin"
+    },
+    {
+      "term": "water discount",
+      "definition": "Redução proposital da quantidade de água na receita para acelerar a cura e reduzir soda ash.",
+      "en": "Water Discount"
+    },
+    {
+      "term": "zap test",
+      "definition": "Teste simples de alcalinidade: molhar o dedo no sabão e tocar a língua. Se houver choque ou ardência, há soda residual.",
+      "en": "Zap Test"
+    }
   ]
 }

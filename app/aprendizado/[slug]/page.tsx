@@ -48,6 +48,14 @@ const TRACE_LABELS: Record<string, { label: string; color: string }> = {
   falso_trace: { label: "Falso Trace", color: "border-red-600 bg-red-900/15" },
   aceleracao: { label: "Aceleração", color: "border-amber-500 bg-amber-900/20" },
   separacao: { label: "Separação de Fases", color: "border-orange-600 bg-orange-900/15" },
+  ponto_swirl: { label: "Ponto de Swirl", color: "border-green-600 bg-green-900/15" },
+  ponto_camadas: { label: "Ponto de Camadas", color: "border-amber-600 bg-amber-900/15" },
+  seize: { label: "Seize (Endurecimento Súbito)", color: "border-red-600 bg-red-900/15" },
+  ricing: { label: "Ricing (Grãos)", color: "border-orange-600 bg-orange-900/15" },
+  rios_glicerina: { label: "Rios de Glicerina", color: "border-sky-600 bg-sky-900/15" },
+  gel_parcial: { label: "Gel Parcial", color: "border-purple-600 bg-purple-900/15" },
+  soda_ash: { label: "Soda Ash", color: "border-slate-500 bg-slate-800/40" },
+  overheating: { label: "Superaquecimento", color: "border-red-600 bg-red-900/15" },
 };
 
 const NAV_ITEMS = [

@@ -4,6 +4,20 @@ Todas as versões notáveis do MoonRock Saboaria.
 
 ---
 
+## v33 — Módulo 6: Cold Process Avançado (13/07/2026)
+
+**Arquivos:** `data/learning-modules.json`, `data/glossary.json`, `components/ModuleOrbitMap.tsx`, `app/aprendizado/[slug]/page.tsx`, `public/sw.js`
+
+- Conteúdo completo do módulo **Cold Process Avançado (Design, Swirls e Cores)** — de placeholder "em breve" para `available`, no mesmo padrão dos módulos 1-4
+- 6 fundamentos químicos: reologia não-newtoniana da massa, tempo de trabalho, aceleração/seize, ricing, descoloração por vanilina e comportamento de cores em meio alcalino
+- 8 studyCards, 6 questões de quiz, revisão rápida, checklist pré-bancada, exercício prático (gel vs sem gel)
+- Novo diagnóstico visual: ponto de swirl, ponto de camadas, seize, ricing, rios de glicerina, gel parcial, soda ash e superaquecimento — com labels/cores em `TRACE_LABELS`
+- Órbita dedicada do módulo (`ModuleOrbitMap`): Reologia, Ponto de Traço, Cores, Fragrância, Gel, Defeitos
+- 3 novos termos de glossário: rios de glicerina, gel parcial, ricing (total: 45)
+- PWA cache bump v32 → v33
+
+---
+
 ## v31.3 — Learning Orbit Refactor (01/07/2026)
 
 **Arquivos:** `components/LearningOrbit.tsx` (novo), `components/MainLearningOrbit.tsx` (novo), `components/ModuleOrbitMap.tsx` (refatorado), `app/aprendizado/page.tsx`

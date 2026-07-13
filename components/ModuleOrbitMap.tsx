@@ -76,6 +76,18 @@ const MODULE_NODE_LABELS: Record<string, Omit<OrbitNode, "status">[]> = {
     { id: "quiz", label: "Quiz", icon: <HelpCircle className="h-5 w-5" />, description: "Fixar os fundamentos do Cold Process." },
     { id: "checklist", label: "Checklist", icon: <ClipboardCheck className="h-5 w-5" />, description: "Critérios para concluir o módulo." },
   ],
+  "cold-process-avancado": [
+    { id: "reologia", label: "Reologia", icon: <Droplets className="h-5 w-5" />, description: "Viscosidade da massa define o design." },
+    { id: "trace-alvo", label: "Ponto de Traço", icon: <Circle className="h-5 w-5" />, description: "Fino para swirl, médio para camadas." },
+    { id: "cores", label: "Cores", icon: <FlaskConical className="h-5 w-5" />, description: "Pigmentos estáveis em meio alcalino." },
+    { id: "fragrancia", label: "Fragrância", icon: <Beaker className="h-5 w-5" />, description: "Aceleração, ricing e vanilina." },
+    { id: "gel", label: "Gel", icon: <Flame className="h-5 w-5" />, description: "Forçar gel total ou prevenir." },
+    { id: "defeitos", label: "Defeitos", icon: <Thermometer className="h-5 w-5" />, description: "Rios de glicerina, gel parcial, soda ash." },
+    { id: "seguranca", label: "Segurança", icon: <ShieldCheck className="h-5 w-5" />, description: "EPI, poeira de pigmentos, superaquecimento." },
+    { id: "receita", label: "Receita", icon: <BookOpen className="h-5 w-5" />, description: "Executar um lote com design intencional." },
+    { id: "quiz", label: "Quiz", icon: <HelpCircle className="h-5 w-5" />, description: "Fixar reologia, cores e defeitos." },
+    { id: "checklist", label: "Checklist", icon: <ClipboardCheck className="h-5 w-5" />, description: "Critérios para concluir o módulo." },
+  ],
 };
 
 const FALLBACK_NODES: Omit<OrbitNode, "status">[] = [
