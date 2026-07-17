@@ -1,4 +1,4 @@
-const CACHE_VERSION = "v33.0.0";
+const CACHE_VERSION = "v34.0.0";
 const CACHE_NAME = `moonrock-${CACHE_VERSION}`;
 
 const PRECACHE_URLS = [

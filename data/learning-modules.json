@@ -359,7 +359,8 @@
       "A agitação mecânica (mixer de imersão) não afeta a constante de velocidade, mas aumenta drasticamente a área de contato entre as fases (óleo e solução alcalina), reduzindo o tempo necessário para a emulsão e acelerando a reação global. O 'trace' não é um ponto químico definido, mas uma transição reológica: a viscosidade aumenta porque os primeiros cristais de sabão formam uma rede que aprisiona a fase dispersa.",
       "A temperatura de mistura ideal (35-45°C) equilibra dois fatores: abaixo de 35°C, óleos sólidos (palma, coco) podem cristalizar parcialmente, causando falso traço; acima de 50°C, a reação é tão rápida que o trace pode passar do ponto em segundos, além de aumentar a evaporação de água e a volatilização de fragrâncias.",
       "O ponto de Krafft é a temperatura abaixo da qual um sabão (sal de ácido graxo) não forma micelas em solução, permanecendo cristalizado. Sabões com cadeias mais longas (C18) têm ponto de Krafft mais alto que cadeias curtas (C12). Isso significa que um sabão rico em ácido esteárico (sebo, palma) dissolve mais lentamente em água fria, enquanto sabões com coco (C12) dissolvem rapidamente. Na prática, barras com alto teor de coco produzem espuma imediata, mas podem ressecar a pele; barras com alto teor de oleico (azeite) dissolvem melhor em água morna e são mais suaves.",
-      "A cura (4-6 semanas) envolve três processos simultâneos: (1) evaporação de água livre, que reduz a plasticidade e aumenta a dureza; (2) transformação cristalina – os sabões passam de uma fase metaestável (cristais α ou β') para a fase estável (cristais β) com empacotamento mais denso, liberando calor (cristalização exotérmica); (3) conclusão da saponificação residual (menos de 5% da reação total), que consome os últimos vestígios de álcali. A dureza final não é atingida apenas pela perda de água; a organização cristalina é igualmente determinante."
+      "A cura (4-6 semanas) envolve três processos simultâneos: (1) evaporação de água livre, que reduz a plasticidade e aumenta a dureza; (2) transformação cristalina – os sabões passam de uma fase metaestável (cristais α ou β') para a fase estável (cristais β) com empacotamento mais denso, liberando calor (cristalização exotérmica); (3) conclusão da saponificação residual (menos de 5% da reação total), que consome os últimos vestígios de álcali. A dureza final não é atingida apenas pela perda de água; a organização cristalina é igualmente determinante.",
+      "Polimorfismo cristalino: os sais de ácido graxo que compõem o sabão são substâncias polimórficas — cristalizam em mais de uma estrutura. A cristalografia clássica do sabão (Ferguson, Rosevear & Stillman, 1943; Buerger e col., 1945) identificou várias formas sólidas; para a saboaria importam as fases α, β′ e β. Formas metaestáveis (α, β′), favorecidas por resfriamento rápido, convertem-se lentamente para a fase β — mais densa, estável e menos solúvel — à medida que a água evapora durante a cura. É essa transição de fase, e não apenas a perda de água, que confere dureza, opacidade e maior durabilidade à barra curada. É a mesma física de polimorfismo que rege a cristalização de gorduras (por exemplo, a temperagem do chocolate)."
     ],
     "materials": [
       "Óleos vegetais (azeite, coco, palma, etc.) pesados com precisão",
@@ -420,7 +421,35 @@
       "Superfat"
     ],
     "references": [
-      "Scientific Soapmaking (Kevin Dunn) — cinética e fases do sabão."
+      {
+        "title": "Scientific Soapmaking: The Chemistry of the Cold Process",
+        "source": "Kevin M. Dunn (Clavicula Press, 2010) — ISBN 978-1-935652-09-0",
+        "url": "https://books.google.com/books/about/Scientific_Soapmaking.html?id=DL0d6AoATfwC",
+        "note": "referência científica canônica do cold process"
+      },
+      {
+        "title": "Solid Soap Phases",
+        "source": "Ferguson, Rosevear & Stillman — Ind. Eng. Chem. 35(9):1005–1012 (1943)",
+        "url": "https://pubs.acs.org/doi/10.1021/ie50405a015",
+        "note": "polimorfismo cristalino do sabão"
+      },
+      {
+        "title": "The Crystalline Phases of Soap",
+        "source": "Buerger, Smith, Ryer & Spike — PNAS 31(8):226–233 (1945)",
+        "url": "https://www.pnas.org/doi/pdf/10.1073/pnas.31.8.226"
+      },
+      {
+        "title": "Soap Qualities (dureza, limpeza, condicionamento, INS…)",
+        "source": "SoapCalc",
+        "url": "https://soapcalc.net/soapqualities",
+        "note": "base dos valores heurísticos de qualidade usados no app"
+      },
+      {
+        "title": "Iodine Number and INS",
+        "source": "Susan Barclay-Nichols — Soapy Stuff / Classic Bells",
+        "url": "https://classicbells.com/soap/iodineINS.asp",
+        "note": "limitações do INS como métrica"
+      }
     ],
     "studyCards": [
       {
@@ -478,6 +507,13 @@
         "whyItMatters": "Menos água (ex: 1,5:1) acelera o traço, reduz o encolhimento e encurta a cura, mas pode dificultar a dissolução completa da soda e aumentar o risco de soda ash. Mais água (ex: 3:1) desacelera o traço, dá mais tempo para técnicas de design, mas prolonga a cura e aumenta o encolhimento.",
         "commonMistake": "Achar que a relação água:soda é a mesma que water:lye ratio usada em calculadoras internacionais. É a mesma grandeza. Confundir com 'água como percentual dos óleos' — que é outro método de cálculo, não recomendado por ser menos preciso.",
         "practicalSignal": "Se o traço chega em menos de 1 minuto e a massa está muito quente (> 55°C), a concentração pode estar muito alta (água insuficiente). Se o traço demora mais de 20 minutos mesmo com temperatura adequada, a concentração pode estar baixa demais."
+      },
+      {
+        "title": "Polimorfismo Cristalino (α, β′, β)",
+        "definition": "O sabão é polimórfico: cristaliza em mais de uma estrutura. As fases metaestáveis (α, β′) convertem-se para a fase β, mais densa e estável, ao longo da cura.",
+        "whyItMatters": "Explica por que a barra continua endurecendo e mudando de textura mesmo depois de já ter perdido a maior parte da água — a rede cristalina ainda está se reorganizando.",
+        "commonMistake": "Atribuir toda a dureza apenas à evaporação. A transição de fase cristalina é tão determinante quanto a perda de água.",
+        "practicalSignal": "Com a mesma receita, uma barra resfriada rápido (geladeira) e uma que passou por gel podem ter texturas e opacidades diferentes — reflexo das fases cristalinas formadas."
       }
     ],
     "trace_diagnosis": {
@@ -879,9 +915,9 @@
     ],
     "common_errors": [
       "Traço passado antes do design: mixer demais. A massa fica de pudim e o swirl não se move. Solução: parar o mixer no traço muito leve e engrossar mexendo à mão.",
-      "Rios de glicerina: fissuras translúcidas ao redor de micas/dióxido de titânio, causadas por excesso de água + gel muito quente. Solução: reduzir água, dispersar bem o pigmento e controlar a temperatura do gel.",
+      "Rios de glicerina: veios translúcidos ao redor de micas/dióxido de titânio, causados por excesso de água + gel muito quente (o pigmento apenas evidencia). Solução: water discount de ~10% ou mais, dispersar o pigmento em óleo, sopar mais frio (≈32-43°C) e controlar/prevenir o gel.",
       "Gel parcial: anel escuro no centro por gel incompleto. Solução: forçar gel total (isolar mais) ou prevenir totalmente (geladeira).",
-      "Soda ash: véu branco (carbonato de sódio) do NaOH livre reagindo com CO₂. Solução: borrifar álcool, cobrir a superfície, usar menos água.",
+      "Soda ash: véu branco (carbonato de sódio) do NaOH livre reagindo com o CO₂ do ar. Solução: borrifar álcool 90-99% logo após moldar, cobrir a superfície, sopar mais quente, usar water discount e água destilada (água dura adiciona carbonatos).",
       "Fragrância aceleradora não testada: seize/ricing arruínam o design. Solução: testar fragrâncias novas em lote pequeno antes de usá-las em design elaborado."
     ],
     "troubleshooting": "Se a massa acelerar (seize) durante o design, pare de mexer, despeje imediatamente no molde e aceite um design simples — insistir só piora. Se aparecer ricing (grumos), tente reincorporar com pulsos curtos de mixer; se não recuperar, conduza como hot process forçado (forno ~80°C) para completar a reação — a barra perde o design fino mas fica segura e utilizável. Rios de glicerina, gel parcial e soda ash são defeitos estéticos, não de segurança: a barra é usável; ajuste água, temperatura e acabamento no próximo lote.",
@@ -905,8 +941,50 @@
       "ricing"
     ],
     "references": [
-      "Scientific Soapmaking (Kevin Dunn) — reologia da massa, gel phase e química de cores.",
-      "The Art of Soapmaking — técnicas de swirl e design (referência prática)."
+      {
+        "title": "Scientific Soapmaking: The Chemistry of the Cold Process",
+        "source": "Kevin M. Dunn (Clavicula Press, 2010)",
+        "url": "https://books.google.com/books/about/Scientific_Soapmaking.html?id=DL0d6AoATfwC",
+        "note": "reologia da massa, gel phase e química de cores"
+      },
+      {
+        "title": "Glycerine Rivers: Secret Revealed",
+        "source": "Clara Lindberg — Auntie Clara's",
+        "url": "https://auntieclaras.com/2014/05/glycerine-rivers-secret-revealed/",
+        "note": "causa e prevenção dos rios de glicerina"
+      },
+      {
+        "title": "Explaining and Preventing Glycerin Rivers",
+        "source": "Bramble Berry / Soap Queen",
+        "url": "https://www.brambleberry.com/cold-process/glycerin-rivers.html"
+      },
+      {
+        "title": "Explaining and Preventing Soda Ash",
+        "source": "Bramble Berry / Soap Queen",
+        "url": "https://www.brambleberry.com/cold-process/explaining-and-preventing-soda-ash.html"
+      },
+      {
+        "title": "How to Get Rid of Soda Ash",
+        "source": "Kenna Cote — Modern Soapmaking",
+        "url": "https://www.modernsoapmaking.com/blog/shining-up-cold-process-soap-how-to-get-rid-of-ash-on-soap"
+      },
+      {
+        "title": "How to Work with Vanilla Discoloration",
+        "source": "Bramble Berry",
+        "url": "https://www.brambleberry.com/soap/how-to-work-with-vanilla-discoloration.html",
+        "note": "descoloração por vanilina"
+      },
+      {
+        "title": "Understanding the Vanillin Villain",
+        "source": "Wholesale Supplies Plus",
+        "url": "https://www.wholesalesuppliesplus.com/handmade101/learn-to-make-articles/understanding-the-vanillin-villain.aspx"
+      },
+      {
+        "title": "Natural Colorants for Soap: Spirulina, Turmeric, Charcoal and Stability",
+        "source": "7VIRIDES",
+        "url": "https://www.7virides.com/en/soap/soap-making-techniques/natural-colorants-soap/",
+        "note": "estabilidade de corantes naturais em CP"
+      }
     ],
     "studyCards": [
       {
@@ -939,10 +1017,10 @@
       },
       {
         "title": "Vanilina e Descoloração",
-        "definition": "A vanilina (fenol + aldeído) oxida em meio alcalino e com O₂, formando compostos escuros. A barra amarela e depois amarronza ao longo de semanas.",
+        "definition": "A vanilina (fenol + aldeído) oxida em meio alcalino e com O₂, formando compostos escuros. A descoloração aparece de horas a semanas, geralmente do exterior para o centro, até a barra ficar uniformemente marrom.",
         "whyItMatters": "É irreversível e proporcional ao teor de vanilina da fragrância. Você projeta a cor final contando com o escurecimento.",
         "commonMistake": "Fazer swirl branco-e-preto com fragrância rica em vanilina e esperar que o branco permaneça branco.",
-        "practicalSignal": "Fragrâncias 'baunilha', 'doce', 'gourmand' quase sempre escurecem. Estabilizadores só retardam, não impedem."
+        "practicalSignal": "Fragrâncias 'baunilha', 'doce', 'gourmand' quase sempre escurecem, proporcionalmente ao teor de vanilina. Estabilizadores de vanilina só retardam — a barra acaba escurecendo. Planeje a cor final contando com isso."
       },
       {
         "title": "Cores em Meio Alcalino",
@@ -953,10 +1031,10 @@
       },
       {
         "title": "Rios de Glicerina (Glycerin Rivers)",
-        "definition": "Fissuras/veios translúcidos ao redor de partículas de pigmento (micas, dióxido de titânio). Surgem de excesso de água + gel phase muito quente, que redistribui água/glicerol em torno dos pigmentos.",
-        "whyItMatters": "É defeito estético, não de segurança, mas arruína cores sólidas e nítidas.",
-        "commonMistake": "Aumentar a água 'para ter mais tempo' e depois isolar forte para gel — combinação clássica que causa rios.",
-        "practicalSignal": "Veios translúcidos aparecem no corte. Prevenção: menos água, dispersar bem o pigmento, controlar a temperatura do gel."
+        "definition": "Veios translúcidos que se formam entre a massa e as partículas de pigmento (micas, dióxido de titânio) quando a gel phase esquenta demais e há água em excesso. O pigmento NÃO causa os rios: ele se concentra nas fronteiras cristalinas e torna o fenômeno visível.",
+        "whyItMatters": "É defeito estético, não de segurança, mas arruína cores sólidas. Entender que a causa é água + calor (e não o pigmento) leva à correção certa.",
+        "commonMistake": "Culpar o dióxido de titânio e trocar de pigmento — sem reduzir a água nem controlar o gel, os rios voltam.",
+        "practicalSignal": "Veios no corte ao redor das cores. Prevenção: water discount de ~10% ou mais, dispersar o pigmento em óleo (não em água), sopar mais frio (≈32-43°C) e controlar ou prevenir o gel."
       },
       {
         "title": "Gel Parcial e Soda Ash",
@@ -964,6 +1042,13 @@
         "whyItMatters": "Dois defeitos estéticos com causas físicas claras e correção simples — controle térmico e acabamento.",
         "commonMistake": "Deixar o gel 'no meio do caminho' (nem quente nem frio) e não borrifar álcool na superfície.",
         "practicalSignal": "Anel escuro = force gel total OU previna totalmente (geladeira). Véu branco = borrife álcool, cubra, use menos água."
+      },
+      {
+        "title": "Colorantes Naturais: Comportamento Real",
+        "definition": "No pH alcalino do sabão, corantes naturais têm estabilidades bem diferentes: índigo é o azul mais confiável; urucum/bixina dá laranja estável; cúrcuma dá amarelo-alaranjado que desbota; espirulina dá verde que oxida para oliva em ~6-8 semanas; beterraba vira marrom (não rosa).",
+        "whyItMatters": "Escolher pela estabilidade real evita frustração: a cor da barra recém-cortada raramente é a cor final após a cura.",
+        "commonMistake": "Esperar rosa da beterraba ou verde vivo permanente da espirulina — ambos mudam no álcali e com o tempo.",
+        "practicalSignal": "Para prolongar a espirulina: adicionar em traço tardio, guardar no escuro e embrulhar. Teste sempre um pouco de massa antes de colorir o lote inteiro."
       }
     ],
     "trace_diagnosis": {

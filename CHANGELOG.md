@@ -4,6 +4,18 @@ Todas as versões notáveis do MoonRock Saboaria.
 
 ---
 
+## v34 — Cold Process: profundidade + referências (13/07/2026)
+
+**Arquivos:** `data/learning-modules.json`, `app/aprendizado/[slug]/page.tsx`, `public/sw.js`
+
+- Seção **📚 Referências** dedicada nas páginas de módulo, com citações clicáveis (título + fonte + nota). Schema de `references` passa a aceitar objetos `{ title, source, url, note }` além de strings (retrocompatível)
+- **CP Básico** aprofundado: novo fundamento e studyCard sobre **polimorfismo cristalino (α, β′, β)** e a transição de fase na cura, com base na cristalografia clássica do sabão (Ferguson 1943; Buerger 1945)
+- **CP Avançado** aprofundado com pesquisa: rios de glicerina (o pigmento evidencia, não causa; water discount ~10%, sopar a 32-43°C), soda ash (álcool 90-99%, água destilada, gel), vanilina (mecanismo e progressão exterior→centro) e novo studyCard **Colorantes Naturais: Comportamento Real** (índigo estável, espirulina → oliva em 6-8 semanas, beterraba → marrom)
+- Referências reais adicionadas: Kevin Dunn (*Scientific Soapmaking*), artigos de cristalografia do sabão (Ind. Eng. Chem. 1943; PNAS 1945), Auntie Clara's, Bramble Berry, Modern Soapmaking, Classic Bells (Soapy Stuff), SoapCalc, 7VIRIDES
+- PWA cache bump v33 → v34
+
+---
+
 ## v33 — Módulo 6: Cold Process Avançado (13/07/2026)
 
 **Arquivos:** `data/learning-modules.json`, `data/glossary.json`, `components/ModuleOrbitMap.tsx`, `app/aprendizado/[slug]/page.tsx`, `public/sw.js`

@@ -33,7 +33,7 @@ interface Module {
   practical_exercise?: string;
   conclusion_criteria?: string[];
   related_glossary?: string[];
-  references?: string[];
+  references?: (string | { title: string; source?: string; url?: string; note?: string })[];
   studyCards?: { title: string; definition: string; whyItMatters: string; commonMistake: string; practicalSignal: string }[];
   quickReview?: string[];
   quiz?: { id: string; type: string; question: string; options?: string[]; correctAnswer: string | boolean; explanation: string }[];
@@ -318,13 +318,43 @@ export default async function ModulePage({ params }: { params: Promise<{ slug: s
         )}
       </section>
 
+      {/* Referências */}
+      {mod.references && mod.references.length > 0 && (
+        <section id="referencias" className="mt-10 pt-6 border-t border-moon-700">
+          <h2 className="text-lg font-semibold text-white mb-3">📚 Referências</h2>
+          <ul className="space-y-2.5">
+            {mod.references.map((ref, i) => {
+              if (typeof ref === "string") {
+                return <li key={i} className="text-sm text-moon-400 leading-relaxed">• {ref}</li>;
+              }
+              return (
+                <li key={i} className="text-sm text-moon-400 leading-relaxed">
+                  •{" "}
+                  {ref.url ? (
+                    <a
+                      href={ref.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-moon-200 underline decoration-moon-600 underline-offset-2 hover:text-white focus-visible:ring focus-visible:ring-moon-500 rounded"
+                    >
+                      {ref.title}
+                    </a>
+                  ) : (
+                    <span className="text-moon-200">{ref.title}</span>
+                  )}
+                  {ref.source && <span className="text-moon-500"> — {ref.source}</span>}
+                  {ref.note && <span className="text-moon-500 italic"> ({ref.note})</span>}
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      )}
+
       {/* Footer */}
       <footer className="mt-10 pt-6 border-t border-moon-700 text-xs text-moon-500 space-y-1.5">
         {mod.related_glossary && mod.related_glossary.length > 0 && (
           <p><span className="text-moon-400 font-medium">Termos do glossário:</span> {mod.related_glossary.join(", ")}</p>
-        )}
-        {mod.references && mod.references.length > 0 && (
-          <p><span className="text-moon-400 font-medium">Referências:</span> {mod.references.join(", ")}</p>
         )}
       </footer>
     </div>
