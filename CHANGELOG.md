@@ -4,6 +4,18 @@ Todas as versões notáveis do MoonRock Saboaria.
 
 ---
 
+## v32 — Cold Process Avançado completo (17/07/2026)
+
+**Arquivos:** `data/learning-modules.json`, `data/curriculo.md`, `data/roadmap-nodes.ts`, `app/aprendizado/[slug]/page.tsx`
+
+- Módulo 6 (Cold Process Avançado) expandido de prévia para módulo completo e desbloqueado (`status: available`)
+- Conteúdo novo baseado em pesquisa (Soap Queen, Lovin Soap, School of Natural Skincare, 7VIRIDES, Dunn): reologia do traço, receitas "lentas", seize/ricing, gel phase como decisão estética, soda ash, glycerin rivers e química de corantes em pH 9-10
+- 9 fundamentos químicos, processo em 11 passos (drop/ITP/hanger/camadas), 7 studyCards, quiz com 6 questões, diagnóstico de trace com estado "Emulsão Estável", exercício prático e checklists
+- Roadmap: nó `cold-process-avancado` passa de `locked` para `learning-module` com link
+- `curriculo.md` Nível 6 ampliado com os mesmos achados
+
+---
+
 ## v31.3 — Learning Orbit Refactor (01/07/2026)
 
 **Arquivos:** `components/LearningOrbit.tsx` (novo), `components/MainLearningOrbit.tsx` (novo), `components/ModuleOrbitMap.tsx` (refatorado), `app/aprendizado/page.tsx`

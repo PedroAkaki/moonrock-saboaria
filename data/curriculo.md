@@ -219,16 +219,33 @@ Criar uma receita do zero que atinja metas específicas de propriedades (ex: Dur
 ## Nível 6 — Cold Process Avançado (Swirls e Cores)
 
 ### Fundamentos
-- **Comportamento reológico da massa:** A viscosidade da massa no momento do despejo determina que tipo de swirl é possível. Traço leve = fluidos (drop swirl). Traço pesado = camadas esculpidas.
-- **Aceleração de traço por fragrâncias:** Fenômeno causado por álcoois e aldeídos na fragrância que atuam como co-solventes, desestabilizando a emulsão. A solução é adicionar a fragrância no traço LEVE, não no médio.
-- **Vanilina e descoloração:** A vanilina (C8H8O3) oxida em meio alcalino formando compostos escuros (ácido vanílico). Fragrâncias com vanilina sempre escurecem com o tempo.
-- **Cores naturais:** 
-  - Cúrcuma: corante amarelo, sensível a pH > 9 (muda para laranja)
+- **Comportamento reológico da massa:** A massa é um fluido pseudoplástico — viscosidade cai sob cisalhamento e sobe em repouso, aumentando continuamente com a saponificação. Cada técnica exige um ponto: emulsão estável (sem rastro) = swirls fluidos; traço leve = drop swirl/ITP; médio = camadas e hanger; pesado = texturas esculpidas.
+- **Receita "lenta" (slow-moving):** Pré-requisito físico de qualquer swirl. ≥ 60% de óleos alto-oleico (azeite, girassol AO), ≤ 25% coco, ≤ 10% manteigas, água:soda 2,5:1 a 3:1 e temperatura 32-38°C. Bem executada, permanece despejável por 15-30 min.
+- **Aceleração de traço por fragrâncias (seize/ricing):** Álcoois, aldeídos e fenóis atuam como co-solventes, desestabilizando a emulsão. Seize = travamento total; ricing = grumos ("arroz"). Prevenção: testar TODA fragrância nova em lote de 100-200 g e adicionar na emulsão/traço leve.
+- **Vanilina e descoloração:** A vanilina (C8H8O3) oxida em meio alcalino formando quinonas e polímeros escuros. Fragrâncias com vanilina sempre escurecem (creme → marrom-café) — o teor de vanilina (%) prediz a intensidade.
+- **Gel phase como decisão estética:** Gel completo (60-80°C) satura e aprofunda as cores; sem gel = tons pastéis opacos; gel parcial = "anel de gel" (defeito). Isolar de verdade ou refrigerar 12-24h — nunca meio-termo.
+- **Soda ash:** Na₂CO₃ formado por NaOH livre + CO₂ do ar. Cosmético, mas arruína designs. Prevenção: álcool isopropílico 70-99% borrifado nos primeiros 90 min, filme plástico, gel phase.
+- **Glycerin rivers:** Veios translúcidos (típicos com TiO₂): água em excesso + calor segregam a glicerina em canais sem pigmento. Prevenção: lixívia ≥ 33% ao usar branco e gel controlado.
+- **Cores em pH 9-10:**
+  - Micas e óxidos: inertes e previsíveis — padrão-ouro do design
+  - Argilas e carvão ativado: extremamente estáveis, também ajudam na viscosidade
+  - Cúrcuma: amarelo-mostarda, tolera bem o pH alcalino
   - Urucum: bixina (C25H30O4), alaranjado, estável em sabão
-  - Espirulina: ficocianina, azul-esverdeado, desbota rapidamente com luz UV
+  - Índigo: azul confiável em CP, dosagem baixa
+  - Espirulina: ficocianina, azul-esverdeado, degrada para oliva e desbota com UV em semanas
+  - Antocianinas (beterraba, hibisco): NÃO sobrevivem — viram marrom/cinza
+
+### Técnicas de swirl (pesquisa 2026)
+- **Drop swirl:** cores despejadas de alturas variadas sobre a base na forma
+- **In-the-pot (ITP):** cores devolvidas ao pote principal + 1 volta lenta de espátula
+- **Hanger swirl:** cabide de arame atravessa camadas finas em vai-e-vem ou espiral
+- **Camadas:** traço médio, despejo sobre as costas de uma espátula
+- Regra de ouro: fino demais = cores se misturam (muddling); grosso demais = não flui. Menos movimentos = swirl mais definido.
 
 ### Referências
 - *The Art of Soapmaking* — técnicas de design
+- *Scientific Soapmaking* (Dunn) — gel phase e soda ash
+- Soap Queen "5 Tips for Swirling", Lovin Soap Studio, School of Natural Skincare "10 Soap Swirl Techniques", Modern Soapmaking
 - Canais: **Tree Marie Soapworks**, **I Dream in Soap**
 
 ---
