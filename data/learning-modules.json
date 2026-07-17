@@ -359,7 +359,12 @@
       "A agitação mecânica (mixer de imersão) não afeta a constante de velocidade, mas aumenta drasticamente a área de contato entre as fases (óleo e solução alcalina), reduzindo o tempo necessário para a emulsão e acelerando a reação global. O 'trace' não é um ponto químico definido, mas uma transição reológica: a viscosidade aumenta porque os primeiros cristais de sabão formam uma rede que aprisiona a fase dispersa.",
       "A temperatura de mistura ideal (35-45°C) equilibra dois fatores: abaixo de 35°C, óleos sólidos (palma, coco) podem cristalizar parcialmente, causando falso traço; acima de 50°C, a reação é tão rápida que o trace pode passar do ponto em segundos, além de aumentar a evaporação de água e a volatilização de fragrâncias.",
       "O ponto de Krafft é a temperatura abaixo da qual um sabão (sal de ácido graxo) não forma micelas em solução, permanecendo cristalizado. Sabões com cadeias mais longas (C18) têm ponto de Krafft mais alto que cadeias curtas (C12). Isso significa que um sabão rico em ácido esteárico (sebo, palma) dissolve mais lentamente em água fria, enquanto sabões com coco (C12) dissolvem rapidamente. Na prática, barras com alto teor de coco produzem espuma imediata, mas podem ressecar a pele; barras com alto teor de oleico (azeite) dissolvem melhor em água morna e são mais suaves.",
-      "A cura (4-6 semanas) envolve três processos simultâneos: (1) evaporação de água livre, que reduz a plasticidade e aumenta a dureza; (2) transformação cristalina – os sabões passam de uma fase metaestável (cristais α ou β') para a fase estável (cristais β) com empacotamento mais denso, liberando calor (cristalização exotérmica); (3) conclusão da saponificação residual (menos de 5% da reação total), que consome os últimos vestígios de álcali. A dureza final não é atingida apenas pela perda de água; a organização cristalina é igualmente determinante."
+      "A cura (4-6 semanas) envolve três processos simultâneos: (1) evaporação de água livre, que reduz a plasticidade e aumenta a dureza; (2) transformação cristalina – os sabões passam de uma fase metaestável (cristais α ou β') para a fase estável (cristais β) com empacotamento mais denso, liberando calor (cristalização exotérmica); (3) conclusão da saponificação residual (menos de 5% da reação total), que consome os últimos vestígios de álcali. A dureza final não é atingida apenas pela perda de água; a organização cristalina é igualmente determinante.",
+      "A gel phase é uma transição para uma fase líquido-cristalina que ocorre quando o calor da saponificação (reação exotérmica) eleva a temperatura do centro da massa acima de ~70°C. Nessa fase, a massa fica translúcida e a mobilidade molecular aumenta, acelerando a conclusão da reação — sabões que gelificam saem do molde com saponificação mais avançada e cores mais saturadas. A gel phase é opcional: pode ser induzida (isolamento térmico do molde ou CPOP — forno pré-aquecido e desligado) ou evitada (geladeira nas primeiras 24h). Gel parcial gera um círculo escuro no centro da barra — defeito estético, não químico.",
+      "O glicerol é subproduto estequiométrico da saponificação: cada triglicerídeo libera três sais de ácido graxo e uma molécula de glicerol (aproximadamente 9-10% da massa de óleos). Na saboaria industrial ele é extraído e vendido separadamente; no cold process artesanal permanece integralmente na barra. Por ser altamente higroscópico, o glicerol atua como umectante na pele, mas também explica por que barras artesanais 'suam' em ambientes úmidos (absorvem água atmosférica) e dissolvem mais rápido que sabões industriais.",
+      "O DOS (Dreaded Orange Spots) é resultado de autoxidação lipídica radicalar do óleo não saponificado (superfat) e dos resíduos insaturados. O mecanismo tem três etapas: iniciação (abstração de hidrogênio alílico, favorecida em cadeias poli-insaturadas como linoleico e linolênico), propagação (formação de hidroperóxidos via O₂) e terminação (decomposição em aldeídos e cetonas de cadeia curta — as manchas alaranjadas e o odor de ranço). Metais traço (Fe²⁺/Fe³⁺, Cu²⁺) catalisam a iniciação, por isso água destilada e quelantes (EDTA, citrato de sódio) são medidas preventivas eficazes, junto com evitar luz, calor e umidade na cura. O índice de iodo do blend correlaciona diretamente com a suscetibilidade.",
+      "O pH de equilíbrio de um sabão de NaOH curado fica tipicamente entre 9 e 10,5 — e isso não é defeito. Sais de ácidos graxos fracos com base forte são intrinsecamente alcalinos em solução; tentar 'neutralizar' o sabão até pH 7 precipita os ácidos graxos livres e destrói o produto (abaixo de ~pH 8-9 o sabão deixa de existir como sal). O que se verifica na prática não é o pH absoluto, mas a ausência de NaOH livre residual: fitas de pH sobre a barra úmida são imprecisas; a fenolftaleína indica alcalinidade forte localizada e o teste de zap tradicional detecta álcali livre — ambos devem ser negativos após a cura.",
+      "A soda ash (cinza de soda) é carbonato de sódio (Na₂CO₃) formado na superfície do sabão quando NaOH ainda não reagido encontra o CO₂ atmosférico: 2 NaOH + CO₂ → Na₂CO₃ + H₂O. É um defeito estético (película branca opaca), não um risco químico. Fatores que aumentam a exposição de álcali livre à atmosfera favorecem a formação: excesso de água, verter em trace muito leve, cura sem cobertura e temperatura baixa (reação lenta). Prevenção: cobrir o molde com filme plástico, borrifar álcool isopropílico na superfície, induzir gel phase ou reduzir a água da lixívia."
     ],
     "materials": [
       "Óleos vegetais (azeite, coco, palma, etc.) pesados com precisão",
@@ -417,7 +422,11 @@
       "Traço",
       "Gel Phase",
       "DOS",
-      "Superfat"
+      "Superfat",
+      "Glicerol",
+      "Soda ash",
+      "Oxidação lipídica",
+      "Zap test"
     ],
     "references": [
       "Scientific Soapmaking (Kevin Dunn) — cinética e fases do sabão."
@@ -478,6 +487,41 @@
         "whyItMatters": "Menos água (ex: 1,5:1) acelera o traço, reduz o encolhimento e encurta a cura, mas pode dificultar a dissolução completa da soda e aumentar o risco de soda ash. Mais água (ex: 3:1) desacelera o traço, dá mais tempo para técnicas de design, mas prolonga a cura e aumenta o encolhimento.",
         "commonMistake": "Achar que a relação água:soda é a mesma que water:lye ratio usada em calculadoras internacionais. É a mesma grandeza. Confundir com 'água como percentual dos óleos' — que é outro método de cálculo, não recomendado por ser menos preciso.",
         "practicalSignal": "Se o traço chega em menos de 1 minuto e a massa está muito quente (> 55°C), a concentração pode estar muito alta (água insuficiente). Se o traço demora mais de 20 minutos mesmo com temperatura adequada, a concentração pode estar baixa demais."
+      },
+      {
+        "title": "Gel Phase (Fase de Gel)",
+        "definition": "Fase líquido-cristalina translúcida que ocorre quando o calor exotérmico da saponificação eleva o centro da massa acima de ~70°C, acelerando a conclusão da reação.",
+        "whyItMatters": "Define aparência (cores mais vivas, leve translucidez) e a velocidade com que o sabão fica pronto para desenformar. É uma escolha de processo, não uma obrigação.",
+        "commonMistake": "Isolar demais um molde grande com receita quente: o centro pode superaquecer, rachar ou formar 'vulcão'. Gel parcial (círculo escuro no centro) vem de isolamento irregular.",
+        "practicalSignal": "Massa translúcida e quente ao centro nas primeiras horas = gel em andamento. Círculo mais escuro no miolo da barra cortada = gel parcial."
+      },
+      {
+        "title": "Química do DOS (Autoxidação Lipídica)",
+        "definition": "Oxidação radicalar em cadeia (iniciação → propagação → terminação) dos óleos insaturados livres na barra, gerando hidroperóxidos que se decompõem em compostos de odor rançoso e manchas laranjas.",
+        "whyItMatters": "É a principal causa de perda de lotes na cura. Entender o mecanismo permite atacar as causas (metais, luz, calor, umidade, excesso de insaturados) em vez de só descartar barras.",
+        "commonMistake": "Culpar apenas o óleo 'velho'. Água de torneira (ferro e cobre traço), superfat alto e cura em local úmido e iluminado contribuem tanto quanto a matéria-prima.",
+        "practicalSignal": "Pontos laranjas com odor de ranço, geralmente surgindo entre semanas e meses. Água destilada + quelante (EDTA/citrato) + cura seca e escura são as defesas práticas."
+      },
+      {
+        "title": "Glicerol na Barra",
+        "definition": "Subproduto estequiométrico da saponificação (1 glicerol por triglicerídeo, ~9-10% da massa de óleos) que permanece integralmente no sabão artesanal.",
+        "whyItMatters": "É o diferencial sensorial do sabão artesanal frente ao industrial (que extrai a glicerina), atuando como umectante. Também explica o comportamento higroscópico da barra.",
+        "commonMistake": "Achar que a barra 'suando' gotículas em dia úmido está estragada. É o glicerol absorvendo água da atmosfera — basta armazenar em local seco e arejado.",
+        "practicalSignal": "Gotículas na superfície em clima úmido e dissolução mais rápida que sabão industrial são assinaturas do glicerol retido."
+      },
+      {
+        "title": "pH do Sabão e Álcali Livre",
+        "definition": "Sabão de NaOH curado tem pH de equilíbrio entre 9 e 10,5 por natureza (sal de ácido fraco com base forte). O controle de qualidade verifica ausência de NaOH livre, não pH 7.",
+        "whyItMatters": "Evita duas armadilhas: tentar 'neutralizar' o sabão (o que o destrói, precipitando ácidos graxos) e aprovar uma barra cáustica só porque endureceu.",
+        "commonMistake": "Medir pH com fita sobre a barra molhada e concluir que 'pH 10 = sabão perigoso'. Fitas em superfície úmida são imprecisas e pH 9-10,5 é o esperado.",
+        "practicalSignal": "Fenolftaleína sem rosa intenso localizado e ausência de 'choque' no teste de zap após a cura indicam álcali livre consumido."
+      },
+      {
+        "title": "Soda Ash (Carbonato de Sódio)",
+        "definition": "Película branca de Na₂CO₃ formada na superfície quando NaOH não reagido encontra CO₂ do ar (2 NaOH + CO₂ → Na₂CO₃ + H₂O).",
+        "whyItMatters": "É o defeito estético mais comum do CP. Diferenciá-lo de soda livre perigosa evita descartar barras boas — e as medidas de prevenção ensinam controle de processo.",
+        "commonMistake": "Confundir soda ash (superfície, inofensiva, sai com água ou vapor) com bolsões de lixívia (líquido cáustico interno, lote comprometido).",
+        "practicalSignal": "Camada branca fosca e uniforme na face exposta ao ar. Prevenção: filme plástico sobre o molde, borrifar álcool isopropílico, gel phase ou menos água."
       }
     ],
     "trace_diagnosis": {
@@ -496,7 +540,11 @@
       "Cura melhora dureza e desempenho (evaporação + reação completa).",
       "INS/DOS são estimativas heuristicas, não medidores laboratoriais.",
       "Soda SEMPRE vai na água, nunca o contrário.",
-      "Relação água:soda para iniciantes 2,2:1 a 2,5:1 — mais água da tempo para técnicas, menos água acelera o trace."
+      "Relação água:soda para iniciantes 2,2:1 a 2,5:1 — mais água da tempo para técnicas, menos água acelera o trace.",
+      "Gel phase é opcional: acelera a reação e intensifica cores, mas barras sem gel são igualmente boas.",
+      "pH 9-10,5 é o normal do sabão curado; o que não pode existir é NaOH livre (zap/fenolftaleína negativos).",
+      "DOS = autoxidação radicalar: previna com água destilada, quelante e cura seca, escura e fresca.",
+      "Soda ash (Na₂CO₃) é estética e superficial — não confundir com bolsões de lixívia, que comprometem o lote."
     ],
     "quiz": [
       {
@@ -551,6 +599,46 @@
         ],
         "correctAnswer": "A temperatura da mistura estava acima de 50°C ou a fragrância escolhida é aceleradora (ex: canela, cravo).",
         "explanation": "Temperaturas acima de 50°C aceleram significativamente a cinética de saponificação (a constante k dobra a cada ~10°C). Fragrâncias com fenóis (canela, cravo, menta) catalisam a reação. A prevenção é preparar todos os aditivos e formas antes de iniciar a emulsão."
+      },
+      {
+        "id": "cp7",
+        "type": "multiple-choice",
+        "question": "Por que induzir a gel phase faz o sabão ficar pronto para desenformar mais cedo?",
+        "options": [
+          "Porque o calor evapora a água mais rápido, endurecendo a barra.",
+          "Porque acima de ~70°C a massa entra em fase líquido-cristalina com maior mobilidade molecular, acelerando a conclusão da saponificação.",
+          "Porque o gel impede a formação de cristais, deixando o sabão homogêneo.",
+          "Porque a gel phase aumenta o superfat efetivo da fórmula."
+        ],
+        "correctAnswer": "Porque acima de ~70°C a massa entra em fase líquido-cristalina com maior mobilidade molecular, acelerando a conclusão da saponificação.",
+        "explanation": "A saponificação é exotérmica e o calor retido eleva o centro da massa à fase de gel (líquido-cristalina). A mobilidade molecular maior acelera a reação residual — o mesmo princípio de Arrhenius do trace, aplicado à etapa pós-molde. A evaporação de água nesse período é secundária."
+      },
+      {
+        "id": "cp8",
+        "type": "multiple-choice",
+        "question": "Qual conjunto de medidas ataca diretamente o mecanismo químico do DOS (autoxidação lipídica)?",
+        "options": [
+          "Aumentar o superfat e curar em local aquecido para acelerar a evaporação.",
+          "Usar água destilada, adicionar quelante (EDTA ou citrato de sódio) e curar em local seco, escuro e fresco.",
+          "Reduzir a relação água:soda e embalar as barras imediatamente após o corte.",
+          "Adicionar mais fragrância, pois os compostos aromáticos são antioxidantes."
+        ],
+        "correctAnswer": "Usar água destilada, adicionar quelante (EDTA ou citrato de sódio) e curar em local seco, escuro e fresco.",
+        "explanation": "A autoxidação é catalisada por metais traço (Fe, Cu), luz, calor e umidade. Água destilada e quelantes removem os catalisadores metálicos da iniciação radicalar; cura seca, escura e fresca reduz a propagação. Superfat alto e embalagem precoce (retendo umidade) aumentam o risco."
+      },
+      {
+        "id": "cp9",
+        "type": "true-false",
+        "question": "Um sabonete de cold process bem curado deve ter pH próximo de 7 para ser seguro na pele.",
+        "correctAnswer": false,
+        "explanation": "Falso. Sabão de NaOH é sal de ácido graxo fraco com base forte: seu pH de equilíbrio é 9-10,5 por natureza. Abaixo de ~pH 8-9 os ácidos graxos precipitam e o sabão deixa de existir. O critério de segurança é a ausência de NaOH livre (fenolftaleína/zap negativos após a cura), não pH neutro."
+      },
+      {
+        "id": "cp10",
+        "type": "short",
+        "question": "Que composto forma a película branca (soda ash) na superfície do sabão exposto ao ar, produto da reação do NaOH residual com o CO₂ atmosférico?",
+        "correctAnswer": "carbonato de sodio",
+        "explanation": "2 NaOH + CO₂ → Na₂CO₃ + H₂O. O carbonato de sódio é inofensivo (defeito estético) e se previne cobrindo o molde com filme plástico, borrifando álcool isopropílico ou induzindo a gel phase."
       }
     ],
     "beforePracticeChecklist": [
