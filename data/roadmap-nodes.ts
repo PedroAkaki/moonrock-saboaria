@@ -160,7 +160,8 @@ export const roadmapNodes: RoadmapNode[] = [
     title: "Cold Process Avançado",
     type: "module",
     section: "Métodos",
-    statusSource: "locked",
+    href: "/aprendizado/cold-process-avancado",
+    statusSource: "learning-module",
     leftTopics: [
       { id: "swirls", title: "Swirls", type: "concept" },
       { id: "camadas", title: "Camadas", type: "concept" },

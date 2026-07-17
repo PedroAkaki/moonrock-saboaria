@@ -42,6 +42,7 @@ interface Module {
 }
 
 const TRACE_LABELS: Record<string, { label: string; color: string }> = {
+  emulsao_estavel: { label: "Emulsão Estável", color: "border-sky-600 bg-sky-900/15" },
   trace_leve: { label: "Trace Leve", color: "border-green-600 bg-green-900/15" },
   trace_medio: { label: "Trace Médio", color: "border-amber-600 bg-amber-900/15" },
   trace_pesado: { label: "Trace Pesado", color: "border-orange-600 bg-orange-900/15" },
