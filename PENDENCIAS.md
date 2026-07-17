@@ -111,6 +111,17 @@ Transformar a biblioteca de tabela para mentora de formulação:
 
 ---
 
+## ✅ v33 — Módulo 6: Cold Process Avançado (CONCLUÍDO)
+
+| # | Tarefa | Status | Descrição |
+|---|--------|--------|-----------|
+| — | Conteúdo do Módulo Cold Process Avançado | ✅ | Design, swirls, camadas, cores em meio alcalino, fragrâncias — de "em breve" para `available` |
+| — | Fundamentos, studyCards, quiz, checklist, exercício | ✅ | Mesmo padrão dos módulos 1-4 |
+| — | Diagnóstico visual de design | ✅ | seize, ricing, rios de glicerina, gel parcial, soda ash, superaquecimento |
+| — | Órbita do módulo + glossário (rios de glicerina, gel parcial, ricing) | ✅ | 45 termos no total |
+
+---
+
 ## 🔥 PRÓXIMO — Módulo 5: Hot Process
 
 | # | Tarefa | Status | Descrição |
@@ -125,7 +136,7 @@ Transformar a biblioteca de tabela para mentora de formulação:
 | # | Tarefa | Status | Descrição |
 |---|--------|--------|-----------|
 | 37 | Seed de 5-6 novas receitas compatíveis com Calculadora | ⬜ | Receitas que passam pelos guardrails v24 |
-| 38 | Glossário expandido (45+ termos) | 🔄 | Adicionar Ponto de Krafft, Índice de acidez, Quelante, Fase alfa/beta, DOS |
+| 38 | Glossário expandido (45+ termos) | 🔄 | 45 termos (v33 adicionou rios de glicerina, gel parcial, ricing). Falta: Ponto de Krafft, Índice de acidez, Quelante, Fase alfa/beta |
 | 39 | Completar módulos 5 a 8 | ⬜ | Um por vez, começando pelo 5 após o 4 |
 
 ---

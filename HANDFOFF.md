@@ -103,11 +103,17 @@ moonrock-saboaria/
 - PWA offline (precache de 6 rotas)
 - Dark theme completo com hexágonos
 
+### ✅ v33 — Módulo 6: Cold Process Avançado (concluído)
+- De placeholder "em breve" para `available`, no padrão dos módulos 1-4
+- Reologia da massa, tempo de trabalho, aceleração/seize, ricing, vanilina, cores em meio alcalino
+- 8 studyCards, 6 quiz, diagnóstico visual de design (rios de glicerina, gel parcial, soda ash, superaquecimento)
+- Glossário: 45 termos (rios de glicerina, gel parcial, ricing)
+
 ## Próximos passos (ordem recomendada)
-1. 🔥 **Módulo 4: Controle de Formulação** — migrar de curriculo.md
+1. 🔥 **Módulo 5: Hot Process** — migrar de curriculo.md
 2. ⚡ Seed de 5-6 novas receitas compatíveis
-3. ⚡ Glossário expandido (45+ termos)
-4. 💤 Módulos 5 a 8 (um por vez)
+3. ⚡ Glossário: Ponto de Krafft, Índice de acidez, Quelante, Fase alfa/beta
+4. 💤 Módulos 7 e 8 (Saboaria Líquida KOH, Syndet)
 
 ## Convenções
 - UI em português, código em inglês

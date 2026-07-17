@@ -4,6 +4,32 @@ Todas as versões notáveis do MoonRock Saboaria.
 
 ---
 
+## v34 — Cold Process: profundidade + referências (13/07/2026)
+
+**Arquivos:** `data/learning-modules.json`, `app/aprendizado/[slug]/page.tsx`, `public/sw.js`
+
+- Seção **📚 Referências** dedicada nas páginas de módulo, com citações clicáveis (título + fonte + nota). Schema de `references` passa a aceitar objetos `{ title, source, url, note }` além de strings (retrocompatível)
+- **CP Básico** aprofundado: novo fundamento e studyCard sobre **polimorfismo cristalino (α, β′, β)** e a transição de fase na cura, com base na cristalografia clássica do sabão (Ferguson 1943; Buerger 1945)
+- **CP Avançado** aprofundado com pesquisa: rios de glicerina (o pigmento evidencia, não causa; water discount ~10%, sopar a 32-43°C), soda ash (álcool 90-99%, água destilada, gel), vanilina (mecanismo e progressão exterior→centro) e novo studyCard **Colorantes Naturais: Comportamento Real** (índigo estável, espirulina → oliva em 6-8 semanas, beterraba → marrom)
+- Referências reais adicionadas: Kevin Dunn (*Scientific Soapmaking*), artigos de cristalografia do sabão (Ind. Eng. Chem. 1943; PNAS 1945), Auntie Clara's, Bramble Berry, Modern Soapmaking, Classic Bells (Soapy Stuff), SoapCalc, 7VIRIDES
+- PWA cache bump v33 → v34
+
+---
+
+## v33 — Módulo 6: Cold Process Avançado (13/07/2026)
+
+**Arquivos:** `data/learning-modules.json`, `data/glossary.json`, `components/ModuleOrbitMap.tsx`, `app/aprendizado/[slug]/page.tsx`, `public/sw.js`
+
+- Conteúdo completo do módulo **Cold Process Avançado (Design, Swirls e Cores)** — de placeholder "em breve" para `available`, no mesmo padrão dos módulos 1-4
+- 6 fundamentos químicos: reologia não-newtoniana da massa, tempo de trabalho, aceleração/seize, ricing, descoloração por vanilina e comportamento de cores em meio alcalino
+- 8 studyCards, 6 questões de quiz, revisão rápida, checklist pré-bancada, exercício prático (gel vs sem gel)
+- Novo diagnóstico visual: ponto de swirl, ponto de camadas, seize, ricing, rios de glicerina, gel parcial, soda ash e superaquecimento — com labels/cores em `TRACE_LABELS`
+- Órbita dedicada do módulo (`ModuleOrbitMap`): Reologia, Ponto de Traço, Cores, Fragrância, Gel, Defeitos
+- 3 novos termos de glossário: rios de glicerina, gel parcial, ricing (total: 45)
+- PWA cache bump v32 → v33
+
+---
+
 ## v31.3 — Learning Orbit Refactor (01/07/2026)
 
 **Arquivos:** `components/LearningOrbit.tsx` (novo), `components/MainLearningOrbit.tsx` (novo), `components/ModuleOrbitMap.tsx` (refatorado), `app/aprendizado/page.tsx`

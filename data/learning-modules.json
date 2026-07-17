@@ -359,7 +359,8 @@
       "A agitação mecânica (mixer de imersão) não afeta a constante de velocidade, mas aumenta drasticamente a área de contato entre as fases (óleo e solução alcalina), reduzindo o tempo necessário para a emulsão e acelerando a reação global. O 'trace' não é um ponto químico definido, mas uma transição reológica: a viscosidade aumenta porque os primeiros cristais de sabão formam uma rede que aprisiona a fase dispersa.",
       "A temperatura de mistura ideal (35-45°C) equilibra dois fatores: abaixo de 35°C, óleos sólidos (palma, coco) podem cristalizar parcialmente, causando falso traço; acima de 50°C, a reação é tão rápida que o trace pode passar do ponto em segundos, além de aumentar a evaporação de água e a volatilização de fragrâncias.",
       "O ponto de Krafft é a temperatura abaixo da qual um sabão (sal de ácido graxo) não forma micelas em solução, permanecendo cristalizado. Sabões com cadeias mais longas (C18) têm ponto de Krafft mais alto que cadeias curtas (C12). Isso significa que um sabão rico em ácido esteárico (sebo, palma) dissolve mais lentamente em água fria, enquanto sabões com coco (C12) dissolvem rapidamente. Na prática, barras com alto teor de coco produzem espuma imediata, mas podem ressecar a pele; barras com alto teor de oleico (azeite) dissolvem melhor em água morna e são mais suaves.",
-      "A cura (4-6 semanas) envolve três processos simultâneos: (1) evaporação de água livre, que reduz a plasticidade e aumenta a dureza; (2) transformação cristalina – os sabões passam de uma fase metaestável (cristais α ou β') para a fase estável (cristais β) com empacotamento mais denso, liberando calor (cristalização exotérmica); (3) conclusão da saponificação residual (menos de 5% da reação total), que consome os últimos vestígios de álcali. A dureza final não é atingida apenas pela perda de água; a organização cristalina é igualmente determinante."
+      "A cura (4-6 semanas) envolve três processos simultâneos: (1) evaporação de água livre, que reduz a plasticidade e aumenta a dureza; (2) transformação cristalina – os sabões passam de uma fase metaestável (cristais α ou β') para a fase estável (cristais β) com empacotamento mais denso, liberando calor (cristalização exotérmica); (3) conclusão da saponificação residual (menos de 5% da reação total), que consome os últimos vestígios de álcali. A dureza final não é atingida apenas pela perda de água; a organização cristalina é igualmente determinante.",
+      "Polimorfismo cristalino: os sais de ácido graxo que compõem o sabão são substâncias polimórficas — cristalizam em mais de uma estrutura. A cristalografia clássica do sabão (Ferguson, Rosevear & Stillman, 1943; Buerger e col., 1945) identificou várias formas sólidas; para a saboaria importam as fases α, β′ e β. Formas metaestáveis (α, β′), favorecidas por resfriamento rápido, convertem-se lentamente para a fase β — mais densa, estável e menos solúvel — à medida que a água evapora durante a cura. É essa transição de fase, e não apenas a perda de água, que confere dureza, opacidade e maior durabilidade à barra curada. É a mesma física de polimorfismo que rege a cristalização de gorduras (por exemplo, a temperagem do chocolate)."
     ],
     "materials": [
       "Óleos vegetais (azeite, coco, palma, etc.) pesados com precisão",
@@ -420,7 +421,35 @@
       "Superfat"
     ],
     "references": [
-      "Scientific Soapmaking (Kevin Dunn) — cinética e fases do sabão."
+      {
+        "title": "Scientific Soapmaking: The Chemistry of the Cold Process",
+        "source": "Kevin M. Dunn (Clavicula Press, 2010) — ISBN 978-1-935652-09-0",
+        "url": "https://books.google.com/books/about/Scientific_Soapmaking.html?id=DL0d6AoATfwC",
+        "note": "referência científica canônica do cold process"
+      },
+      {
+        "title": "Solid Soap Phases",
+        "source": "Ferguson, Rosevear & Stillman — Ind. Eng. Chem. 35(9):1005–1012 (1943)",
+        "url": "https://pubs.acs.org/doi/10.1021/ie50405a015",
+        "note": "polimorfismo cristalino do sabão"
+      },
+      {
+        "title": "The Crystalline Phases of Soap",
+        "source": "Buerger, Smith, Ryer & Spike — PNAS 31(8):226–233 (1945)",
+        "url": "https://www.pnas.org/doi/pdf/10.1073/pnas.31.8.226"
+      },
+      {
+        "title": "Soap Qualities (dureza, limpeza, condicionamento, INS…)",
+        "source": "SoapCalc",
+        "url": "https://soapcalc.net/soapqualities",
+        "note": "base dos valores heurísticos de qualidade usados no app"
+      },
+      {
+        "title": "Iodine Number and INS",
+        "source": "Susan Barclay-Nichols — Soapy Stuff / Classic Bells",
+        "url": "https://classicbells.com/soap/iodineINS.asp",
+        "note": "limitações do INS como métrica"
+      }
     ],
     "studyCards": [
       {
@@ -478,6 +507,13 @@
         "whyItMatters": "Menos água (ex: 1,5:1) acelera o traço, reduz o encolhimento e encurta a cura, mas pode dificultar a dissolução completa da soda e aumentar o risco de soda ash. Mais água (ex: 3:1) desacelera o traço, dá mais tempo para técnicas de design, mas prolonga a cura e aumenta o encolhimento.",
         "commonMistake": "Achar que a relação água:soda é a mesma que water:lye ratio usada em calculadoras internacionais. É a mesma grandeza. Confundir com 'água como percentual dos óleos' — que é outro método de cálculo, não recomendado por ser menos preciso.",
         "practicalSignal": "Se o traço chega em menos de 1 minuto e a massa está muito quente (> 55°C), a concentração pode estar muito alta (água insuficiente). Se o traço demora mais de 20 minutos mesmo com temperatura adequada, a concentração pode estar baixa demais."
+      },
+      {
+        "title": "Polimorfismo Cristalino (α, β′, β)",
+        "definition": "O sabão é polimórfico: cristaliza em mais de uma estrutura. As fases metaestáveis (α, β′) convertem-se para a fase β, mais densa e estável, ao longo da cura.",
+        "whyItMatters": "Explica por que a barra continua endurecendo e mudando de textura mesmo depois de já ter perdido a maior parte da água — a rede cristalina ainda está se reorganizando.",
+        "commonMistake": "Atribuir toda a dureza apenas à evaporação. A transição de fase cristalina é tão determinante quanto a perda de água.",
+        "practicalSignal": "Com a mesma receita, uma barra resfriada rápido (geladeira) e uma que passou por gel podem ter texturas e opacidades diferentes — reflexo das fases cristalinas formadas."
       }
     ],
     "trace_diagnosis": {
@@ -775,35 +811,340 @@
     "summary": "Saponificação a quente com cozimento da massa, cura mais rápida (1-2 semanas) e textura rústica.",
     "objective": "Conhecer a técnica de Hot Process, entender diferenças para o Cold Process e quando cada método é mais adequado.",
     "scope_warning": "Módulo em prévia. Hot Process exige controle térmico constante. Não é próximo passo obrigatório para iniciantes.",
-    "prerequisites": ["Módulo 3 completo.", "Módulo 4 completo.", "Ao menos 3 lotes no Diário."],
+    "prerequisites": [
+      "Módulo 3 completo.",
+      "Módulo 4 completo.",
+      "Ao menos 3 lotes no Diário."
+    ],
     "chemical_fundamentals": [
       "No Hot Process, a saponificação é acelerada por calor externo. A massa passa por fase de 'purê' até o 'gel translúcido' quando a reação está >95% completa.",
       "Vantagens: cura reduzida (1-2 semanas), fragrâncias adicionadas pós-cozimento não evaporam. Desvantagens: difícil fazer swirls, textura mais opaca."
     ],
-    "safety": ["O cozimento atinge 80-100°C — use luvas térmicas.", "A massa pode vulcanizar se a temperatura estiver muito alta.", "EPI obrigatório: luvas, óculos, máscara, avental."],
-    "conclusion_criteria": ["Diferenciar HP de CP.", "Saber quando usar cada técnica.", "Entender riscos térmicos do HP."],
-    "quickReview": ["HP usa calor externo.", "Cura: 1-2 semanas (vs 4-6 CP).", "Difícil fazer swirls.", "Fragrâncias caras: adicionar pós-cozimento.", "HP não é obrigatório — CP já produz excelente sabão."],
-    "related_glossary": ["Saponificação", "Gel Phase", "Traço", "Cura"]
+    "safety": [
+      "O cozimento atinge 80-100°C — use luvas térmicas.",
+      "A massa pode vulcanizar se a temperatura estiver muito alta.",
+      "EPI obrigatório: luvas, óculos, máscara, avental."
+    ],
+    "conclusion_criteria": [
+      "Diferenciar HP de CP.",
+      "Saber quando usar cada técnica.",
+      "Entender riscos térmicos do HP."
+    ],
+    "quickReview": [
+      "HP usa calor externo.",
+      "Cura: 1-2 semanas (vs 4-6 CP).",
+      "Difícil fazer swirls.",
+      "Fragrâncias caras: adicionar pós-cozimento.",
+      "HP não é obrigatório — CP já produz excelente sabão."
+    ],
+    "related_glossary": [
+      "Saponificação",
+      "Gel Phase",
+      "Traço",
+      "Cura"
+    ]
   },
   {
     "id": 6,
     "slug": "cold-process-avancado",
     "level": 6,
-    "title": "Cold Process Avançado",
-    "status": "soon",
-    "summary": "Técnicas de design, controle de trace, swirls, camadas, cores naturais e fragrâncias.",
-    "objective": "Evoluir no Cold Process com mais controle sobre trace, cores, camadas e design.",
-    "scope_warning": "Módulo em prévia. Design avançado depende de domínio do CP básico e registros no Diário.",
-    "prerequisites": ["Módulo 3 completo.", "Módulo 4 completo.", "Ao menos 5 lotes no Diário."],
-    "chemical_fundamentals": [
-      "Viscosidade no despejo determina o design: traço leve = fluidos (drop swirl), médio = camadas, pesado = camadas esculpidas.",
-      "Fragrâncias podem acelerar o trace (seize). Solução: adicionar no traço leve.",
-      "Cores naturais: cúrcuma (amarelo), urucum (laranja), espirulina (azul, desbota com UV). Vanilina escurece com o tempo."
+    "title": "Cold Process Avançado (Design, Swirls e Cores)",
+    "status": "available",
+    "summary": "Do controle da massa ao design: reologia do traço, swirls e camadas, cores estáveis em meio alcalino e o comportamento de fragrâncias. Mesma química do CP básico, agora com controle fino do tempo e da estética.",
+    "objective": "Planejar e executar um lote com design intencional — escolhendo o ponto de traço, as cores e o momento da fragrância — e diagnosticar defeitos estéticos (rios de glicerina, gel parcial, soda ash, ricing, seize) a partir de suas causas físico-químicas.",
+    "scope_warning": "Produto cosmético para uso corporal. O design não substitui o rigor: a mesma segurança, pesagem e cura do CP básico continuam valendo. Aditivos de cor e fragrância mudam a reologia e a estabilidade — nunca comprometa a segurança em nome da estética.",
+    "prerequisites": [
+      "Módulo 3 (Cold Process Básico) concluído e ao menos um lote executado.",
+      "Módulo 4 (Controle de Formulação) concluído — você precisa ler o perfil de ácidos graxos para prever o tempo de traço.",
+      "Recomendado: alguns lotes registrados no Diário, para comparar variáveis."
     ],
-    "safety": ["EPI obrigatório.", "Prepare formas antes de emulsionar — aceleração pode acontecer."],
-    "conclusion_criteria": ["Executar camadas e swirl simples.", "Controlar o trace para a técnica desejada.", "Documentar no Diário."],
-    "quickReview": ["Design depende do ponto de trace.", "Fragrância acelera — adicione no traço leve.", "Cores naturais têm limitações.", "Documente cada tentativa."],
-    "related_glossary": ["Traço", "Gel Phase", "Soda Ash", "Swirl", "Vanilina", "Mica"]
+    "chemical_fundamentals": [
+      "A massa de sabão no traço é um fluido não-newtoniano: sua viscosidade não é constante, mas depende da taxa de cisalhamento e do tempo. A rede de cristais de sabão que se forma no traço confere comportamento tixotrópico — a massa afina sob agitação (mixer) e volta a engrossar em repouso. É por isso que a viscosidade no momento do despejo, e não um relógio, é que define qual design é possível: traço fino e fluido permite que cores se movam umas nas outras (swirls); traço espesso mantém fronteiras nítidas (camadas, esculturas).",
+      "O tempo de trabalho ('working time') é governado pela cinética da saponificação (v = k[éster][OH⁻]) somada a fatores que aceleram a formação da rede cristalina. Variáveis que ENCURTAM o tempo: temperatura alta, lixívia concentrada (menos água), alto teor de ácidos saturados (palma, coco, manteigas), fragrâncias aceleradoras e batidas longas de mixer. Variáveis que ALONGAM o tempo: mais água na lixívia (ex.: 2,5:1 a 3:1), temperaturas mais baixas (32-38°C), alto teor de óleos líquidos insaturados (azeite) e mexer à mão em vez de mixer.",
+      "Aceleração e seize: fragrâncias e óleos essenciais ricos em álcoois, aldeídos e fenóis (canela, cravo, especiarias, alguns florais) atuam como co-solventes que desestabilizam a emulsão e catalisam a rede cristalina, engrossando a massa em segundos ('seize', endurecimento súbito). A prevenção é operacional: reduzir a temperatura (32-35°C), usar mais água, misturar a fragrância à mão e ter formas e cores prontas antes de adicioná-la ao traço leve.",
+      "Ricing (grãos de arroz): certos componentes de fragrâncias sintéticas se separam da fase saponificada e cristalizam em grumos, dando aspecto de arroz cozido. Diferente do seize (que é espessamento global), o ricing é uma separação localizada. Muitas vezes o mixer reincorpora os grumos; se persistir e a massa aquecer, o lote pode ser conduzido como hot process forçado. É previsível testando a fragrância em lotes pequenos antes de usá-la em design elaborado.",
+      "Descoloração por vanilina: a vanilina (4-hidroxi-3-metoxibenzaldeído) tem grupo fenólico e aldeído. Em meio fortemente alcalino e na presença de O₂, oxida progressivamente a compostos conjugados escuros (via ácido vanílico e produtos de condensação), amarelando e depois amarronzando a barra ao longo de semanas. É irreversível e proporcional ao teor de vanilina da fragrância — não é defeito, é química esperada. Estabilizadores de vanilina (aditivos comerciais) apenas retardam o processo.",
+      "Cores em meio alcalino (pH 9-10): o sabão cru é básico, o que restringe a paleta. Pigmentos inorgânicos (óxidos de ferro, dióxido de titânio, ultramarines, micas sobre base de mica/óxido) são estáveis porque não sofrem reação ácido-base. Corantes orgânicos e naturais podem sofrer desprotonação, tautomerização ou degradação: a curcumina vira de amarelo a laranja-avermelhado acima de pH 8-9 (forma quinóide); a ficocianina da espirulina é uma proteína que desnatura com álcali, calor e luz UV, desbotando; a clorofila tende ao marrom. Ultramar azul pode liberar traços de enxofre (odor) em meio muito ácido — não é o caso do sabão, mas explica por que não se usa em produtos ácidos."
+    ],
+    "materials": [
+      "Base de óleos com traço previsível (ex.: alto azeite para mais tempo de trabalho; adição de manteigas para camadas firmes)",
+      "NaOH 99% e água destilada — lixívia geralmente mais diluída (2,5:1) para ganhar tempo de design",
+      "Corantes estáveis em meio alcalino: óxidos de ferro, dióxido de titânio, ultramarines, micas cosméticas",
+      "Corantes naturais (opcional, com ressalvas): argilas, urucum, cúrcuma, carvão ativado, espirulina",
+      "Fragrância/óleo essencial testado quanto a aceleração e descoloração (verificar teor de vanilina)",
+      "Álcool de cereais 70-90% em borrifador (contra soda ash e bolhas)"
+    ],
+    "equipment": [
+      "Balança de precisão (0,1 g)",
+      "Termômetro (sonda ou infravermelho)",
+      "Mixer de imissão + fouet/espátula para controle fino do traço",
+      "Copos/recipientes separados para dividir e pigmentar a massa",
+      "Ferramentas de swirl: espeto, hanger tool, colher, espátula",
+      "Forma com divisórias ou molde de pão (loaf) para camadas e swirls",
+      "Mini-mixer ou pistilo para dispersar micas/óxidos em óleo (evita pontos e rios)"
+    ],
+    "safety": [
+      "EPI completo continua obrigatório: a massa em design ainda contém álcali livre e é corrosiva até a cura.",
+      "Prepare TUDO antes de emulsionar — cores dispersas, fragrância medida, ferramentas e forma à mão. A aceleração não espera.",
+      "Dispersão de pigmentos em pó gera poeira respirável (dióxido de titânio, micas): disperse em óleo, use máscara e evite inalar.",
+      "Fragrâncias aceleradoras podem superaquecer o lote em minutos: trabalhe em temperatura mais baixa e nunca deixe a massa sem observação na gel phase."
+    ],
+    "process": [
+      "Planeje o design ANTES: escolha a técnica (in-the-pot, drop swirl, camadas, hanger swirl) e defina o ponto de traço-alvo para ela (fino para swirls, médio para camadas).",
+      "Ajuste a formulação e a temperatura ao tempo de trabalho necessário: mais azeite, mais água (2,5:1) e 32-38°C para designs lentos; menos água e manteigas para designs firmes.",
+      "Disperse cada cor em um pouco de óleo da própria receita (1 colher de mica/óxido por ~1 colher de óleo), desfazendo grumos com mini-mixer ou pistilo.",
+      "Emulsione até traço MUITO leve (emulsão estável, sem separar). Pare o mixer cedo — é mais fácil engrossar depois do que recuperar um traço passado.",
+      "Divida a massa nos copos, adicione as cores dispersas e homogeneíze cada uma à mão ou com pulsos curtíssimos.",
+      "Adicione a fragrância no traço leve (à mão) — se for aceleradora, adicione por último e trabalhe rápido.",
+      "Execute o design: verta as cores conforme a técnica e faça o swirl com espeto/hanger. Bata a forma na bancada para liberar bolhas.",
+      "Decida o gel: isolar (cobertor/isopor) força gel total e cores mais vivas; geladeira previne gel e clareia. Evite o meio-termo, que causa gel parcial (anel escuro).",
+      "Borrife álcool na superfície para prevenir soda ash. Desenforme em 24-72h conforme a firmeza; corte e cure 4-6 semanas."
+    ],
+    "critical_parameters": [
+      "Ponto de traço-alvo: fino/fluido para swirls, médio para camadas, evitar pesado (perde definição e prende bolhas).",
+      "Temperatura de design: 32-40°C dá mais tempo e reduz aceleração; acima de 45°C encurta drasticamente a janela.",
+      "Relação água:soda: 2,5:1 (mais água) para ganhar tempo de trabalho; lembre que mais água + gel quente + micas aumentam o risco de rios de glicerina.",
+      "Gel: decisão binária — force gel total (isolamento) OU previna gel total (geladeira). O meio-termo produz gel parcial.",
+      "Teor de vanilina da fragrância: >0,5% escurece de forma perceptível; planeje a cor da barra contando com o amarronzamento."
+    ],
+    "visual_criteria": [
+      "Traço-alvo correto: para swirl, a massa ainda escorre e as cores desenham traços nítidos sem afundar.",
+      "Superfície sem soda ash (sem véu branco acinzentado) após borrifar álcool e cobrir.",
+      "Gel uniforme (barra translúcida por inteiro) OU sem gel (opaca por inteiro) — sem anel escuro central.",
+      "Cores nítidas e sem 'rios' translúcidos ao redor dos pigmentos no corte."
+    ],
+    "common_errors": [
+      "Traço passado antes do design: mixer demais. A massa fica de pudim e o swirl não se move. Solução: parar o mixer no traço muito leve e engrossar mexendo à mão.",
+      "Rios de glicerina: veios translúcidos ao redor de micas/dióxido de titânio, causados por excesso de água + gel muito quente (o pigmento apenas evidencia). Solução: water discount de ~10% ou mais, dispersar o pigmento em óleo, sopar mais frio (≈32-43°C) e controlar/prevenir o gel.",
+      "Gel parcial: anel escuro no centro por gel incompleto. Solução: forçar gel total (isolar mais) ou prevenir totalmente (geladeira).",
+      "Soda ash: véu branco (carbonato de sódio) do NaOH livre reagindo com o CO₂ do ar. Solução: borrifar álcool 90-99% logo após moldar, cobrir a superfície, sopar mais quente, usar water discount e água destilada (água dura adiciona carbonatos).",
+      "Fragrância aceleradora não testada: seize/ricing arruínam o design. Solução: testar fragrâncias novas em lote pequeno antes de usá-las em design elaborado."
+    ],
+    "troubleshooting": "Se a massa acelerar (seize) durante o design, pare de mexer, despeje imediatamente no molde e aceite um design simples — insistir só piora. Se aparecer ricing (grumos), tente reincorporar com pulsos curtos de mixer; se não recuperar, conduza como hot process forçado (forno ~80°C) para completar a reação — a barra perde o design fino mas fica segura e utilizável. Rios de glicerina, gel parcial e soda ash são defeitos estéticos, não de segurança: a barra é usável; ajuste água, temperatura e acabamento no próximo lote.",
+    "practical_exercise": "Faça 700 g de massa com base rica em azeite (para tempo de trabalho), lixívia 2,5:1, a 35-38°C, 6% de superfat. Separe a massa em três copos e pigmente com óxidos/micas estáveis (ex.: um branco com dióxido de titânio, um ocre com óxido amarelo, um sem cor). Trabalhe em traço muito leve e execute um 'in-the-pot swirl' ou camadas com hanger swirl. Divida o lote em dois moldes: um isolado (força gel) e outro na geladeira (previne gel). Ao cortar, compare vivacidade das cores, presença de gel parcial e rios de glicerina entre os dois. Registre tudo no Diário: temperatura, tempo até o traço, fragrância usada e resultado estético.",
+    "conclusion_criteria": [
+      "Escolher conscientemente o ponto de traço para a técnica de design pretendida.",
+      "Preparar cores e fragrância antecipadamente e reconhecer sinais de aceleração/seize/ricing.",
+      "Diagnosticar rios de glicerina, gel parcial e soda ash pelas suas causas e propor a correção.",
+      "Executar e documentar um lote com design intencional (swirl ou camadas) no Diário."
+    ],
+    "related_recipes": [],
+    "related_glossary": [
+      "traço",
+      "swirl",
+      "gel phase",
+      "soda ash",
+      "vanilina",
+      "mica",
+      "rios de glicerina",
+      "gel parcial",
+      "ricing"
+    ],
+    "references": [
+      {
+        "title": "Scientific Soapmaking: The Chemistry of the Cold Process",
+        "source": "Kevin M. Dunn (Clavicula Press, 2010)",
+        "url": "https://books.google.com/books/about/Scientific_Soapmaking.html?id=DL0d6AoATfwC",
+        "note": "reologia da massa, gel phase e química de cores"
+      },
+      {
+        "title": "Glycerine Rivers: Secret Revealed",
+        "source": "Clara Lindberg — Auntie Clara's",
+        "url": "https://auntieclaras.com/2014/05/glycerine-rivers-secret-revealed/",
+        "note": "causa e prevenção dos rios de glicerina"
+      },
+      {
+        "title": "Explaining and Preventing Glycerin Rivers",
+        "source": "Bramble Berry / Soap Queen",
+        "url": "https://www.brambleberry.com/cold-process/glycerin-rivers.html"
+      },
+      {
+        "title": "Explaining and Preventing Soda Ash",
+        "source": "Bramble Berry / Soap Queen",
+        "url": "https://www.brambleberry.com/cold-process/explaining-and-preventing-soda-ash.html"
+      },
+      {
+        "title": "How to Get Rid of Soda Ash",
+        "source": "Kenna Cote — Modern Soapmaking",
+        "url": "https://www.modernsoapmaking.com/blog/shining-up-cold-process-soap-how-to-get-rid-of-ash-on-soap"
+      },
+      {
+        "title": "How to Work with Vanilla Discoloration",
+        "source": "Bramble Berry",
+        "url": "https://www.brambleberry.com/soap/how-to-work-with-vanilla-discoloration.html",
+        "note": "descoloração por vanilina"
+      },
+      {
+        "title": "Understanding the Vanillin Villain",
+        "source": "Wholesale Supplies Plus",
+        "url": "https://www.wholesalesuppliesplus.com/handmade101/learn-to-make-articles/understanding-the-vanillin-villain.aspx"
+      },
+      {
+        "title": "Natural Colorants for Soap: Spirulina, Turmeric, Charcoal and Stability",
+        "source": "7VIRIDES",
+        "url": "https://www.7virides.com/en/soap/soap-making-techniques/natural-colorants-soap/",
+        "note": "estabilidade de corantes naturais em CP"
+      }
+    ],
+    "studyCards": [
+      {
+        "title": "Reologia da Massa (Viscosidade = Design)",
+        "definition": "A massa no traço é um fluido não-newtoniano tixotrópico: afina sob o mixer e engrossa em repouso. A viscosidade no despejo — não o relógio — define o design possível.",
+        "whyItMatters": "Cada técnica exige um ponto de traço: swirls precisam de massa fina e fluida; camadas e esculturas precisam de massa espessa que mantém fronteiras.",
+        "commonMistake": "Bater com o mixer 'até engrossar bem'. Isso leva a massa direto ao traço pesado, e o design fluido se torna impossível.",
+        "practicalSignal": "Pingue massa sobre a superfície: se o traço afunda em 1-2 s, está fino (bom para swirl); se fica em relevo, já está médio/pesado."
+      },
+      {
+        "title": "Tempo de Trabalho (Working Time)",
+        "definition": "Janela entre o traço leve e o traço pesado durante a qual o design é possível. Governada pela cinética da saponificação e pela velocidade de formação da rede cristalina.",
+        "whyItMatters": "Você projeta o tempo de trabalho pela formulação e temperatura: é o que separa um swirl elaborado de um lote que endurece na sua mão.",
+        "commonMistake": "Culpar 'falta de habilidade' quando o problema é uma receita rápida (muita manteiga, pouca água, quente demais).",
+        "practicalSignal": "Mais azeite + mais água (2,5:1) + 35°C = tempo longo. Muita manteiga/coco + pouca água + 45°C = janela de segundos."
+      },
+      {
+        "title": "Aceleração e Seize",
+        "definition": "Espessamento súbito e global da massa. Causado por fragrâncias/óleos essenciais ricos em álcoois, aldeídos e fenóis (canela, cravo, especiarias) e por temperatura alta.",
+        "whyItMatters": "Um seize transforma minutos de trabalho em segundos e destrói qualquer design planejado.",
+        "commonMistake": "Adicionar fragrância aceleradora no traço médio e com o mixer ligado — garante o endurecimento.",
+        "practicalSignal": "A massa vira 'massa de bolo' logo após a fragrância. Ação: parar, despejar no molde imediatamente, aceitar design simples."
+      },
+      {
+        "title": "Ricing (Grãos de Arroz)",
+        "definition": "Separação localizada em que componentes da fragrância cristalizam em grumos parecidos com arroz, diferente do seize (que é global).",
+        "whyItMatters": "Compromete a textura e a cor. Saber distinguir de seize define a ação: ricing às vezes se reincorpora; seize não.",
+        "commonMistake": "Confundir ricing com traço e parar de mexer. Muitas vezes pulsos curtos de mixer dissolvem os grãos.",
+        "practicalSignal": "Grumos suspensos numa massa ainda fluida. Se não reincorporar e a massa aquecer, conduza como hot process forçado."
+      },
+      {
+        "title": "Vanilina e Descoloração",
+        "definition": "A vanilina (fenol + aldeído) oxida em meio alcalino e com O₂, formando compostos escuros. A descoloração aparece de horas a semanas, geralmente do exterior para o centro, até a barra ficar uniformemente marrom.",
+        "whyItMatters": "É irreversível e proporcional ao teor de vanilina da fragrância. Você projeta a cor final contando com o escurecimento.",
+        "commonMistake": "Fazer swirl branco-e-preto com fragrância rica em vanilina e esperar que o branco permaneça branco.",
+        "practicalSignal": "Fragrâncias 'baunilha', 'doce', 'gourmand' quase sempre escurecem, proporcionalmente ao teor de vanilina. Estabilizadores de vanilina só retardam — a barra acaba escurecendo. Planeje a cor final contando com isso."
+      },
+      {
+        "title": "Cores em Meio Alcalino",
+        "definition": "O sabão cru tem pH 9-10. Pigmentos inorgânicos (óxidos, dióxido de titânio, ultramarines) são estáveis; corantes orgânicos/naturais podem virar ou desbotar.",
+        "whyItMatters": "Escolher a cor certa evita surpresas: curcumina vira laranja acima de pH 8-9; espirulina (proteína) desnatura e desbota com álcali, calor e UV.",
+        "commonMistake": "Usar corante alimentício ou de vela esperando estabilidade — a maioria morre no álcali.",
+        "practicalSignal": "Teste a cor num pouco de massa antes do lote inteiro. Óxidos e micas cosméticas são o caminho seguro para iniciantes."
+      },
+      {
+        "title": "Rios de Glicerina (Glycerin Rivers)",
+        "definition": "Veios translúcidos que se formam entre a massa e as partículas de pigmento (micas, dióxido de titânio) quando a gel phase esquenta demais e há água em excesso. O pigmento NÃO causa os rios: ele se concentra nas fronteiras cristalinas e torna o fenômeno visível.",
+        "whyItMatters": "É defeito estético, não de segurança, mas arruína cores sólidas. Entender que a causa é água + calor (e não o pigmento) leva à correção certa.",
+        "commonMistake": "Culpar o dióxido de titânio e trocar de pigmento — sem reduzir a água nem controlar o gel, os rios voltam.",
+        "practicalSignal": "Veios no corte ao redor das cores. Prevenção: water discount de ~10% ou mais, dispersar o pigmento em óleo (não em água), sopar mais frio (≈32-43°C) e controlar ou prevenir o gel."
+      },
+      {
+        "title": "Gel Parcial e Soda Ash",
+        "definition": "Gel parcial: anel escuro central por gel incompleto (decisão térmica indefinida). Soda ash: véu branco de carbonato de sódio, do NaOH livre reagindo com CO₂ do ar.",
+        "whyItMatters": "Dois defeitos estéticos com causas físicas claras e correção simples — controle térmico e acabamento.",
+        "commonMistake": "Deixar o gel 'no meio do caminho' (nem quente nem frio) e não borrifar álcool na superfície.",
+        "practicalSignal": "Anel escuro = force gel total OU previna totalmente (geladeira). Véu branco = borrife álcool, cubra, use menos água."
+      },
+      {
+        "title": "Colorantes Naturais: Comportamento Real",
+        "definition": "No pH alcalino do sabão, corantes naturais têm estabilidades bem diferentes: índigo é o azul mais confiável; urucum/bixina dá laranja estável; cúrcuma dá amarelo-alaranjado que desbota; espirulina dá verde que oxida para oliva em ~6-8 semanas; beterraba vira marrom (não rosa).",
+        "whyItMatters": "Escolher pela estabilidade real evita frustração: a cor da barra recém-cortada raramente é a cor final após a cura.",
+        "commonMistake": "Esperar rosa da beterraba ou verde vivo permanente da espirulina — ambos mudam no álcali e com o tempo.",
+        "practicalSignal": "Para prolongar a espirulina: adicionar em traço tardio, guardar no escuro e embrulhar. Teste sempre um pouco de massa antes de colorir o lote inteiro."
+      }
+    ],
+    "trace_diagnosis": {
+      "ponto_swirl": "Traço muito leve e fluido: a massa escorre e o rastro afunda em 1-2 s. É o ponto ideal para swirls (in-the-pot, drop, hanger). As cores se movem umas nas outras sem afundar por completo. Pare o mixer cedo para chegar aqui.",
+      "ponto_camadas": "Traço médio: a massa deixa relevo visível e ainda é vertível. Ideal para camadas nítidas e desenhos com fronteiras definidas. Cada camada sustenta a seguinte sem se misturar.",
+      "seize": "Endurecimento súbito e global da massa (vira 'massa de bolo') logo após a fragrância ou por temperatura alta. Causa: fragrância aceleradora (canela, cravo, especiarias), calor (>45°C) ou lixívia concentrada. Ação: parar de mexer, despejar imediatamente no molde, aceitar design simples.",
+      "ricing": "Grumos parecidos com arroz suspensos numa massa ainda fluida. Causa: componentes da fragrância que cristalizam e se separam. Ação: pulsos curtos de mixer para reincorporar; se persistir e aquecer, conduzir como hot process forçado.",
+      "rios_glicerina": "Veios translúcidos ao redor dos pigmentos, visíveis no corte. Causa: excesso de água + gel phase muito quente redistribuindo água/glicerol em torno das micas/dióxido de titânio. Prevenção: menos água, dispersar bem o pigmento, controlar a temperatura do gel.",
+      "gel_parcial": "Anel/mancha escura no centro da barra, com bordas mais claras. Causa: gel phase incompleto — o centro gelou e as bordas não. Solução: decisão binária — forçar gel total (isolar mais, temperaturas mais altas) OU prevenir gel totalmente (geladeira/freezer).",
+      "soda_ash": "Véu branco acinzentado na superfície (carbonato de sódio). Causa: NaOH livre migra à superfície e reage com CO₂ do ar. Prevenção: borrifar álcool logo após moldar, cobrir a superfície com filme, usar menos água e garantir emulsão completa.",
+      "overheating": "Rachaduras no topo, textura de 'cérebro' (alien brain) ou efeito vulcão. Causa: gel phase quente demais (isolamento excessivo, fragrância/aditivo exotérmico, forma pequena e funda). Ação: descobrir o molde e resfriar; no próximo lote, isolar menos ou ir à geladeira."
+    },
+    "quickReview": [
+      "A química é a mesma do CP básico; o que muda é o controle do tempo e da estética.",
+      "A viscosidade no despejo (não o relógio) decide o design: fino = swirl, médio = camadas.",
+      "Mais água + mais azeite + temperatura baixa = mais tempo de trabalho.",
+      "Fragrâncias com fenóis/aldeídos aceleram (seize); vanilina escurece a barra com o tempo.",
+      "Prepare cores, fragrância e ferramentas ANTES de emulsionar.",
+      "Cores estáveis no álcali: óxidos, dióxido de titânio, ultramarines, micas. Naturais viram/desbotam.",
+      "Rios de glicerina, gel parcial e soda ash são defeitos ESTÉTICOS, não de segurança.",
+      "Decisão de gel é binária: force gel total OU previna totalmente — o meio-termo dá gel parcial."
+    ],
+    "quiz": [
+      {
+        "id": "cpa1",
+        "type": "multiple-choice",
+        "question": "Você quer fazer um swirl fluido, com as cores se movendo umas nas outras. Em que ponto de traço deve executar o design?",
+        "options": [
+          "Traço pesado, para as cores não afundarem.",
+          "Traço muito leve e fluido, em que a massa ainda escorre e o rastro afunda em 1-2 s.",
+          "Após a gel phase, quando a massa está translúcida.",
+          "Tanto faz — o traço não influencia o swirl."
+        ],
+        "correctAnswer": "Traço muito leve e fluido, em que a massa ainda escorre e o rastro afunda em 1-2 s.",
+        "explanation": "A massa é um fluido não-newtoniano: a viscosidade no despejo define o design. Swirls exigem massa fina e fluida; traço pesado mantém fronteiras (camadas) e impede o movimento das cores."
+      },
+      {
+        "id": "cpa2",
+        "type": "true-false",
+        "question": "Usar mais água na lixívia (ex.: relação 2,5:1 em vez de 2:1) aumenta o tempo de trabalho disponível para o design.",
+        "correctAnswer": true,
+        "explanation": "Verdadeiro. Mais água dilui os reagentes e desacelera o espessamento, alongando a janela de design. O custo é cura mais longa, maior encolhimento e — combinada com gel quente e micas — maior risco de rios de glicerina."
+      },
+      {
+        "id": "cpa3",
+        "type": "multiple-choice",
+        "question": "A barra apareceu com veios translúcidos ao redor das partículas de mica no corte. Qual é a causa mais provável?",
+        "options": [
+          "Excesso de superfat, que deixou óleo livre entre os pigmentos.",
+          "Rios de glicerina: excesso de água combinado com gel phase muito quente redistribuindo água/glicerol ao redor dos pigmentos.",
+          "Soda ash que penetrou no interior da barra.",
+          "Falta de fragrância, que estabilizaria a cor."
+        ],
+        "correctAnswer": "Rios de glicerina: excesso de água combinado com gel phase muito quente redistribuindo água/glicerol ao redor dos pigmentos.",
+        "explanation": "Rios de glicerina são um defeito estético causado por água em excesso e gel muito quente. Previne-se reduzindo a água, dispersando bem o pigmento e controlando a temperatura do gel."
+      },
+      {
+        "id": "cpa4",
+        "type": "multiple-choice",
+        "question": "Por que uma fragrância 'baunilha' costuma escurecer o sabão de branco para marrom ao longo das semanas?",
+        "options": [
+          "A baunilha reage com os óxidos de ferro, formando ferrugem.",
+          "A vanilina, um fenol-aldeído, oxida em meio alcalino e com O₂, formando compostos escuros de forma irreversível.",
+          "O calor da gel phase queima a fragrância.",
+          "A água da cura dissolve o pigmento branco."
+        ],
+        "correctAnswer": "A vanilina, um fenol-aldeído, oxida em meio alcalino e com O₂, formando compostos escuros de forma irreversível.",
+        "explanation": "A vanilina oxida no pH alcalino do sabão, amarelando e depois amarronzando. É proporcional ao teor de vanilina e irreversível; estabilizadores apenas retardam. Planeje a cor da barra contando com o escurecimento."
+      },
+      {
+        "id": "cpa5",
+        "type": "short",
+        "question": "Durante o swirl, a massa endureceu de repente (seize) logo após você adicionar a fragrância. Qual é a ação imediata correta?",
+        "correctAnswer": "moldar",
+        "explanation": "Pare de mexer e despeje/molde imediatamente, aceitando um design simples. Insistir em mexer só piora o seize. Da próxima vez: temperatura mais baixa, mais água e fragrância testada e adicionada por último, à mão."
+      },
+      {
+        "id": "cpa6",
+        "type": "multiple-choice",
+        "question": "A barra saiu com um anel escuro no centro e bordas mais claras. O que aconteceu e como corrigir?",
+        "options": [
+          "Soda ash no centro; corrigir borrifando álcool.",
+          "Gel parcial: o centro gelou e as bordas não. Corrigir forçando gel total (isolar mais) OU prevenindo gel totalmente (geladeira).",
+          "DOS (rancidez); corrigir com quelante.",
+          "Excesso de fragrância; corrigir reduzindo a dose."
+        ],
+        "correctAnswer": "Gel parcial: o centro gelou e as bordas não. Corrigir forçando gel total (isolar mais) OU prevenindo gel totalmente (geladeira).",
+        "explanation": "O gel parcial vem de uma decisão térmica indefinida. A regra é binária: force gel total (isolamento/temperatura) ou previna totalmente (geladeira/freezer). O meio-termo produz o anel escuro."
+      }
+    ],
+    "beforePracticeChecklist": [
+      "Defini a técnica de design e o ponto de traço-alvo antes de começar.",
+      "Preparei e dispersei todas as cores e medi a fragrância ANTES de emulsionar.",
+      "Testei fragrâncias novas quanto a aceleração/ricing e sei o teor de vanilina (descoloração).",
+      "Decidi o gel (forçar total OU prevenir) e tenho álcool para prevenir soda ash."
+    ]
   },
   {
     "id": 7,
@@ -814,16 +1155,39 @@
     "summary": "Hidróxido de potássio (KOH), pasta de sabão, diluição e maior complexidade química.",
     "objective": "Entender fundamentos da saboaria líquida com KOH e diferenças em relação ao NaOH.",
     "scope_warning": "Módulo em prévia. Saboaria líquida é mais complexa que CP. KOH não é intercambiável com NaOH sem recálculo.",
-    "prerequisites": ["Módulo 4 completo.", "Confortável com cálculo de soda.", "Entende SAP, INS e índice de iodo."],
+    "prerequisites": [
+      "Módulo 4 completo.",
+      "Confortável com cálculo de soda.",
+      "Entende SAP, INS e índice de iodo."
+    ],
     "chemical_fundamentals": [
       "KOH produz sabão líquido ou pasta. Peso molecular (56,1) > NaOH (40,0) — exige ~1,4× a massa.",
       "Pasta é diluída em água até a viscosidade desejada. pH final: 8-10.",
       "Calculadora MoonRock só calcula NaOH. Use SoapCalc para KOH."
     ],
-    "safety": ["KOH é tão corrosivo quanto NaOH — EPI completo.", "KOH absorve umidade — armazene em pote hermético.", "Pasta de sabão é muito alcalina antes da diluição."],
-    "conclusion_criteria": ["Diferenciar KOH de NaOH.", "Saber que não são intercambiáveis sem recálculo.", "Entender que sabão líquido exige mais etapas."],
-    "quickReview": ["KOH = líquido; NaOH = barra.", "KOH ≈ 1,4× massa de NaOH.", "Pasta precisa ser diluída.", "Modo KOH na calculadora: pendente.", "Não pule para este módulo sem base."],
-    "related_glossary": ["Saponificação", "Potassa", "Soda cáustica", "Lixívia"]
+    "safety": [
+      "KOH é tão corrosivo quanto NaOH — EPI completo.",
+      "KOH absorve umidade — armazene em pote hermético.",
+      "Pasta de sabão é muito alcalina antes da diluição."
+    ],
+    "conclusion_criteria": [
+      "Diferenciar KOH de NaOH.",
+      "Saber que não são intercambiáveis sem recálculo.",
+      "Entender que sabão líquido exige mais etapas."
+    ],
+    "quickReview": [
+      "KOH = líquido; NaOH = barra.",
+      "KOH ≈ 1,4× massa de NaOH.",
+      "Pasta precisa ser diluída.",
+      "Modo KOH na calculadora: pendente.",
+      "Não pule para este módulo sem base."
+    ],
+    "related_glossary": [
+      "Saponificação",
+      "Potassa",
+      "Soda cáustica",
+      "Lixívia"
+    ]
   },
   {
     "id": 8,
@@ -834,7 +1198,11 @@
     "summary": "Tensoativos sintéticos (SCI), barras syndet, pH 5-6, formulação autoral e repetibilidade.",
     "objective": "Introduzir syndet (sabonete sem soda) e o processo de criar uma receita autoral.",
     "scope_warning": "Módulo em prévia. Formulação autoral exige base sólida e registros no Diário. Syndet é diferente da saponificação tradicional.",
-    "prerequisites": ["Módulos 1 a 4 concluídos.", "Ao menos 10 lotes no Diário.", "Sabe comparar heurística com resultado real."],
+    "prerequisites": [
+      "Módulos 1 a 4 concluídos.",
+      "Ao menos 10 lotes no Diário.",
+      "Sabe comparar heurística com resultado real."
+    ],
     "chemical_fundamentals": [
       "Syndet não usa soda. Usa SCI, betaína, sulfosuccinato. pH final: 5-6, compatível com o manto ácido da pele.",
       "Sabão tradicional tem pH 9-10. Syndet é mais suave, mas exige moedor, prensa e formulação mais complexa.",
@@ -845,8 +1213,25 @@
       "Teste lote pequeno antes de produção maior.",
       "Venda futura: consulte RDC 752/2022 (ANVISA) antes de qualquer texto de rótulo."
     ],
-    "conclusion_criteria": ["Diferenciar syndet de sabão tradicional.", "Criar receita própria.", "Comparar previsão com resultado real.", "Registrar no Diário."],
-    "quickReview": ["Syndet = sem soda, pH 5-6.", "Mais suave, mas mais complexo.", "Fórmula autoral = teoria + prática + diário.", "Venda: consulte RDC 752/2022.", "Este módulo encerra a jornada — sem pressa."],
-    "related_glossary": ["Syndet", "Saponificação", "ANVISA", "BPFS", "INCI"]
+    "conclusion_criteria": [
+      "Diferenciar syndet de sabão tradicional.",
+      "Criar receita própria.",
+      "Comparar previsão com resultado real.",
+      "Registrar no Diário."
+    ],
+    "quickReview": [
+      "Syndet = sem soda, pH 5-6.",
+      "Mais suave, mas mais complexo.",
+      "Fórmula autoral = teoria + prática + diário.",
+      "Venda: consulte RDC 752/2022.",
+      "Este módulo encerra a jornada — sem pressa."
+    ],
+    "related_glossary": [
+      "Syndet",
+      "Saponificação",
+      "ANVISA",
+      "BPFS",
+      "INCI"
+    ]
   }
 ]
