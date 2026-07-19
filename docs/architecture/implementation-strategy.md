@@ -12,6 +12,16 @@ Cada marco deve:
 - evitar dependências da etapa seguinte;
 - manter backup e uso mobile funcionando.
 
+## Status de execução — 2026-07-19
+
+- **Marco 0:** concluído. Os contratos de Batch v1, backup e ponte Calculadora → Diário possuem validação e testes de proteção.
+- **Batch v2 — Etapa 1:** concluída somente no domínio. `BatchV2`, regras por método, decoder explícito e normalização v1 → v2 existem em memória; `localStorage`, backup e formulário continuam em Batch v1.
+- **Aprendizado Cold Process:** o módulo avançado está disponível, possui receita de prática e pré-requisito apenas informativo. O conteúdo não altera dados operacionais nem desbloqueia o currículo automaticamente.
+
+Próximo recorte proposto: autorizar separadamente a Etapa 2 do Batch v2, começando por leitura normalizada e formulário de Cold Process. Não antecipar fórmula discriminada, Calculadora, catálogo de matérias-primas ou motor genérico de formulários.
+
+O estado operacional e os comandos de verificação também são mantidos em [HANDOFF.md](../../HANDOFF.md).
+
 ## Sequência aprovada
 
 ```text
