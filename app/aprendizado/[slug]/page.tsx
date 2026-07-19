@@ -10,6 +10,8 @@ import BeforePracticeChecklist from "@/components/BeforePracticeChecklist";
 import ModuleTracker from "@/components/ModuleTracker";
 import RelatedRecipes from "@/components/RelatedRecipes";
 import ModuleOrbitMap from "@/components/ModuleOrbitMap";
+import BatchPrerequisiteBadge from "@/components/BatchPrerequisiteBadge";
+import type { SoapMethod } from "@/lib/diario";
 
 interface Module {
   id: number;
@@ -48,6 +50,15 @@ const TRACE_LABELS: Record<string, { label: string; color: string }> = {
   falso_trace: { label: "Falso Trace", color: "border-red-600 bg-red-900/15" },
   aceleracao: { label: "Aceleração", color: "border-amber-500 bg-amber-900/20" },
   separacao: { label: "Separação de Fases", color: "border-orange-600 bg-orange-900/15" },
+  emulsao_estavel: { label: "Emulsão Estável (Pré-Trace)", color: "border-sky-600 bg-sky-900/15" },
+  seize: { label: "Seize (Travamento)", color: "border-red-600 bg-red-900/15" },
+  ricing: { label: "Ricing (Grumos)", color: "border-red-500 bg-red-900/20" },
+  gel_parcial: { label: "Gel Parcial", color: "border-purple-600 bg-purple-900/15" },
+};
+
+/** Pré-requisitos de prática verificáveis no Diário, por módulo. */
+const BATCH_PREREQUISITES: Record<string, { method: SoapMethod; minBatches: number; methodLabel: string }> = {
+  "cold-process-avancado": { method: "cold_process", minBatches: 5, methodLabel: "CP" },
 };
 
 const NAV_ITEMS = [
@@ -121,6 +132,9 @@ export default async function ModulePage({ params }: { params: Promise<{ slug: s
                 {mod.prerequisites.map((pre, i) => (
                   <span key={i} className="text-xs px-2.5 py-1 bg-moon-700 text-moon-400 rounded-full border border-moon-600">{pre}</span>
                 ))}
+                {BATCH_PREREQUISITES[mod.slug] && (
+                  <BatchPrerequisiteBadge {...BATCH_PREREQUISITES[mod.slug]} />
+                )}
               </div>
             )}
           </section>

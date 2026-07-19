@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
   BATCH_STORAGE_KEY,
   createBatch,
+  countBatchesByMethod,
   duplicateBatch,
   getAllBatches,
   updateBatch,
@@ -9,7 +10,7 @@ import {
   validateBatch,
   type UpdateBatchInput,
 } from "@/lib/diario";
-import { batchWithOptionalFields, coldProcessBatch } from "@/tests/fixtures/batches";
+import { batchWithOptionalFields, coldProcessBatch, meltAndPourBatch } from "@/tests/fixtures/batches";
 import { MemoryStorage } from "@/tests/test-storage";
 
 let storage: MemoryStorage;
@@ -124,5 +125,22 @@ describe("mutações atuais", () => {
     });
     expect(created.version).toBe(1);
     expect(validateBatch(created).success).toBe(true);
+  });
+});
+
+describe("resumos de lotes", () => {
+  it("conta apenas lotes do método que saíram de rascunho", () => {
+    storage.setItem(
+      BATCH_STORAGE_KEY,
+      JSON.stringify([
+        coldProcessBatch,
+        { ...coldProcessBatch, id: "cp-2", batchCode: "CP-102", status: "ready" },
+        { ...coldProcessBatch, id: "cp-3", batchCode: "CP-103", status: "draft" },
+        meltAndPourBatch,
+      ]),
+    );
+
+    expect(countBatchesByMethod("cold_process")).toBe(2);
+    expect(countBatchesByMethod("hot_process")).toBe(0);
   });
 });

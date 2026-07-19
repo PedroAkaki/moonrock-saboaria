@@ -383,6 +383,10 @@ export function getBatchById(id: string): Batch | null {
   return loadAll().find((b) => b.id === id) ?? null;
 }
 
+export function countBatchesByMethod(method: SoapMethod): number {
+  return loadAll().filter((b) => b.method === method && b.status !== "draft").length;
+}
+
 export function generateBatchCode(method: SoapMethod): string {
   const all = loadAll();
   const prefix = METHOD_PREFIX[method];

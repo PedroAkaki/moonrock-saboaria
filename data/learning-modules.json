@@ -790,20 +790,238 @@
     "slug": "cold-process-avancado",
     "level": 6,
     "title": "Cold Process Avançado",
-    "status": "soon",
+    "status": "available",
     "summary": "Técnicas de design, controle de trace, swirls, camadas, cores naturais e fragrâncias.",
-    "objective": "Evoluir no Cold Process com mais controle sobre trace, cores, camadas e design.",
-    "scope_warning": "Módulo em prévia. Design avançado depende de domínio do CP básico e registros no Diário.",
-    "prerequisites": ["Módulo 3 completo.", "Módulo 4 completo.", "Ao menos 5 lotes no Diário."],
-    "chemical_fundamentals": [
-      "Viscosidade no despejo determina o design: traço leve = fluidos (drop swirl), médio = camadas, pesado = camadas esculpidas.",
-      "Fragrâncias podem acelerar o trace (seize). Solução: adicionar no traço leve.",
-      "Cores naturais: cúrcuma (amarelo), urucum (laranja), espirulina (azul, desbota com UV). Vanilina escurece com o tempo."
+    "objective": "Dominar o controle fino do trace para executar técnicas de design (camadas, swirls, embutidos), usar cores e fragrâncias com previsibilidade e controlar a gel phase de forma intencional.",
+    "scope_warning": "Módulo avançado. Toda técnica de design depende de domínio do CP básico: cálculo de soda, emulsão e leitura de trace precisam estar automáticos antes de adicionar variáveis de cor e fragrância.",
+    "prerequisites": [
+      "Módulo 3 completo.",
+      "Módulo 4 completo.",
+      "Ao menos 5 lotes no Diário."
     ],
-    "safety": ["EPI obrigatório.", "Prepare formas antes de emulsionar — aceleração pode acontecer."],
-    "conclusion_criteria": ["Executar camadas e swirl simples.", "Controlar o trace para a técnica desejada.", "Documentar no Diário."],
-    "quickReview": ["Design depende do ponto de trace.", "Fragrância acelera — adicione no traço leve.", "Cores naturais têm limitações.", "Documente cada tentativa."],
-    "related_glossary": ["Traço", "Gel Phase", "Soda Ash", "Swirl", "Vanilina", "Mica"]
+    "chemical_fundamentals": [
+      "O design em CP é um problema de reologia: a viscosidade da massa no momento do despejo determina o que é fisicamente possível. Traço leve (baixa viscosidade) permite que camadas de cores diferentes se penetrem — necessário para drop swirls e in-the-pot swirls. Traço médio sustenta uma camada sobre a outra sem afundar. Traço pesado mantém picos e texturas esculpidas. A técnica escolhida define o ponto de trace alvo, não o contrário.",
+      "Fragrâncias aceleram o trace por dois mecanismos: (1) componentes polares (álcoois, fenóis como eugenol da canela e do cravo) desestabilizam a emulsão e promovem nucleação de cristais de sabão; (2) a própria adição de líquido não aquoso altera a fase contínua. O 'seize' é o caso extremo — a massa solidifica em segundos. O 'ricing' é intermediário: a fragrância reage com componentes da massa formando grumos que parecem arroz. Fragrâncias florais e apimentadas são as mais aceleradoras; cítricas e amadeiradas tendem a ser seguras.",
+      "Corantes se dividem em três famílias com comportamentos distintos em meio alcalino (pH 12+ na massa fresca): micas (pigmento mineral revestido — estáveis, cores previsíveis, podem desbotar se o revestimento for orgânico), óxidos e ultramarinhos (estáveis em pH alto e UV — a escolha mais confiável), e corantes naturais (cúrcuma, urucum, espirulina, argilas — sensíveis a pH, UV e oxidação; a espirulina desbota em semanas sob luz). A vanilina presente em fragrâncias adocicadas oxida com o tempo e escurece o sabão de bege a marrom escuro — proporcional à concentração.",
+      "O desconto de água (water discount) é ferramenta de design: menos água concentra a lixívia e acelera o trace, mas reduz o encolhimento e o risco de gel parcial. Mais água (relação 2,5:1 a 3:1) desacelera o trace e dá minutos extras para swirls complexos, ao custo de cura mais longa, mais soda ash e maior chance de glicerina rivers (veios translúcidos por segregação de glicerina em massas muito aquosas que gelificam).",
+      "A gel phase é uma transição de fase termotrópica: acima de ~60°C a massa entra em fase líquido-cristalina, acelerando a saponificação e intensificando as cores. Ela pode ser forçada (isolamento, CPOP — forno a 50-70°C desligado) ou evitada (geladeira/freezer nas primeiras 12-24h). O defeito clássico é o gel parcial: o centro gelifica e as bordas não, criando um círculo escuro visível no corte. Em design com cores, a decisão gel/sem gel deve ser tomada antes do despejo — ela muda o resultado final das cores."
+    ],
+    "materials": [
+      "Óleos da formulação base validada no Módulo 3 (perfil de trace lento para design: alto oleico, ≤25% coco/palmiste)",
+      "NaOH 99% e água destilada",
+      "Micas e óxidos cosméticos (ou corantes naturais: argilas, cúrcuma, urucum)",
+      "Fragrância cosmética IFRA-compliant testada ou com comportamento conhecido (reviews de aceleração)",
+      "Álcool 70% em borrifador (prevenção de soda ash)"
+    ],
+    "equipment": [
+      "Todo o equipamento do CP básico (balança 0.1g, termômetro, mixer, EPI)",
+      "Copos ou jarras extras para dividir e colorir a massa (1 por cor)",
+      "Mini mixer ou fouet para dispersar pigmentos sem acelerar o trace",
+      "Espátulas finas, hanger (arame de swirl) e palitos para técnicas",
+      "Squeeze bottles para linhas finas e desenhos controlados",
+      "Forma de bloco (loaf) com laterais altas para camadas e swirl de topo"
+    ],
+    "safety": [
+      "EPI obrigatório durante toda a sessão — técnicas de design prolongam o tempo de exposição à massa cáustica fresca.",
+      "Prepare formas, cores dispersas e fragrância medida ANTES de emulsionar — aceleração pode acontecer e não há tempo para improvisar.",
+      "Pigmentos em pó (micas, óxidos, argilas): dispersar longe do rosto ou com máscara; partículas finas são irritantes respiratórios."
+    ],
+    "process": [
+      "Planeje o design no papel: técnica, cores, ponto de trace alvo e ordem de despejo. Em design, improvisar custa o lote.",
+      "Disperse cada pigmento em 1 colher de óleo da própria receita (micas/óxidos) ou hidrate argilas em água em separado.",
+      "Prepare a solução alcalina e alinhe temperaturas mais baixas que no básico: 32-38°C retarda o trace e dá tempo de trabalho.",
+      "Emulsione com pulsos mínimos de mixer até a emulsão estável (antes do traço leve). Pare cedo — o trace continua avançando sozinho.",
+      "Adicione a fragrância na massa ainda fluida e misture manualmente (fouet), não com mixer.",
+      "Divida a massa nos copos de cor e pigmente cada um. Trabalhe rápido: a massa dividida continua engrossando.",
+      "Execute a técnica: camadas (espere traço médio entre uma e outra), drop swirl (traço leve, despeje de alturas diferentes), hanger swirl (arame em movimento único após o despejo), swirl de topo (traço médio/pesado, espátula).",
+      "Borrife álcool 70% na superfície para prevenir soda ash. Decida a gel phase: isole (cores vivas) ou refrigere (tons pastéis, sem gel).",
+      "Desenforme em 24-48h, corte e registre no Diário: técnica, ponto de trace real, comportamento da fragrância e resultado das cores."
+    ],
+    "critical_parameters": [
+      "Ponto de trace por técnica: emulsão/traço leve para swirls fluidos; traço médio para camadas; traço pesado apenas para topos esculpidos.",
+      "Temperatura de trabalho: 32-38°C (mais baixa que o básico) para maximizar o tempo de design.",
+      "Relação água:soda 2,5:1 para swirls complexos (mais tempo); 2,2:1 para camadas (firma mais rápido).",
+      "Dosagem de mica: 1 colher de chá por 500g de óleos como ponto de partida; óxidos rendem mais (metade da dose).",
+      "Fragrância: 3-5% sobre o peso dos óleos, respeitando o limite IFRA da fragrância específica; sempre adicionada antes de dividir as cores."
+    ],
+    "visual_criteria": [
+      "Emulsão estável (pré-trace): superfície uniforme, sem óleo separado, mas ainda escorre como creme de leite fresco.",
+      "Camada pronta para receber a próxima: suporta o peso de uma colherada de massa despejada sobre uma espátula sem afundar.",
+      "Swirl bem executado: cores contrastantes com fronteiras definidas, sem zonas marrons de mistura excessiva.",
+      "Gel completo: coloração uniforme e intensa de borda a borda no corte; gel parcial aparece como círculo central mais escuro."
+    ],
+    "common_errors": [
+      "Mixer demais depois de dividir as cores: a massa passa do ponto e o swirl vira manchas borradas. Misture pigmento com fouet, não com mixer.",
+      "Camada que afunda na anterior: a camada de baixo estava em traço leve demais. Espere o traço médio ou verta sobre uma espátula para quebrar o impacto.",
+      "Cores que viram lama: excesso de movimentos no swirl. Um hanger swirl é UM movimento; mais que isso mistura em vez de desenhar.",
+      "Sabão que escurece em semanas: vanilina na fragrância. Não é defeito de processo — é química da fragrância; use estabilizador de vanilina ou assuma o tom caramelo no design.",
+      "Gel parcial em lote refrigerado tarde demais: a decisão de evitar gel precisa ser executada na primeira hora após o despejo."
+    ],
+    "troubleshooting": "Se a fragrância causar seize (massa sólida em segundos): despeje/socque no molde imediatamente — o sabão será utilizável, só sem design. Se ocorrer ricing (grumos): bata com mixer; geralmente alisa, ao custo de acelerar o trace e sacrificar o swirl planejado. Se a massa passar do ponto antes de terminar as camadas: abandone o plano, faça um topo texturizado e registre no Diário qual etapa consumiu tempo demais.",
+    "practical_exercise": "Faça 700g de óleos de uma formulação lenta (ex: 60% azeite, 25% coco, 15% palma ou karité) com relação água:soda 2,5:1, a 35°C. Divida em três cores (uma sem pigmento, duas com mica ou argila). Execute: (1) uma camada base em traço médio; (2) um drop swirl com as duas cores restantes em traço leve sobre a camada; (3) topo texturizado com espátula. Borrife álcool, isole metade do molde (caixa térmica) e deixe a outra metade exposta. No corte, compare cor e uniformidade entre a zona gelificada e a não gelificada. Documente no Diário o tempo de cada etapa e o ponto de trace real em que executou cada uma.",
+    "conclusion_criteria": [
+      "Executar camadas e um swirl simples com fronteiras definidas.",
+      "Controlar o ponto de trace para a técnica desejada (parar o mixer no momento certo).",
+      "Prever o comportamento de fragrância e corante antes de usar (teste ou pesquisa prévia).",
+      "Forçar ou evitar a gel phase intencionalmente e explicar o efeito nas cores.",
+      "Documentar cada lote de design no Diário com técnica, tempos e resultado."
+    ],
+    "related_recipes": [],
+    "related_glossary": [
+      "Traço",
+      "Gel Phase",
+      "Soda Ash",
+      "Swirl",
+      "Vanilina",
+      "Mica",
+      "Water Discount"
+    ],
+    "references": [
+      "Scientific Soapmaking (Kevin Dunn) — cinética, gel phase e comportamento de aditivos.",
+      "Auntie Clara's Handcrafted Cosmetics (blog) — experimentos controlados de gel phase, glicerina rivers e design.",
+      "Soap Queen / Bramble Berry — tabelas de comportamento de fragrâncias (aceleração, ricing, vanilina)."
+    ],
+    "studyCards": [
+      {
+        "title": "Trace como Ferramenta de Design",
+        "definition": "Cada técnica exige uma janela de viscosidade: emulsão/traço leve para swirls fluidos, traço médio para camadas, traço pesado para texturas esculpidas.",
+        "whyItMatters": "O design não falha na hora do despejo — falha minutos antes, quando o mixer passou do ponto para a técnica planejada.",
+        "commonMistake": "Buscar sempre o traço médio 'seguro' do CP básico. Para drop swirl, traço médio já é tarde demais.",
+        "practicalSignal": "Se a massa despejada de 30cm de altura não penetra na camada de baixo, já não há mais drop swirl possível — mude para técnica de topo."
+      },
+      {
+        "title": "Seize e Ricing",
+        "definition": "Seize: solidificação quase instantânea da massa causada por fragrância aceleradora. Ricing: formação de grumos granulados quando componentes da fragrância reagem localmente com a massa.",
+        "whyItMatters": "São os dois maiores destruidores de design. Conhecer a fragrância antes de usá-la é a diferença entre swirl e tijolo.",
+        "commonMistake": "Testar fragrância nova direto em um lote grande com design complexo.",
+        "practicalSignal": "Ricing: textura de mingau de arroz ao misturar a fragrância. Seize: a massa 'trava' no fouet em segundos. Em ambos, despeje imediatamente."
+      },
+      {
+        "title": "Famílias de Corantes",
+        "definition": "Micas (mineral revestido, cores brilhantes), óxidos/ultramarinhos (máxima estabilidade em pH alto e UV), naturais (cúrcuma, urucum, espirulina, argilas — mutáveis com pH, luz e tempo).",
+        "whyItMatters": "A massa fresca tem pH 12+; corante que não tolera álcali muda de cor ou desaparece. UV desbota naturais em semanas.",
+        "commonMistake": "Escolher o corante pela cor no pote, não pelo comportamento no sabão curado após semanas de prateleira.",
+        "practicalSignal": "Espirulina verde-azulada vira cinza sob luz; cúrcuma migra do amarelo ao laranja conforme o pH; óxidos permanecem."
+      },
+      {
+        "title": "Vanilina",
+        "definition": "Composto aromático presente em fragrâncias adocicadas (baunilha, caramelo, chocolate) que oxida em meio alcalino, escurecendo o sabão progressivamente até o marrom.",
+        "whyItMatters": "Um design de cores claras com fragrância de baunilha vira um sabão marrom em semanas — não é defeito, é química previsível.",
+        "commonMistake": "Culpar o corante ou a cura pelo escurecimento, quando a causa é o percentual de vanilina da fragrância.",
+        "practicalSignal": "Escurecimento que começa na superfície e avança para o centro, semanas após a produção, em sabões com fragrâncias doces."
+      },
+      {
+        "title": "Gel Phase Controlada",
+        "definition": "Fase líquido-cristalina acima de ~60°C que acelera a saponificação e intensifica cores. Forçada por isolamento ou CPOP; evitada por refrigeração nas primeiras 12-24h.",
+        "whyItMatters": "Gel completo dá cores vivas e translúcidas; sem gel dá tons pastéis e opacos. Gel parcial — o meio-termo acidental — é o defeito estético mais comum em CP.",
+        "commonMistake": "Não decidir. Deixar o molde 'ao ar' em clima ameno é a receita do gel parcial.",
+        "practicalSignal": "Massa translúcida como vaselina no centro do molde = gel em andamento. Círculo escuro central no corte = gel parcial."
+      },
+      {
+        "title": "Água como Variável de Design",
+        "definition": "Relação água:soda alta (2,5:1 a 3:1) retarda o trace e alonga o tempo de trabalho; baixa (≤2:1) acelera o trace e firma camadas mais rápido.",
+        "whyItMatters": "É o controle de tempo mais confiável que existe — mais previsível que temperatura e independente da fragrância.",
+        "commonMistake": "Usar água em excesso em formas grandes: massas muito aquosas que gelificam podem formar glicerina rivers (veios translúcidos).",
+        "practicalSignal": "Swirl complexo planejado + massa firmando em 5 minutos = pouca água (ou temperatura alta) para a técnica escolhida."
+      },
+      {
+        "title": "Soda Ash",
+        "definition": "Camada branca de carbonato de sódio formada quando a massa fresca reage com o CO₂ do ar antes de a saponificação consumir o álcali livre.",
+        "whyItMatters": "Inofensiva, mas arruína a estética de um design — cobre cores e detalhes do topo.",
+        "commonMistake": "Só lembrar do álcool depois que a superfície já esbranquiçou.",
+        "practicalSignal": "Prevenção: borrifar álcool 70% logo após o despejo e cobrir o molde. Remoção: vapor, lavagem rápida ou plaina."
+      }
+    ],
+    "trace_diagnosis": {
+      "emulsao_estavel": "Ponto anterior ao traço leve: superfície homogênea, sem separação, escorre como creme de leite fresco. É o ponto ideal para dividir cores em swirls complexos — o trace continuará avançando sozinho enquanto você trabalha.",
+      "trace_leve": "Textura de leite condensado, rastro some em 5-10 segundos. Janela do drop swirl e in-the-pot swirl. Fragrância entra aqui (ou antes).",
+      "trace_medio": "Rastro visível por 10-20 segundos. Sustenta camadas sem afundar. Última chance para hanger swirl.",
+      "trace_pesado": "Consistência de pudim, mantém picos. Só serve para topos texturizados e camadas esculpidas — qualquer swirl interno vira borrão.",
+      "aceleracao": "Massa avança de leve a pesado em 1-2 minutos. Causas em design: fragrância aceleradora, temperatura alta, pouca água. Plano B: abandonar swirls internos, despejar em camadas rápidas e texturizar o topo.",
+      "seize": "Solidificação em segundos após adicionar a fragrância — a massa 'trava' no fouet. Socar no molde imediatamente; o sabão sai utilizável, sem design. Registrar a fragrância como aceleradora no Diário.",
+      "ricing": "Grumos como arroz cozido ao incorporar a fragrância. Mixer alisa na maioria dos casos, mas acelera o trace — sacrifique o design planejado e simplifique.",
+      "gel_parcial": "Não é defeito de trace, mas de temperatura pós-despejo: círculo central mais escuro no corte. Decida gel completo (isolar) ou nenhum gel (refrigerar na primeira hora) antes do despejo."
+    },
+    "quickReview": [
+      "A técnica define o ponto de trace alvo — pare o mixer para a técnica, não para o hábito.",
+      "Fragrância entra na massa fluida, misturada à mão; nunca depois de dividir as cores.",
+      "Teste toda fragrância nova em lote pequeno antes de usá-la em design.",
+      "Óxidos e ultramarinhos são os corantes mais estáveis em pH alto; naturais desbotam.",
+      "Vanilina escurece o sabão — previsível, proporcional, irreversível.",
+      "Mais água = mais tempo de trabalho; menos água = camadas que firmam rápido.",
+      "Decida a gel phase antes do despejo: isolar (cores vivas) ou refrigerar (pastel).",
+      "Álcool 70% borrifado no topo previne soda ash.",
+      "Todo lote de design vai para o Diário: técnica, tempos, trace real e resultado."
+    ],
+    "quiz": [
+      {
+        "id": "cpa1",
+        "type": "multiple-choice",
+        "question": "Você planeja um drop swirl com três cores. Em qual ponto deve parar o mixer e dividir a massa?",
+        "options": [
+          "Traço pesado, para as cores não se misturarem.",
+          "Traço médio, o ponto seguro padrão do CP básico.",
+          "Emulsão estável ou traço leve — a massa precisa estar fluida para as cores se penetrarem, e o trace continua avançando enquanto você trabalha.",
+          "Antes da emulsão completa, para ganhar o máximo de tempo."
+        ],
+        "correctAnswer": "Emulsão estável ou traço leve — a massa precisa estar fluida para as cores se penetrarem, e o trace continua avançando enquanto você trabalha.",
+        "explanation": "Drop swirl exige baixa viscosidade no despejo. Como dividir, pigmentar e despejar consome minutos e o trace avança sozinho, o mixer deve parar o mais cedo possível — na emulsão estável. Parar antes da emulsão completa arrisca separação."
+      },
+      {
+        "id": "cpa2",
+        "type": "true-false",
+        "question": "Um sabão com fragrância de baunilha que escureceu de creme para marrom em um mês indica erro no processo de cura.",
+        "correctAnswer": false,
+        "explanation": "Falso. É a oxidação da vanilina presente na fragrância — um processo químico previsível e proporcional à concentração de vanilina, não um defeito de processo. As opções são usar estabilizador de vanilina ou incorporar o tom marrom ao design."
+      },
+      {
+        "id": "cpa3",
+        "type": "multiple-choice",
+        "question": "Ao adicionar a fragrância, a massa formou grumos com aparência de arroz cozido. O que é e qual a resposta correta?",
+        "options": [
+          "Falso trace — aquecer em banho-maria até dissolver os grumos.",
+          "Ricing — bater com o mixer geralmente alisa a massa, mas acelera o trace; simplifique o design planejado.",
+          "Seize — descartar o lote imediatamente por segurança.",
+          "Soda ash — borrifar álcool 70% e continuar normalmente."
+        ],
+        "correctAnswer": "Ricing — bater com o mixer geralmente alisa a massa, mas acelera o trace; simplifique o design planejado.",
+        "explanation": "Ricing é a reação localizada de componentes da fragrância com a massa. O mixer normalmente recupera a textura, ao custo de avançar o trace — o swirl complexo deve ser trocado por camadas rápidas ou topo texturizado. Não há risco de segurança; o lote não se descarta."
+      },
+      {
+        "id": "cpa4",
+        "type": "multiple-choice",
+        "question": "Você quer cores vivas e intensas em um sabão com micas. Qual decisão pós-despejo favorece esse resultado?",
+        "options": [
+          "Refrigerar o molde imediatamente para preservar os pigmentos.",
+          "Forçar a gel phase completa (isolamento ou CPOP) — a fase gel intensifica e satura as cores.",
+          "Deixar o molde ao ar livre para a gel phase ocorrer parcialmente.",
+          "Desenformar em 12h para interromper a saponificação."
+        ],
+        "correctAnswer": "Forçar a gel phase completa (isolamento ou CPOP) — a fase gel intensifica e satura as cores.",
+        "explanation": "A fase gel deixa as cores mais vivas e levemente translúcidas; evitá-la produz tons pastéis opacos. O pior resultado estético é o gel parcial (círculo central escuro), que acontece justamente quando não se decide — o molde fica 'ao ar' e só o centro atinge a temperatura de gel."
+      },
+      {
+        "id": "cpa5",
+        "type": "short",
+        "question": "Sua formulação firma rápido demais para o swirl planejado, mesmo a 35°C e sem fragrância aceleradora. Qual ajuste na receita dá mais tempo de trabalho sem trocar os óleos?",
+        "correctAnswer": "aumentar a água",
+        "explanation": "Aumentar a relação água:soda (ex: de 2,2:1 para 2,5:1 ou 3:1) dilui a lixívia e retarda o trace de forma previsível — é o controle de tempo mais confiável para design, independente de temperatura e fragrância."
+      },
+      {
+        "id": "cpa6",
+        "type": "true-false",
+        "question": "Para um hanger swirl bem definido, quanto mais movimentos você fizer com o arame dentro do molde, mais bonito o resultado.",
+        "correctAnswer": false,
+        "explanation": "Falso. Cada passagem extra mistura as cores em vez de desenhá-las — o resultado converge para um borrão marrom. Swirls definidos vêm de poucos movimentos deliberados (o hanger clássico é um único trajeto) com cores em contraste."
+      }
+    ],
+    "beforePracticeChecklist": [
+      "Planejei o design no papel: técnica, cores, ponto de trace alvo e ordem de despejo.",
+      "Testei ou pesquisei o comportamento da fragrância (aceleração, ricing, vanilina).",
+      "Dispersei os pigmentos e preparei formas, copos e ferramentas ANTES de emulsionar.",
+      "Decidi antecipadamente sobre a gel phase (isolar ou refrigerar) e tenho o necessário pronto.",
+      "Sei o plano B se a massa acelerar: camadas rápidas e topo texturizado, sem insistir em swirls."
+    ]
   },
   {
     "id": 7,

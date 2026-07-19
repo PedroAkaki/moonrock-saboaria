@@ -276,6 +276,57 @@
         "Cura mínima de 4 semanas antes do primeiro uso"
       ],
       "notes": "Fórmula de 2 óleos: azeite (75%) condiciona e amacia; coco (25%) limpa e faz espuma. INS estimado: 146 (faixa verde). Ideal para iniciantes em CP que já fizeram o Módulo 3 e querem repetir o processo com segurança."
+    },
+    {
+      "id": "cp-camadas-drop-swirl-argila",
+      "name": "CP Design — Camadas e Drop Swirl com Argila Rosa",
+      "level": "cold-process",
+      "difficulty": "avancado",
+      "yield": "700g de óleos (~980g de sabão)",
+      "relatedModuleSlugs": [
+        "cold-process-avancado"
+      ],
+      "technique": "cold-process",
+      "category": "cosmetic",
+      "safetyLevel": "alto",
+      "studyGoal": "Executar o exercício do Módulo 6: camada base em traço médio, drop swirl em traço leve e topo texturizado, controlando o trace com formulação lenta e água 2,5:1.",
+      "requiresCalculatorValidation": true,
+      "ingredients": [
+        {
+          "oilId": "azeite",
+          "name": "Azeite de Oliva",
+          "percentage": 60,
+          "grams": 420
+        },
+        {
+          "oilId": "coco",
+          "name": "Óleo de Coco",
+          "percentage": 25,
+          "grams": 175
+        },
+        {
+          "oilId": "karite",
+          "name": "Manteiga de Karité",
+          "percentage": 15,
+          "grams": 105
+        },
+        {
+          "oilId": "soda",
+          "name": "Soda Cáustica (NaOH)",
+          "percentage": 0,
+          "grams": 0
+        },
+        {
+          "oilId": "agua",
+          "name": "Água Destilada",
+          "percentage": 0,
+          "grams": 0
+        }
+      ],
+      "notes": "Formulação de trace lento para design. Aditivos: 1 colher de sopa de argila rosa hidratada (1 cor), 1 colher de chá de mica (2ª cor), massa natural (3ª cor). Sem fragrância na primeira execução — adicione apenas quando a técnica estiver dominada. Temperatura 32-38°C, álcool 70% no topo, decisão de gel phase antes do despejo.",
+      "usingCalculator": true,
+      "superfat": 5,
+      "waterRatio": 2.5
     }
   ]
 }
