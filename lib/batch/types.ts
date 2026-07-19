@@ -16,6 +16,12 @@ export type BatchYield = NonNullable<Batch["yield"]>;
 export type BatchResult = NonNullable<Batch["result"]>;
 export type LegacyBatchCure = Batch["cure"];
 
+/** Ponto de trace em que a massa foi despejada no molde (Módulo CP Avançado). */
+export type TracePointAtPour = "emulsion" | "light" | "medium" | "heavy";
+
+/** Resultado da gel phase observado no corte. */
+export type GelPhaseOutcome = "full" | "partial" | "none";
+
 export interface ColdProcessData {
   method: "cold_process";
   ambientTempC?: number;
@@ -23,6 +29,9 @@ export interface ColdProcessData {
   lyeTempC?: number;
   mixingTempC?: number;
   traceTimeMinutes?: number;
+  tracePointAtPour?: TracePointAtPour;
+  gelPhase?: GelPhaseOutcome;
+  designTechnique?: string;
   moldName?: string;
   notes?: string;
 }

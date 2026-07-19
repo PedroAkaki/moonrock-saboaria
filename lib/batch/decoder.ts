@@ -1,6 +1,5 @@
 import {
   validateBatch,
-  type Batch,
   type BatchAdditive,
   type BatchOil,
   type BatchStatus,
@@ -254,13 +253,23 @@ function parseColdProcessData(record: Record<string, unknown>): DecodeResult<Col
   const lyeTempC = parseOptionalNumber(record, "lyeTempC", "processData.lyeTempC");
   const mixingTempC = parseOptionalNumber(record, "mixingTempC", "processData.mixingTempC");
   const traceTimeMinutes = parseOptionalNumber(record, "traceTimeMinutes", "processData.traceTimeMinutes");
+  const designTechnique = parseOptionalString(record, "designTechnique", "processData.designTechnique");
   const moldName = parseOptionalString(record, "moldName", "processData.moldName");
   const notes = parseOptionalString(record, "notes", "processData.notes");
+  const tracePointAtPour = record.tracePointAtPour;
+  if (tracePointAtPour !== undefined && tracePointAtPour !== "emulsion" && tracePointAtPour !== "light" && tracePointAtPour !== "medium" && tracePointAtPour !== "heavy") {
+    return fail("processData.tracePointAtPour não é reconhecido.");
+  }
+  const gelPhase = record.gelPhase;
+  if (gelPhase !== undefined && gelPhase !== "full" && gelPhase !== "partial" && gelPhase !== "none") {
+    return fail("processData.gelPhase não é reconhecido.");
+  }
   if (!ambientTempC.success) return ambientTempC;
   if (!oilTempC.success) return oilTempC;
   if (!lyeTempC.success) return lyeTempC;
   if (!mixingTempC.success) return mixingTempC;
   if (!traceTimeMinutes.success) return traceTimeMinutes;
+  if (!designTechnique.success) return designTechnique;
   if (!moldName.success) return moldName;
   if (!notes.success) return notes;
   return ok({
@@ -270,6 +279,9 @@ function parseColdProcessData(record: Record<string, unknown>): DecodeResult<Col
     ...(lyeTempC.data === undefined ? {} : { lyeTempC: lyeTempC.data }),
     ...(mixingTempC.data === undefined ? {} : { mixingTempC: mixingTempC.data }),
     ...(traceTimeMinutes.data === undefined ? {} : { traceTimeMinutes: traceTimeMinutes.data }),
+    ...(tracePointAtPour === undefined ? {} : { tracePointAtPour }),
+    ...(gelPhase === undefined ? {} : { gelPhase }),
+    ...(designTechnique.data === undefined ? {} : { designTechnique: designTechnique.data }),
     ...(moldName.data === undefined ? {} : { moldName: moldName.data }),
     ...(notes.data === undefined ? {} : { notes: notes.data }),
   });

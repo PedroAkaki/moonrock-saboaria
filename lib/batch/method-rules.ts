@@ -1,5 +1,5 @@
 import type { BatchStatus, SoapMethod } from "@/lib/diario";
-import type { BatchProcessData, BatchReadiness } from "@/lib/batch/types";
+import type { BatchProcessData, BatchReadiness, TransitionalBatchFormula } from "@/lib/batch/types";
 
 const DEFAULT_READINESS_DAYS: Partial<Record<SoapMethod, number>> = {
   cold_process: 42,
@@ -7,6 +7,30 @@ const DEFAULT_READINESS_DAYS: Partial<Record<SoapMethod, number>> = {
   melt_and_pour: 1,
   used_oil: 28,
 };
+
+/** Óleos de cura lenta (alto oleico): barras estilo Castela pedem cura estendida. */
+const SLOW_CURING_OIL_IDS = new Set(["azeite", "girassol-alto-oleico", "abacate"]);
+
+const SLOW_CURING_THRESHOLD_PERCENT = 70;
+const SLOW_CURING_CURE_DAYS = 90;
+
+/**
+ * Dias de cura/estabilização sugeridos para o método, refinados pela formulação
+ * quando disponível: Cold Process com ≥70% de óleos alto oleico (ex: Castela)
+ * recebe cura estendida em vez do padrão de 42 dias.
+ */
+export function getSuggestedReadinessDays(
+  method: SoapMethod,
+  formula?: TransitionalBatchFormula,
+): number | undefined {
+  const base = DEFAULT_READINESS_DAYS[method];
+  if (method !== "cold_process" || !formula) return base;
+  const slowCuringPercent = formula.oils.reduce(
+    (sum, oil) => (oil.oilId !== null && SLOW_CURING_OIL_IDS.has(oil.oilId) ? sum + oil.percentage : sum),
+    0,
+  );
+  return slowCuringPercent >= SLOW_CURING_THRESHOLD_PERCENT ? SLOW_CURING_CURE_DAYS : base;
+}
 
 function addDays(dateString: string, days: number): string {
   const [year, month, day] = dateString.split("-").map(Number);
@@ -28,8 +52,12 @@ export function getInitialBatchStatus(method: SoapMethod): BatchStatus {
   }
 }
 
-export function getInitialReadiness(method: SoapMethod, batchDate: string): BatchReadiness | undefined {
-  const days = DEFAULT_READINESS_DAYS[method];
+export function getInitialReadiness(
+  method: SoapMethod,
+  batchDate: string,
+  formula?: TransitionalBatchFormula,
+): BatchReadiness | undefined {
+  const days = getSuggestedReadinessDays(method, formula);
   switch (method) {
     case "cold_process":
     case "used_oil":
