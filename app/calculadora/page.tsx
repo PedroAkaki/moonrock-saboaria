@@ -14,8 +14,8 @@ import {
   MoldResult,
 } from "@/lib/soap/calculator";
 import { Oil, getOils } from "@/lib/soap/oils";
-import GlossaryTerm from "@/components/GlossaryTerm";
 import SafetyChecklist from "@/components/SafetyChecklist";
+import { OilBlendSimulator } from "@/components/OilBlendSimulator";
 import InfoTooltip from "@/components/InfoTooltip";
 import type { RecipeCalculatorPayload } from "@/components/UseRecipeInCalculatorButton";
 
@@ -36,6 +36,7 @@ export default function CalculadoraPage() {
   const [result, setResult] = useState<CalculatorResult | null>(null);
   const [errors, setErrors] = useState<string[]>([]);
   const [warnings, setWarnings] = useState<FormulaWarning[]>([]);
+  const [calculatorMode, setCalculatorMode] = useState<"calculator" | "simulator">("calculator");
 
   const [totalWeight, setTotalWeight] = useState(500);
   const [superfat, setSuperfat] = useState(8);
@@ -191,6 +192,30 @@ export default function CalculadoraPage() {
         </p>
       </div>
 
+      <div className="inline-flex rounded-xl border border-moon-600 bg-moon-800/70 p-1" role="tablist" aria-label="Modo da calculadora">
+        <button type="button" role="tab" aria-selected={calculatorMode === "calculator"} onClick={() => setCalculatorMode("calculator")}
+          className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${calculatorMode === "calculator" ? "bg-white text-moon-900" : "text-moon-300 hover:text-white"}`}>
+          Calcular receita
+        </button>
+        <button type="button" role="tab" aria-selected={calculatorMode === "simulator"} onClick={() => setCalculatorMode("simulator")}
+          className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${calculatorMode === "simulator" ? "bg-sky-300 text-moon-900" : "text-moon-300 hover:text-white"}`}>
+          Simular mistura
+        </button>
+      </div>
+
+      {calculatorMode === "simulator" ? (
+        <OilBlendSimulator
+          oils={oils}
+          initialSelection={selectedOils}
+          onApply={(selection) => {
+            setSelectedOils(selection);
+            setCalculatorMode("calculator");
+            setResult(null);
+            setErrors([]);
+            setWarnings([]);
+          }}
+        />
+      ) : (
       <div className="grid md:grid-cols-2 gap-6">
         {/* Form */}
         <div className="space-y-6">
@@ -616,6 +641,7 @@ export default function CalculadoraPage() {
           </div>
         )}
       </div>
+      )}
     </div>
   );
 }
