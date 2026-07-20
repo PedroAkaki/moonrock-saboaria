@@ -11,6 +11,7 @@ Atualizado em 2026-07-20.
 - O conteúdo `cold-process-avancado` está disponível, possui receita de prática e registra os conceitos que serão persistíveis quando a UI do Diário v2 for autorizada.
 - O pré-requisito de cinco lotes CP aparece como indicador no Aprendizado. Ele não bloqueia módulos e não altera o progresso educacional.
 - O Diário CP v2 possui uma conferência opcional de 24–48 h: data, situação de desmolde, toque da superfície e sinais visuais iniciais. É um único registro de processo, não uma linha do tempo genérica. A avaliação depois da cura continua em `result`.
+- A Calculadora possui o Simulador de Mistura de Óleos v1: perfis ponderados, objetivos educativo de equilíbrio/firmeza/cremosidade, sugestão determinística em incrementos de 5% e revisão consciente na Calculadora. Ele não cria Receita ou Lote.
 
 ## Contratos que não podem regredir
 
@@ -33,15 +34,15 @@ Antes de expandir Batch v2 para outro método, ainda é necessária autorizaçã
 3. Melhorar a avaliação de cura usando o `result` existente antes de criar qualquer histórico de observações.
 4. Revisar instruções de segurança e recuperação de lote com fontes rastreáveis antes de ampliar o conteúdo prático.
 
-## Simulador de mistura de óleos — planejado, não iniciado
+## Simulador de mistura de óleos — v1 concluída
 
 Objetivo: uma ferramenta da Calculadora para Cold Process que permita tanto ajustar percentuais livremente e ver propriedades estimadas em tempo real quanto pedir uma sugestão para um objetivo explícito.
 
 - Usará somente os atributos já existentes em `data/oils.json` (`hardness`, `cleansing`, `conditioning`, `bubbly`, `creamy`, `iodine`, `ins`, `maxPercent`, estabilidade e risco de DOS).
-- Terá dois modos pequenos: **explorar** (a usuária altera a mistura) e **sugerir** (objetivo + óleos permitidos + peso total). A sugestão deve expor percentuais, propriedades estimadas, limites respeitados e concessões; se não houver combinação viável, deve dizer isso em vez de inventar uma fórmula.
+- Possui os dois modos pequenos: **explorar** (a usuária altera a mistura) e **sugerir** (objetivo + óleos já escolhidos). A sugestão expõe percentuais, propriedades estimadas e limites; se não houver combinação viável, informa isso em vez de inventar uma fórmula.
 - A regra será determinística e testada fora da UI. Valores são heurísticas educacionais, não garantia de qualidade, segurança cosmética ou resultado de bancada.
 - A saída poderá preencher a Calculadora para revisão consciente; não criará automaticamente Receita ou Lote, não alterará o cálculo de NaOH e não introduzirá catálogo, banco ou otimizador genérico.
-- Pré-requisito: auditar e normalizar as faixas de cada propriedade na biblioteca atual; depois definir os objetivos iniciais e as regras de desempate antes da interface.
+- O próximo aprimoramento é auditar e calibrar as escalas da biblioteca e as faixas dos objetivos a partir de uso real. Não transformar essa calibração em alegação de desempenho ou segurança.
 
 ## Verificação esperada
 

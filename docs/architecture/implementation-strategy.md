@@ -88,15 +88,15 @@ Adicionar ligações leves entre conteúdo e IDs ou tópicos estáveis. O progre
 3. Conferência de 24–48 h e avaliação após a cura como dois momentos de aprendizagem distintos; manter somente o primeiro como dado de processo estruturado até haver demanda real por histórico.
 4. Revisão de segurança baseada em fontes antes de ampliar instruções de diagnóstico ou recuperação de lote.
 
-## Simulador de mistura de óleos (planejado)
+## Simulador de mistura de óleos (v1 concluída)
 
-Objetivo: apoiar a formulação de Cold Process na Calculadora sem substituir o teste prático. A pessoa poderá montar percentuais livremente e ver as propriedades estimadas, ou informar um objetivo e receber uma sugestão explicável.
+Objetivo: apoiar a formulação de Cold Process na Calculadora sem substituir o teste prático. A pessoa pode montar percentuais livremente e ver as propriedades estimadas, ou informar um objetivo e receber uma sugestão explicável.
 
 Escopo inicial:
 
-- motor puro e determinístico que recebe óleos permitidos, peso total e uma meta de propriedades;
+- motor puro e determinístico que recebe óleos permitidos e uma meta de propriedades;
 - cálculo ponderado das propriedades já presentes na biblioteca (`hardness`, `cleansing`, `conditioning`, `bubbly`, `creamy`, `iodine` e `ins`), com respeito a `maxPercent`, estabilidade e risco de DOS;
-- modo explorar e modo sugerir; uma combinação inviável deve ser comunicada claramente;
+- modo explorar e modo sugerir, com busca em incrementos de 5%; uma combinação inviável é comunicada claramente;
 - testes de propriedades, limites e casos inviáveis antes da UI;
 - a sugestão preenche a Calculadora para conferência e recálculo, mas não cria Receita, Lote ou dados persistidos automaticamente.
 
@@ -105,11 +105,11 @@ Fora do escopo inicial:
 - algoritmo genérico de otimização, IA, catálogo novo de ingredientes, inventário, custo, recomendação de segurança cosmética ou alteração automática da receita;
 - afirmações de que a heurística garante qualidade, estabilidade ou segurança.
 
-Critérios de entrada:
+Próximo aprimoramento:
 
 1. auditar a qualidade e a escala dos dados de propriedades já existentes em `data/oils.json`;
-2. definir poucos perfis iniciais e seus intervalos, com critérios de desempate legíveis;
-3. separar o cálculo puro da tela da Calculadora e proteger o comportamento atual com testes.
+2. calibrar os perfis iniciais e seus intervalos com critérios de desempate legíveis;
+3. continuar separando fato de heurística e não usar o resultado como recomendação de segurança.
 
 ## Recommendations
 
