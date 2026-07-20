@@ -83,7 +83,7 @@ Adicionar ligações leves entre conteúdo e IDs ou tópicos estáveis. O progre
 
 ### Próxima trilha Cold Process
 
-1. Conteúdo de práticas progressivas: controle da fórmula, temperatura e trace, uma variável por vez e design simples.
+1. O módulo `cold-process-praticas-progressivas` cobre controle da fórmula, temperatura/trace, uma variável por vez e design simples. Ele é um roteiro educacional e não cria lotes automaticamente.
 2. Ligação leve de cada prática aos campos existentes do Diário CP; abrir o formulário pode pré-preencher contexto, mas nunca criar um lote automaticamente.
 3. Conferência de 24–48 h e avaliação após a cura como dois momentos de aprendizagem distintos; manter somente o primeiro como dado de processo estruturado até haver demanda real por histórico.
 4. Revisão de segurança baseada em fontes antes de ampliar instruções de diagnóstico ou recuperação de lote.

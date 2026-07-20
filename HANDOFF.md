@@ -28,7 +28,7 @@ Antes de expandir Batch v2 para outro método, ainda é necessária autorizaçã
 
 ## Próximas melhorias de Aprendizado CP
 
-1. Estruturar práticas progressivas: controle da fórmula, temperatura/trace, uma variável (cor ou fragrância) e design simples.
+1. O módulo `cold-process-praticas-progressivas` está disponível: quatro práticas (controle, temperatura/trace, uma variável e design simples), sem criar registros automaticamente.
 2. Ligar cada prática aos campos CP do Diário, inclusive a conferência de 24–48 h, sem criar registros automaticamente a partir do módulo.
 3. Melhorar a avaliação de cura usando o `result` existente antes de criar qualquer histórico de observações.
 4. Revisar instruções de segurança e recuperação de lote com fontes rastreáveis antes de ampliar o conteúdo prático.
