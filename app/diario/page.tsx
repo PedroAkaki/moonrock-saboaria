@@ -24,6 +24,11 @@ import {
   clearCalculatorFormulaForDiary,
   readCalculatorFormulaForDiary,
 } from "@/lib/storage/calculator-diary";
+import {
+  clearLearningDiaryPracticeFromDiaryUrl,
+  readLearningDiaryPracticeForDiary,
+  type LearningDiaryPractice,
+} from "@/lib/learning/diary-practice";
 import ColdProcessFields from "@/components/ColdProcessFields";
 
 const STATUS_LABELS: Record<string, string> = {
@@ -99,14 +104,15 @@ function subscribeToHydration(onStoreChange: () => void) {
 
 export default function DiarioPage() {
   const [calculatorFormula] = useState(() => readCalculatorFormulaForDiary());
+  const [learningPractice, setLearningPractice] = useState<LearningDiaryPractice | null>(() => readLearningDiaryPracticeForDiary());
   const [batches, setBatches] = useState<StoredBatch[]>(() => getDiaryBatches());
   const [statusFilter, setStatusFilter] = useState<string>("all");
-  const [showForm, setShowForm] = useState(() => calculatorFormula !== null);
+  const [showForm, setShowForm] = useState(() => calculatorFormula !== null || learningPractice !== null);
   const mounted = useSyncExternalStore(subscribeToHydration, () => true, () => false);
 
   // Form state
-  const [formName, setFormName] = useState("");
-  const [formMethod, setFormMethod] = useState<SoapMethod>("cold_process");
+  const [formName, setFormName] = useState(() => learningPractice?.suggestedName ?? "");
+  const [formMethod, setFormMethod] = useState<SoapMethod>(() => learningPractice?.method ?? "cold_process");
   const [formDate, setFormDate] = useState(todayStr());
   const [formOilWeight, setFormOilWeight] = useState(() => calculatorFormula?.totalOilWeight ?? 500);
   const [formNaoh, setFormNaoh] = useState(() => calculatorFormula?.naohGrams ?? 0);
@@ -115,7 +121,7 @@ export default function DiarioPage() {
   const [formOilList, setFormOilList] = useState<BatchOil[]>(() => calculatorFormula?.oils ?? []);
   const [formSourceType, setFormSourceType] = useState<"free_formula" | "calculator">(() => calculatorFormula ? "calculator" : "free_formula");
   const [formFormulaOpen, setFormFormulaOpen] = useState(() => calculatorFormula !== null);
-  const [formObs, setFormObs] = useState("");
+  const [formObs, setFormObs] = useState(() => learningPractice?.observations ?? "");
   const [formColdProcess, setFormColdProcess] = useState<ColdProcessData>(emptyColdProcessData());
   const [importMessage, setImportMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
   const [editBatchId, setEditBatchId] = useState<string | null>(null);
@@ -194,6 +200,7 @@ export default function DiarioPage() {
   };
 
   const handleEdit = (batch: StoredBatch) => {
+    setLearningPractice(null);
     setEditBatchId(batch.id);
     setEditBatchCode(batch.batchCode);
     setEditOriginal(batch);
@@ -214,6 +221,8 @@ export default function DiarioPage() {
   };
 
   const resetForm = () => {
+    clearLearningDiaryPracticeFromDiaryUrl();
+    setLearningPractice(null);
     setEditBatchId(null);
     setEditBatchCode(null);
     setEditOriginal(null);
@@ -402,6 +411,11 @@ export default function DiarioPage() {
 
           {formMethod === "cold_process" && (
             <>
+              {learningPractice && !editBatchId && (
+                <p className="rounded-lg border border-sky-700 bg-sky-900/20 px-3 py-2 text-xs text-sky-100">
+                  Contexto da prática preenchido a partir do Aprendizado. Revise e ajuste antes de salvar; este lote ainda não existe.
+                </p>
+              )}
               {editOriginal?.method === "cold_process" && !isBatchV2(editOriginal) && (
                 <p className="rounded-lg border border-amber-700 bg-amber-900/20 px-3 py-2 text-xs text-amber-200">
                   Ao salvar, este lote legado será promovido para Batch v2. Os dados não exibidos serão preservados como legado.

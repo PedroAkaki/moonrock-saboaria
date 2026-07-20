@@ -12,6 +12,7 @@ import RelatedRecipes from "@/components/RelatedRecipes";
 import ModuleOrbitMap from "@/components/ModuleOrbitMap";
 import BatchPrerequisiteBadge from "@/components/BatchPrerequisiteBadge";
 import type { SoapMethod } from "@/lib/diario";
+import { getLearningDiaryPracticeHref } from "@/lib/learning/diary-practice";
 
 interface Module {
   id: number;
@@ -83,6 +84,7 @@ export default async function ModulePage({ params }: { params: Promise<{ slug: s
   if (!mod || mod.status !== "available") {
     notFound();
   }
+  const diaryPracticeHref = getLearningDiaryPracticeHref(mod.slug);
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
@@ -307,6 +309,21 @@ export default async function ModulePage({ params }: { params: Promise<{ slug: s
       {/* ── PRÁTICA ── */}
       <section id="pratica" className="mb-8 space-y-8">
         <RelatedRecipes moduleSlug={mod.slug} />
+
+        {diaryPracticeHref && (
+          <section className="rounded-xl border border-sky-700/60 bg-sky-900/15 p-4">
+            <h2 className="text-lg font-semibold text-sky-100 mb-2">Registrar a prática no Diário</h2>
+            <p className="text-sm text-sky-100/80 leading-relaxed">
+              O Diário abrirá com um contexto editável de prática. Revise a intenção e a variável em estudo antes de salvar; nenhum lote é criado nesta etapa.
+            </p>
+            <Link
+              href={diaryPracticeHref}
+              className="mt-3 inline-flex rounded-lg border border-sky-500/70 bg-sky-500/10 px-3 py-2 text-sm font-medium text-sky-100 hover:bg-sky-500/20"
+            >
+              Abrir Diário para esta prática
+            </Link>
+          </section>
+        )}
 
         {mod.beforePracticeChecklist && mod.beforePracticeChecklist.length > 0 && (
           <BeforePracticeChecklist items={mod.beforePracticeChecklist} slug={mod.slug} />
