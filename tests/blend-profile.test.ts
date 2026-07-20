@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   BLEND_GOALS,
+  assessBlendGoal,
   calculateBlendProfile,
   isMetricWithinGoal,
   suggestOilBlend,
@@ -74,5 +75,42 @@ describe("perfil e sugestão de mistura de óleos", () => {
   it("não sugere mistura com óleo bloqueado ou mais de quatro opções", () => {
     expect(suggestOilBlend("balanced", ["azeite", "coco", "palma", "x", "y"], oils)).toBeNull();
     expect(suggestOilBlend("balanced", ["azeite", "coco", "bloqueado"], [...oils, oil("bloqueado", { confidenceLevel: "bloqueado" })])).toBeNull();
+  });
+
+  it("mantém perfil e sugestão ao receber os mesmos óleos em outra ordem", () => {
+    const forward = [
+      { oilId: "azeite", percentage: 65 },
+      { oilId: "coco", percentage: 25 },
+      { oilId: "palma", percentage: 10 },
+    ];
+    const reverse = [...forward].reverse();
+
+    expect(calculateBlendProfile(forward, oils)).toEqual(calculateBlendProfile(reverse, oils));
+    expect(suggestOilBlend("balanced", ["azeite", "coco", "palma"], oils)).toEqual(
+      suggestOilBlend("balanced", ["palma", "coco", "azeite"], oils),
+    );
+  });
+
+  it("expõe quando a melhor aproximação não atende a meta escolhida", () => {
+    const castela = oil("castela", {
+      hardness: 2,
+      cleansing: 1,
+      conditioning: 5,
+      bubbly: 1,
+      creamy: 2,
+      iodine: 80,
+      ins: 105,
+      maxPercent: 100,
+    });
+    const suggestion = suggestOilBlend("balanced", ["castela"], [castela]);
+
+    expect(suggestion).not.toBeNull();
+    expect(suggestion?.assessment.meetsGoal).toBe(false);
+    expect(suggestion?.assessment.unmetCriteria).toContain("hardness");
+    expect(assessBlendGoal(suggestion!.profile, BLEND_GOALS.balanced).meetsGoal).toBe(false);
+  });
+
+  it("rejeita perfil com percentual não finito", () => {
+    expect(calculateBlendProfile([{ oilId: "azeite", percentage: Number.NaN }], oils)).toBeNull();
   });
 });

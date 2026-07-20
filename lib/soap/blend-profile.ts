@@ -2,6 +2,7 @@ import type { Oil } from "@/lib/soap/oils";
 
 export type BlendMetric = "hardness" | "cleansing" | "conditioning" | "bubbly" | "creamy";
 export type BlendGoalId = "balanced" | "firm" | "creamy";
+export type BlendGoalCriterion = BlendMetric | "iodine" | "ins";
 
 export interface OilBlendItem {
   oilId: string;
@@ -17,6 +18,11 @@ export interface BlendProfile {
   creamy: number;
   iodine: number;
   ins: number;
+}
+
+export interface BlendGoalAssessment {
+  meetsGoal: boolean;
+  unmetCriteria: BlendGoalCriterion[];
 }
 
 interface BlendGoalMetric {
@@ -87,10 +93,12 @@ function round(value: number): number {
   return Number(value.toFixed(1));
 }
 
-export function calculateBlendProfile(selection: OilBlendItem[], oilLibrary: Oil[]): BlendProfile | null {
+const COMPARISON_EPSILON = 1e-9;
+
+function calculateRawBlendProfile(selection: OilBlendItem[], oilLibrary: Oil[]): BlendProfile | null {
   const oilMap = new Map(oilLibrary.map((oil) => [oil.id, oil]));
   const percentageTotal = selection.reduce((sum, item) => sum + item.percentage, 0);
-  if (percentageTotal <= 0 || selection.length === 0) return null;
+  if (!Number.isFinite(percentageTotal) || percentageTotal <= 0 || selection.length === 0) return null;
 
   const totals = {
     hardness: 0,
@@ -102,7 +110,8 @@ export function calculateBlendProfile(selection: OilBlendItem[], oilLibrary: Oil
     ins: 0,
   };
 
-  for (const item of selection) {
+  // A ordem em que a pessoa seleciona os óleos não pode mudar a sugestão.
+  for (const item of [...selection].sort((left, right) => left.oilId.localeCompare(right.oilId))) {
     const oil = oilMap.get(item.oilId);
     if (!oil || !Number.isFinite(item.percentage) || item.percentage < 0) return null;
     const factor = item.percentage / percentageTotal;
@@ -116,24 +125,55 @@ export function calculateBlendProfile(selection: OilBlendItem[], oilLibrary: Oil
   }
 
   return {
-    percentageTotal: round(percentageTotal),
-    hardness: round(totals.hardness),
-    cleansing: round(totals.cleansing),
-    conditioning: round(totals.conditioning),
-    bubbly: round(totals.bubbly),
-    creamy: round(totals.creamy),
-    iodine: round(totals.iodine),
-    ins: round(totals.ins),
+    percentageTotal,
+    hardness: totals.hardness,
+    cleansing: totals.cleansing,
+    conditioning: totals.conditioning,
+    bubbly: totals.bubbly,
+    creamy: totals.creamy,
+    iodine: totals.iodine,
+    ins: totals.ins,
   };
+}
+
+function roundBlendProfile(profile: BlendProfile): BlendProfile {
+  return {
+    percentageTotal: round(profile.percentageTotal),
+    hardness: round(profile.hardness),
+    cleansing: round(profile.cleansing),
+    conditioning: round(profile.conditioning),
+    bubbly: round(profile.bubbly),
+    creamy: round(profile.creamy),
+    iodine: round(profile.iodine),
+    ins: round(profile.ins),
+  };
+}
+
+export function calculateBlendProfile(selection: OilBlendItem[], oilLibrary: Oil[]): BlendProfile | null {
+  const rawProfile = calculateRawBlendProfile(selection, oilLibrary);
+  return rawProfile ? roundBlendProfile(rawProfile) : null;
 }
 
 export function isMetricWithinGoal(profile: BlendProfile, goal: BlendGoal, metric: BlendMetric): boolean {
   const range = goal.metrics[metric];
-  return profile[metric] >= range.min && profile[metric] <= range.max;
+  return profile[metric] >= range.min - COMPARISON_EPSILON && profile[metric] <= range.max + COMPARISON_EPSILON;
+}
+
+export function assessBlendGoal(profile: BlendProfile, goal: BlendGoal): BlendGoalAssessment {
+  const unmetCriteria: BlendGoalCriterion[] = (Object.keys(goal.metrics) as BlendMetric[])
+    .filter((metric) => !isMetricWithinGoal(profile, goal, metric));
+
+  if (profile.iodine > goal.iodineMax + COMPARISON_EPSILON) unmetCriteria.push("iodine");
+  if (profile.ins < goal.insMin - COMPARISON_EPSILON || profile.ins > goal.insMax + COMPARISON_EPSILON) unmetCriteria.push("ins");
+
+  return {
+    meetsGoal: unmetCriteria.length === 0,
+    unmetCriteria,
+  };
 }
 
 function normalizedDistance(value: number, min: number, max: number): number {
-  if (value >= min && value <= max) return 0;
+  if (value >= min - COMPARISON_EPSILON && value <= max + COMPARISON_EPSILON) return 0;
   const width = max - min;
   return (value < min ? min - value : value - max) / width;
 }
@@ -151,13 +191,20 @@ export function scoreBlendForGoal(profile: BlendProfile, goal: BlendGoal, select
   const highDosPercent = selection.reduce((sum, item) => (
     oilMap.get(item.oilId)?.dosRisk === "alto" ? sum + item.percentage : sum
   ), 0);
-  return Number((score + (highDosPercent / 100) * 0.8).toFixed(4));
+  return score + (highDosPercent / 100) * 0.8;
 }
 
 export interface BlendSuggestion {
   selection: OilBlendItem[];
   profile: BlendProfile;
   score: number;
+  assessment: BlendGoalAssessment;
+}
+
+function selectionTieBreaker(selection: OilBlendItem[]): string {
+  return selection
+    .map((item) => `${item.oilId}:${item.percentage.toFixed(4).padStart(8, "0")}`)
+    .join("|");
 }
 
 /**
@@ -165,7 +212,7 @@ export interface BlendSuggestion {
  * explicável: até quatro óleos já escolhidos pela usuária, sem otimizador geral.
  */
 export function suggestOilBlend(goalId: BlendGoalId, oilIds: string[], oilLibrary: Oil[]): BlendSuggestion | null {
-  const uniqueOilIds = [...new Set(oilIds)];
+  const uniqueOilIds = [...new Set(oilIds)].sort((left, right) => left.localeCompare(right));
   if (uniqueOilIds.length === 0 || uniqueOilIds.length > 4) return null;
   const oilMap = new Map(oilLibrary.map((oil) => [oil.id, oil]));
   const selectedOils = uniqueOilIds.map((oilId) => oilMap.get(oilId));
@@ -182,10 +229,17 @@ export function suggestOilBlend(goalId: BlendGoalId, oilIds: string[], oilLibrar
     if (index === uniqueOilIds.length - 1) {
       if (remaining < minimum || remaining > oil.maxPercent || remaining % step !== 0) return;
       const selection = [...current, { oilId: oil.id, percentage: remaining }];
-      const profile = calculateBlendProfile(selection, oilLibrary);
-      if (!profile) return;
-      const score = scoreBlendForGoal(profile, goal, selection, oilLibrary);
-      if (!best || score < best.score) best = { selection, profile, score };
+      const rawProfile = calculateRawBlendProfile(selection, oilLibrary);
+      if (!rawProfile) return;
+      const score = scoreBlendForGoal(rawProfile, goal, selection, oilLibrary);
+      const profile = roundBlendProfile(rawProfile);
+      const assessment = assessBlendGoal(rawProfile, goal);
+      const candidate = { selection, profile, score, assessment };
+      const candidateTieBreaker = selectionTieBreaker(selection);
+      const currentTieBreaker = best ? selectionTieBreaker(best.selection) : "";
+      if (!best || score < best.score || (score === best.score && candidateTieBreaker < currentTieBreaker)) {
+        best = candidate;
+      }
       return;
     }
 

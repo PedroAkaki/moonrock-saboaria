@@ -6,6 +6,7 @@ import {
   BLEND_GOALS,
   calculateBlendProfile,
   type BlendGoalId,
+  type BlendGoalCriterion,
   type BlendMetric,
   type OilBlendItem,
   isMetricWithinGoal,
@@ -19,12 +20,22 @@ interface OilBlendSimulatorProps {
 }
 
 const METRICS: { id: BlendMetric; label: string; color: string }[] = [
-  { id: "hardness", label: "Dureza", color: "bg-sky-400" },
-  { id: "cleansing", label: "Limpeza", color: "bg-amber-400" },
-  { id: "conditioning", label: "Condicionamento", color: "bg-emerald-400" },
-  { id: "bubbly", label: "Espuma", color: "bg-fuchsia-400" },
-  { id: "creamy", label: "Cremosidade", color: "bg-violet-400" },
+  { id: "hardness", label: "Estrutura estimada", color: "bg-sky-400" },
+  { id: "cleansing", label: "Potencial de limpeza", color: "bg-amber-400" },
+  { id: "conditioning", label: "Índice de insaturados", color: "bg-emerald-400" },
+  { id: "bubbly", label: "Potencial de espuma rápida", color: "bg-fuchsia-400" },
+  { id: "creamy", label: "Potencial de espuma densa", color: "bg-violet-400" },
 ];
+
+const CRITERION_LABELS: Record<BlendGoalCriterion, string> = {
+  hardness: "estrutura",
+  cleansing: "potencial de limpeza",
+  conditioning: "índice de insaturados",
+  bubbly: "espuma rápida",
+  creamy: "espuma densa",
+  iodine: "indicador de insaturação",
+  ins: "índice histórico INS",
+};
 
 export function OilBlendSimulator({ oils, initialSelection, onApply }: OilBlendSimulatorProps) {
   const [selection, setSelection] = useState<OilBlendItem[]>(() => initialSelection.map((item) => ({ ...item })));
@@ -69,7 +80,9 @@ export function OilBlendSimulator({ oils, initialSelection, onApply }: OilBlendS
       return;
     }
     setSelection(suggestion.selection);
-    setSuggestionMessage("Ponto de partida aplicado ao simulador. Compare o perfil e ajuste se quiser.");
+    setSuggestionMessage(suggestion.assessment.meetsGoal
+      ? "Ponto de partida aplicado ao simulador. Compare o perfil e ajuste se quiser."
+      : `Melhor aproximação com estes óleos. Fora da meta: ${suggestion.assessment.unmetCriteria.map((criterion) => CRITERION_LABELS[criterion]).join(", ")}.`);
   };
 
   const topContributor = (metric: BlendMetric) => [...selection]
@@ -157,7 +170,7 @@ export function OilBlendSimulator({ oils, initialSelection, onApply }: OilBlendS
                         <input type="number" min="0" max={oil.maxPercent} value={item.percentage} onChange={(event) => updatePercentage(item.oilId, Number(event.target.value))} className="w-11 bg-transparent text-right outline-none" aria-label={`Valor percentual de ${oil.name}`} />%
                       </label>
                     </div>
-                    <p className="mt-1 text-xs text-moon-500">Máximo recomendado: {oil.maxPercent}% · {oil.formulaRole ?? oil.recommendedUse ?? "papel a revisar"}</p>
+                    <p className="mt-1 text-xs text-moon-500">Limite usado pela sugestão: {oil.maxPercent}% · {oil.formulaRole ?? oil.recommendedUse ?? "papel a revisar"}</p>
                   </div>
                 );
               })}
@@ -193,8 +206,8 @@ export function OilBlendSimulator({ oils, initialSelection, onApply }: OilBlendS
                   <ProfileMeter key={metric.id} label={metric.label} color={metric.color} value={profile[metric.id]} target={goal.metrics[metric.id]} withinGoal={isMetricWithinGoal(profile, goal, metric.id)} />
                 ))}
                 <div className="grid grid-cols-2 gap-2 pt-1">
-                  <MetricChip label="Iodo" value={profile.iodine} detail={`meta até ${goal.iodineMax}`} warning={profile.iodine > goal.iodineMax} />
-                  <MetricChip label="INS" value={profile.ins} detail={`meta ${goal.insMin}–${goal.insMax}`} warning={profile.ins < goal.insMin || profile.ins > goal.insMax} />
+                  <MetricChip label="Insaturação" value={profile.iodine} detail={`indicador · meta até ${goal.iodineMax}`} warning={profile.iodine > goal.iodineMax} />
+                  <MetricChip label="INS" value={profile.ins} detail={`índice histórico · meta ${goal.insMin}–${goal.insMax}`} warning={profile.ins < goal.insMin || profile.ins > goal.insMax} />
                 </div>
               </div>
             ) : <p className="mt-3 text-sm text-moon-400">Adicione ao menos um óleo com percentual válido para ver o perfil.</p>}
