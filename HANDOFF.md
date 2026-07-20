@@ -12,6 +12,7 @@ Atualizado em 2026-07-20.
 - O pré-requisito de cinco lotes CP aparece como indicador no Aprendizado. Ele não bloqueia módulos e não altera o progresso educacional.
 - O Diário CP v2 possui uma conferência opcional de 24–48 h: data, situação de desmolde, toque da superfície e sinais visuais iniciais. É um único registro de processo, não uma linha do tempo genérica. A avaliação depois da cura continua em `result`.
 - A Calculadora possui o Simulador de Mistura de Óleos v1: perfis ponderados, objetivos educativo de equilíbrio/firmeza/cremosidade, sugestão determinística em incrementos de 5% e revisão consciente na Calculadora. Ele não cria Receita ou Lote.
+- A integridade do simulador foi reforçada: a pontuação usa valores antes da apresentação arredondada, a busca canoniza a ordem dos óleos e os empates são estáveis. Quando a meta não é atingida, a UI declara que se trata da melhor aproximação e mostra os critérios fora da faixa.
 
 ## Contratos que não podem regredir
 
@@ -41,8 +42,9 @@ Objetivo: uma ferramenta da Calculadora para Cold Process que permita tanto ajus
 - Usará somente os atributos já existentes em `data/oils.json` (`hardness`, `cleansing`, `conditioning`, `bubbly`, `creamy`, `iodine`, `ins`, `maxPercent`, estabilidade e risco de DOS).
 - Possui os dois modos pequenos: **explorar** (a usuária altera a mistura) e **sugerir** (objetivo + óleos já escolhidos). A sugestão expõe percentuais, propriedades estimadas e limites; se não houver combinação viável, informa isso em vez de inventar uma fórmula.
 - A regra será determinística e testada fora da UI. Valores são heurísticas educacionais, não garantia de qualidade, segurança cosmética ou resultado de bancada.
+- `maxPercent` permanece como limite da sugestão, não como limite químico ou selo de segurança. A Calculadora continua exibindo aviso ao revisar uma fórmula fora desse intervalo.
 - A saída poderá preencher a Calculadora para revisão consciente; não criará automaticamente Receita ou Lote, não alterará o cálculo de NaOH e não introduzirá catálogo, banco ou otimizador genérico.
-- O próximo aprimoramento é auditar e calibrar as escalas da biblioteca e as faixas dos objetivos a partir de uso real. Não transformar essa calibração em alegação de desempenho ou segurança.
+- O próximo aprimoramento é auditar proveniência, escala e completude dos dados da biblioteca antes de mudar o score. Não transformar essa calibração em alegação de desempenho ou segurança.
 
 ## Verificação esperada
 
