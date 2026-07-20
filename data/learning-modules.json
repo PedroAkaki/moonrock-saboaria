@@ -1024,6 +1024,152 @@
     ]
   },
   {
+    "id": 9,
+    "slug": "cold-process-praticas-progressivas",
+    "level": 6,
+    "title": "Cold Process — Práticas Progressivas",
+    "status": "available",
+    "summary": "Um plano de quatro práticas para ganhar consistência em Cold Process: repetir, observar, mudar uma variável e só então desenhar.",
+    "objective": "Transformar os conceitos de Cold Process em uma rotina de prática controlada, usando o Diário para comparar o que foi planejado, o que aconteceu na bancada e o que mudou na cura.",
+    "scope_warning": "Este é um roteiro de aprendizagem, não uma receita automática nem autorização para pular segurança. Execute apenas práticas para as quais a preparação, a fórmula e os equipamentos já estejam dominados.",
+    "prerequisites": [
+      "Módulo 3 completo ou segurança e processo básico já revisados.",
+      "Acesso ao Diário para registrar o lote e a conferência de 24–48 h.",
+      "Disposição para mudar somente uma variável por prática."
+    ],
+    "chemical_fundamentals": [
+      "Em Cold Process, o resultado final é influenciado pela fórmula, temperatura, concentração de água, tempo de mistura, aditivos e condições pós-despejo. Mudar muitas variáveis de uma vez impede descobrir qual delas causou uma diferença observada.",
+      "Repetir uma fórmula conhecida não é falta de criatividade: é o controle que permite comparar tempo de trace, temperatura, desmolde, gel phase e cura com menos ruído.",
+      "Os indicadores da Calculadora e as observações do Diário têm papéis diferentes. INS e propriedades estimadas ajudam a formular hipóteses; o lote curado mostra o que aconteceu naquela prática concreta."
+    ],
+    "materials": [
+      "Uma fórmula de Cold Process já compreendida e calculada",
+      "Ingredientes e equipamentos já usados com segurança no módulo básico",
+      "Diário MoonRock para registrar processo, conferência de 24–48 h e avaliação após a cura"
+    ],
+    "equipment": [
+      "EPI e equipamentos habituais de Cold Process",
+      "Balança e termômetro para repetir medidas",
+      "Caderno ou o próprio Diário para anotar a intenção antes de iniciar"
+    ],
+    "safety": [
+      "A prática progressiva não reduz a necessidade de EPI, ventilação e bancada preparada.",
+      "Não trate um resultado visual como prova de segurança do sabonete. Siga a cura planejada e interrompa a prática se houver uma situação que você não reconhece.",
+      "Em caso de dúvida sobre uma fragrância, corante ou ingrediente, não introduza a variável naquele lote de estudo."
+    ],
+    "process": [
+      "Prática 1 — Controle: repita uma fórmula simples, sem cor nem fragrância nova. Antes de começar, declare no Diário que o objetivo é criar uma referência. Registre temperaturas, tempo até o trace e ponto de despejo.",
+      "Prática 2 — Temperatura e trace: use a mesma fórmula ou uma próxima conhecida. Escolha antecipadamente qual observação quer comparar (por exemplo, temperatura de mistura ou ponto de trace) e não adicione outra novidade. Na conferência de 24–48 h, registre desmolde, toque e sinais visuais.",
+      "Prática 3 — Uma variável: mantenha fórmula e processo base. Acrescente somente uma cor OU uma fragrância já pesquisada para o uso pretendido. Registre o comportamento da massa, sem concluir causalidade a partir de uma única tentativa.",
+      "Prática 4 — Design simples: escolha uma técnica pequena compatível com o trace que você já consegue observar, como duas camadas ou um detalhe de topo. Prepare tudo antes da emulsão e tenha um plano simples caso a massa engrosse mais rápido que o esperado.",
+      "Após cada prática, volte ao lote depois da cura. Use as observações finais para decidir se repete a mesma prática, ajusta uma única variável ou retorna ao controle."
+    ],
+    "critical_parameters": [
+      "Uma intenção observável por lote: o que deve permanecer igual e qual é a única variável em estudo.",
+      "Temperaturas, tempo de trace e ponto de despejo registrados no Diário CP.",
+      "Conferência em 24–48 h: situação de desmolde, toque, cinza de soda, rachaduras, separação e notas quando aplicável.",
+      "Avaliação após a cura: comparação com a intenção original, não apenas se o visual agradou."
+    ],
+    "visual_criteria": [
+      "Registro de controle com dados suficientes para ser comparado a uma prática posterior.",
+      "Uma prática com variável única deixa claro o que foi mantido e o que foi alterado.",
+      "As observações de 24–48 h distinguem fatos vistos (ex.: desenformou, estava macio) de hipótese sobre a causa."
+    ],
+    "common_errors": [
+      "Mudar fórmula, temperatura, cor e fragrância no mesmo lote e depois tentar atribuir um resultado a apenas uma delas.",
+      "Esperar o fim da cura para tentar lembrar como a massa se comportou na bancada.",
+      "Usar o Diário apenas para anotar que o lote ficou bonito, sem registrar a intenção ou a variável estudada.",
+      "Avançar para design complexo sem conseguir repetir um processo básico de forma confortável."
+    ],
+    "troubleshooting": "Se a prática não puder ser comparada porque várias coisas mudaram, não tente transformar a lembrança em certeza. Registre a limitação, retorne a uma versão mais simples da fórmula ou técnica e repita com uma única intenção observável.",
+    "practical_exercise": "Planeje e execute as quatro práticas em semanas separadas. Para cada lote, escreva antes de começar: (1) o que permanecerá igual; (2) a única variável em estudo; (3) o que você observará na bancada; e (4) o que conferirá em 24–48 h. Só escolha a próxima mudança depois de registrar a avaliação da prática anterior.",
+    "conclusion_criteria": [
+      "Planejar uma prática de CP com uma única variável em estudo.",
+      "Registrar processo e conferência de 24–48 h em um lote CP no Diário.",
+      "Diferenciar observação de hipótese ao revisar um lote.",
+      "Escolher o próximo passo com base em comparação, não apenas em memória ou impulso."
+    ],
+    "related_recipes": [],
+    "related_glossary": [
+      "Trace",
+      "Gel Phase",
+      "Soda Ash",
+      "Cura",
+      "INS"
+    ],
+    "references": [
+      "Scientific Soapmaking (Kevin Dunn) — uso de observação e repetibilidade para entender o processo.",
+      "Registros próprios no Diário MoonRock — evidência prática da usuária, não substituto de fonte técnica."
+    ],
+    "studyCards": [
+      {
+        "title": "Uma Variável por Prática",
+        "definition": "Manter uma base conhecida e alterar deliberadamente apenas um elemento observável por lote.",
+        "whyItMatters": "Permite comparar resultados sem atribuir à fragrância o que pode ter sido temperatura, água, fórmula ou técnica.",
+        "commonMistake": "Chamar um lote de teste quando fórmula, cor, fragrância, temperatura e molde mudaram juntos.",
+        "practicalSignal": "Você consegue dizer, antes de começar, qual resultado observará e qual fator está sendo estudado."
+      },
+      {
+        "title": "Controle",
+        "definition": "Uma prática de referência, repetida sem novidade intencional, usada para comparar as práticas seguintes.",
+        "whyItMatters": "Sem referência, é difícil saber se uma mudança melhorou o processo ou se o resultado variou por acaso.",
+        "commonMistake": "Achar que repetir uma fórmula é perder tempo e pular direto para design complexo.",
+        "practicalSignal": "O lote de controle tem temperaturas, trace e conferência inicial registrados para futura comparação."
+      },
+      {
+        "title": "Observação não é Diagnóstico",
+        "definition": "Observação descreve o que foi visto; diagnóstico sugere uma causa e precisa de evidência adicional.",
+        "whyItMatters": "Evita transformar uma experiência isolada em regra e incentiva práticas mais seguras e repetíveis.",
+        "commonMistake": "Concluir que uma fragrância causou aceleração quando também houve mudança de temperatura e de fórmula.",
+        "practicalSignal": "No Diário, escreva primeiro o fato: 'massa engrossou em poucos minutos'; depois, se houver, a hipótese separada."
+      }
+    ],
+    "quickReview": [
+      "Repita antes de variar: controle cria referência.",
+      "Mude uma variável por lote de estudo.",
+      "Registre temperaturas, trace e intenção antes de confiar na memória.",
+      "Use a conferência de 24–48 h para registrar fatos do desmolde.",
+      "Heurísticas da Calculadora ajudam a pensar; o lote curado ensina o resultado prático.",
+      "Se não foi comparável, simplifique a próxima prática."
+    ],
+    "quiz": [
+      {
+        "id": "cpp1",
+        "type": "multiple-choice",
+        "question": "Qual plano produz a comparação mais útil para uma prática de Cold Process?",
+        "options": [
+          "Trocar três óleos, usar uma fragrância nova e testar um swirl no mesmo lote.",
+          "Repetir a base conhecida e alterar apenas uma variável que foi definida antes da prática.",
+          "Fazer dois lotes completamente diferentes e escolher o que ficar mais bonito.",
+          "Anotar apenas o resultado depois da cura."
+        ],
+        "correctAnswer": "Repetir a base conhecida e alterar apenas uma variável que foi definida antes da prática.",
+        "explanation": "Uma única variável não garante uma conclusão definitiva, mas torna a comparação muito mais útil e honesta do que várias mudanças simultâneas."
+      },
+      {
+        "id": "cpp2",
+        "type": "true-false",
+        "question": "A conferência de 24–48 h serve para registrar fatos observados no desmolde; ela não precisa provar a causa de cada sinal visual.",
+        "correctAnswer": true,
+        "explanation": "Correto. Registre o que foi visto e separe isso de hipóteses. Uma causa exige contexto e, muitas vezes, mais de uma prática comparável."
+      },
+      {
+        "id": "cpp3",
+        "type": "short",
+        "question": "Antes de adicionar uma nova cor ou fragrância, qual é a regra de planejamento deste módulo?",
+        "correctAnswer": "mudar apenas uma variavel",
+        "explanation": "A prática deve preservar uma base conhecida e declarar uma única variável em estudo."
+      }
+    ],
+    "beforePracticeChecklist": [
+      "Defini o objetivo observável desta prática.",
+      "Escrevi o que permanecerá igual e qual será a única variável em estudo.",
+      "Separei equipamentos, EPI e ingredientes antes de iniciar.",
+      "Sei quais campos vou registrar no Diário durante a bancada e em 24–48 h.",
+      "Aceito simplificar ou repetir a prática se ela deixar de ser comparável."
+    ]
+  },
+  {
     "id": 7,
     "slug": "saboaria-liquida-koh",
     "level": 7,

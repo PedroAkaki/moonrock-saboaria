@@ -10,13 +10,22 @@ function getModule(slug: string) {
 
 describe("contratos de conteúdo de Cold Process", () => {
   it("mantém os módulos básico e avançado publicáveis e com atividades práticas", () => {
-    for (const slug of ["cold-process-basico", "cold-process-avancado"]) {
+    for (const slug of ["cold-process-basico", "cold-process-avancado", "cold-process-praticas-progressivas"]) {
       const learningModule = getModule(slug);
       expect(learningModule.status).toBe("available");
       expect(learningModule.quiz?.length).toBeGreaterThan(0);
       expect(learningModule.beforePracticeChecklist?.length).toBeGreaterThan(0);
       expect(learningModule.conclusion_criteria?.length).toBeGreaterThan(0);
     }
+  });
+
+  it("mantém a trilha de práticas CP focada em comparação, não em criação automática", () => {
+    const learningModule = getModule("cold-process-praticas-progressivas");
+
+    expect(learningModule.process).toHaveLength(5);
+    expect((learningModule.process ?? []).join(" ").toLowerCase()).toContain("uma variável");
+    expect(learningModule.practical_exercise).toContain("quatro práticas");
+    expect(learningModule.scope_warning).toContain("não uma receita automática");
   });
 
   it("mantém diagnóstico específico para o CP avançado", () => {
