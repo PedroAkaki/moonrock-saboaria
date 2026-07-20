@@ -2,7 +2,8 @@
 
 import { useSyncExternalStore } from "react";
 import Link from "next/link";
-import { BATCH_STORAGE_KEY, countBatchesByMethod, type SoapMethod } from "@/lib/diario";
+import { BATCH_STORAGE_KEY, type SoapMethod } from "@/lib/diario";
+import { countDiaryBatchesByMethod } from "@/lib/batch/repository";
 
 interface BatchPrerequisiteBadgeProps {
   method: SoapMethod;
@@ -26,7 +27,7 @@ function subscribeToBatchStorage(onStoreChange: () => void) {
 export default function BatchPrerequisiteBadge({ method, minBatches, methodLabel }: BatchPrerequisiteBadgeProps) {
   const count = useSyncExternalStore(
     subscribeToBatchStorage,
-    () => countBatchesByMethod(method),
+    () => countDiaryBatchesByMethod(method),
     () => null,
   );
 

@@ -1,27 +1,30 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useCallback, useState, useSyncExternalStore } from "react";
 import { Plus, FlaskConical, Trash2, Copy, Download, Upload, Pencil } from "lucide-react";
 import {
-  getAllBatches,
-  createBatch,
-  deleteBatch,
-  duplicateBatch,
-  updateBatchStatus,
-  updateBatch,
-  generateBatchCode,
-  Batch,
   BatchStatus,
   SoapMethod,
-  CreateBatchInput,
-  UpdateBatchInput,
   BatchOil,
 } from "@/lib/diario";
+import {
+  createDiaryBatch,
+  deleteDiaryBatch,
+  duplicateDiaryBatch,
+  generateDiaryBatchCode,
+  getDiaryBatches,
+  isBatchV2,
+  updateDiaryBatch,
+  updateDiaryBatchStatus,
+} from "@/lib/batch/repository";
+import { normalizeStoredBatchV1 } from "@/lib/batch/decoder";
+import type { ColdProcessData, StoredBatch } from "@/lib/batch/types";
 import { exportBackup, importBackup, downloadJson, readJsonFile } from "@/lib/storage/backup";
 import {
   clearCalculatorFormulaForDiary,
   readCalculatorFormulaForDiary,
 } from "@/lib/storage/calculator-diary";
+import ColdProcessFields from "@/components/ColdProcessFields";
 
 const STATUS_LABELS: Record<string, string> = {
   draft: "Rascunho",
@@ -53,98 +56,80 @@ function todayStr(): string {
   return new Date().toISOString().slice(0, 10);
 }
 
+function emptyColdProcessData(): ColdProcessData {
+  return { method: "cold_process" };
+}
+
+function getColdProcessData(batch: StoredBatch): ColdProcessData {
+  const normalized = isBatchV2(batch) ? batch : normalizeStoredBatchV1(batch);
+  return normalized.processData?.method === "cold_process"
+    ? { ...normalized.processData }
+    : emptyColdProcessData();
+}
+
+function getCureData(batch: StoredBatch) {
+  if (!isBatchV2(batch)) return batch.cure;
+  return batch.readiness?.kind === "cure" ? batch.readiness : undefined;
+}
+
+function subscribeToHydration(onStoreChange: () => void) {
+  queueMicrotask(onStoreChange);
+  return () => undefined;
+}
+
 export default function DiarioPage() {
-  const [batches, setBatches] = useState<Batch[]>([]);
+  const [calculatorFormula] = useState(() => readCalculatorFormulaForDiary());
+  const [batches, setBatches] = useState<StoredBatch[]>(() => getDiaryBatches());
   const [statusFilter, setStatusFilter] = useState<string>("all");
-  const [showForm, setShowForm] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const [showForm, setShowForm] = useState(() => calculatorFormula !== null);
+  const mounted = useSyncExternalStore(subscribeToHydration, () => true, () => false);
 
   // Form state
   const [formName, setFormName] = useState("");
   const [formMethod, setFormMethod] = useState<SoapMethod>("cold_process");
   const [formDate, setFormDate] = useState(todayStr());
-  const [formOilWeight, setFormOilWeight] = useState(500);
-  const [formNaoh, setFormNaoh] = useState(0);
-  const [formWater, setFormWater] = useState(0);
-  const [formSuperfat, setFormSuperfat] = useState(5);
-  const [formOilList, setFormOilList] = useState<BatchOil[]>([]);
-  const [formSourceType, setFormSourceType] = useState<"free_formula" | "calculator">("free_formula");
-  const [formFormulaOpen, setFormFormulaOpen] = useState(false);
+  const [formOilWeight, setFormOilWeight] = useState(() => calculatorFormula?.totalOilWeight ?? 500);
+  const [formNaoh, setFormNaoh] = useState(() => calculatorFormula?.naohGrams ?? 0);
+  const [formWater, setFormWater] = useState(() => calculatorFormula?.waterGrams ?? 0);
+  const [formSuperfat, setFormSuperfat] = useState(() => calculatorFormula?.superfatPercent ?? 5);
+  const [formOilList, setFormOilList] = useState<BatchOil[]>(() => calculatorFormula?.oils ?? []);
+  const [formSourceType, setFormSourceType] = useState<"free_formula" | "calculator">(() => calculatorFormula ? "calculator" : "free_formula");
+  const [formFormulaOpen, setFormFormulaOpen] = useState(() => calculatorFormula !== null);
   const [formObs, setFormObs] = useState("");
+  const [formColdProcess, setFormColdProcess] = useState<ColdProcessData>(emptyColdProcessData());
   const [importMessage, setImportMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
   const [editBatchId, setEditBatchId] = useState<string | null>(null);
   const [editBatchCode, setEditBatchCode] = useState<string | null>(null);
-  const [editOriginal, setEditOriginal] = useState<Batch | null>(null);
+  const [editOriginal, setEditOriginal] = useState<StoredBatch | null>(null);
 
-  // Pre-fill from calculator when available
-  // NÃO remover a chave aqui — só após createBatch() com sourceType "calculator"
-  useEffect(() => {
-    const formula = readCalculatorFormulaForDiary();
-    if (!formula) return;
-    setFormOilWeight(formula.totalOilWeight);
-    setFormNaoh(formula.naohGrams ?? 0);
-    setFormWater(formula.waterGrams);
-    setFormSuperfat(formula.superfatPercent);
-    setFormOilList(formula.oils ?? []);
-    setFormSourceType("calculator");
-    setFormFormulaOpen(true);
-    setShowForm(true);
-  }, []);
-
-  const load = useCallback(() => setBatches(getAllBatches()), []);
-
-  useEffect(() => {
-    load();
-    setMounted(true);
-  }, [load]);
+  // A fórmula da Calculadora só é consumida depois de createDiaryBatch().
+  const load = useCallback(() => setBatches(getDiaryBatches()), []);
 
   const handleCreate = () => {
     if (!formName.trim()) return;
 
     if (editBatchId) {
       // Edit mode — update existing batch with safe merge
-      const original = editOriginal;
-      const patch: UpdateBatchInput = {
+      updateDiaryBatch(editBatchId, {
         name: formName.trim(),
         batchDate: formDate,
         formula: {
-          ...(original?.formula ?? {} as Batch["formula"]),
           totalOilWeight: formOilWeight,
-          alkaliType: original?.formula.alkaliType ?? "naoh",
+          alkaliType: editOriginal?.formula.alkaliType ?? "naoh",
           naohGrams: formNaoh || undefined,
           waterGrams: formWater,
           superfatPercent: formSuperfat,
           oils: formOilList,
-        } as Batch["formula"],
-      };
-
-      // Merge result safely — only update observations, preserve ph/rating/etc.
-      if (formObs.trim()) {
-        patch.result = {
-          ...(original?.result ?? {}),
-          observations: formObs.trim(),
-        } as Batch["result"];
-      } else if (original?.result) {
-        // Observations cleared but other result fields exist: keep them
-        const { observations: _o, ...rest } = original.result;
-        if (Object.keys(rest).length > 0) {
-          patch.result = rest as Batch["result"];
-        } else {
-          // result only had observations — safe to remove
-          patch.result = undefined;
-        }
-      }
-
-      // Explicitly preserve fields not in form: process, yield, cure, source, status, tags
-      // (the spread in updateBatch already handles this since we don't include them in the patch)
-
-      updateBatch(editBatchId, patch);
+        },
+        observations: formObs,
+        ...(formMethod === "cold_process" ? { processData: formColdProcess } : {}),
+      });
       resetForm();
       load();
       return;
     }
 
-    const input: CreateBatchInput = {
+    createDiaryBatch({
       name: formName.trim(),
       method: formMethod,
       batchDate: formDate,
@@ -158,49 +143,37 @@ export default function DiarioPage() {
         oils: formOilList,
       },
       observations: formObs.trim() || undefined,
-      status: "curing",
-    };
-
-    createBatch(input);
+      ...(formMethod === "cold_process" ? { processData: formColdProcess } : {}),
+      status: formMethod === "cold_process" ? undefined : "curing",
+    });
 
     // Só remove a chave da calculadora DEPOIS de criar o lote
     if (formSourceType === "calculator") {
       clearCalculatorFormulaForDiary();
     }
 
+    resetForm();
     load();
-    setShowForm(false);
-    setFormName("");
-    setFormMethod("cold_process");
-    setFormDate(todayStr());
-    setFormOilWeight(500);
-    setFormNaoh(0);
-    setFormWater(0);
-    setFormSuperfat(5);
-    setFormOilList([]);
-    setFormSourceType("free_formula");
-    setFormFormulaOpen(false);
-    setFormObs("");
   };
 
   const handleDuplicate = (id: string) => {
-    duplicateBatch(id);
+    duplicateDiaryBatch(id);
     load();
   };
 
   const handleDelete = (id: string) => {
     if (confirm("Excluir este lote?")) {
-      deleteBatch(id);
+      deleteDiaryBatch(id);
       load();
     }
   };
 
   const handleStatusChange = (id: string, status: BatchStatus) => {
-    updateBatchStatus(id, status);
+    updateDiaryBatchStatus(id, status);
     load();
   };
 
-  const handleEdit = (batch: Batch) => {
+  const handleEdit = (batch: StoredBatch) => {
     setEditBatchId(batch.id);
     setEditBatchCode(batch.batchCode);
     setEditOriginal(batch);
@@ -214,6 +187,7 @@ export default function DiarioPage() {
     setFormOilList(batch.formula.oils ?? []);
     setFormSourceType(batch.source.type === "calculator" ? "calculator" : "free_formula");
     setFormObs(batch.result?.observations ?? "");
+    setFormColdProcess(batch.method === "cold_process" ? getColdProcessData(batch) : emptyColdProcessData());
     setFormFormulaOpen(true);
     setShowForm(true);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -235,6 +209,7 @@ export default function DiarioPage() {
     setFormSourceType("free_formula");
     setFormFormulaOpen(false);
     setFormObs("");
+    setFormColdProcess(emptyColdProcessData());
   };
 
   const handleExport = () => {
@@ -355,7 +330,7 @@ export default function DiarioPage() {
             </div>
             <div>
               <label className="block text-xs font-semibold text-moon-300 mb-1">Código</label>
-              <input type="text" value={editBatchCode ?? generateBatchCode(formMethod)} readOnly
+              <input type="text" value={editBatchCode ?? generateDiaryBatchCode(formMethod)} readOnly
                 className="w-full bg-moon-900 border border-moon-600 rounded-lg px-3 py-2 text-sm text-moon-400" />
             </div>
           </div>
@@ -405,6 +380,17 @@ export default function DiarioPage() {
                     )}
           </details>
 
+          {formMethod === "cold_process" && (
+            <>
+              {editOriginal?.method === "cold_process" && !isBatchV2(editOriginal) && (
+                <p className="rounded-lg border border-amber-700 bg-amber-900/20 px-3 py-2 text-xs text-amber-200">
+                  Ao salvar, este lote legado será promovido para Batch v2. Os dados não exibidos serão preservados como legado.
+                </p>
+              )}
+              <ColdProcessFields value={formColdProcess} onChange={setFormColdProcess} />
+            </>
+          )}
+
           <div>
             <label className="block text-xs font-semibold text-moon-300 mb-1">Observações</label>
             <textarea value={formObs} onChange={(e) => setFormObs(e.target.value)}
@@ -444,14 +430,15 @@ export default function DiarioPage() {
         <div className="text-center py-12 text-moon-400">
           <FlaskConical className="w-10 h-10 mx-auto mb-3 text-moon-500" />
           <p className="text-lg">Nenhum lote encontrado</p>
-          <p className="text-sm mt-1">Clique em "Novo Lote" para registrar sua produção</p>
+          <p className="text-sm mt-1">Clique em &quot;Novo Lote&quot; para registrar sua produção</p>
         </div>
       ) : (
         <div className="space-y-3">
           {filtered.map((batch) => {
-            const daysInCure = batch.cure.startDate
+            const cure = getCureData(batch);
+            const daysInCure = cure?.startDate
               ? Math.floor(
-                  (new Date().getTime() - new Date(batch.cure.startDate).getTime()) /
+                  (new Date().getTime() - new Date(cure.startDate).getTime()) /
                     (1000 * 60 * 60 * 24)
                 )
               : 0;
@@ -484,12 +471,21 @@ export default function DiarioPage() {
                   {batch.formula.oils.length > 0 && <span>{batch.formula.oils.length} óleo(s)</span>}
                 </div>
 
+                {isBatchV2(batch) && batch.processData?.method === "cold_process" && (
+                  <div className="flex flex-wrap gap-3 text-xs text-moon-400">
+                    {batch.processData.mixingTempC !== undefined && <span>{batch.processData.mixingTempC}°C na mistura</span>}
+                    {batch.processData.tracePointAtPour && <span>Trace: {batch.processData.tracePointAtPour}</span>}
+                    {batch.processData.gelPhase && <span>Gel: {batch.processData.gelPhase}</span>}
+                    {batch.processData.designTechnique && <span>Técnica: {batch.processData.designTechnique}</span>}
+                  </div>
+                )}
+
                 {/* Cure info */}
                 {batch.status === "curing" && (
                   <div className="text-xs text-moon-400">
                     <span className="text-purple-300">{daysInCure}</span> dias em cura
-                    {batch.cure.targetEndDate && (
-                      <> · Previsão: {batch.cure.targetEndDate}</>
+                    {cure?.targetEndDate && (
+                      <> · Previsão: {cure.targetEndDate}</>
                     )}
                   </div>
                 )}
