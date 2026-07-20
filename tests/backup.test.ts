@@ -3,6 +3,7 @@ import { BATCH_STORAGE_KEY } from "@/lib/diario";
 import { exportBackup, importBackup } from "@/lib/storage/backup";
 import { invalidBackupFixtures, validBackupFixture } from "@/tests/fixtures/backups";
 import { coldProcessBatch, currentBatchFixtures } from "@/tests/fixtures/batches";
+import { coldProcessBatchV2 } from "@/tests/fixtures/batches-v2";
 import { MemoryStorage } from "@/tests/test-storage";
 
 let storage: MemoryStorage;
@@ -30,6 +31,15 @@ describe("backup atual", () => {
     storage.setItem(BATCH_STORAGE_KEY, JSON.stringify([coldProcessBatch]));
     const exported = exportBackup();
     expect(importBackup(exported)).toEqual({ success: true });
+  });
+
+  it("exporta e importa backup misto com Batch v1 e v2", () => {
+    const batches = [coldProcessBatch, coldProcessBatchV2];
+    storage.setItem(BATCH_STORAGE_KEY, JSON.stringify(batches));
+
+    const exported = exportBackup();
+    expect(importBackup(exported)).toEqual({ success: true });
+    expect(JSON.parse(storage.getItem(BATCH_STORAGE_KEY) ?? "[]")).toEqual(batches);
   });
 
   it("recusa exportar armazenamento local estruturalmente inválido", () => {

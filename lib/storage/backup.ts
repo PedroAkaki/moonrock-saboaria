@@ -1,4 +1,5 @@
-import { BATCH_STORAGE_KEY, validateBatchArray } from "@/lib/diario";
+import { BATCH_STORAGE_KEY } from "@/lib/diario";
+import { validateStoredBatchArray } from "@/lib/batch/repository";
 
 const BACKUP_VERSION = 1;
 
@@ -16,7 +17,7 @@ export interface BackupData {
 export function exportBackup(): string {
   const progress = parseProgressForExport(loadRaw("moonrock:progress:v1"));
   const storedBatches = parseJsonForExport(loadRaw(BATCH_STORAGE_KEY), []);
-  const validation = validateBatchArray(storedBatches);
+  const validation = validateStoredBatchArray(storedBatches);
 
   if (!validation.success) {
     const record = validation.index === null ? "coleção" : `registro ${validation.index + 1}`;
@@ -63,7 +64,7 @@ export function importBackup(
       return { success: false, error: "Data de exportação inválida ou ausente." };
     }
 
-    const batchesValidation = validateBatchArray(data.batches);
+    const batchesValidation = validateStoredBatchArray(data.batches);
     if (!batchesValidation.success) {
       const record = batchesValidation.index === null
         ? "coleção de lotes"
