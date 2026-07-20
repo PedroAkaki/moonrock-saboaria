@@ -65,6 +65,13 @@ const GEL_PHASE_LABELS = {
   none: "Sem gel",
 } as const;
 
+const UNMOLD_SURFACE_LABELS = {
+  firm: "Superfície firme",
+  soft: "Superfície macia",
+  sticky: "Superfície pegajosa",
+  unknown: "Toque não avaliado",
+} as const;
+
 function todayStr(): string {
   return new Date().toISOString().slice(0, 10);
 }
@@ -497,7 +504,7 @@ export default function DiarioPage() {
                   <div className="rounded-lg border border-moon-600 bg-moon-800/40 px-3 py-2 text-xs text-moon-300">
                     <span className="font-semibold">Conferência 24–48 h · {batch.processData.unmoldCheck.checkedAt}</span>
                     <span className="ml-2">{batch.processData.unmoldCheck.unmolded ? "Desenformado" : "Ainda no molde"}</span>
-                    {batch.processData.unmoldCheck.surfaceCondition && <span className="ml-2">· {batch.processData.unmoldCheck.surfaceCondition}</span>}
+                    {batch.processData.unmoldCheck.surfaceCondition && <span className="ml-2">· {UNMOLD_SURFACE_LABELS[batch.processData.unmoldCheck.surfaceCondition]}</span>}
                     {batch.processData.unmoldCheck.sodaAsh && <span className="ml-2">· cinza de soda</span>}
                     {batch.processData.unmoldCheck.cracking && <span className="ml-2">· rachaduras</span>}
                     {batch.processData.unmoldCheck.separation && <span className="ml-2">· separação</span>}
