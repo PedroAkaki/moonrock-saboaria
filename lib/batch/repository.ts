@@ -144,7 +144,10 @@ function cloneFormula(formula: CreateBatchInput["formula"]): CreateBatchInput["f
 }
 
 function cloneProcessData(processData: ColdProcessData): ColdProcessData {
-  return { ...processData };
+  return {
+    ...processData,
+    ...(processData.unmoldCheck === undefined ? {} : { unmoldCheck: { ...processData.unmoldCheck } }),
+  };
 }
 
 function withObservations(result: BatchResult | undefined, observations: string | undefined): BatchResult | undefined {

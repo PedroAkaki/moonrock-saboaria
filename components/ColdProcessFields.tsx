@@ -11,9 +11,16 @@ function optionalNumber(value: string): number | undefined {
   return value === "" ? undefined : Number(value);
 }
 
+function today(): string {
+  return new Date().toISOString().slice(0, 10);
+}
+
 export default function ColdProcessFields({ value, onChange }: ColdProcessFieldsProps) {
   const update = <Key extends keyof ColdProcessData>(key: Key, nextValue: ColdProcessData[Key]) => {
     onChange({ ...value, [key]: nextValue });
+  };
+  const updateUnmoldCheck = (next: NonNullable<ColdProcessData["unmoldCheck"]>) => {
+    update("unmoldCheck", next);
   };
 
   return (
@@ -68,8 +75,95 @@ export default function ColdProcessFields({ value, onChange }: ColdProcessFields
             className="w-full bg-moon-800 border border-moon-500 rounded-lg px-3 py-2 text-sm text-white placeholder-moon-400"
           />
         </div>
+        <details className="rounded-lg border border-moon-600 bg-moon-800/40 px-3 py-2">
+          <summary className="cursor-pointer text-xs font-semibold text-moon-300">
+            Conferência em 24–48 h
+          </summary>
+          <p className="mt-1 text-xs text-moon-400">
+            Registre o desmolde e sinais visuais iniciais. Esta conferência é opcional e não substitui a avaliação ao fim da cura.
+          </p>
+          {value.unmoldCheck === undefined ? (
+            <button
+              type="button"
+              onClick={() => updateUnmoldCheck({ checkedAt: today(), unmolded: false })}
+              className="mt-3 rounded-lg border border-moon-500 px-3 py-1.5 text-xs text-moon-200 hover:border-moon-300"
+            >
+              Registrar conferência
+            </button>
+          ) : (
+            <div className="mt-3 space-y-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <label className="block text-xs text-moon-400 mb-1">Data da conferência</label>
+                  <input
+                    type="date"
+                    required
+                    value={value.unmoldCheck.checkedAt}
+                    onChange={(event) => updateUnmoldCheck({ ...value.unmoldCheck!, checkedAt: event.target.value })}
+                    className="w-full bg-moon-800 border border-moon-500 rounded-lg px-3 py-2 text-sm text-white"
+                  />
+                </div>
+                <SelectField
+                  label="Desmolde"
+                  value={value.unmoldCheck.unmolded ? "unmolded" : "not_unmolded"}
+                  onChange={(next) => updateUnmoldCheck({ ...value.unmoldCheck!, unmolded: next === "unmolded" })}
+                  options={[
+                    ["not_unmolded", "Ainda não desenformou"],
+                    ["unmolded", "Desenformado"],
+                  ]}
+                />
+                <SelectField
+                  label="Toque da superfície"
+                  value={value.unmoldCheck.surfaceCondition ?? ""}
+                  onChange={(next) => updateUnmoldCheck({
+                    ...value.unmoldCheck!,
+                    surfaceCondition: next === "" ? undefined : next as NonNullable<ColdProcessData["unmoldCheck"]>["surfaceCondition"],
+                  })}
+                  options={[
+                    ["", "Não registrado"],
+                    ["firm", "Firme"],
+                    ["soft", "Macio"],
+                    ["sticky", "Pegajoso"],
+                    ["unknown", "Não sei avaliar"],
+                  ]}
+                />
+              </div>
+              <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-moon-300">
+                <CheckField label="Cinza de soda" checked={value.unmoldCheck.sodaAsh ?? false} onChange={(checked) => updateUnmoldCheck({ ...value.unmoldCheck!, sodaAsh: checked })} />
+                <CheckField label="Rachaduras" checked={value.unmoldCheck.cracking ?? false} onChange={(checked) => updateUnmoldCheck({ ...value.unmoldCheck!, cracking: checked })} />
+                <CheckField label="Separação visível" checked={value.unmoldCheck.separation ?? false} onChange={(checked) => updateUnmoldCheck({ ...value.unmoldCheck!, separation: checked })} />
+              </div>
+              <div>
+                <label className="block text-xs text-moon-400 mb-1">Notas da conferência</label>
+                <textarea
+                  value={value.unmoldCheck.notes ?? ""}
+                  onChange={(event) => updateUnmoldCheck({ ...value.unmoldCheck!, notes: event.target.value || undefined })}
+                  placeholder="Ex.: corte limpo, cantos ainda macios..."
+                  rows={2}
+                  className="w-full bg-moon-800 border border-moon-500 rounded-lg px-3 py-2 text-sm text-white placeholder-moon-400"
+                />
+              </div>
+              <button
+                type="button"
+                onClick={() => update("unmoldCheck", undefined)}
+                className="text-xs text-moon-400 underline hover:text-white"
+              >
+                Remover conferência
+              </button>
+            </div>
+          )}
+        </details>
       </div>
     </details>
+  );
+}
+
+function CheckField({ label, checked, onChange }: { label: string; checked: boolean; onChange: (checked: boolean) => void }) {
+  return (
+    <label className="inline-flex items-center gap-2 cursor-pointer">
+      <input type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} />
+      {label}
+    </label>
   );
 }
 

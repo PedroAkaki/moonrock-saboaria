@@ -263,5 +263,34 @@ describe("processData de Cold Process Avançado", () => {
     });
     expect(decoded).toEqual({ success: false, reason: "processData.gelPhase não é reconhecido." });
   });
-});
 
+  it("aceita a conferência inicial de 24–48 horas", () => {
+    const fixture = {
+      ...coldProcessBatchV2,
+      processData: {
+        ...coldProcessBatchV2.processData,
+        unmoldCheck: {
+          checkedAt: "2026-02-03",
+          unmolded: true,
+          surfaceCondition: "firm" as const,
+          sodaAsh: true,
+          cracking: false,
+          separation: false,
+          notes: "Corte limpo.",
+        },
+      },
+    };
+    expect(decodeStoredBatchV2(fixture)).toEqual({ success: true, data: fixture });
+  });
+
+  it("rejeita conferência inicial sem estado de desmolde", () => {
+    const decoded = decodeStoredBatchV2({
+      ...coldProcessBatchV2,
+      processData: {
+        method: "cold_process",
+        unmoldCheck: { checkedAt: "2026-02-03" },
+      },
+    });
+    expect(decoded).toEqual({ success: false, reason: "processData.unmoldCheck.unmolded deve ser booleano." });
+  });
+});

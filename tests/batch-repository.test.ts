@@ -104,6 +104,38 @@ describe("repositório de Diário com Batch v1 e v2", () => {
     expect(storage.writes).toBe(1);
   });
 
+  it("persiste a conferência inicial CP sem alterar identidade", () => {
+    storage.setItem(BATCH_STORAGE_KEY, JSON.stringify([coldProcessBatchV2]));
+
+    const updated = updateColdProcessDiaryBatch(coldProcessBatchV2.id, {
+      ...coldProcessInput(),
+      name: coldProcessBatchV2.name,
+      batchDate: coldProcessBatchV2.batchDate,
+      formula: structuredClone(coldProcessBatchV2.formula),
+      processData: {
+        ...coldProcessInput().processData,
+        unmoldCheck: {
+          checkedAt: "2026-02-03",
+          unmolded: false,
+          surfaceCondition: "soft",
+          notes: "Aguardar mais um dia.",
+        },
+      },
+    });
+
+    expect(updated).toMatchObject({
+      id: coldProcessBatchV2.id,
+      batchCode: coldProcessBatchV2.batchCode,
+      processData: {
+        unmoldCheck: {
+          checkedAt: "2026-02-03",
+          unmolded: false,
+          surfaceCondition: "soft",
+        },
+      },
+    });
+  });
+
   it("duplica, atualiza status e remove sem depender do formato armazenado", () => {
     storage.setItem(BATCH_STORAGE_KEY, JSON.stringify([coldProcessBatchV2, meltAndPourBatch]));
 

@@ -22,6 +22,24 @@ export type TracePointAtPour = "emulsion" | "light" | "medium" | "heavy";
 /** Resultado da gel phase observado no corte. */
 export type GelPhaseOutcome = "full" | "partial" | "none";
 
+/** Estado da barra observado na primeira conferência, em geral entre 24 e 48 horas. */
+export type UnmoldSurfaceCondition = "firm" | "soft" | "sticky" | "unknown";
+
+/**
+ * Uma conferência inicial de Cold Process. É deliberadamente um único registro,
+ * não uma linha do tempo genérica: cobre o momento mais útil para decidir se o
+ * lote pode ser desenformado e registrar sinais visuais iniciais.
+ */
+export interface ColdProcessUnmoldCheck {
+  checkedAt: string;
+  unmolded: boolean;
+  surfaceCondition?: UnmoldSurfaceCondition;
+  sodaAsh?: boolean;
+  cracking?: boolean;
+  separation?: boolean;
+  notes?: string;
+}
+
 export interface ColdProcessData {
   method: "cold_process";
   ambientTempC?: number;
@@ -31,6 +49,7 @@ export interface ColdProcessData {
   traceTimeMinutes?: number;
   tracePointAtPour?: TracePointAtPour;
   gelPhase?: GelPhaseOutcome;
+  unmoldCheck?: ColdProcessUnmoldCheck;
   designTechnique?: string;
   moldName?: string;
   notes?: string;
@@ -139,4 +158,3 @@ export interface BatchV2 {
 
 export type StoredBatchV2 = BatchV2;
 export type StoredBatch = StoredBatchV1 | StoredBatchV2;
-

@@ -52,6 +52,19 @@ const METHOD_LABELS: Record<SoapMethod, string> = {
   other: "Outro",
 };
 
+const TRACE_LABELS = {
+  emulsion: "Emulsão estável",
+  light: "Trace leve",
+  medium: "Trace médio",
+  heavy: "Trace pesado",
+} as const;
+
+const GEL_PHASE_LABELS = {
+  full: "Gel completo",
+  partial: "Gel parcial",
+  none: "Sem gel",
+} as const;
+
 function todayStr(): string {
   return new Date().toISOString().slice(0, 10);
 }
@@ -474,9 +487,20 @@ export default function DiarioPage() {
                 {isBatchV2(batch) && batch.processData?.method === "cold_process" && (
                   <div className="flex flex-wrap gap-3 text-xs text-moon-400">
                     {batch.processData.mixingTempC !== undefined && <span>{batch.processData.mixingTempC}°C na mistura</span>}
-                    {batch.processData.tracePointAtPour && <span>Trace: {batch.processData.tracePointAtPour}</span>}
-                    {batch.processData.gelPhase && <span>Gel: {batch.processData.gelPhase}</span>}
+                    {batch.processData.tracePointAtPour && <span>Trace: {TRACE_LABELS[batch.processData.tracePointAtPour]}</span>}
+                    {batch.processData.gelPhase && <span>Gel: {GEL_PHASE_LABELS[batch.processData.gelPhase]}</span>}
                     {batch.processData.designTechnique && <span>Técnica: {batch.processData.designTechnique}</span>}
+                  </div>
+                )}
+
+                {isBatchV2(batch) && batch.processData?.method === "cold_process" && batch.processData.unmoldCheck && (
+                  <div className="rounded-lg border border-moon-600 bg-moon-800/40 px-3 py-2 text-xs text-moon-300">
+                    <span className="font-semibold">Conferência 24–48 h · {batch.processData.unmoldCheck.checkedAt}</span>
+                    <span className="ml-2">{batch.processData.unmoldCheck.unmolded ? "Desenformado" : "Ainda no molde"}</span>
+                    {batch.processData.unmoldCheck.surfaceCondition && <span className="ml-2">· {batch.processData.unmoldCheck.surfaceCondition}</span>}
+                    {batch.processData.unmoldCheck.sodaAsh && <span className="ml-2">· cinza de soda</span>}
+                    {batch.processData.unmoldCheck.cracking && <span className="ml-2">· rachaduras</span>}
+                    {batch.processData.unmoldCheck.separation && <span className="ml-2">· separação</span>}
                   </div>
                 )}
 

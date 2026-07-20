@@ -17,6 +17,7 @@ import type {
   BatchV2,
   BatchYield,
   ColdProcessData,
+  ColdProcessUnmoldCheck,
   LegacyBatchCure,
   LegacyBatchData,
   MeltAndPourData,
@@ -247,6 +248,43 @@ function parseResult(value: unknown): DecodeResult<BatchResult | undefined> {
   });
 }
 
+function parseOptionalBoolean(record: Record<string, unknown>, key: string, path: string): DecodeResult<boolean | undefined> {
+  const value = record[key];
+  if (value === undefined) return ok(undefined);
+  return typeof value === "boolean" ? ok(value) : fail(`${path} deve ser booleano.`);
+}
+
+function parseColdProcessUnmoldCheck(value: unknown): DecodeResult<ColdProcessUnmoldCheck | undefined> {
+  if (value === undefined) return ok(undefined);
+  if (!isRecord(value)) return fail("processData.unmoldCheck deve ser um objeto.");
+  const checkedAt = parseRequiredString(value, "checkedAt", "processData.unmoldCheck.checkedAt");
+  if (!checkedAt.success) return checkedAt;
+  if (typeof value.unmolded !== "boolean") {
+    return fail("processData.unmoldCheck.unmolded deve ser booleano.");
+  }
+  const surfaceCondition = value.surfaceCondition;
+  if (surfaceCondition !== undefined && surfaceCondition !== "firm" && surfaceCondition !== "soft" && surfaceCondition !== "sticky" && surfaceCondition !== "unknown") {
+    return fail("processData.unmoldCheck.surfaceCondition não é reconhecido.");
+  }
+  const sodaAsh = parseOptionalBoolean(value, "sodaAsh", "processData.unmoldCheck.sodaAsh");
+  const cracking = parseOptionalBoolean(value, "cracking", "processData.unmoldCheck.cracking");
+  const separation = parseOptionalBoolean(value, "separation", "processData.unmoldCheck.separation");
+  const notes = parseOptionalString(value, "notes", "processData.unmoldCheck.notes");
+  if (!sodaAsh.success) return sodaAsh;
+  if (!cracking.success) return cracking;
+  if (!separation.success) return separation;
+  if (!notes.success) return notes;
+  return ok({
+    checkedAt: checkedAt.data,
+    unmolded: value.unmolded,
+    ...(surfaceCondition === undefined ? {} : { surfaceCondition }),
+    ...(sodaAsh.data === undefined ? {} : { sodaAsh: sodaAsh.data }),
+    ...(cracking.data === undefined ? {} : { cracking: cracking.data }),
+    ...(separation.data === undefined ? {} : { separation: separation.data }),
+    ...(notes.data === undefined ? {} : { notes: notes.data }),
+  });
+}
+
 function parseColdProcessData(record: Record<string, unknown>): DecodeResult<ColdProcessData> {
   const ambientTempC = parseOptionalNumber(record, "ambientTempC", "processData.ambientTempC");
   const oilTempC = parseOptionalNumber(record, "oilTempC", "processData.oilTempC");
@@ -256,6 +294,7 @@ function parseColdProcessData(record: Record<string, unknown>): DecodeResult<Col
   const designTechnique = parseOptionalString(record, "designTechnique", "processData.designTechnique");
   const moldName = parseOptionalString(record, "moldName", "processData.moldName");
   const notes = parseOptionalString(record, "notes", "processData.notes");
+  const unmoldCheck = parseColdProcessUnmoldCheck(record.unmoldCheck);
   const tracePointAtPour = record.tracePointAtPour;
   if (tracePointAtPour !== undefined && tracePointAtPour !== "emulsion" && tracePointAtPour !== "light" && tracePointAtPour !== "medium" && tracePointAtPour !== "heavy") {
     return fail("processData.tracePointAtPour não é reconhecido.");
@@ -272,6 +311,7 @@ function parseColdProcessData(record: Record<string, unknown>): DecodeResult<Col
   if (!designTechnique.success) return designTechnique;
   if (!moldName.success) return moldName;
   if (!notes.success) return notes;
+  if (!unmoldCheck.success) return unmoldCheck;
   return ok({
     method: "cold_process",
     ...(ambientTempC.data === undefined ? {} : { ambientTempC: ambientTempC.data }),
@@ -281,6 +321,7 @@ function parseColdProcessData(record: Record<string, unknown>): DecodeResult<Col
     ...(traceTimeMinutes.data === undefined ? {} : { traceTimeMinutes: traceTimeMinutes.data }),
     ...(tracePointAtPour === undefined ? {} : { tracePointAtPour }),
     ...(gelPhase === undefined ? {} : { gelPhase }),
+    ...(unmoldCheck.data === undefined ? {} : { unmoldCheck: unmoldCheck.data }),
     ...(designTechnique.data === undefined ? {} : { designTechnique: designTechnique.data }),
     ...(moldName.data === undefined ? {} : { moldName: moldName.data }),
     ...(notes.data === undefined ? {} : { notes: notes.data }),
