@@ -1,6 +1,6 @@
 # MoonRock — Handoff de Engenharia
 
-Atualizado em 2026-07-19.
+Atualizado em 2026-07-20.
 
 ## Estado atual
 
@@ -10,6 +10,7 @@ Atualizado em 2026-07-19.
 - A chave `moonrock:diario:batches:v1` continua sendo a chave de armazenamento por compatibilidade, mas agora aceita uma lista validada de Batch v1 e Batch v2. Backups v1 continuam importáveis e novos backups podem conter ambos os formatos.
 - O conteúdo `cold-process-avancado` está disponível, possui receita de prática e registra os conceitos que serão persistíveis quando a UI do Diário v2 for autorizada.
 - O pré-requisito de cinco lotes CP aparece como indicador no Aprendizado. Ele não bloqueia módulos e não altera o progresso educacional.
+- O Diário CP v2 possui uma conferência opcional de 24–48 h: data, situação de desmolde, toque da superfície e sinais visuais iniciais. É um único registro de processo, não uma linha do tempo genérica. A avaliação depois da cura continua em `result`.
 
 ## Contratos que não podem regredir
 
@@ -19,17 +20,28 @@ Atualizado em 2026-07-19.
 - Backup deve validar integralmente antes de persistir.
 - A ponte Calculadora → Diário continua usando `moonrock:calculator:lastFormula:v1`.
 
-## Limites da próxima etapa
+## Foco aprovado: Cold Process
 
-Antes de expandir Batch v2 para Hot Process, Melt & Pour ou Óleo Usado, obter autorização explícita para cada formulário e seus campos. A expansão deve reutilizar o repositório de lotes existente e manter os dados ocultos preservados.
+Ana seguirá concentrada em Cold Process pelo próximo mês. Priorizar o ciclo aprender → praticar → registrar → avaliar, sem iniciar Hot Process, Melt & Pour ou Óleo Usado.
 
-Não antecipar fórmula discriminada, alterações na Calculadora, catálogo de matérias-primas ou um motor genérico de formulários.
+Antes de expandir Batch v2 para outro método, ainda é necessária autorização explícita para cada formulário e seus campos. A expansão deve reutilizar o repositório de lotes existente e manter dados ocultos preservados.
 
 ## Próximas melhorias de Aprendizado CP
 
-1. Revisar instruções de segurança e recuperação de lote com fontes rastreáveis.
-2. Estruturar práticas progressivas: controle, cor, fragrância e design.
-3. Ligar cada prática aos campos CP agora disponíveis no Diário, sem criar registros automáticos a partir do módulo.
+1. Estruturar práticas progressivas: controle da fórmula, temperatura/trace, uma variável (cor ou fragrância) e design simples.
+2. Ligar cada prática aos campos CP do Diário, inclusive a conferência de 24–48 h, sem criar registros automaticamente a partir do módulo.
+3. Melhorar a avaliação de cura usando o `result` existente antes de criar qualquer histórico de observações.
+4. Revisar instruções de segurança e recuperação de lote com fontes rastreáveis antes de ampliar o conteúdo prático.
+
+## Simulador de mistura de óleos — planejado, não iniciado
+
+Objetivo: uma ferramenta da Calculadora para Cold Process que permita tanto ajustar percentuais livremente e ver propriedades estimadas em tempo real quanto pedir uma sugestão para um objetivo explícito.
+
+- Usará somente os atributos já existentes em `data/oils.json` (`hardness`, `cleansing`, `conditioning`, `bubbly`, `creamy`, `iodine`, `ins`, `maxPercent`, estabilidade e risco de DOS).
+- Terá dois modos pequenos: **explorar** (a usuária altera a mistura) e **sugerir** (objetivo + óleos permitidos + peso total). A sugestão deve expor percentuais, propriedades estimadas, limites respeitados e concessões; se não houver combinação viável, deve dizer isso em vez de inventar uma fórmula.
+- A regra será determinística e testada fora da UI. Valores são heurísticas educacionais, não garantia de qualidade, segurança cosmética ou resultado de bancada.
+- A saída poderá preencher a Calculadora para revisão consciente; não criará automaticamente Receita ou Lote, não alterará o cálculo de NaOH e não introduzirá catálogo, banco ou otimizador genérico.
+- Pré-requisito: auditar e normalizar as faixas de cada propriedade na biblioteca atual; depois definir os objetivos iniciais e as regras de desempate antes da interface.
 
 ## Verificação esperada
 
