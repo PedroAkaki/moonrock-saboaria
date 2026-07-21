@@ -14,6 +14,7 @@ Atualizado em 2026-07-21.
 - A Calculadora possui o Simulador de Mistura de Óleos v1: perfis ponderados, objetivos educativo de equilíbrio/firmeza/cremosidade, sugestão determinística em incrementos de 5% e revisão consciente na Calculadora. Ele não cria Receita ou Lote.
 - A integridade do simulador foi reforçada: a pontuação usa valores antes da apresentação arredondada, a busca canoniza a ordem dos óleos e os empates são estáveis. Quando a meta não é atingida, a UI declara que se trata da melhor aproximação e mostra os critérios fora da faixa.
 - A auditoria de `data/oils.json` foi registrada em [docs/architecture/oil-library-audit.md](docs/architecture/oil-library-audit.md): a escala de propriedades é editorial, não há fonte por campo e os perfis de ácidos graxos são parciais e textuais. Não mudar o score nem derivar novos eixos até uma curadoria de dados rastreável.
+- A primeira curadoria de dados é deliberadamente pequena: azeite, coco, palma, mamona e karité trazem uma referência parcial para `sapNaOH` e `sapKOH`. O cálculo não mudou e nenhum outro campo desses itens foi implicitamente validado.
 
 ## Contratos que não podem regredir
 

@@ -11,6 +11,17 @@ exploração. Não alterar sua pontuação, nem derivar novas qualidades a parti
 Esta é uma linha de base do conteúdo atual de `data/oils.json`, não uma
 validação química independente de cada valor.
 
+## Primeira curadoria aplicada
+
+Em 2026-07-21, azeite, coco, palma, mamona e karité receberam evidência parcial
+no próprio arquivo de dados. Para esses cinco itens, foram conferidos somente
+`sapNaOH` e `sapKOH` contra a [tabela de óleos do SoapCalc](https://soapcalc.net/oil-list).
+Cada item aponta para a fonte, a data e os campos efetivamente revisados.
+
+Os valores existentes de SAP desses itens coincidiram com a fonte, portanto a
+curadoria não alterou o cálculo. A evidência não se estende a iodo, INS, perfil
+de ácidos graxos, `maxPercent`, estabilidade, DOS, notas ou recomendações.
+
 ## Inventário observado
 
 - 39 óleos e manteigas, sem IDs duplicados;

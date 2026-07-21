@@ -1,6 +1,23 @@
 export type OilType = "oleo-liquido" | "gordura-solida" | "manteiga" | "cera-liquida" | "gordura-animal";
 export type Availability = "alta" | "media" | "dificil" | "muito-baixa";
 export type Stability = "alta" | "media" | "baixa" | "muito-baixa";
+export type OilEvidenceField = "sapNaOH" | "sapKOH" | "iodine" | "ins" | "fattyAcids";
+
+export interface OilDataSource {
+  id: string;
+  name: string;
+  url: string;
+  accessedAt: string;
+  scope: string;
+}
+
+export interface OilEvidence {
+  /** A revisão pode cobrir somente alguns campos; não infere os demais. */
+  status: "partial";
+  verifiedFields: OilEvidenceField[];
+  sourceIds: string[];
+  reviewedAt: string;
+}
 
 export interface Oil {
   id: string;
@@ -38,11 +55,14 @@ export interface Oil {
   beginnerNote?: string;
   /** Uso recomendado resumido */
   recommendedUse?: string;
+  /** Proveniência explícita apenas dos campos efetivamente conferidos. */
+  evidence?: OilEvidence;
 }
 
 export interface OilsData {
   description: string;
   lastUpdated: string;
+  sources?: OilDataSource[];
   oils: Oil[];
 }
 

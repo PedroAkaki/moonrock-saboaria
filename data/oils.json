@@ -1,6 +1,15 @@
 {
   "description": "Tabela mestra de óleos e manteigas para saboaria artesanal. Compilado de múltiplas fontes (SoapCalc, literatura científica, fornecedores BR). Valores de SAP podem variar conforme lote e origem.",
   "lastUpdated": "2026-07-01",
+  "sources": [
+    {
+      "id": "soapcalc-oil-chart-2026-07-21",
+      "name": "SoapCalc — Soap Making Oil Chart",
+      "url": "https://soapcalc.net/oil-list",
+      "accessedAt": "2026-07-21",
+      "scope": "Valores de SAP NaOH e KOH conferidos para cinco óleos-base de Cold Process. Não valida iodo, INS, perfis graxos, limites de uso, estabilidade ou notas editoriais."
+    }
+  ],
   "oils": [
     {
       "id": "azeite",
@@ -32,6 +41,12 @@
       "beginnerNote": "Ótimo para começar. Cura mais longa (6-8 semanas).",
       "recommendedUse": "Base para sabonetes hidratantes e Castela",
       "confidenceLevel": "liberado",
+      "evidence": {
+        "status": "partial",
+        "verifiedFields": ["sapNaOH", "sapKOH"],
+        "sourceIds": ["soapcalc-oil-chart-2026-07-21"],
+        "reviewedAt": "2026-07-21"
+      },
       "substitutions": [
         "Girassol alto oleico",
         "Abacate",
@@ -68,6 +83,12 @@
       "beginnerNote": "Essencial para espuma, mas resseca acima de 25%.",
       "recommendedUse": "Espuma e limpeza em sabonetes corporais",
       "confidenceLevel": "liberado",
+      "evidence": {
+        "status": "partial",
+        "verifiedFields": ["sapNaOH", "sapKOH"],
+        "sourceIds": ["soapcalc-oil-chart-2026-07-21"],
+        "reviewedAt": "2026-07-21"
+      },
       "substitutions": [
         "Babacu",
         "Palmiste (palm kernel)"
@@ -104,6 +125,12 @@
       "beginnerNote": "Polêmica ambiental — preferir certificada RSPO.",
       "recommendedUse": "Dureza e cremosidade em barras",
       "confidenceLevel": "liberado",
+      "evidence": {
+        "status": "partial",
+        "verifiedFields": ["sapNaOH", "sapKOH"],
+        "sourceIds": ["soapcalc-oil-chart-2026-07-21"],
+        "reviewedAt": "2026-07-21"
+      },
       "substitutions": [
         "Sebo",
         "Banha",
@@ -177,6 +204,12 @@
       "beginnerNote": "Emoliente excelente. Derreter antes de misturar.",
       "recommendedUse": "Peles sensíveis e receitas superhidratantes",
       "confidenceLevel": "liberado",
+      "evidence": {
+        "status": "partial",
+        "verifiedFields": ["sapNaOH", "sapKOH"],
+        "sourceIds": ["soapcalc-oil-chart-2026-07-21"],
+        "reviewedAt": "2026-07-21"
+      },
       "substitutions": [
         "Cacau",
         "Cupuaçu"
@@ -248,6 +281,12 @@
       "beginnerNote": "Acelera o traço. Adicionar por último na receita.",
       "recommendedUse": "Espuma cremosa e condicionamento",
       "confidenceLevel": "liberado",
+      "evidence": {
+        "status": "partial",
+        "verifiedFields": ["sapNaOH", "sapKOH"],
+        "sourceIds": ["soapcalc-oil-chart-2026-07-21"],
+        "reviewedAt": "2026-07-21"
+      },
       "substitutions": []
     },
     {

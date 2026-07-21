@@ -108,7 +108,7 @@ Fora do escopo inicial:
 Próximo aprimoramento:
 
 1. a linha de base de proveniência, escala e completude de `data/oils.json` foi registrada em [oil-library-audit.md](./oil-library-audit.md); ela impede, por enquanto, alterar a pontuação ou derivar eixos de ácidos graxos;
-2. quando a curadoria de dados for autorizada, começar por óleos-base CP e dados por campo rastreáveis; só então avaliar se a pontuação deve reduzir métricas correlacionadas ou se a biblioteca precisa de perfis numéricos de ácidos graxos;
+2. a primeira curadoria já registra fonte e revisão de SAP NaOH/KOH para azeite, coco, palma, mamona e karité; o próximo recorte deve escolher um único conjunto adicional de campos ou óleos, antes de avaliar se a pontuação deve reduzir métricas correlacionadas ou se a biblioteca precisa de perfis numéricos de ácidos graxos;
 3. manter a busca estável: pontuar antes da apresentação arredondada, canonizar a ordem dos óleos e expor quando houver apenas uma melhor aproximação;
 4. continuar separando fato de heurística e não usar o resultado como recomendação de segurança.
 
