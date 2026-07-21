@@ -1,6 +1,6 @@
 # MoonRock — Handoff de Engenharia
 
-Atualizado em 2026-07-20.
+Atualizado em 2026-07-21.
 
 ## Estado atual
 
@@ -13,6 +13,7 @@ Atualizado em 2026-07-20.
 - O Diário CP v2 possui uma conferência opcional de 24–48 h: data, situação de desmolde, toque da superfície e sinais visuais iniciais. É um único registro de processo, não uma linha do tempo genérica. Depois da cura, um lote pronto pode registrar nota de 1–5, se Ana o faria novamente, motivo opcional e observações em `result`.
 - A Calculadora possui o Simulador de Mistura de Óleos v1: perfis ponderados, objetivos educativo de equilíbrio/firmeza/cremosidade, sugestão determinística em incrementos de 5% e revisão consciente na Calculadora. Ele não cria Receita ou Lote.
 - A integridade do simulador foi reforçada: a pontuação usa valores antes da apresentação arredondada, a busca canoniza a ordem dos óleos e os empates são estáveis. Quando a meta não é atingida, a UI declara que se trata da melhor aproximação e mostra os critérios fora da faixa.
+- A auditoria de `data/oils.json` foi registrada em [docs/architecture/oil-library-audit.md](docs/architecture/oil-library-audit.md): a escala de propriedades é editorial, não há fonte por campo e os perfis de ácidos graxos são parciais e textuais. Não mudar o score nem derivar novos eixos até uma curadoria de dados rastreável.
 
 ## Contratos que não podem regredir
 
@@ -44,7 +45,7 @@ Objetivo: uma ferramenta da Calculadora para Cold Process que permita tanto ajus
 - A regra será determinística e testada fora da UI. Valores são heurísticas educacionais, não garantia de qualidade, segurança cosmética ou resultado de bancada.
 - `maxPercent` permanece como limite da sugestão, não como limite químico ou selo de segurança. A Calculadora continua exibindo aviso ao revisar uma fórmula fora desse intervalo.
 - A saída poderá preencher a Calculadora para revisão consciente; não criará automaticamente Receita ou Lote, não alterará o cálculo de NaOH e não introduzirá catálogo, banco ou otimizador genérico.
-- O próximo aprimoramento é auditar proveniência, escala e completude dos dados da biblioteca antes de mudar o score. Não transformar essa calibração em alegação de desempenho ou segurança.
+- O próximo aprimoramento, quando autorizado, é curar dados rastreáveis por campo para um pequeno conjunto de óleos-base CP; a linha de base está em [docs/architecture/oil-library-audit.md](docs/architecture/oil-library-audit.md). Não transformar essa calibração em alegação de desempenho ou segurança.
 
 ## Verificação esperada
 
