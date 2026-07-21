@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
   Check,
   Circle,
@@ -15,7 +15,8 @@ import {
   Clock,
   Flame,
 } from "lucide-react";
-import { getProgress } from "@/lib/progress";
+import type { AppProgress } from "@/lib/progress";
+import { useProgress } from "@/lib/use-progress";
 import LearningOrbit, { OrbitNodeDef, OrbitStatus } from "./LearningOrbit";
 
 type OrbitSubNode = {
@@ -100,9 +101,9 @@ function getNodeStatus(
   nodeId: string,
   slug: string,
   module: ModuleOrbitMapProps["module"],
-  progress: ReturnType<typeof getProgress>
+  progress: AppProgress | null
 ): OrbitStatus {
-  const mp = progress.modules[slug];
+  const mp = progress?.modules[slug];
   if (mp?.status === "completed") return "completed";
   if (!mp) return "not-started";
 
@@ -135,15 +136,8 @@ function getNodeStatus(
 }
 
 export default function ModuleOrbitMap({ slug, module }: ModuleOrbitMapProps) {
-  const [progress, setProgress] = useState(() => getProgress());
+  const progress = useProgress();
   const [activeNode, setActiveNode] = useState<OrbitNode | null>(null);
-
-  useEffect(() => {
-    const update = () => setProgress(getProgress());
-    update();
-    window.addEventListener("moonrock-progress-updated", update);
-    return () => window.removeEventListener("moonrock-progress-updated", update);
-  }, []);
 
   const nodes = useMemo<OrbitNode[]>(() => {
     const baseNodes = MODULE_NODE_LABELS[slug] ?? FALLBACK_NODES;

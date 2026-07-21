@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useMemo } from "react";
 import glossaryData from "@/data/glossary.json";
 
 interface GlossaryTermProps {
@@ -14,22 +14,14 @@ interface GlossaryTermProps {
  */
 export default function GlossaryTerm({ term, children }: GlossaryTermProps) {
   const [show, setShow] = useState(false);
-  const [definition, setDefinition] = useState<string | null>(null);
   const ref = useRef<HTMLSpanElement>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
-  useEffect(() => {
+  const definition = useMemo(() => {
     const lower = term.toLowerCase();
-    const found = glossaryData.terms.find(
-      (t) => t.term.toLowerCase() === lower
-    );
-    if (found) {
-      setDefinition(
-        found.en ? `${found.definition} (Inglês: ${found.en})` : found.definition
-      );
-    } else {
-      setDefinition(null);
-    }
+    const found = glossaryData.terms.find((t) => t.term.toLowerCase() === lower);
+    if (!found) return null;
+    return found.en ? `${found.definition} (Inglês: ${found.en})` : found.definition;
   }, [term]);
 
   const handleMouseEnter = () => {

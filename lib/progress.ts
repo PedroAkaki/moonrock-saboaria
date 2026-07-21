@@ -15,6 +15,7 @@ export interface AppProgress {
 }
 
 const STORAGE_KEY = "moonrock:progress:v1";
+const PROGRESS_EVENT = "moonrock-progress-updated";
 
 function createDefaultProgress(): AppProgress {
   return {
@@ -25,20 +26,18 @@ function createDefaultProgress(): AppProgress {
   };
 }
 
-function normalizeProgress(raw: any): AppProgress {
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function normalizeProgress(raw: unknown): AppProgress {
   const def = createDefaultProgress();
-  if (!raw || typeof raw !== "object") return def;
+  if (!isRecord(raw)) return def;
   return {
     version: 1,
     updatedAt: typeof raw.updatedAt === "string" ? raw.updatedAt : def.updatedAt,
-    lastModuleSlug:
-      typeof raw.lastModuleSlug === "string" || raw.lastModuleSlug === null
-        ? raw.lastModuleSlug
-        : null,
-    modules:
-      raw.modules && typeof raw.modules === "object" && !Array.isArray(raw.modules)
-        ? raw.modules
-        : {},
+    lastModuleSlug: typeof raw.lastModuleSlug === "string" ? raw.lastModuleSlug : null,
+    modules: isRecord(raw.modules) ? (raw.modules as Record<string, ModuleProgress>) : {},
   };
 }
 
@@ -133,8 +132,43 @@ export function saveProgress(progress: AppProgress): void {
   try {
     progress.updatedAt = new Date().toISOString();
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-    window.dispatchEvent(new Event("moonrock-progress-updated"));
+    cachedProgress = null;
+    window.dispatchEvent(new Event(PROGRESS_EVENT));
   } catch {}
+}
+
+/**
+ * Snapshot estável do progresso para `useSyncExternalStore`. O objeto só troca
+ * de identidade quando o progresso é de fato regravado, o que evita renders
+ * em cascata e dispensa espelhar o storage em estado local.
+ */
+let cachedProgress: AppProgress | null = null;
+
+export function getProgressSnapshot(): AppProgress | null {
+  if (cachedProgress === null) cachedProgress = getProgress();
+  return cachedProgress;
+}
+
+/** No servidor não há progresso: os componentes renderizam o estado vazio. */
+export function getServerProgressSnapshot(): AppProgress | null {
+  return null;
+}
+
+export function subscribeToProgress(onStoreChange: () => void): () => void {
+  const onLocalChange = () => {
+    cachedProgress = null;
+    onStoreChange();
+  };
+  const onStorage = (event: StorageEvent) => {
+    if (event.key === STORAGE_KEY) onLocalChange();
+  };
+
+  window.addEventListener(PROGRESS_EVENT, onLocalChange);
+  window.addEventListener("storage", onStorage);
+  return () => {
+    window.removeEventListener(PROGRESS_EVENT, onLocalChange);
+    window.removeEventListener("storage", onStorage);
+  };
 }
 
 export function updateLastModule(slug: string | null): void {

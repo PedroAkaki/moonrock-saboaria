@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { getProgress, updateChecklist } from "@/lib/progress";
+import { useProgress } from "@/lib/use-progress";
 
 export default function BeforePracticeChecklist({
   items,
@@ -10,36 +11,30 @@ export default function BeforePracticeChecklist({
   items: string[];
   slug: string;
 }) {
-  const [checked, setChecked] = useState<boolean[]>(() => items.map(() => false));
+  const progress = useProgress();
+  const saved = progress?.modules[slug]?.beforePractice;
+  const checked = items.map((item) => !!saved?.[item]);
   const storageKey = `moonrock-before-practice-${slug}`;
 
-  // Load from centralized progress first, fallback to old key
+  // Migra a chave antiga (lista posicional) para o progresso centralizado.
   useEffect(() => {
     const p = getProgress();
-    if (p.modules[slug]?.beforePractice && Object.keys(p.modules[slug].beforePractice).length > 0) {
-      const saved = p.modules[slug].beforePractice;
-      setChecked(items.map((item) => !!saved[item]));
-    } else {
-      const saved = localStorage.getItem(storageKey);
-      if (saved) {
-        try {
-          const parsed = JSON.parse(saved);
-          setChecked(parsed);
-          // Migrate to centralized
-          items.forEach((item, i) => {
-            updateChecklist(slug, "beforePractice", item, parsed[i] === true);
-          });
-        } catch {}
-      }
-    }
-  }, [slug]);
+    if (Object.keys(p.modules[slug]?.beforePractice ?? {}).length > 0) return;
+
+    const legacy = localStorage.getItem(storageKey);
+    if (!legacy) return;
+    try {
+      const parsed: unknown = JSON.parse(legacy);
+      if (!Array.isArray(parsed)) return;
+      items.forEach((item, i) => {
+        updateChecklist(slug, "beforePractice", item, parsed[i] === true);
+      });
+    } catch {}
+  }, [slug, storageKey, items]);
 
   const toggle = (index: number) => {
-    const newState = [...checked];
-    newState[index] = !newState[index];
-    setChecked(newState);
     const item = items[index];
-    updateChecklist(slug, "beforePractice", item, newState[index]);
+    updateChecklist(slug, "beforePractice", item, !checked[index]);
   };
 
   const allDone = checked.every(Boolean);

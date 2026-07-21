@@ -1,41 +1,40 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { getProgress, updateChecklist, setModuleStatus } from "@/lib/progress";
+import { useProgress } from "@/lib/use-progress";
 
 interface LevelProgressProps {
   slug: string;
   checklist: string[];
 }
 
+const NO_CHECKS: Record<string, boolean> = {};
+
 export default function LevelProgress({ slug, checklist }: LevelProgressProps) {
-  const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
+  const appProgress = useProgress();
+  const checkedItems = appProgress?.modules[slug]?.checklist ?? NO_CHECKS;
   const storageKey = `moonrock-progress-${slug}`;
 
-  // Load from centralized progress first, fallback to old key
+  // Migra a chave antiga para o progresso centralizado; a leitura vem do store.
   useEffect(() => {
     const p = getProgress();
-    if (p.modules[slug]?.checklist && Object.keys(p.modules[slug].checklist).length > 0) {
-      setCheckedItems(p.modules[slug].checklist);
-    } else {
-      const saved = localStorage.getItem(storageKey);
-      if (saved) {
-        try {
-          const parsed = JSON.parse(saved);
-          setCheckedItems(parsed);
-          // Migrate to centralized
-          for (const [item, val] of Object.entries(parsed)) {
-            updateChecklist(slug, "checklist", item, val as boolean);
-          }
-        } catch {}
+    if (Object.keys(p.modules[slug]?.checklist ?? {}).length > 0) return;
+
+    const saved = localStorage.getItem(storageKey);
+    if (!saved) return;
+    try {
+      const parsed: unknown = JSON.parse(saved);
+      if (typeof parsed !== "object" || parsed === null) return;
+      for (const [item, val] of Object.entries(parsed)) {
+        updateChecklist(slug, "checklist", item, val === true);
       }
-    }
-  }, [slug]);
+    } catch {}
+  }, [slug, storageKey]);
 
   const toggleCheck = (item: string) => {
     const newChecked = !checkedItems[item];
     const newState = { ...checkedItems, [item]: newChecked };
-    setCheckedItems(newState);
     updateChecklist(slug, "checklist", item, newChecked);
 
     const completedCount = Object.values(newState).filter(Boolean).length;

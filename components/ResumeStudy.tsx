@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, BookOpen } from "lucide-react";
 import learningModules from "@/data/learning-modules.json";
-import { getProgress } from "@/lib/progress";
+import type { AppProgress } from "@/lib/progress";
+import { useProgress } from "@/lib/use-progress";
 
 interface Module {
   id: number;
@@ -14,49 +14,33 @@ interface Module {
   status: string;
 }
 
+/** Módulo disponível mais adiantado que ainda não foi concluído. */
+function pickNextModule(p: AppProgress): { slug: string; title: string } {
+  const modules = learningModules as Module[];
+
+  // O último módulo visitado tem prioridade, se ainda estiver em aberto.
+  if (p.lastModuleSlug) {
+    const lastMod = modules.find((m) => m.slug === p.lastModuleSlug);
+    if (lastMod && lastMod.status === "available" && p.modules[p.lastModuleSlug]?.status !== "completed") {
+      return { slug: p.lastModuleSlug, title: lastMod.title };
+    }
+  }
+
+  for (const m of modules) {
+    if (m.status !== "available") break;
+    if (p.modules[m.slug]?.status !== "completed") {
+      return { slug: m.slug, title: m.title };
+    }
+  }
+
+  return { slug: "aprendizado", title: "Revisar Estudo" };
+}
+
 export default function ResumeStudy() {
-  const [nextSlug, setNextSlug] = useState<string | null>(null);
-  const [nextTitle, setNextTitle] = useState<string | null>(null);
+  const progress = useProgress();
+  if (!progress) return null;
 
-  useEffect(() => {
-    const modules = learningModules as Module[];
-    const p = getProgress();
-    let found = false;
-
-    // Try last visited module first
-    if (p.lastModuleSlug) {
-      const lastMod = modules.find((m) => m.slug === p.lastModuleSlug);
-      if (lastMod && lastMod.status === "available") {
-        const status = p.modules[p.lastModuleSlug]?.status;
-        if (status !== "completed") {
-          setNextSlug(p.lastModuleSlug);
-          setNextTitle(lastMod.title);
-          found = true;
-        }
-      }
-    }
-
-    // Fallback: find first incomplete
-    if (!found) {
-      for (const m of modules) {
-        if (m.status !== "available") break;
-        const status = p.modules[m.slug]?.status;
-        if (status !== "completed") {
-          setNextSlug(m.slug);
-          setNextTitle(m.title);
-          found = true;
-          break;
-        }
-      }
-    }
-
-    if (!found) {
-      setNextSlug("aprendizado");
-      setNextTitle("Revisar Estudo");
-    }
-  }, []);
-
-  if (!nextSlug) return null;
+  const { slug: nextSlug, title: nextTitle } = pickNextModule(progress);
 
   return (
     <Link
