@@ -85,7 +85,7 @@ Adicionar ligações leves entre conteúdo e IDs ou tópicos estáveis. O progre
 
 1. O módulo `cold-process-praticas-progressivas` cobre controle da fórmula, temperatura/trace, uma variável por vez e design simples. Ele é um roteiro educacional e não cria lotes automaticamente.
 2. A prática progressiva já possui ligação leve com o Diário: a URL abre o formulário com contexto editável, sem persistência ou criação automática. Avaliar outros contextos somente quando houver prática concreta para eles.
-3. Conferência de 24–48 h e avaliação após a cura como dois momentos de aprendizagem distintos; manter somente o primeiro como dado de processo estruturado até haver demanda real por histórico.
+3. Conferência de 24–48 h e avaliação após a cura como dois momentos de aprendizagem distintos; a avaliação reutiliza `result` para nota, repetição, motivo opcional e observações, sem criar histórico.
 4. Revisão de segurança baseada em fontes antes de ampliar instruções de diagnóstico ou recuperação de lote.
 
 ## Simulador de mistura de óleos (v1 concluída)

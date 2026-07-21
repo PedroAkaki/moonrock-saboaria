@@ -10,7 +10,7 @@ Atualizado em 2026-07-20.
 - A chave `moonrock:diario:batches:v1` continua sendo a chave de armazenamento por compatibilidade, mas agora aceita uma lista validada de Batch v1 e Batch v2. Backups v1 continuam importáveis e novos backups podem conter ambos os formatos.
 - O conteúdo `cold-process-avancado` está disponível, possui receita de prática e registra os conceitos que serão persistíveis quando a UI do Diário v2 for autorizada.
 - O pré-requisito de cinco lotes CP aparece como indicador no Aprendizado. Ele não bloqueia módulos e não altera o progresso educacional.
-- O Diário CP v2 possui uma conferência opcional de 24–48 h: data, situação de desmolde, toque da superfície e sinais visuais iniciais. É um único registro de processo, não uma linha do tempo genérica. A avaliação depois da cura continua em `result`.
+- O Diário CP v2 possui uma conferência opcional de 24–48 h: data, situação de desmolde, toque da superfície e sinais visuais iniciais. É um único registro de processo, não uma linha do tempo genérica. Depois da cura, um lote pronto pode registrar nota de 1–5, se Ana o faria novamente, motivo opcional e observações em `result`.
 - A Calculadora possui o Simulador de Mistura de Óleos v1: perfis ponderados, objetivos educativo de equilíbrio/firmeza/cremosidade, sugestão determinística em incrementos de 5% e revisão consciente na Calculadora. Ele não cria Receita ou Lote.
 - A integridade do simulador foi reforçada: a pontuação usa valores antes da apresentação arredondada, a busca canoniza a ordem dos óleos e os empates são estáveis. Quando a meta não é atingida, a UI declara que se trata da melhor aproximação e mostra os critérios fora da faixa.
 
@@ -32,7 +32,7 @@ Antes de expandir Batch v2 para outro método, ainda é necessária autorizaçã
 
 1. O módulo `cold-process-praticas-progressivas` está disponível: quatro práticas (controle, temperatura/trace, uma variável e design simples), sem criar registros automaticamente.
 2. A prática progressiva abre o Diário com intenção e campos de estudo editáveis por URL; não escreve dados nem cria lote até o botão salvar. Ainda falta avaliar se outras práticas merecem contextos próprios.
-3. Melhorar a avaliação de cura usando o `result` existente antes de criar qualquer histórico de observações.
+3. A avaliação pós-cura de CP reutiliza `result`; não cria linha do tempo, novas métricas sensoriais, regra de segurança ou recomendação automática.
 4. Revisar instruções de segurança e recuperação de lote com fontes rastreáveis antes de ampliar o conteúdo prático.
 
 ## Simulador de mistura de óleos — v1 concluída
