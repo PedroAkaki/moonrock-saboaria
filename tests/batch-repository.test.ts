@@ -7,6 +7,7 @@ import {
   duplicateDiaryBatch,
   getDiaryBatches,
   isBatchV2,
+  updateColdProcessCureReview,
   updateColdProcessDiaryBatch,
   updateDiaryBatchStatus,
 } from "@/lib/batch/repository";
@@ -133,6 +134,65 @@ describe("repositório de Diário com Batch v1 e v2", () => {
           surfaceCondition: "soft",
         },
       },
+    });
+  });
+
+  it("registra avaliação pós-cura de CP preservando dados de resultado existentes", () => {
+    storage.setItem(BATCH_STORAGE_KEY, JSON.stringify([{
+      ...coldProcessBatchV2,
+      result: { ph: 10.2, observations: "Anotação anterior." },
+    }]));
+
+    const updated = updateColdProcessCureReview(coldProcessBatchV2.id, {
+      rating: 4,
+      wouldRepeat: false,
+      failureReason: "Espuma abaixo do esperado.",
+      observations: "Barra firme e agradável depois da cura.",
+    });
+
+    expect(updated).toMatchObject({
+      id: coldProcessBatchV2.id,
+      batchCode: coldProcessBatchV2.batchCode,
+      result: {
+        ph: 10.2,
+        rating: 4,
+        wouldRepeat: false,
+        failureReason: "Espuma abaixo do esperado.",
+        observations: "Barra firme e agradável depois da cura.",
+      },
+    });
+  });
+
+  it("não registra avaliação pós-cura para outro método", () => {
+    storage.setItem(BATCH_STORAGE_KEY, JSON.stringify([meltAndPourBatch]));
+    storage.resetWriteCount();
+
+    const updated = updateColdProcessCureReview(meltAndPourBatch.id, {
+      rating: 5,
+      wouldRepeat: true,
+      failureReason: "",
+      observations: "",
+    });
+
+    expect(updated).toBeNull();
+    expect(storage.writes).toBe(0);
+  });
+
+  it("promove CP v1 ao registrar a avaliação, sem alterar sua identidade", () => {
+    storage.setItem(BATCH_STORAGE_KEY, JSON.stringify([batchWithOptionalFields]));
+
+    const updated = updateColdProcessCureReview(batchWithOptionalFields.id, {
+      rating: 5,
+      wouldRepeat: true,
+      failureReason: "",
+      observations: "Repetiria esta fórmula.",
+    });
+
+    expect(updated).toMatchObject({
+      schemaVersion: 2,
+      id: batchWithOptionalFields.id,
+      batchCode: batchWithOptionalFields.batchCode,
+      result: { rating: 5, wouldRepeat: true, observations: "Repetiria esta fórmula." },
     });
   });
 

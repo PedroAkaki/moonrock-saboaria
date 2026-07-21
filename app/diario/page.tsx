@@ -14,6 +14,7 @@ import {
   generateDiaryBatchCode,
   getDiaryBatches,
   isBatchV2,
+  updateColdProcessCureReview,
   updateDiaryBatch,
   updateDiaryBatchStatus,
 } from "@/lib/batch/repository";
@@ -30,6 +31,7 @@ import {
   type LearningDiaryPractice,
 } from "@/lib/learning/diary-practice";
 import ColdProcessFields from "@/components/ColdProcessFields";
+import { ColdProcessCureReview } from "@/components/ColdProcessCureReview";
 
 const STATUS_LABELS: Record<string, string> = {
   draft: "Rascunho",
@@ -538,6 +540,16 @@ export default function DiarioPage() {
                 {/* Observations */}
                 {batch.result?.observations && (
                   <p className="text-xs text-moon-500 italic leading-relaxed">{batch.result.observations}</p>
+                )}
+
+                {batch.method === "cold_process" && batch.status === "ready" && (
+                  <ColdProcessCureReview
+                    result={batch.result}
+                    onSave={(review) => {
+                      updateColdProcessCureReview(batch.id, review);
+                      load();
+                    }}
+                  />
                 )}
 
                 {/* Actions */}

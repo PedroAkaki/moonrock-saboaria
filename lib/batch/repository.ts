@@ -45,6 +45,13 @@ export interface UpdateDiaryBatchInput {
   processData?: ColdProcessData;
 }
 
+export interface UpdateColdProcessCureReviewInput {
+  rating: 1 | 2 | 3 | 4 | 5;
+  wouldRepeat: boolean | null;
+  failureReason: string;
+  observations: string;
+}
+
 function isBatchV2(batch: StoredBatch): batch is BatchV2 {
   return "schemaVersion" in batch && batch.schemaVersion === 2;
 }
@@ -157,6 +164,24 @@ function withObservations(result: BatchResult | undefined, observations: string 
   const rest = { ...result };
   delete rest.observations;
   return Object.keys(rest).length > 0 ? rest : undefined;
+}
+
+function withColdProcessCureReview(
+  result: BatchResult | undefined,
+  review: UpdateColdProcessCureReviewInput,
+): BatchResult {
+  const next: BatchResult = { ...(result ?? {}), rating: review.rating };
+
+  if (review.wouldRepeat === null) delete next.wouldRepeat;
+  else next.wouldRepeat = review.wouldRepeat;
+
+  if (review.failureReason.trim()) next.failureReason = review.failureReason.trim();
+  else delete next.failureReason;
+
+  if (review.observations.trim()) next.observations = review.observations.trim();
+  else delete next.observations;
+
+  return next;
 }
 
 function generateCodeFrom(batches: StoredBatch[], method: SoapMethod): string {
@@ -311,6 +336,31 @@ export function updateDiaryBatch(id: string, patch: UpdateDiaryBatchInput): Stor
   next[index] = updated;
   saveStoredBatches(next);
   return updated;
+}
+
+export function updateColdProcessCureReview(
+  id: string,
+  review: UpdateColdProcessCureReviewInput,
+): StoredBatch | null {
+  const stored = readStoredBatches();
+  throwForInvalidStorage(stored);
+  const index = stored.data.findIndex((batch) => batch.id === id);
+  if (index === -1 || stored.data[index].method !== "cold_process") return null;
+
+  const current = stored.data[index];
+  const batch = isBatchV2(current) ? current : normalizeStoredBatchV1(current);
+  const updated: BatchV2 = {
+    ...batch,
+    result: withColdProcessCureReview(batch.result, review),
+    updatedAt: new Date().toISOString(),
+  };
+  const decoded = decodeStoredBatchV2(updated);
+  if (!decoded.success) throw new Error(`Não foi possível registrar a avaliação: ${decoded.reason}`);
+
+  const next = [...stored.data];
+  next[index] = decoded.data;
+  saveStoredBatches(next);
+  return decoded.data;
 }
 
 export function updateColdProcessDiaryBatch(id: string, patch: UpdateDiaryBatchInput): BatchV2 | null {
