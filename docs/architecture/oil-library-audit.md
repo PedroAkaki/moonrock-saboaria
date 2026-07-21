@@ -22,6 +22,28 @@ Os valores existentes de SAP desses itens coincidiram com a fonte, portanto a
 curadoria não alterou o cálculo. A evidência não se estende a iodo, INS, perfil
 de ácidos graxos, `maxPercent`, estabilidade, DOS, notas ou recomendações.
 
+A Biblioteca de Óleos mostra “SAP conferido” somente nesses itens, junto da
+fonte e da data. O selo descreve os dois campos revisados; ele não representa
+aprovação geral do ingrediente ou da formulação.
+
+## Divergências ainda não aplicadas
+
+A mesma fonte possui um conjunto estruturado de iodo, INS e oito ácidos graxos.
+A comparação encontrou diferenças pequenas nos dados consumidos atualmente:
+
+| Óleo | MoonRock: iodo / INS | SoapCalc: iodo / INS |
+| --- | --- | --- |
+| Azeite | 80 / 105 | 85 / 105 |
+| Coco 76° | 10 / 258 | 10 / 258 |
+| Palma | 52 / 145 | 53 / 145 |
+| Mamona | 85 / 95 | 86 / 95 |
+| Karité | 60 / 115 | 59 / 116 |
+
+Essas diferenças não foram aplicadas porque iodo e INS participam do score do
+simulador. Alterar apenas os cinco itens mudaria sugestões enquanto os outros
+34 continuariam sem revisão equivalente. O próximo passo deve ser uma decisão
+de migração comparável e testada, não correções avulsas.
+
 ## Inventário observado
 
 - 39 óleos e manteigas, sem IDs duplicados;

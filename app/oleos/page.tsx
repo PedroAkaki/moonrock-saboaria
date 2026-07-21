@@ -4,6 +4,10 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import oilsData from "@/data/oils.json";
 import GlossaryTerm from "@/components/GlossaryTerm";
+import type { OilsData } from "@/lib/soap/oils";
+
+const data = oilsData as OilsData;
+const OIL_SOURCE_BY_ID = new Map((data.sources ?? []).map((source) => [source.id, source]));
 
 const TYPE_NAMES: Record<string, string> = {
   "oleo-liquido": "Óleo Líquido",
@@ -41,12 +45,13 @@ const CONFIDENCE_LABELS: Record<string, string> = {
 
 type FilterKey = "type" | "stability" | "availability" | "dosRisk" | "confidence";
 
+function formatEvidenceDate(value: string): string {
+  const [year, month, day] = value.split("-");
+  return year && month && day ? `${day}/${month}/${year}` : value;
+}
+
 export default function OleosPage() {
-  const oils = oilsData.oils as (typeof oilsData.oils[0] & {
-    dosRisk?: string; formulaRole?: string; substitutionNotes?: string;
-    beginnerNote?: string; recommendedUse?: string; confidenceLevel?: string;
-    substitutions?: string[];
-  })[];
+  const oils = data.oils;
   const [search, setSearch] = useState("");
   const [filters, setFilters] = useState<Record<FilterKey, string>>({
     type: "", stability: "", availability: "", dosRisk: "", confidence: "",
@@ -175,6 +180,11 @@ export default function OleosPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {filtered.map((oil) => {
           const dos = DOS_LABELS[oil.dosRisk ?? ""] ?? { label: "—", color: "text-moon-400 bg-moon-800 border-moon-600" };
+          const sapIsReviewed = oil.evidence?.verifiedFields.includes("sapNaOH")
+            && oil.evidence.verifiedFields.includes("sapKOH");
+          const sapSource = oil.evidence?.sourceIds
+            .map((sourceId) => OIL_SOURCE_BY_ID.get(sourceId))
+            .find((source) => source !== undefined);
           const stabilityColor = oil.stability === "alta" ? "text-green-400" :
             oil.stability === "media" ? "text-yellow-400" : "text-red-400";
           const availColor = oil.availability === "alta" ? "text-green-400" :
@@ -245,6 +255,24 @@ export default function OleosPage() {
                   <div className="text-xs text-moon-400">SAP KOH</div>
                 </div>
               </div>
+              {sapIsReviewed && (
+                <div className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-emerald-800/70 bg-emerald-950/30 px-3 py-2 text-xs">
+                  <span className="font-medium text-emerald-300">✓ SAP conferido</span>
+                  {sapSource ? (
+                    <a
+                      href={sapSource.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-emerald-200 underline decoration-emerald-700 underline-offset-2 hover:text-white"
+                      title={sapSource.scope}
+                    >
+                      {sapSource.name} · {formatEvidenceDate(oil.evidence!.reviewedAt)}
+                    </a>
+                  ) : (
+                    <span className="text-emerald-200">{formatEvidenceDate(oil.evidence!.reviewedAt)}</span>
+                  )}
+                </div>
+              )}
 
               {/* Property bars */}
               <div className="space-y-1">

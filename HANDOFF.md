@@ -15,6 +15,7 @@ Atualizado em 2026-07-21.
 - A integridade do simulador foi reforçada: a pontuação usa valores antes da apresentação arredondada, a busca canoniza a ordem dos óleos e os empates são estáveis. Quando a meta não é atingida, a UI declara que se trata da melhor aproximação e mostra os critérios fora da faixa.
 - A auditoria de `data/oils.json` foi registrada em [docs/architecture/oil-library-audit.md](docs/architecture/oil-library-audit.md): a escala de propriedades é editorial, não há fonte por campo e os perfis de ácidos graxos são parciais e textuais. Não mudar o score nem derivar novos eixos até uma curadoria de dados rastreável.
 - A primeira curadoria de dados é deliberadamente pequena: azeite, coco, palma, mamona e karité trazem uma referência parcial para `sapNaOH` e `sapKOH`. O cálculo não mudou e nenhum outro campo desses itens foi implicitamente validado.
+- A página Biblioteca de Óleos identifica esses cinco itens com “SAP conferido”, fonte e data. A comparação de iodo/INS encontrou pequenas divergências registradas na auditoria, ainda não aplicadas para evitar mudança parcial do score.
 
 ## Contratos que não podem regredir
 
