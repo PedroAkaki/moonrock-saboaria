@@ -54,4 +54,12 @@ describe("contratos de conteúdo de Cold Process", () => {
       expect(coldProcessRecipes.some((recipe) => recipe.relatedModuleSlugs?.includes(slug))).toBe(true);
     }
   });
+
+  it("mantém o vínculo receita-módulo em uma única direção", () => {
+    // `relatedModuleSlugs` na receita é a fonte de verdade; um `related_recipes`
+    // paralelo no módulo divergiria sem nenhum leitor que o mantivesse honesto.
+    for (const learningModule of learningModules) {
+      expect(learningModule).not.toHaveProperty("related_recipes");
+    }
+  });
 });

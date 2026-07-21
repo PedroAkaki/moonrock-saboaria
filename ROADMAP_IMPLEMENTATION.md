@@ -38,7 +38,6 @@ Nenhum outro arquivo existente será alterado.
   "troubleshooting": "Se não endurecer, excesso de aditivo líquido.",
   "practical_exercise": "Faça um sabão de 100g com base transparente...",
   "conclusion_criteria": ["Compreender por que a base não deve ferver.", "Identificar suor de glicerina.", "Diferenciar base pronta de CP."],
-  "related_recipes": [],
   "related_glossary": ["Glicerol", "Higroscópico", "Saponificação"],
   "references": ["Scientific Soapmaking (Kevin Dunn)"]
 }
