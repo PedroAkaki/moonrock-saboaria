@@ -87,6 +87,7 @@ describe("evidência da biblioteca de óleos", () => {
 
     for (const { oil, claim } of conflitos) {
       expect(claim.rationale).toBeTruthy();
+      expect(["selected_reference", "editorial_default"]).toContain(claim.decision);
       const divergeEmAlgumCampo = claim.fields.some((field) =>
         claim.observations.some((observation) => {
           const publicado = observation.values[field];
@@ -95,6 +96,24 @@ describe("evidência da biblioteca de óleos", () => {
         }),
       );
       expect(divergeEmAlgumCampo).toBe(true);
+    }
+  });
+
+  it("mantém status, decisão e justificativa semanticamente compatíveis", () => {
+    for (const oil of data.oils) {
+      for (const claim of oil.evidence ?? []) {
+        if (claim.status === "supported") {
+          expect(["direct_match", "consensus"]).toContain(claim.decision);
+          continue;
+        }
+
+        expect(claim.rationale).toBeTruthy();
+        if (claim.status === "conflicting") {
+          expect(["selected_reference", "editorial_default"]).toContain(claim.decision);
+        } else {
+          expect(["consensus", "range_midpoint"]).toContain(claim.decision);
+        }
+      }
     }
   });
 

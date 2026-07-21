@@ -41,27 +41,34 @@ export interface OilEvidenceObservation {
  */
 export type OilEvidenceStatus = "supported" | "conflicting" | "estimated";
 
-export type OilEvidenceDecision =
-  | "direct_match"
-  | "selected_reference"
-  | "consensus"
-  | "range_midpoint"
-  | "editorial_default";
-
 /**
  * Proveniência de um conjunto de campos. O valor canônico continua sendo o do
  * próprio óleo: repetí-lo aqui criaria justamente a divergência silenciosa que
  * este modelo existe para evitar.
  */
-export interface OilEvidenceClaim {
+interface OilEvidenceClaimBase {
   fields: OilEvidenceField[];
   observations: OilEvidenceObservation[];
-  status: OilEvidenceStatus;
-  decision: OilEvidenceDecision;
-  /** Por que este valor foi adotado — obrigatório quando não é `direct_match`. */
-  rationale?: string;
   reviewedAt: string;
 }
+
+export type OilEvidenceClaim = OilEvidenceClaimBase & (
+  | {
+      status: "supported";
+      decision: "direct_match" | "consensus";
+      rationale?: string;
+    }
+  | {
+      status: "conflicting";
+      decision: "selected_reference" | "editorial_default";
+      rationale: string;
+    }
+  | {
+      status: "estimated";
+      decision: "consensus" | "range_midpoint";
+      rationale: string;
+    }
+);
 
 export interface Oil {
   id: string;

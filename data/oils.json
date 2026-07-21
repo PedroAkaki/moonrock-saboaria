@@ -7,7 +7,7 @@
       "name": "SoapCalc — Soap Making Oil Chart",
       "url": "https://soapcalc.net/oil-list",
       "accessedAt": "2026-07-21",
-      "scope": "Valores de SAP NaOH e KOH conferidos para cinco óleos-base de Cold Process. Não valida iodo, INS, perfis graxos, limites de uso, estabilidade ou notas editoriais.",
+      "scope": "Valores observados de SAP NaOH, SAP KOH, iodo e INS para cinco óleos-base de Cold Process. As afirmações de evidência distinguem correspondências diretas de divergências editoriais. Não valida perfis graxos, limites de uso, estabilidade ou notas editoriais.",
       "sourceType": "reference_database",
       "publisher": "SoapCalc"
     }

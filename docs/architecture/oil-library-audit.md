@@ -58,7 +58,9 @@ texto livre. A forma do registro já está preparada (`sourceType`, `publisher`,
 
 Os testes em `tests/oil-library.test.ts` impedem referência a fonte
 inexistente, afirmação sem observação que a cubra, `supported` cujo valor não
-bate com o publicado e `conflicting` sem divergência real ou sem justificativa.
+bate com o publicado, `conflicting` sem divergência real ou justificativa e
+combinações incompatíveis entre `status`, `decision` e `rationale`, inclusive
+para futuras estimativas.
 
 ## Divergências registradas, ainda não aplicadas
 
