@@ -26,7 +26,41 @@ A Biblioteca de Óleos mostra “SAP conferido” somente nesses itens, junto da
 fonte e da data. O selo descreve os dois campos revisados; ele não representa
 aprovação geral do ingrediente ou da formulação.
 
-## Divergências ainda não aplicadas
+## Modelo de evidência por afirmação
+
+Atualizado em 2026-07-21, depois da primeira curadoria.
+
+O formato inicial (`verifiedFields` + `sourceIds` em paralelo) responde "quais
+fontes sustentam estes campos", mas não "qual valor cada fonte informou e por
+que adotamos o nosso". Com uma única fonte isso passa; com duas, a informação
+se perde exatamente quando a pesquisa fica mais rica. A evidência passou então
+a ser uma lista de afirmações, cada uma com:
+
+- `fields` — os campos que a afirmação cobre;
+- `observations` — o que **cada** fonte publicou, com `locator` apontando a
+  linha ou tabela exata, e valores em texto quando a fonte publica faixas;
+- `status` — `supported` (a fonte confirma o valor adotado), `conflicting`
+  (diverge, e mantivemos o nosso) ou `estimated` (derivamos das observações);
+- `decision` e `rationale` — como e por que o valor atual foi escolhido.
+
+Duas decisões deliberadas:
+
+**O valor canônico não é duplicado dentro da evidência.** A fonte da verdade
+continua sendo o campo do próprio óleo (`oil.iodine`). Repetir o número em um
+`acceptedValues` criaria justamente a divergência silenciosa que o modelo
+existe para evitar; a coerência é garantida por teste, não por convenção.
+
+**O catálogo de fontes segue dentro de `oils.json`.** Extrair um
+`data/sources.json` compartilhado só se paga quando um segundo módulo precisar
+citar as mesmas fontes — hoje as referências dos módulos de Aprendizado são
+texto livre. A forma do registro já está preparada (`sourceType`, `publisher`,
+`publicationDate`), então mover o arquivo depois é barato.
+
+Os testes em `tests/oil-library.test.ts` impedem referência a fonte
+inexistente, afirmação sem observação que a cubra, `supported` cujo valor não
+bate com o publicado e `conflicting` sem divergência real ou sem justificativa.
+
+## Divergências registradas, ainda não aplicadas
 
 A mesma fonte possui um conjunto estruturado de iodo, INS e oito ácidos graxos.
 A comparação encontrou diferenças pequenas nos dados consumidos atualmente:
@@ -44,6 +78,12 @@ simulador. Alterar apenas os cinco itens mudaria sugestões enquanto os outros
 34 continuariam sem revisão equivalente. O próximo passo deve ser uma decisão
 de migração comparável e testada, não correções avulsas.
 
+Desde a evolução do modelo, essa tabela deixou de viver só aqui: cada
+divergência está registrada em `data/oils.json` como afirmação `conflicting`
+com `decision: "editorial_default"`, e a Biblioteca de Óleos avisa, no card do
+óleo, que a fonte publica valor diferente do adotado. O selo "SAP conferido"
+continua restrito às afirmações `supported`.
+
 ## Inventário observado
 
 - 39 óleos e manteigas, sem IDs duplicados;
@@ -53,9 +93,11 @@ de migração comparável e testada, não correções avulsas.
 - a escala de `hardness`, `cleansing`, `conditioning`, `bubbly` e `creamy` é
   uma escala editorial ordinal de 0 a 5 por ingrediente. Ela não deve ser
   apresentada como os números calculados de uma fórmula por SoapCalc;
-- não há metadados de fonte por óleo ou por campo. A descrição da coleção cita
-  fontes múltiplas, mas não permite conferir a origem de um SAP, de um máximo
-  recomendado ou de uma observação individual.
+- na data da auditoria não havia metadados de fonte por óleo ou por campo. A
+  descrição da coleção citava fontes múltiplas, mas não permitia conferir a
+  origem de um SAP, de um máximo recomendado ou de uma observação individual.
+  Isso foi resolvido para os cinco óleos-base CP — ver "Modelo de evidência por
+  afirmação". Os outros 34 seguem sem proveniência.
 
 ## Perfis de ácidos graxos
 

@@ -7,7 +7,9 @@
       "name": "SoapCalc — Soap Making Oil Chart",
       "url": "https://soapcalc.net/oil-list",
       "accessedAt": "2026-07-21",
-      "scope": "Valores de SAP NaOH e KOH conferidos para cinco óleos-base de Cold Process. Não valida iodo, INS, perfis graxos, limites de uso, estabilidade ou notas editoriais."
+      "scope": "Valores de SAP NaOH e KOH conferidos para cinco óleos-base de Cold Process. Não valida iodo, INS, perfis graxos, limites de uso, estabilidade ou notas editoriais.",
+      "sourceType": "reference_database",
+      "publisher": "SoapCalc"
     }
   ],
   "oils": [
@@ -41,12 +43,62 @@
       "beginnerNote": "Ótimo para começar. Cura mais longa (6-8 semanas).",
       "recommendedUse": "Base para sabonetes hidratantes e Castela",
       "confidenceLevel": "liberado",
-      "evidence": {
-        "status": "partial",
-        "verifiedFields": ["sapNaOH", "sapKOH"],
-        "sourceIds": ["soapcalc-oil-chart-2026-07-21"],
-        "reviewedAt": "2026-07-21"
-      },
+      "evidence": [
+        {
+          "fields": [
+            "sapNaOH",
+            "sapKOH"
+          ],
+          "observations": [
+            {
+              "sourceId": "soapcalc-oil-chart-2026-07-21",
+              "locator": "Soap Making Oil Chart, linha \"Olive Oil\"",
+              "values": {
+                "sapNaOH": 0.135,
+                "sapKOH": 0.19
+              }
+            }
+          ],
+          "status": "supported",
+          "decision": "direct_match",
+          "reviewedAt": "2026-07-21"
+        },
+        {
+          "fields": [
+            "ins"
+          ],
+          "observations": [
+            {
+              "sourceId": "soapcalc-oil-chart-2026-07-21",
+              "locator": "Soap Making Oil Chart, linha \"Olive Oil\"",
+              "values": {
+                "ins": 105
+              }
+            }
+          ],
+          "status": "supported",
+          "decision": "direct_match",
+          "reviewedAt": "2026-07-21"
+        },
+        {
+          "fields": [
+            "iodine"
+          ],
+          "observations": [
+            {
+              "sourceId": "soapcalc-oil-chart-2026-07-21",
+              "locator": "Soap Making Oil Chart, linha \"Olive Oil\"",
+              "values": {
+                "iodine": 85
+              }
+            }
+          ],
+          "status": "conflicting",
+          "decision": "editorial_default",
+          "rationale": "A fonte publica iodo 85 contra 80 adotado. O MoonRock mantém os valores herdados porque iodo e INS alimentam o score do simulador: corrigir cinco óleos enquanto os outros 34 seguem sem revisão equivalente mudaria as sugestões sem base comparável.",
+          "reviewedAt": "2026-07-21"
+        }
+      ],
       "substitutions": [
         "Girassol alto oleico",
         "Abacate",
@@ -83,12 +135,46 @@
       "beginnerNote": "Essencial para espuma, mas resseca acima de 25%.",
       "recommendedUse": "Espuma e limpeza em sabonetes corporais",
       "confidenceLevel": "liberado",
-      "evidence": {
-        "status": "partial",
-        "verifiedFields": ["sapNaOH", "sapKOH"],
-        "sourceIds": ["soapcalc-oil-chart-2026-07-21"],
-        "reviewedAt": "2026-07-21"
-      },
+      "evidence": [
+        {
+          "fields": [
+            "sapNaOH",
+            "sapKOH"
+          ],
+          "observations": [
+            {
+              "sourceId": "soapcalc-oil-chart-2026-07-21",
+              "locator": "Soap Making Oil Chart, linha \"Coconut Oil, 76 deg\"",
+              "values": {
+                "sapNaOH": 0.183,
+                "sapKOH": 0.257
+              }
+            }
+          ],
+          "status": "supported",
+          "decision": "direct_match",
+          "reviewedAt": "2026-07-21"
+        },
+        {
+          "fields": [
+            "iodine",
+            "ins"
+          ],
+          "observations": [
+            {
+              "sourceId": "soapcalc-oil-chart-2026-07-21",
+              "locator": "Soap Making Oil Chart, linha \"Coconut Oil, 76 deg\"",
+              "values": {
+                "iodine": 10,
+                "ins": 258
+              }
+            }
+          ],
+          "status": "supported",
+          "decision": "direct_match",
+          "reviewedAt": "2026-07-21"
+        }
+      ],
       "substitutions": [
         "Babacu",
         "Palmiste (palm kernel)"
@@ -125,12 +211,62 @@
       "beginnerNote": "Polêmica ambiental — preferir certificada RSPO.",
       "recommendedUse": "Dureza e cremosidade em barras",
       "confidenceLevel": "liberado",
-      "evidence": {
-        "status": "partial",
-        "verifiedFields": ["sapNaOH", "sapKOH"],
-        "sourceIds": ["soapcalc-oil-chart-2026-07-21"],
-        "reviewedAt": "2026-07-21"
-      },
+      "evidence": [
+        {
+          "fields": [
+            "sapNaOH",
+            "sapKOH"
+          ],
+          "observations": [
+            {
+              "sourceId": "soapcalc-oil-chart-2026-07-21",
+              "locator": "Soap Making Oil Chart, linha \"Palm Oil\"",
+              "values": {
+                "sapNaOH": 0.142,
+                "sapKOH": 0.199
+              }
+            }
+          ],
+          "status": "supported",
+          "decision": "direct_match",
+          "reviewedAt": "2026-07-21"
+        },
+        {
+          "fields": [
+            "ins"
+          ],
+          "observations": [
+            {
+              "sourceId": "soapcalc-oil-chart-2026-07-21",
+              "locator": "Soap Making Oil Chart, linha \"Palm Oil\"",
+              "values": {
+                "ins": 145
+              }
+            }
+          ],
+          "status": "supported",
+          "decision": "direct_match",
+          "reviewedAt": "2026-07-21"
+        },
+        {
+          "fields": [
+            "iodine"
+          ],
+          "observations": [
+            {
+              "sourceId": "soapcalc-oil-chart-2026-07-21",
+              "locator": "Soap Making Oil Chart, linha \"Palm Oil\"",
+              "values": {
+                "iodine": 53
+              }
+            }
+          ],
+          "status": "conflicting",
+          "decision": "editorial_default",
+          "rationale": "A fonte publica iodo 53 contra 52 adotado. O MoonRock mantém os valores herdados porque iodo e INS alimentam o score do simulador: corrigir cinco óleos enquanto os outros 34 seguem sem revisão equivalente mudaria as sugestões sem base comparável.",
+          "reviewedAt": "2026-07-21"
+        }
+      ],
       "substitutions": [
         "Sebo",
         "Banha",
@@ -204,12 +340,47 @@
       "beginnerNote": "Emoliente excelente. Derreter antes de misturar.",
       "recommendedUse": "Peles sensíveis e receitas superhidratantes",
       "confidenceLevel": "liberado",
-      "evidence": {
-        "status": "partial",
-        "verifiedFields": ["sapNaOH", "sapKOH"],
-        "sourceIds": ["soapcalc-oil-chart-2026-07-21"],
-        "reviewedAt": "2026-07-21"
-      },
+      "evidence": [
+        {
+          "fields": [
+            "sapNaOH",
+            "sapKOH"
+          ],
+          "observations": [
+            {
+              "sourceId": "soapcalc-oil-chart-2026-07-21",
+              "locator": "Soap Making Oil Chart, linha \"Shea Butter\"",
+              "values": {
+                "sapNaOH": 0.128,
+                "sapKOH": 0.179
+              }
+            }
+          ],
+          "status": "supported",
+          "decision": "direct_match",
+          "reviewedAt": "2026-07-21"
+        },
+        {
+          "fields": [
+            "iodine",
+            "ins"
+          ],
+          "observations": [
+            {
+              "sourceId": "soapcalc-oil-chart-2026-07-21",
+              "locator": "Soap Making Oil Chart, linha \"Shea Butter\"",
+              "values": {
+                "iodine": 59,
+                "ins": 116
+              }
+            }
+          ],
+          "status": "conflicting",
+          "decision": "editorial_default",
+          "rationale": "A fonte publica iodo 59 contra 60 adotado e INS 116 contra 115 adotado. O MoonRock mantém os valores herdados porque iodo e INS alimentam o score do simulador: corrigir cinco óleos enquanto os outros 34 seguem sem revisão equivalente mudaria as sugestões sem base comparável.",
+          "reviewedAt": "2026-07-21"
+        }
+      ],
       "substitutions": [
         "Cacau",
         "Cupuaçu"
@@ -281,12 +452,62 @@
       "beginnerNote": "Acelera o traço. Adicionar por último na receita.",
       "recommendedUse": "Espuma cremosa e condicionamento",
       "confidenceLevel": "liberado",
-      "evidence": {
-        "status": "partial",
-        "verifiedFields": ["sapNaOH", "sapKOH"],
-        "sourceIds": ["soapcalc-oil-chart-2026-07-21"],
-        "reviewedAt": "2026-07-21"
-      },
+      "evidence": [
+        {
+          "fields": [
+            "sapNaOH",
+            "sapKOH"
+          ],
+          "observations": [
+            {
+              "sourceId": "soapcalc-oil-chart-2026-07-21",
+              "locator": "Soap Making Oil Chart, linha \"Castor Oil\"",
+              "values": {
+                "sapNaOH": 0.128,
+                "sapKOH": 0.18
+              }
+            }
+          ],
+          "status": "supported",
+          "decision": "direct_match",
+          "reviewedAt": "2026-07-21"
+        },
+        {
+          "fields": [
+            "ins"
+          ],
+          "observations": [
+            {
+              "sourceId": "soapcalc-oil-chart-2026-07-21",
+              "locator": "Soap Making Oil Chart, linha \"Castor Oil\"",
+              "values": {
+                "ins": 95
+              }
+            }
+          ],
+          "status": "supported",
+          "decision": "direct_match",
+          "reviewedAt": "2026-07-21"
+        },
+        {
+          "fields": [
+            "iodine"
+          ],
+          "observations": [
+            {
+              "sourceId": "soapcalc-oil-chart-2026-07-21",
+              "locator": "Soap Making Oil Chart, linha \"Castor Oil\"",
+              "values": {
+                "iodine": 86
+              }
+            }
+          ],
+          "status": "conflicting",
+          "decision": "editorial_default",
+          "rationale": "A fonte publica iodo 86 contra 85 adotado. O MoonRock mantém os valores herdados porque iodo e INS alimentam o score do simulador: corrigir cinco óleos enquanto os outros 34 seguem sem revisão equivalente mudaria as sugestões sem base comparável.",
+          "reviewedAt": "2026-07-21"
+        }
+      ],
       "substitutions": []
     },
     {

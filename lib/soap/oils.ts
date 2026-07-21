@@ -3,19 +3,63 @@ export type Availability = "alta" | "media" | "dificil" | "muito-baixa";
 export type Stability = "alta" | "media" | "baixa" | "muito-baixa";
 export type OilEvidenceField = "sapNaOH" | "sapKOH" | "iodine" | "ins" | "fattyAcids";
 
+export type OilSourceType =
+  | "reference_database"
+  | "scientific_paper"
+  | "book"
+  | "standard"
+  | "supplier"
+  | "educational";
+
 export interface OilDataSource {
   id: string;
   name: string;
   url: string;
   accessedAt: string;
+  /** O que esta fonte se propõe a sustentar — e o que ela explicitamente não cobre. */
   scope: string;
+  sourceType?: OilSourceType;
+  publisher?: string;
+  publicationDate?: string;
 }
 
-export interface OilEvidence {
-  /** A revisão pode cobrir somente alguns campos; não infere os demais. */
-  status: "partial";
-  verifiedFields: OilEvidenceField[];
-  sourceIds: string[];
+/**
+ * O que uma fonte informou para um conjunto de campos. Texto é aceito para
+ * preservar faixas publicadas ("80-85") sem convertê-las em precisão falsa.
+ */
+export interface OilEvidenceObservation {
+  sourceId: string;
+  /** Tabela, linha ou página exata dentro da fonte. */
+  locator?: string;
+  values: Partial<Record<OilEvidenceField, number | string>>;
+}
+
+/**
+ * `supported`: a fonte confirma o valor que o MoonRock usa.
+ * `conflicting`: a fonte diverge do valor adotado, que foi mantido por decisão editorial.
+ * `estimated`: o valor adotado foi derivado das observações, não copiado de uma delas.
+ */
+export type OilEvidenceStatus = "supported" | "conflicting" | "estimated";
+
+export type OilEvidenceDecision =
+  | "direct_match"
+  | "selected_reference"
+  | "consensus"
+  | "range_midpoint"
+  | "editorial_default";
+
+/**
+ * Proveniência de um conjunto de campos. O valor canônico continua sendo o do
+ * próprio óleo: repetí-lo aqui criaria justamente a divergência silenciosa que
+ * este modelo existe para evitar.
+ */
+export interface OilEvidenceClaim {
+  fields: OilEvidenceField[];
+  observations: OilEvidenceObservation[];
+  status: OilEvidenceStatus;
+  decision: OilEvidenceDecision;
+  /** Por que este valor foi adotado — obrigatório quando não é `direct_match`. */
+  rationale?: string;
   reviewedAt: string;
 }
 
@@ -55,8 +99,8 @@ export interface Oil {
   beginnerNote?: string;
   /** Uso recomendado resumido */
   recommendedUse?: string;
-  /** Proveniência explícita apenas dos campos efetivamente conferidos. */
-  evidence?: OilEvidence;
+  /** Proveniência por afirmação; campos ausentes seguem não revisados. */
+  evidence?: OilEvidenceClaim[];
 }
 
 export interface OilsData {
