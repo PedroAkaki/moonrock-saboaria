@@ -1,4 +1,4 @@
-import { Moon, Calculator, BookOpen, Droplets, Map, TriangleAlert, BookMarked, Milestone, ArrowRight, Play, Database } from "lucide-react";
+import { Moon, Calculator, BookOpen, Droplets, Map, TriangleAlert, BookMarked, Milestone, ArrowRight, Database } from "lucide-react";
 import Link from "next/link";
 import ResumeStudy from "@/components/ResumeStudy";
 

@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { FlaskConical, ShieldCheck, Beaker, Thermometer, BookOpen, Sparkles, Droplets } from "lucide-react";
+import { useMemo } from "react";
+import { FlaskConical, ShieldCheck, Beaker, Thermometer, Sparkles, Droplets } from "lucide-react";
 import LearningOrbit, { OrbitNodeDef } from "./LearningOrbit";
 import learningModules from "@/data/learning-modules.json";
-import { getProgress } from "@/lib/progress";
+import { useProgressOrEmpty } from "@/lib/use-progress";
 
 const MODULE_ICONS: Record<number, React.ReactNode> = {
   1: <Droplets className="h-4 w-4" />,
@@ -29,21 +29,12 @@ const MODULE_LABELS: Record<number, { label: string; short: string }> = {
 };
 
 export default function MainLearningOrbit() {
-  const [progress, setProgress] = useState(() => getProgress());
-
-  useEffect(() => {
-    const update = () => setProgress(getProgress());
-    update();
-    window.addEventListener("moonrock-progress-updated", update);
-    return () => window.removeEventListener("moonrock-progress-updated", update);
-  }, []);
+  const progress = useProgressOrEmpty();
 
   const modules = learningModules as { id: number; slug: string; level: number; title: string; status: string }[];
   const available = modules.filter((m) => m.status === "available");
   const completedCount = available.filter((m) => progress.modules[m.slug]?.status === "completed").length;
   const progressPercent = available.length > 0 ? Math.round((completedCount / available.length) * 100) : 0;
-
-  const firstIncomplete = available.find((m) => progress.modules[m.slug]?.status !== "completed");
 
   const nodes: OrbitNodeDef[] = useMemo(() => {
     return modules.map((mod) => {

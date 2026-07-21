@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Check, Lock, ChevronRight, FlaskConical } from "lucide-react";
 import learningModules from "@/data/learning-modules.json";
-import { getProgress } from "@/lib/progress";
-import { getModuleLearningProgress, getClientProgress } from "@/lib/learning";
+import { getModuleLearningProgress } from "@/lib/learning";
+import { useProgressOrEmpty } from "@/lib/use-progress";
 
 interface Module {
   id: number;
@@ -44,14 +43,7 @@ function ringStyle(status: string): string {
 
 export function VisualRoadmap() {
   const modules = learningModules as Module[];
-  const [progress, setProgress] = useState(getClientProgress());
-
-  useEffect(() => {
-    const update = () => setProgress(getProgress());
-    update();
-    window.addEventListener("moonrock-progress-updated", update);
-    return () => window.removeEventListener("moonrock-progress-updated", update);
-  }, []);
+  const progress = useProgressOrEmpty();
 
   const isModuleComplete = (slug: string) => progress.modules[slug]?.status === "completed";
 
@@ -71,7 +63,7 @@ export function VisualRoadmap() {
       <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-moon-500/30 to-transparent hidden sm:block" />
 
       <div className="space-y-6">
-        {modules.map((mod, idx) => {
+        {modules.map((mod) => {
           const isAvailable = mod.status === "available";
           const complete = isModuleComplete(mod.slug);
           const isNext = nextModule.slug === mod.slug;

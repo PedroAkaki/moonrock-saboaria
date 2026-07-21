@@ -1,16 +1,17 @@
 "use client";
 
-import { useEffect, useMemo, useState, Fragment } from "react";
+import { useMemo, Fragment } from "react";
 import Link from "next/link";
 import { Check, Lock, Play, ArrowRight, ShieldCheck, FlaskConical, BookOpen, Sparkles, ChefHat, AlertTriangle, Lightbulb, Gavel } from "lucide-react";
 import { roadmapNodes, RoadmapNode, RoadmapTopic } from "@/data/roadmap-nodes";
 import learningModules from "@/data/learning-modules.json";
-import { getProgress } from "@/lib/progress";
-import { getContinueNowAction, getClientProgress } from "@/lib/learning";
+import type { AppProgress } from "@/lib/progress";
+import { getContinueNowAction } from "@/lib/learning";
+import { useProgressOrEmpty } from "@/lib/use-progress";
 
 type RoadmapStatus = "completed" | "current" | "in-progress" | "not-started" | "locked";
 
-function getSlugStatus(node: RoadmapNode, progress: ReturnType<typeof getProgress>, modules: { slug: string; status: string }[]): RoadmapStatus {
+function getSlugStatus(node: RoadmapNode, progress: AppProgress, modules: { slug: string; status: string }[]): RoadmapStatus {
   switch (node.statusSource) {
     case "always-current":
       return "current";
@@ -142,14 +143,7 @@ function CenterNode({ node, status }: { node: RoadmapNode; status: RoadmapStatus
 }
 
 export default function RoadmapMap() {
-  const [progress, setProgress] = useState(getClientProgress());
-
-  useEffect(() => {
-    const update = () => setProgress(getProgress());
-    update();
-    window.addEventListener("moonrock-progress-updated", update);
-    return () => window.removeEventListener("moonrock-progress-updated", update);
-  }, []);
+  const progress = useProgressOrEmpty();
 
   const modules = learningModules as { id: number; slug: string; level: number; title: string; status: string }[];
   const modulesRaw = learningModules as { id: number; slug: string; level: number; title: string; status: string; summary?: string }[];

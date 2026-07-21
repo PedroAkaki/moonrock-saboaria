@@ -1,5 +1,4 @@
-import { AppProgress, getProgress } from "./progress";
-import type { ModuleProgress } from "./progress";
+import type { AppProgress, ModuleProgress } from "./progress";
 
 interface RecipeLike {
   id: string;
@@ -316,19 +315,4 @@ export function getContinueNowAction(
 
   // All done
   return { slug: "aprendizado", label: "Revisar estudo", href: "/aprendizado" };
-}
-
-/**
- * Safe wrapper: get progress (returns default on server).
- */
-export function getClientProgress(): AppProgress {
-  if (typeof window === "undefined") {
-    return {
-      version: 1,
-      updatedAt: "",
-      lastModuleSlug: null,
-      modules: {},
-    };
-  }
-  return getProgress();
 }

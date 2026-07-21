@@ -36,13 +36,6 @@ const STATUS_CLASSES: Record<OrbitStatus, string> = {
   locked: "border-moon-700 bg-moon-900/50 text-moon-500 opacity-60",
 };
 
-const DOT_CLASSES: Record<OrbitStatus, string> = {
-  completed: "bg-green-400 border-green-400",
-  "in-progress": "bg-purple-400 border-purple-400",
-  "not-started": "border-moon-400/50 bg-transparent",
-  locked: "border-moon-700 bg-moon-800/60",
-};
-
 export default function LearningOrbit({
   centerLabel,
   centerSubLabel,

@@ -1,16 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import MainLearningOrbit from "@/components/MainLearningOrbit";
 import Link from "next/link";
 import { ArrowRight, Check, Play, Award, Sparkles, ArrowLeft } from "lucide-react";
 import learningModules from "@/data/learning-modules.json";
-import { getProgress } from "@/lib/progress";
+import { useProgressOrEmpty } from "@/lib/use-progress";
 import {
   getLearningStats,
   getContinueNowAction,
   getAchievements,
-  getClientProgress,
 } from "@/lib/learning";
 
 interface Module {
@@ -23,16 +21,7 @@ interface Module {
 
 export default function AprendizadoPage() {
   const modules = learningModules as Module[];
-  const [progress, setProgress] = useState(getClientProgress());
-
-  useEffect(() => {
-    const update = () => {
-      setProgress(getProgress());
-    };
-    update();
-    window.addEventListener("moonrock-progress-updated", update);
-    return () => window.removeEventListener("moonrock-progress-updated", update);
-  }, []);
+  const progress = useProgressOrEmpty();
 
   const stats = getLearningStats(modules, progress);
   const continueAction = getContinueNowAction(modules, progress);

@@ -12,12 +12,13 @@ Cada marco deve:
 - evitar dependências da etapa seguinte;
 - manter backup e uso mobile funcionando.
 
-## Status de execução — 2026-07-20
+## Status de execução — 2026-07-21
 
 - **Marco 0:** concluído. Os contratos de Batch v1, backup e ponte Calculadora → Diário possuem validação e testes de proteção.
 - **Batch v2 — Etapa 1 e Etapa 2 (Cold Process):** concluídas. `BatchV2`, regras por método, decoder explícito e normalização v1 → v2 existem; novos CP são persistidos como v2 e editar um CP v1 faz a migração daquele registro de forma explícita. A chave de armazenamento e o envelope de backup permanecem compatíveis com v1 e aceitam listas mistas validadas.
 - **Aprendizado Cold Process:** o módulo avançado está disponível, possui receita de prática e pré-requisito apenas informativo. O conteúdo não altera dados operacionais nem desbloqueia o currículo automaticamente.
 - **Acompanhamento Cold Process:** o Diário v2 registra uma conferência opcional de 24–48 h (desmolde e sinais visuais iniciais) dentro de `processData`. A avaliação posterior continua em `result`; não foi criada uma linha do tempo ou entidade de observações.
+- **Progresso de Aprendizado:** todos os consumidores usam o store externo compartilhado com snapshot estável para SSR/hidratação e atualizações entre componentes ou abas. Não há mais leitores de progresso que inicializem estado diretamente de `localStorage`.
 
 O foco aprovado para o próximo mês é aprofundar Cold Process. Não iniciar outro método, fórmula discriminada, catálogo de matérias-primas ou motor genérico de formulários nesse intervalo.
 

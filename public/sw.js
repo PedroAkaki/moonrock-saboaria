@@ -30,7 +30,6 @@ self.addEventListener("install", (event) => {
 
 self.addEventListener("fetch", (event) => {
   const { request } = event;
-  const url = new URL(request.url);
 
   // For navigation (HTML pages): network-first → cache fallback
   if (request.mode === "navigate") {
