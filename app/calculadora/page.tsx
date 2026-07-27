@@ -171,6 +171,7 @@ export default function CalculadoraPage() {
           sapNaoh: oil?.sapNaOH,
         };
       }),
+      estimatedQualities: result.qualities,
     };
     saveCalculatorFormulaForDiary(formula);
     router.push("/diario");

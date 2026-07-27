@@ -1,4 +1,4 @@
-import type { BatchOil } from "@/lib/diario";
+import { ESTIMATED_QUALITY_KEYS, type BatchOil, type EstimatedQualities } from "@/lib/diario";
 
 export const CALCULATOR_DIARY_STORAGE_KEY = "moonrock:calculator:lastFormula:v1";
 
@@ -9,6 +9,8 @@ export interface CalculatorDiaryFormula {
   waterGrams: number;
   superfatPercent: number;
   oils?: BatchOil[];
+  /** Qualidades estimadas no momento do cálculo, para comparar após a cura. */
+  estimatedQualities?: EstimatedQualities;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -17,6 +19,14 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
 function isFiniteNumber(value: unknown): value is number {
   return typeof value === "number" && Number.isFinite(value);
+}
+
+function isEstimatedQualities(value: unknown): value is EstimatedQualities {
+  if (!isRecord(value)) return false;
+  return ESTIMATED_QUALITY_KEYS.every((key) => {
+    const quality = value[key];
+    return isFiniteNumber(quality) && quality >= 0 && quality <= 5;
+  });
 }
 
 function isBatchOil(value: unknown): value is BatchOil {
@@ -39,6 +49,7 @@ export function validateCalculatorDiaryFormula(value: unknown): CalculatorDiaryF
   if (!isFiniteNumber(value.waterGrams)) return null;
   if (!isFiniteNumber(value.superfatPercent)) return null;
   if (value.oils !== undefined && (!Array.isArray(value.oils) || !value.oils.every(isBatchOil))) return null;
+  if (value.estimatedQualities !== undefined && !isEstimatedQualities(value.estimatedQualities)) return null;
 
   return {
     totalOilWeight: value.totalOilWeight,
@@ -47,6 +58,7 @@ export function validateCalculatorDiaryFormula(value: unknown): CalculatorDiaryF
     waterGrams: value.waterGrams,
     superfatPercent: value.superfatPercent,
     oils: value.oils as BatchOil[] | undefined,
+    estimatedQualities: value.estimatedQualities as EstimatedQualities | undefined,
   };
 }
 

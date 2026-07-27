@@ -32,6 +32,7 @@ import {
 } from "@/lib/learning/diary-practice";
 import ColdProcessFields from "@/components/ColdProcessFields";
 import { ColdProcessCureReview } from "@/components/ColdProcessCureReview";
+import EstimatedQualitiesSummary from "@/components/EstimatedQualitiesSummary";
 
 const STATUS_LABELS: Record<string, string> = {
   draft: "Rascunho",
@@ -148,6 +149,11 @@ export default function DiarioPage() {
           waterGrams: formWater,
           superfatPercent: formSuperfat,
           oils: formOilList,
+          // A estimativa é do momento do cálculo: editar o lote não a recalcula,
+          // mas também não pode apagá-la.
+          ...(editOriginal?.formula.estimatedQualities
+            ? { estimatedQualities: editOriginal.formula.estimatedQualities }
+            : {}),
         },
         observations: formObs,
         ...(formMethod === "cold_process" ? { processData: formColdProcess } : {}),
@@ -169,6 +175,10 @@ export default function DiarioPage() {
         waterGrams: formWater,
         superfatPercent: formSuperfat,
         oils: formOilList,
+        // Só a origem calculadora traz a estimativa; fórmula livre não inventa uma.
+        ...(formSourceType === "calculator" && calculatorFormula?.estimatedQualities
+          ? { estimatedQualities: calculatorFormula.estimatedQualities }
+          : {}),
       },
       observations: formObs.trim() || undefined,
       ...(formMethod === "cold_process" ? { processData: formColdProcess } : {}),
@@ -540,6 +550,13 @@ export default function DiarioPage() {
                 {/* Observations */}
                 {batch.result?.observations && (
                   <p className="text-xs text-moon-500 italic leading-relaxed">{batch.result.observations}</p>
+                )}
+
+                {batch.formula.estimatedQualities && (
+                  <EstimatedQualitiesSummary
+                    qualities={batch.formula.estimatedQualities}
+                    rating={batch.result?.rating}
+                  />
                 )}
 
                 {batch.method === "cold_process" && batch.status === "ready" && (

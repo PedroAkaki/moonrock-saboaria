@@ -1,8 +1,10 @@
 import {
+  ESTIMATED_QUALITY_KEYS,
   validateBatch,
   type BatchAdditive,
   type BatchOil,
   type BatchStatus,
+  type EstimatedQualities,
   type SoapMethod,
 } from "@/lib/diario";
 import {
@@ -186,6 +188,19 @@ function parseTransitionalFormula(value: unknown): DecodeResult<TransitionalBatc
     oils.push(oil.data);
   }
 
+  let estimatedQualities: EstimatedQualities | undefined;
+  if (value.estimatedQualities !== undefined) {
+    if (!isRecord(value.estimatedQualities)) return fail("formula.estimatedQualities deve ser um objeto.");
+    const parsed = {} as EstimatedQualities;
+    for (const key of ESTIMATED_QUALITY_KEYS) {
+      const quality = value.estimatedQualities[key];
+      if (!isFiniteNumber(quality)) return fail(`formula.estimatedQualities.${key} deve ser um número.`);
+      if (quality < 0 || quality > 5) return fail(`formula.estimatedQualities.${key} deve estar entre 0 e 5.`);
+      parsed[key] = quality;
+    }
+    estimatedQualities = parsed;
+  }
+
   let additives: BatchAdditive[] | undefined;
   if (value.additives !== undefined) {
     if (!Array.isArray(value.additives)) return fail("formula.additives deve ser uma lista.");
@@ -209,6 +224,7 @@ function parseTransitionalFormula(value: unknown): DecodeResult<TransitionalBatc
     ...(value.lyeConcentrationPercent === undefined ? {} : { lyeConcentrationPercent: value.lyeConcentrationPercent }),
     ...(value.expectedBatchWeight === undefined ? {} : { expectedBatchWeight: value.expectedBatchWeight }),
     ...(additives === undefined ? {} : { additives }),
+    ...(estimatedQualities === undefined ? {} : { estimatedQualities }),
   });
 }
 

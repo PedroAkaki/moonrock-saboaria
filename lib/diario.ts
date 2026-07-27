@@ -20,6 +20,27 @@ export interface BatchAdditive {
   notes?: string;
 }
 
+/**
+ * Qualidades estimadas pela Calculadora no momento em que o lote foi criado,
+ * na escala editorial 0–5. É um retrato da expectativa, não uma medição: serve
+ * para comparar com a avaliação registrada depois da cura.
+ */
+export interface EstimatedQualities {
+  hardness: number;
+  cleansing: number;
+  conditioning: number;
+  bubbly: number;
+  creamy: number;
+}
+
+export const ESTIMATED_QUALITY_KEYS = [
+  "hardness",
+  "cleansing",
+  "conditioning",
+  "bubbly",
+  "creamy",
+] as const;
+
 export interface Batch {
   id: string;
   batchCode: string;
@@ -45,6 +66,8 @@ export interface Batch {
     oils: BatchOil[];
     additives?: BatchAdditive[];
     expectedBatchWeight?: number;
+    /** Retrato das qualidades estimadas quando o lote foi criado. */
+    estimatedQualities?: EstimatedQualities;
   };
   process?: {
     ambientTemp?: number;
@@ -198,6 +221,16 @@ function validateAdditive(value: unknown, path: string): string | null {
   return null;
 }
 
+function validateEstimatedQualities(value: unknown, path: string): string | null {
+  if (!isRecord(value)) return `${path} deve ser um objeto.`;
+  for (const key of ESTIMATED_QUALITY_KEYS) {
+    const quality = value[key];
+    if (!isFiniteNumber(quality)) return `${path}.${key} deve ser um número.`;
+    if (quality < 0 || quality > 5) return `${path}.${key} deve estar entre 0 e 5.`;
+  }
+  return null;
+}
+
 function validateFormula(value: unknown): string | null {
   if (!isRecord(value)) return "formula deve ser um objeto.";
   if (!isFiniteNumber(value.totalOilWeight)) return "formula.totalOilWeight deve ser um número.";
@@ -220,6 +253,10 @@ function validateFormula(value: unknown): string | null {
       const error = validateAdditive(value.additives[index], `formula.additives[${index}]`);
       if (error) return error;
     }
+  }
+  if (value.estimatedQualities !== undefined) {
+    const error = validateEstimatedQualities(value.estimatedQualities, "formula.estimatedQualities");
+    if (error) return error;
   }
   return null;
 }
