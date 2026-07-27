@@ -7,11 +7,11 @@ import {
   duplicateDiaryBatch,
   getDiaryBatches,
   isBatchV2,
-  updateColdProcessCureReview,
+  updateBatchReview,
   updateColdProcessDiaryBatch,
   updateDiaryBatchStatus,
 } from "@/lib/batch/repository";
-import { coldProcessBatch, batchWithOptionalFields, meltAndPourBatch } from "@/tests/fixtures/batches";
+import { coldProcessBatch, batchWithOptionalFields, meltAndPourBatch, usedOilBatch } from "@/tests/fixtures/batches";
 import { coldProcessBatchV2 } from "@/tests/fixtures/batches-v2";
 import { MemoryStorage } from "@/tests/test-storage";
 
@@ -143,7 +143,7 @@ describe("repositório de Diário com Batch v1 e v2", () => {
       result: { ph: 10.2, observations: "Anotação anterior." },
     }]));
 
-    const updated = updateColdProcessCureReview(coldProcessBatchV2.id, {
+    const updated = updateBatchReview(coldProcessBatchV2.id, {
       rating: 4,
       wouldRepeat: false,
       failureReason: "Espuma abaixo do esperado.",
@@ -163,11 +163,29 @@ describe("repositório de Diário com Batch v1 e v2", () => {
     });
   });
 
-  it("não registra avaliação pós-cura para outro método", () => {
+  it("registra avaliação de Melt & Pour, que não espera cura", () => {
     storage.setItem(BATCH_STORAGE_KEY, JSON.stringify([meltAndPourBatch]));
+
+    const updated = updateBatchReview(meltAndPourBatch.id, {
+      rating: 5,
+      wouldRepeat: true,
+      failureReason: "",
+      observations: "Transparência boa e aroma fixou.",
+    });
+
+    expect(updated).toMatchObject({
+      id: meltAndPourBatch.id,
+      batchCode: meltAndPourBatch.batchCode,
+      method: "melt_and_pour",
+      result: { rating: 5, wouldRepeat: true, observations: "Transparência boa e aroma fixou." },
+    });
+  });
+
+  it("não registra avaliação para método sem ponto claro de julgamento", () => {
+    storage.setItem(BATCH_STORAGE_KEY, JSON.stringify([usedOilBatch]));
     storage.resetWriteCount();
 
-    const updated = updateColdProcessCureReview(meltAndPourBatch.id, {
+    const updated = updateBatchReview(usedOilBatch.id, {
       rating: 5,
       wouldRepeat: true,
       failureReason: "",
@@ -181,7 +199,7 @@ describe("repositório de Diário com Batch v1 e v2", () => {
   it("promove CP v1 ao registrar a avaliação, sem alterar sua identidade", () => {
     storage.setItem(BATCH_STORAGE_KEY, JSON.stringify([batchWithOptionalFields]));
 
-    const updated = updateColdProcessCureReview(batchWithOptionalFields.id, {
+    const updated = updateBatchReview(batchWithOptionalFields.id, {
       rating: 5,
       wouldRepeat: true,
       failureReason: "",

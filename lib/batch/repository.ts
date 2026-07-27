@@ -45,12 +45,21 @@ export interface UpdateDiaryBatchInput {
   processData?: ColdProcessData;
 }
 
-export interface UpdateColdProcessCureReviewInput {
+export interface UpdateBatchReviewInput {
   rating: 1 | 2 | 3 | 4 | 5;
   wouldRepeat: boolean | null;
   failureReason: string;
   observations: string;
 }
+
+/** @deprecated Use UpdateBatchReviewInput; mantido para não quebrar imports. */
+export type UpdateColdProcessCureReviewInput = UpdateBatchReviewInput;
+
+/**
+ * Métodos em que a avaliação faz sentido: o lote precisa de um ponto claro de
+ * "pronto para julgar". CP julga depois da cura; M&P, depois de firmar e usar.
+ */
+const REVIEWABLE_METHODS: readonly SoapMethod[] = ["cold_process", "melt_and_pour"];
 
 function isBatchV2(batch: StoredBatch): batch is BatchV2 {
   return "schemaVersion" in batch && batch.schemaVersion === 2;
@@ -166,9 +175,9 @@ function withObservations(result: BatchResult | undefined, observations: string 
   return Object.keys(rest).length > 0 ? rest : undefined;
 }
 
-function withColdProcessCureReview(
+function withBatchReview(
   result: BatchResult | undefined,
-  review: UpdateColdProcessCureReviewInput,
+  review: UpdateBatchReviewInput,
 ): BatchResult {
   const next: BatchResult = { ...(result ?? {}), rating: review.rating };
 
@@ -338,20 +347,24 @@ export function updateDiaryBatch(id: string, patch: UpdateDiaryBatchInput): Stor
   return updated;
 }
 
-export function updateColdProcessCureReview(
+/**
+ * Registra a avaliação de um lote pronto. Aceita Cold Process e Melt & Pour;
+ * outros métodos são recusados sem gravar nada.
+ */
+export function updateBatchReview(
   id: string,
-  review: UpdateColdProcessCureReviewInput,
+  review: UpdateBatchReviewInput,
 ): StoredBatch | null {
   const stored = readStoredBatches();
   throwForInvalidStorage(stored);
   const index = stored.data.findIndex((batch) => batch.id === id);
-  if (index === -1 || stored.data[index].method !== "cold_process") return null;
+  if (index === -1 || !REVIEWABLE_METHODS.includes(stored.data[index].method)) return null;
 
   const current = stored.data[index];
   const batch = isBatchV2(current) ? current : normalizeStoredBatchV1(current);
   const updated: BatchV2 = {
     ...batch,
-    result: withColdProcessCureReview(batch.result, review),
+    result: withBatchReview(batch.result, review),
     updatedAt: new Date().toISOString(),
   };
   const decoded = decodeStoredBatchV2(updated);

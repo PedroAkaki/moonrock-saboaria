@@ -1,24 +1,54 @@
 "use client";
 
 import { useId, useState } from "react";
+import type { SoapMethod } from "@/lib/diario";
 import type { BatchResult } from "@/lib/batch/types";
-import type { UpdateColdProcessCureReviewInput } from "@/lib/batch/repository";
+import type { UpdateBatchReviewInput } from "@/lib/batch/repository";
 
-interface ColdProcessCureReviewProps {
+interface BatchReviewProps {
   result?: BatchResult;
-  onSave: (review: UpdateColdProcessCureReviewInput) => void;
+  /** Muda só o vocabulário: CP se julga após a cura, M&P após firmar e usar. */
+  method: SoapMethod;
+  onSave: (review: UpdateBatchReviewInput) => void;
 }
 
 const RATING_VALUES = [1, 2, 3, 4, 5] as const;
+
+/** O que a avaliação significa em cada método. */
+const REVIEW_COPY: Partial<Record<SoapMethod, {
+  badge: string;
+  open: string;
+  reopen: string;
+  question: string;
+  placeholder: string;
+}>> = {
+  cold_process: {
+    badge: "Avaliação após cura",
+    open: "Avaliar depois da cura",
+    reopen: "Revisar avaliação",
+    question: "Como ficou este lote depois da cura?",
+    placeholder: "Dureza percebida, espuma, sensação no uso e o que você aprendeu...",
+  },
+  melt_and_pour: {
+    badge: "Avaliação do lote",
+    open: "Avaliar este lote",
+    reopen: "Revisar avaliação",
+    question: "Como ficou este lote depois de firmar e usar?",
+    placeholder: "Transparência, fixação do aroma, suor, espuma e o que você aprendeu...",
+  },
+};
+
+const FALLBACK_COPY = REVIEW_COPY.cold_process!;
 
 function ratingLabel(rating: number): string {
   return `${rating} de 5`;
 }
 
-export function ColdProcessCureReview({ result, onSave }: ColdProcessCureReviewProps) {
+export function BatchReview({ result, method, onSave }: BatchReviewProps) {
+  const copy = REVIEW_COPY[method] ?? FALLBACK_COPY;
   const fieldId = useId();
   const [isEditing, setIsEditing] = useState(false);
-  const [rating, setRating] = useState<UpdateColdProcessCureReviewInput["rating"] | null>(null);
+  const [rating, setRating] = useState<UpdateBatchReviewInput["rating"] | null>(null);
   const [wouldRepeat, setWouldRepeat] = useState<boolean | null>(null);
   const [failureReason, setFailureReason] = useState("");
   const [observations, setObservations] = useState("");
@@ -46,7 +76,7 @@ export function ColdProcessCureReview({ result, onSave }: ColdProcessCureReviewP
     <section className="rounded-lg border border-emerald-800/70 bg-emerald-950/20 px-3 py-3 text-xs text-emerald-50">
       {result?.rating !== undefined && (
         <p className="font-semibold">
-          Avaliação após cura · {ratingLabel(result.rating)}
+          {copy.badge} · {ratingLabel(result.rating)}
           {result.wouldRepeat !== undefined && ` · ${result.wouldRepeat ? "faria novamente" : "não faria novamente"}`}
         </p>
       )}
@@ -57,12 +87,12 @@ export function ColdProcessCureReview({ result, onSave }: ColdProcessCureReviewP
           onClick={openReview}
           className="mt-1 text-emerald-200 underline decoration-emerald-500/70 underline-offset-2 hover:text-white"
         >
-          {result?.rating === undefined ? "Avaliar depois da cura" : "Revisar avaliação"}
+          {result?.rating === undefined ? copy.open : copy.reopen}
         </button>
       ) : (
         <div className="mt-3 space-y-4">
           <div>
-            <p className="font-semibold text-emerald-100">Como ficou este lote depois da cura?</p>
+            <p className="font-semibold text-emerald-100">{copy.question}</p>
             <div className="mt-2 flex gap-1" role="radiogroup" aria-label="Nota geral do lote">
               {RATING_VALUES.map((value) => (
                 <button
@@ -111,7 +141,7 @@ export function ColdProcessCureReview({ result, onSave }: ColdProcessCureReviewP
               value={observations}
               onChange={(event) => setObservations(event.target.value)}
               rows={3}
-              placeholder="Dureza percebida, espuma, sensação no uso e o que você aprendeu..."
+              placeholder={copy.placeholder}
               className="mt-1 w-full rounded-lg border border-moon-500 bg-moon-900/70 px-3 py-2 text-sm text-white placeholder-moon-500"
             />
           </div>

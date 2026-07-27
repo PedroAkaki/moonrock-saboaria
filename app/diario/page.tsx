@@ -14,7 +14,7 @@ import {
   generateDiaryBatchCode,
   getDiaryBatches,
   isBatchV2,
-  updateColdProcessCureReview,
+  updateBatchReview,
   updateDiaryBatch,
   updateDiaryBatchStatus,
 } from "@/lib/batch/repository";
@@ -31,7 +31,7 @@ import {
   type LearningDiaryPractice,
 } from "@/lib/learning/diary-practice";
 import ColdProcessFields from "@/components/ColdProcessFields";
-import { ColdProcessCureReview } from "@/components/ColdProcessCureReview";
+import { BatchReview } from "@/components/BatchReview";
 import EstimatedQualitiesSummary from "@/components/EstimatedQualitiesSummary";
 
 const STATUS_LABELS: Record<string, string> = {
@@ -51,6 +51,16 @@ const STATUS_COLORS: Record<string, string> = {
   failed: "bg-red-900/30 text-red-300 border-red-700",
   archived: "bg-moon-800 text-moon-500 border-moon-600",
 };
+
+/**
+ * Quando faz sentido avaliar o lote. Cold Process só depois da cura; Melt &
+ * Pour assim que firma, porque não há cura a esperar.
+ */
+function isReviewable(method: SoapMethod, status: string): boolean {
+  if (method === "cold_process") return status === "ready";
+  if (method === "melt_and_pour") return status === "made" || status === "ready";
+  return false;
+}
 
 const METHOD_LABELS: Record<SoapMethod, string> = {
   melt_and_pour: "Melt & Pour",
@@ -559,11 +569,12 @@ export default function DiarioPage() {
                   />
                 )}
 
-                {batch.method === "cold_process" && batch.status === "ready" && (
-                  <ColdProcessCureReview
+                {isReviewable(batch.method, batch.status) && (
+                  <BatchReview
                     result={batch.result}
+                    method={batch.method}
                     onSave={(review) => {
-                      updateColdProcessCureReview(batch.id, review);
+                      updateBatchReview(batch.id, review);
                       load();
                     }}
                   />
@@ -578,7 +589,13 @@ export default function DiarioPage() {
                       Marcar Pronto
                     </button>
                   )}
-                  {batch.status === "made" && (
+                  {batch.status === "made" && batch.method === "melt_and_pour" && (
+                    <button onClick={() => handleStatusChange(batch.id, "ready")}
+                      className="text-xs px-3 py-1.5 rounded-lg bg-green-900/30 text-green-300 border border-green-700 hover:bg-green-900/50 transition-colors">
+                      Marcar Pronto
+                    </button>
+                  )}
+                  {batch.status === "made" && batch.method !== "melt_and_pour" && (
                     <button onClick={() => handleStatusChange(batch.id, "curing")}
                       className="text-xs px-3 py-1.5 rounded-lg bg-purple-900/30 text-purple-300 border border-purple-700 hover:bg-purple-900/50 transition-colors">
                       Iniciar Cura
