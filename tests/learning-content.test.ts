@@ -55,6 +55,23 @@ describe("contratos de conteúdo de Cold Process", () => {
     }
   });
 
+  it("dá ao Melt & Pour diagnóstico de defeitos próprio", () => {
+    const mp = learningModules.find((m) => m.slug === "base-glicerinada") as
+      | { defect_diagnosis?: Record<string, string> }
+      | undefined;
+
+    // Defeitos que a Ana acompanha na própria ordem de produção de M&P.
+    for (const defeito of ["suor_glicerina", "retracao", "bolhas", "base_embacada", "aroma_fraco"]) {
+      expect(mp?.defect_diagnosis?.[defeito]).toBeTruthy();
+    }
+
+    // Cada entrada precisa dizer o que fazer, não só nomear o problema.
+    for (const [chave, texto] of Object.entries(mp?.defect_diagnosis ?? {})) {
+      expect(texto.length, chave).toBeGreaterThan(120);
+      expect(texto, chave).toMatch(/Ação|Ação preventiva|Não há correção|Não tem correção/);
+    }
+  });
+
   it("mantém o vínculo receita-módulo em uma única direção", () => {
     // `relatedModuleSlugs` na receita é a fonte de verdade; um `related_recipes`
     // paralelo no módulo divergiria sem nenhum leitor que o mantivesse honesto.

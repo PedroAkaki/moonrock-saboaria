@@ -42,6 +42,7 @@ interface Module {
   quiz?: { id: string; type: string; question: string; options?: string[]; correctAnswer: string | boolean; explanation: string }[];
   beforePracticeChecklist?: string[];
   trace_diagnosis?: Record<string, string>;
+  defect_diagnosis?: Record<string, string>;
 }
 
 const TRACE_LABELS: Record<string, { label: string; color: string }> = {
@@ -55,6 +56,19 @@ const TRACE_LABELS: Record<string, { label: string; color: string }> = {
   seize: { label: "Seize (Travamento)", color: "border-red-600 bg-red-900/15" },
   ricing: { label: "Ricing (Grumos)", color: "border-red-500 bg-red-900/20" },
   gel_parcial: { label: "Gel Parcial", color: "border-purple-600 bg-purple-900/15" },
+};
+
+/** Defeitos de Melt & Pour — cores por natureza do problema, não por gravidade. */
+const DEFECT_LABELS: Record<string, { label: string; color: string }> = {
+  suor_glicerina: { label: "Suor de Glicerina", color: "border-sky-600 bg-sky-900/15" },
+  retracao: { label: "Retração", color: "border-sky-600 bg-sky-900/15" },
+  bolhas: { label: "Bolhas", color: "border-amber-600 bg-amber-900/15" },
+  base_embacada: { label: "Base Embaçada", color: "border-red-600 bg-red-900/15" },
+  aroma_fraco: { label: "Aroma Fraco", color: "border-amber-600 bg-amber-900/15" },
+  camadas_soltas: { label: "Camadas Soltas", color: "border-orange-600 bg-orange-900/15" },
+  corante_sangrando: { label: "Corante Sangrando", color: "border-purple-600 bg-purple-900/15" },
+  aditivo_afundou: { label: "Aditivo Decantou", color: "border-orange-600 bg-orange-900/15" },
+  nao_endurece: { label: "Não Endurece", color: "border-red-600 bg-red-900/15" },
 };
 
 /** Pré-requisitos de prática verificáveis no Diário, por módulo. */
@@ -269,6 +283,27 @@ export default async function ModulePage({ params }: { params: Promise<{ slug: s
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {Object.entries(mod.trace_diagnosis).map(([key, desc]) => {
                 const info = TRACE_LABELS[key] ?? { label: key, color: "border-moon-600 bg-moon-800/50" };
+                return (
+                  <div key={key} className={`rounded-xl border ${info.color} p-3`}>
+                    <p className="text-xs font-bold text-white mb-1">{info.label}</p>
+                    <p className="text-xs text-moon-300 leading-relaxed">{desc}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
+        {/* Defect Diagnosis */}
+        {mod.defect_diagnosis && Object.keys(mod.defect_diagnosis).length > 0 && (
+          <section>
+            <h2 className="text-lg font-semibold text-white mb-1">🩺 Diagnóstico de Defeitos</h2>
+            <p className="text-xs text-moon-400 mb-3">
+              O que a barra mostra, a causa provável e o que fazer. Alguns defeitos só aparecem dias depois do desenforme.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {Object.entries(mod.defect_diagnosis).map(([key, desc]) => {
+                const info = DEFECT_LABELS[key] ?? { label: key, color: "border-moon-600 bg-moon-800/50" };
                 return (
                   <div key={key} className={`rounded-xl border ${info.color} p-3`}>
                     <p className="text-xs font-bold text-white mb-1">{info.label}</p>
