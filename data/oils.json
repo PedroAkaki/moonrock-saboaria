@@ -10,6 +10,15 @@
       "scope": "Valores observados de SAP NaOH, SAP KOH, iodo e INS para cinco óleos-base de Cold Process. As afirmações de evidência distinguem correspondências diretas de divergências editoriais. Não valida perfis graxos, limites de uso, estabilidade ou notas editoriais.",
       "sourceType": "reference_database",
       "publisher": "SoapCalc"
+    },
+    {
+      "id": "soapcalc-oil-chart-2026-07-27",
+      "name": "SoapCalc — Soap Making Oil Chart (reconferência)",
+      "url": "https://soapcalc.net/oil-list",
+      "accessedAt": "2026-07-27",
+      "scope": "Reconferência dos SAPs NaOH e KOH dos cinco óleos-base de Cold Process. Nesta data a página publica apenas os valores de SAP; a tabela com iodo, INS e ácidos graxos não estava acessível nesta rota.",
+      "sourceType": "reference_database",
+      "publisher": "SoapCalc"
     }
   ],
   "oils": [
@@ -20,7 +29,7 @@
       "type": "oleo-liquido",
       "sapNaOH": 0.135,
       "sapKOH": 0.19,
-      "iodine": 80,
+      "iodine": 85,
       "ins": 105,
       "hardness": 2,
       "cleansing": 1,
@@ -57,14 +66,24 @@
                 "sapNaOH": 0.135,
                 "sapKOH": 0.19
               }
+            },
+            {
+              "sourceId": "soapcalc-oil-chart-2026-07-27",
+              "locator": "Soap Making Oil Chart, linha \"Olive Oil\"",
+              "values": {
+                "sapNaOH": 0.135,
+                "sapKOH": 0.19
+              }
             }
           ],
           "status": "supported",
-          "decision": "direct_match",
-          "reviewedAt": "2026-07-21"
+          "decision": "consensus",
+          "reviewedAt": "2026-07-27",
+          "rationale": "Duas consultas à mesma fonte, em datas diferentes, publicaram os mesmos valores."
         },
         {
           "fields": [
+            "iodine",
             "ins"
           ],
           "observations": [
@@ -72,31 +91,14 @@
               "sourceId": "soapcalc-oil-chart-2026-07-21",
               "locator": "Soap Making Oil Chart, linha \"Olive Oil\"",
               "values": {
+                "iodine": 85,
                 "ins": 105
               }
             }
           ],
           "status": "supported",
           "decision": "direct_match",
-          "reviewedAt": "2026-07-21"
-        },
-        {
-          "fields": [
-            "iodine"
-          ],
-          "observations": [
-            {
-              "sourceId": "soapcalc-oil-chart-2026-07-21",
-              "locator": "Soap Making Oil Chart, linha \"Olive Oil\"",
-              "values": {
-                "iodine": 85
-              }
-            }
-          ],
-          "status": "conflicting",
-          "decision": "editorial_default",
-          "rationale": "A fonte publica iodo 85 contra 80 adotado. O MoonRock mantém os valores herdados porque iodo e INS alimentam o score do simulador: corrigir cinco óleos enquanto os outros 34 seguem sem revisão equivalente mudaria as sugestões sem base comparável.",
-          "reviewedAt": "2026-07-21"
+          "reviewedAt": "2026-07-27"
         }
       ],
       "substitutions": [
@@ -149,11 +151,20 @@
                 "sapNaOH": 0.183,
                 "sapKOH": 0.257
               }
+            },
+            {
+              "sourceId": "soapcalc-oil-chart-2026-07-27",
+              "locator": "Soap Making Oil Chart, linha \"Coconut Oil, 76 deg\"",
+              "values": {
+                "sapNaOH": 0.183,
+                "sapKOH": 0.257
+              }
             }
           ],
           "status": "supported",
-          "decision": "direct_match",
-          "reviewedAt": "2026-07-21"
+          "decision": "consensus",
+          "reviewedAt": "2026-07-27",
+          "rationale": "Duas consultas à mesma fonte, em datas diferentes, publicaram os mesmos valores."
         },
         {
           "fields": [
@@ -172,7 +183,7 @@
           ],
           "status": "supported",
           "decision": "direct_match",
-          "reviewedAt": "2026-07-21"
+          "reviewedAt": "2026-07-27"
         }
       ],
       "substitutions": [
@@ -187,7 +198,7 @@
       "type": "gordura-solida",
       "sapNaOH": 0.142,
       "sapKOH": 0.199,
-      "iodine": 52,
+      "iodine": 53,
       "ins": 145,
       "hardness": 4,
       "cleansing": 2,
@@ -225,14 +236,24 @@
                 "sapNaOH": 0.142,
                 "sapKOH": 0.199
               }
+            },
+            {
+              "sourceId": "soapcalc-oil-chart-2026-07-27",
+              "locator": "Soap Making Oil Chart, linha \"Palm Oil\"",
+              "values": {
+                "sapNaOH": 0.142,
+                "sapKOH": 0.199
+              }
             }
           ],
           "status": "supported",
-          "decision": "direct_match",
-          "reviewedAt": "2026-07-21"
+          "decision": "consensus",
+          "reviewedAt": "2026-07-27",
+          "rationale": "Duas consultas à mesma fonte, em datas diferentes, publicaram os mesmos valores."
         },
         {
           "fields": [
+            "iodine",
             "ins"
           ],
           "observations": [
@@ -240,31 +261,14 @@
               "sourceId": "soapcalc-oil-chart-2026-07-21",
               "locator": "Soap Making Oil Chart, linha \"Palm Oil\"",
               "values": {
+                "iodine": 53,
                 "ins": 145
               }
             }
           ],
           "status": "supported",
           "decision": "direct_match",
-          "reviewedAt": "2026-07-21"
-        },
-        {
-          "fields": [
-            "iodine"
-          ],
-          "observations": [
-            {
-              "sourceId": "soapcalc-oil-chart-2026-07-21",
-              "locator": "Soap Making Oil Chart, linha \"Palm Oil\"",
-              "values": {
-                "iodine": 53
-              }
-            }
-          ],
-          "status": "conflicting",
-          "decision": "editorial_default",
-          "rationale": "A fonte publica iodo 53 contra 52 adotado. O MoonRock mantém os valores herdados porque iodo e INS alimentam o score do simulador: corrigir cinco óleos enquanto os outros 34 seguem sem revisão equivalente mudaria as sugestões sem base comparável.",
-          "reviewedAt": "2026-07-21"
+          "reviewedAt": "2026-07-27"
         }
       ],
       "substitutions": [
@@ -316,8 +320,8 @@
       "type": "manteiga",
       "sapNaOH": 0.128,
       "sapKOH": 0.179,
-      "iodine": 60,
-      "ins": 115,
+      "iodine": 59,
+      "ins": 116,
       "hardness": 3,
       "cleansing": 1,
       "conditioning": 5,
@@ -354,11 +358,20 @@
                 "sapNaOH": 0.128,
                 "sapKOH": 0.179
               }
+            },
+            {
+              "sourceId": "soapcalc-oil-chart-2026-07-27",
+              "locator": "Soap Making Oil Chart, linha \"Shea Butter\"",
+              "values": {
+                "sapNaOH": 0.128,
+                "sapKOH": 0.179
+              }
             }
           ],
           "status": "supported",
-          "decision": "direct_match",
-          "reviewedAt": "2026-07-21"
+          "decision": "consensus",
+          "reviewedAt": "2026-07-27",
+          "rationale": "Duas consultas à mesma fonte, em datas diferentes, publicaram os mesmos valores."
         },
         {
           "fields": [
@@ -375,10 +388,9 @@
               }
             }
           ],
-          "status": "conflicting",
-          "decision": "editorial_default",
-          "rationale": "A fonte publica iodo 59 contra 60 adotado e INS 116 contra 115 adotado. O MoonRock mantém os valores herdados porque iodo e INS alimentam o score do simulador: corrigir cinco óleos enquanto os outros 34 seguem sem revisão equivalente mudaria as sugestões sem base comparável.",
-          "reviewedAt": "2026-07-21"
+          "status": "supported",
+          "decision": "direct_match",
+          "reviewedAt": "2026-07-27"
         }
       ],
       "substitutions": [
@@ -429,7 +441,7 @@
       "type": "oleo-liquido",
       "sapNaOH": 0.128,
       "sapKOH": 0.18,
-      "iodine": 85,
+      "iodine": 86,
       "ins": 95,
       "hardness": 1,
       "cleansing": 1,
@@ -466,14 +478,24 @@
                 "sapNaOH": 0.128,
                 "sapKOH": 0.18
               }
+            },
+            {
+              "sourceId": "soapcalc-oil-chart-2026-07-27",
+              "locator": "Soap Making Oil Chart, linha \"Castor Oil\"",
+              "values": {
+                "sapNaOH": 0.128,
+                "sapKOH": 0.18
+              }
             }
           ],
           "status": "supported",
-          "decision": "direct_match",
-          "reviewedAt": "2026-07-21"
+          "decision": "consensus",
+          "reviewedAt": "2026-07-27",
+          "rationale": "Duas consultas à mesma fonte, em datas diferentes, publicaram os mesmos valores."
         },
         {
           "fields": [
+            "iodine",
             "ins"
           ],
           "observations": [
@@ -481,31 +503,14 @@
               "sourceId": "soapcalc-oil-chart-2026-07-21",
               "locator": "Soap Making Oil Chart, linha \"Castor Oil\"",
               "values": {
+                "iodine": 86,
                 "ins": 95
               }
             }
           ],
           "status": "supported",
           "decision": "direct_match",
-          "reviewedAt": "2026-07-21"
-        },
-        {
-          "fields": [
-            "iodine"
-          ],
-          "observations": [
-            {
-              "sourceId": "soapcalc-oil-chart-2026-07-21",
-              "locator": "Soap Making Oil Chart, linha \"Castor Oil\"",
-              "values": {
-                "iodine": 86
-              }
-            }
-          ],
-          "status": "conflicting",
-          "decision": "editorial_default",
-          "rationale": "A fonte publica iodo 86 contra 85 adotado. O MoonRock mantém os valores herdados porque iodo e INS alimentam o score do simulador: corrigir cinco óleos enquanto os outros 34 seguem sem revisão equivalente mudaria as sugestões sem base comparável.",
-          "reviewedAt": "2026-07-21"
+          "reviewedAt": "2026-07-27"
         }
       ],
       "substitutions": []

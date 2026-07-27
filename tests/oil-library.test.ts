@@ -5,6 +5,7 @@ import type { OilEvidenceField, OilsData } from "@/lib/soap/oils";
 const data = oilsData as OilsData;
 const CORE_COLD_PROCESS_IDS = ["azeite", "coco", "palma", "mamona", "karite"];
 const SAP_SOURCE_ID = "soapcalc-oil-chart-2026-07-21";
+const SAP_RECHECK_SOURCE_ID = "soapcalc-oil-chart-2026-07-27";
 
 const NUMERIC_FIELDS: OilEvidenceField[] = ["sapNaOH", "sapKOH", "iodine", "ins"];
 
@@ -21,10 +22,29 @@ describe("evidência da biblioteca de óleos", () => {
 
     for (const oilId of CORE_COLD_PROCESS_IDS) {
       const sapClaim = claimsDe(oilId).find((claim) => claim.fields.includes("sapNaOH"));
-      expect(sapClaim).toMatchObject({ status: "supported", decision: "direct_match" });
+      expect(sapClaim?.status).toBe("supported");
       expect(sapClaim?.fields).toEqual(["sapNaOH", "sapKOH"]);
       expect(sapClaim?.observations[0]).toMatchObject({ sourceId: SAP_SOURCE_ID });
-      expect(sapClaim?.observations[0]?.locator).toBeTruthy();
+      for (const observation of sapClaim?.observations ?? []) {
+        expect(observation.locator).toBeTruthy();
+      }
+    }
+  });
+
+  it("registra a reconferência de SAP como observação datada da mesma fonte", () => {
+    expect(data.sources?.find((candidate) => candidate.id === SAP_RECHECK_SOURCE_ID)).toMatchObject({
+      url: "https://soapcalc.net/oil-list",
+      accessedAt: "2026-07-27",
+    });
+
+    for (const oilId of CORE_COLD_PROCESS_IDS) {
+      const sapClaim = claimsDe(oilId).find((claim) => claim.fields.includes("sapNaOH"));
+      const datas = sapClaim?.observations.map((observation) => observation.sourceId) ?? [];
+      expect(datas).toContain(SAP_SOURCE_ID);
+      expect(datas).toContain(SAP_RECHECK_SOURCE_ID);
+      // Duas consultas independentes concordando é consenso, não uma leitura só.
+      expect(sapClaim?.decision).toBe("consensus");
+      expect(sapClaim?.rationale).toBeTruthy();
     }
   });
 
@@ -83,8 +103,8 @@ describe("evidência da biblioteca de óleos", () => {
         .map((claim) => ({ oil, claim })),
     );
 
-    expect(conflitos.length).toBeGreaterThan(0);
-
+    // A curadoria de 2026-07-27 adotou os valores da fonte, então hoje não há
+    // divergência aberta. A regra continua valendo para qualquer nova.
     for (const { oil, claim } of conflitos) {
       expect(claim.rationale).toBeTruthy();
       expect(["selected_reference", "editorial_default"]).toContain(claim.decision);
@@ -117,21 +137,24 @@ describe("evidência da biblioteca de óleos", () => {
     }
   });
 
-  it("mantém iodo e INS fora do que é exibido como conferido", () => {
+  it("cobre SAP, iodo e INS dos óleos-base com afirmação suportada", () => {
     for (const oilId of CORE_COLD_PROCESS_IDS) {
       const camposSuportados = claimsDe(oilId)
         .filter((claim) => claim.status === "supported")
         .flatMap((claim) => claim.fields);
 
-      expect(camposSuportados).toContain("sapNaOH");
-      expect(camposSuportados).toContain("sapKOH");
+      for (const campo of ["sapNaOH", "sapKOH", "iodine", "ins"]) {
+        expect(camposSuportados).toContain(campo);
+      }
     }
+  });
 
-    // O karité diverge da fonte em iodo e INS: nenhum dos dois pode passar por conferido.
-    const karite = claimsDe("karite")
-      .filter((claim) => claim.status === "supported")
-      .flatMap((claim) => claim.fields);
-    expect(karite).not.toContain("iodine");
-    expect(karite).not.toContain("ins");
+  it("mantém perfil graxo sem afirmação, por falta de fonte numérica", () => {
+    // A auditoria não converteu faixas textuais em números: enquanto isso não
+    // tiver fonte, nenhum óleo pode declarar fattyAcids como revisado.
+    for (const oilId of CORE_COLD_PROCESS_IDS) {
+      const campos = claimsDe(oilId).flatMap((claim) => claim.fields);
+      expect(campos).not.toContain("fattyAcids");
+    }
   });
 });

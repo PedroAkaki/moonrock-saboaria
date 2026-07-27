@@ -62,12 +62,14 @@ bate com o publicado, `conflicting` sem divergência real ou justificativa e
 combinações incompatíveis entre `status`, `decision` e `rationale`, inclusive
 para futuras estimativas.
 
-## Divergências registradas, ainda não aplicadas
+## Divergências de iodo e INS — medidas e aplicadas
 
-A mesma fonte possui um conjunto estruturado de iodo, INS e oito ácidos graxos.
-A comparação encontrou diferenças pequenas nos dados consumidos atualmente:
+Atualizado em 2026-07-27.
 
-| Óleo | MoonRock: iodo / INS | SoapCalc: iodo / INS |
+A comparação de 2026-07-21 encontrou diferenças pequenas entre os valores
+consumidos e os publicados pela fonte:
+
+| Óleo | Antes: iodo / INS | Fonte e valor adotado |
 | --- | --- | --- |
 | Azeite | 80 / 105 | 85 / 105 |
 | Coco 76° | 10 / 258 | 10 / 258 |
@@ -75,16 +77,49 @@ A comparação encontrou diferenças pequenas nos dados consumidos atualmente:
 | Mamona | 85 / 95 | 86 / 95 |
 | Karité | 60 / 115 | 59 / 116 |
 
-Essas diferenças não foram aplicadas porque iodo e INS participam do score do
-simulador. Alterar apenas os cinco itens mudaria sugestões enquanto os outros
-34 continuariam sem revisão equivalente. O próximo passo deve ser uma decisão
-de migração comparável e testada, não correções avulsas.
+Elas não foram aplicadas na época com um motivo declarado: iodo e INS entram no
+score do simulador, e mudar cinco itens enquanto 34 seguem sem revisão poderia
+alterar sugestões sem base comparável. O passo pedido era **medir** antes de
+decidir.
 
-Desde a evolução do modelo, essa tabela deixou de viver só aqui: cada
-divergência está registrada em `data/oils.json` como afirmação `conflicting`
-com `decision: "editorial_default"`, e a Biblioteca de Óleos avisa, no card do
-óleo, que a fonte publica valor diferente do adotado. O selo "SAP conferido"
-continua restrito às afirmações `supported`.
+### A medição
+
+Comparou-se a saída de `suggestOilBlend` com os valores antigos e com os da
+fonte, em 150 combinações de óleos (todos os subconjuntos de 1 a 4 entre os
+cinco curados, além de pares curados combinados com doze óleos externos)
+contra as três metas do simulador — 450 cenários.
+
+- **Sugestões que mudariam: 0 de 450.**
+- Maior variação de iodo em um perfil sugerido: 5,0.
+- Maior variação de INS em um perfil sugerido: 0,2.
+
+O motivo do adiamento não se sustentou na medição: a diferença é pequena
+demais para deslocar qualquer sugestão. Só o INS do karité muda (115 → 116); os
+demais INS já coincidiam, e as diferenças de iodo ficam entre 1 e 5 pontos.
+
+### A decisão
+
+Os valores da fonte foram adotados. As afirmações de iodo e INS passaram de
+`conflicting` para `supported` com `direct_match`, e a Biblioteca de Óleos
+deixou de exibir aviso de divergência — não porque o aviso foi removido, mas
+porque não há mais divergência a avisar.
+
+Isso não estende a revisão a `maxPercent`, estabilidade, DOS, notas editoriais
+ou perfil de ácidos graxos, que seguem sem proveniência.
+
+## Reconferência de SAP e volatilidade da fonte
+
+Em 2026-07-27 os SAPs dos cinco óleos foram consultados de novo na mesma URL e
+coincidiram com os valores adotados. A afirmação de SAP passou a ter duas
+observações datadas e `decision: "consensus"`.
+
+A reconsulta revelou algo que justifica datar cada acesso: **nessa data a página
+publicava apenas os valores de SAP**. A tabela com iodo, INS e os oito ácidos
+graxos não estava acessível naquela rota, embora estivesse em 2026-07-21. Uma
+fonte web muda sem aviso; por isso `accessedAt` e `locator` não são burocracia.
+
+Consequência prática: as observações de iodo e INS continuam apontando para o
+acesso de 2026-07-21, que é o registro rastreável de onde os números vieram.
 
 ## Inventário observado
 
@@ -119,6 +154,18 @@ graxos:
 Portanto, converter agora esses textos em médias arbitrárias daria uma falsa
 precisão. Também não é adequado combinar a escala editorial atual com um eixo
 de ácidos graxos incompleto e chamá-lo de melhoria do score.
+
+**Tentativa de curadoria em 2026-07-27, sem sucesso.** A curadoria dos oito
+ácidos graxos para os cinco óleos-base foi tentada e não foi concluída: a fonte
+já citada não expunha a tabela de ácidos graxos naquela data, e nenhuma outra
+fonte rastreável foi consultada. Preencher os valores sem fonte seria
+exatamente a falsa precisão que esta auditoria existe para evitar, então os
+perfis seguem como faixas textuais e um teste garante que nenhum óleo declare
+`fattyAcids` como revisado.
+
+Para destravar, é preciso escolher uma fonte que publique o perfil completo
+(por exemplo uma base de composição de alimentos ou literatura técnica), e não
+apenas outra calculadora de sabão que republique os mesmos números sem origem.
 
 ## Dados por finalidade
 
