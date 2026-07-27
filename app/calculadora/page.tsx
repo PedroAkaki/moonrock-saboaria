@@ -27,6 +27,7 @@ const TOOLTIPS = {
   ins: "Índice empírico usado por calculadoras de sabão para comparar fórmulas. Faixas de referência ajudam, mas não são medição laboratorial nem garantia de qualidade.",
   dos: "Risco de oxidação/rancidez, especialmente com óleos insaturados, superfat alto, matéria-prima velha ou armazenamento ruim.",
   forma: "Volume estimado da forma. A calculadora converte cm³ em massa aproximada de sabão, mas o rendimento real varia com fórmula, água e perdas.",
+  qualities: "Notas de 0 a 5 atribuídas a cada óleo pela curadoria do MoonRock, combinadas pela proporção da fórmula. Não são os números do SoapCalc calculados a partir de ácidos graxos; servem para comparar receitas, não para prever o resultado da bancada.",
 };
 
 export default function CalculadoraPage() {
@@ -554,6 +555,35 @@ export default function CalculadoraPage() {
                 </div>
               </div>
 
+              {/* Estimated bar qualities (0–5 editorial scale) */}
+              <div className="bg-moon-700 rounded-lg p-4 border border-moon-600">
+                <h3 className="font-semibold text-moon-200 mb-1 flex items-center gap-1.5">
+                  Qualidades estimadas da barra
+                  <InfoTooltip text={TOOLTIPS.qualities} />
+                </h3>
+                <p className="text-xs text-moon-500 mb-3">
+                  Média ponderada das notas 0–5 de cada óleo. Comparativo entre fórmulas, não previsão de bancada.
+                </p>
+                <div className="space-y-1.5">
+                  {[
+                    { label: "Dureza", value: result.qualities.hardness, color: "bg-blue-500" },
+                    { label: "Limpeza", value: result.qualities.cleansing, color: "bg-green-500" },
+                    { label: "Condicionamento", value: result.qualities.conditioning, color: "bg-purple-500" },
+                    { label: "Espuma", value: result.qualities.bubbly, color: "bg-amber-500" },
+                    { label: "Cremosidade", value: result.qualities.creamy, color: "bg-pink-500" },
+                  ].map((prop) => (
+                    <div key={prop.label} className="flex items-center gap-2">
+                      <span className="text-xs text-moon-400 w-32">{prop.label}</span>
+                      <div className="flex-1 h-2 bg-moon-800 rounded-full overflow-hidden">
+                        <div className={`h-full ${prop.color} rounded-full transition-all`}
+                          style={{ width: `${(prop.value / 5) * 100}%` }} />
+                      </div>
+                      <span className="text-xs text-moon-300 w-8 text-right font-mono">{prop.value.toFixed(1)}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               {/* Step-by-step calculation */}
               <details className="group">
                 <summary className="text-sm font-semibold text-moon-300 cursor-pointer hover:text-white transition-colors list-none flex items-center gap-2">
@@ -626,8 +656,7 @@ export default function CalculadoraPage() {
 
               {/* Heuristic disclaimer */}
               <div className="bg-moon-800 border border-moon-500 rounded-lg p-3 text-xs text-moon-400 leading-relaxed">
-                INS, dureza, limpeza, espuma e condicionamento são <strong>estimativas heurísticas</strong> baseadas no perfil de ácidos graxos. 
-                Ajudam na formulação, mas não substituem teste prático, cura adequada e avaliação do lote.
+                O INS é um índice empírico; dureza, limpeza, espuma, condicionamento e cremosidade são <strong>notas editoriais 0–5</strong> por óleo, ponderadas pela fórmula. São <strong>estimativas para comparar receitas</strong>, não medição laboratorial nem substituto de teste prático, cura adequada e avaliação do lote.
               </div>
 
               {/* Save to diary */}

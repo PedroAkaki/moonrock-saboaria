@@ -11,6 +11,22 @@ export interface CalculatorInput {
   waterRatio: number;
 }
 
+/**
+ * Estimativa das qualidades sensoriais da barra, na escala editorial 0–5 do
+ * MoonRock. NÃO são os números 0–100 calculados pelo SoapCalc a partir de
+ * ácidos graxos: aqui é a média das notas ordinais de cada óleo, ponderada
+ * pelo percentual. Serve para comparar fórmulas, não para prever a bancada.
+ */
+export interface RecipeQualities {
+  hardness: number;
+  cleansing: number;
+  conditioning: number;
+  bubbly: number;
+  creamy: number;
+}
+
+export const QUALITY_KEYS = ["hardness", "cleansing", "conditioning", "bubbly", "creamy"] as const;
+
 export interface CalculatorResult {
   oils: { oilId: string; name: string; grams: number; percentage: number }[];
   totalOilsGrams: number;
@@ -22,6 +38,8 @@ export interface CalculatorResult {
   waterRatio: number;
   /** INS number of the recipe — ideal range: 136-170 */
   ins: number;
+  /** Qualidades estimadas na escala editorial 0–5, ponderadas pelo percentual. */
+  qualities: RecipeQualities;
   /** Per-oil breakdown of NaOH contribution */
   naohPerOil: { oilId: string; name: string; grams: number; sapNaoh: number; naoh: number; naohBeforeSuperfat: number }[];
 }
@@ -148,8 +166,44 @@ export function validateFormulaWarnings(
 }
 
 /**
+ * Média ponderada das qualidades editoriais (escala 0–5), normalizada pelo
+ * percentual dos óleos encontrados na biblioteca. Óleos ausentes não diluem o
+ * resultado. A ordem dos óleos na entrada não altera a saída.
+ */
+export function calculateRecipeQualities(
+  input: CalculatorInput,
+  oilLibrary: Oil[]
+): RecipeQualities {
+  const oilMap = new Map(oilLibrary.map((o) => [o.id, o]));
+
+  let totalPercent = 0;
+  const totals: Record<(typeof QUALITY_KEYS)[number], number> = {
+    hardness: 0,
+    cleansing: 0,
+    conditioning: 0,
+    bubbly: 0,
+    creamy: 0,
+  };
+
+  for (const entry of input.oils) {
+    const oil = oilMap.get(entry.oilId);
+    if (!oil) continue;
+    totalPercent += entry.percentage;
+    for (const key of QUALITY_KEYS) {
+      totals[key] += oil[key] * entry.percentage;
+    }
+  }
+
+  const result = {} as RecipeQualities;
+  for (const key of QUALITY_KEYS) {
+    result[key] = totalPercent > 0 ? +(totals[key] / totalPercent).toFixed(1) : 0;
+  }
+  return result;
+}
+
+/**
  * Calculate NaOH and water amounts for a soap recipe.
- * 
+ *
  * Formula:
  *   NaOH_bruto = Σ (gramas_óleo_i × SAP_NaOH_i)
  *   NaOH_final = NaOH_bruto × (1 - superfat/100)
@@ -215,6 +269,7 @@ export function calculateSoap(
     superfatPercent: input.superfat,
     waterRatio: input.waterRatio,
     ins,
+    qualities: calculateRecipeQualities(input, oilLibrary),
     naohPerOil,
   };
 }
