@@ -41,6 +41,30 @@ export const ESTIMATED_QUALITY_KEYS = [
   "creamy",
 ] as const;
 
+/**
+ * Momentos em que a barra é avaliada. Uma barra muda ao longo do tempo:
+ * endurece, o aroma se fixa ou some, e o suor de glicerina só aparece dias
+ * depois — então uma nota só não conta a história.
+ */
+export type EvaluationMoment = "unmold" | "day7" | "day30" | "in_use";
+
+export const EVALUATION_MOMENTS = ["unmold", "day7", "day30", "in_use"] as const;
+
+/**
+ * Avaliação sensorial da barra pronta, nos MESMOS eixos que a Calculadora
+ * estima. É o que permite comparar expectativa e resultado ao longo do tempo.
+ * Cada eixo é opcional: nem tudo dá para julgar em todo momento.
+ */
+export interface BatchSensoryEvaluation {
+  /** Data da avaliação, em YYYY-MM-DD. */
+  evaluatedAt: string;
+  moment: EvaluationMoment;
+  scores: Partial<EstimatedQualities>;
+  /** Suor de glicerina observado: 0 = nenhum, 5 = intenso. Escala direta. */
+  sweating?: number;
+  notes?: string;
+}
+
 export interface Batch {
   id: string;
   batchCode: string;
@@ -96,6 +120,8 @@ export interface Batch {
     rating?: 1 | 2 | 3 | 4 | 5;
     wouldRepeat?: boolean;
     failureReason?: string;
+    /** Avaliações sensoriais registradas ao longo do tempo. */
+    evaluations?: BatchSensoryEvaluation[];
   };
   status: BatchStatus;
   tags?: string[];
@@ -291,6 +317,29 @@ function validateCure(value: unknown): string | null {
   return null;
 }
 
+function validateSensoryEvaluation(value: unknown, path: string): string | null {
+  if (!isRecord(value)) return `${path} deve ser um objeto.`;
+  if (typeof value.evaluatedAt !== "string" || value.evaluatedAt.length === 0) {
+    return `${path}.evaluatedAt deve ser texto não vazio.`;
+  }
+  if (typeof value.moment !== "string" || !EVALUATION_MOMENTS.includes(value.moment as EvaluationMoment)) {
+    return `${path}.moment não é reconhecido.`;
+  }
+  if (!isRecord(value.scores)) return `${path}.scores deve ser um objeto.`;
+  for (const key of ESTIMATED_QUALITY_KEYS) {
+    const score = (value.scores as Record<string, unknown>)[key];
+    if (score === undefined) continue;
+    if (!isFiniteNumber(score)) return `${path}.scores.${key} deve ser um número.`;
+    if (score < 0 || score > 5) return `${path}.scores.${key} deve estar entre 0 e 5.`;
+  }
+  if (value.sweating !== undefined) {
+    if (!isFiniteNumber(value.sweating)) return `${path}.sweating deve ser um número.`;
+    if (value.sweating < 0 || value.sweating > 5) return `${path}.sweating deve estar entre 0 e 5.`;
+  }
+  if (!optionalString(value.notes)) return `${path}.notes deve ser texto.`;
+  return null;
+}
+
 function validateResult(value: unknown): string | null {
   if (value === undefined) return null;
   if (!isRecord(value)) return "result deve ser um objeto.";
@@ -303,6 +352,13 @@ function validateResult(value: unknown): string | null {
     return "result.wouldRepeat deve ser booleano.";
   }
   if (!optionalString(value.failureReason)) return "result.failureReason deve ser texto.";
+  if (value.evaluations !== undefined) {
+    if (!Array.isArray(value.evaluations)) return "result.evaluations deve ser uma lista.";
+    for (let index = 0; index < value.evaluations.length; index += 1) {
+      const error = validateSensoryEvaluation(value.evaluations[index], `result.evaluations[${index}]`);
+      if (error) return error;
+    }
+  }
   return null;
 }
 

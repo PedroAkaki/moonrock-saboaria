@@ -1,6 +1,8 @@
 import {
   BATCH_STORAGE_KEY,
+  EVALUATION_MOMENTS,
   validateBatch,
+  type BatchSensoryEvaluation,
   type BatchStatus,
   type CreateBatchInput,
   type SoapMethod,
@@ -345,6 +347,43 @@ export function updateDiaryBatch(id: string, patch: UpdateDiaryBatchInput): Stor
   next[index] = updated;
   saveStoredBatches(next);
   return updated;
+}
+
+/**
+ * Acrescenta uma avaliação sensorial ao lote. Avaliações se acumulam: a barra
+ * muda com o tempo, então cada momento é um registro novo, não uma correção do
+ * anterior. Uma segunda avaliação no mesmo momento substitui a primeira.
+ */
+export function addBatchEvaluation(
+  id: string,
+  evaluation: BatchSensoryEvaluation,
+): StoredBatch | null {
+  const stored = readStoredBatches();
+  throwForInvalidStorage(stored);
+  const index = stored.data.findIndex((batch) => batch.id === id);
+  if (index === -1 || !REVIEWABLE_METHODS.includes(stored.data[index].method)) return null;
+
+  const current = stored.data[index];
+  const batch = isBatchV2(current) ? current : normalizeStoredBatchV1(current);
+  const anteriores = (batch.result?.evaluations ?? []).filter(
+    (item) => item.moment !== evaluation.moment,
+  );
+  const evaluations = [...anteriores, evaluation].sort((left, right) =>
+    EVALUATION_MOMENTS.indexOf(left.moment) - EVALUATION_MOMENTS.indexOf(right.moment),
+  );
+
+  const updated: BatchV2 = {
+    ...batch,
+    result: { ...(batch.result ?? {}), evaluations },
+    updatedAt: new Date().toISOString(),
+  };
+  const decoded = decodeStoredBatchV2(updated);
+  if (!decoded.success) throw new Error(`Não foi possível registrar a avaliação: ${decoded.reason}`);
+
+  const next = [...stored.data];
+  next[index] = decoded.data;
+  saveStoredBatches(next);
+  return decoded.data;
 }
 
 /**

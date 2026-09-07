@@ -14,6 +14,7 @@ import {
   generateDiaryBatchCode,
   getDiaryBatches,
   isBatchV2,
+  addBatchEvaluation,
   updateBatchReview,
   updateDiaryBatch,
   updateDiaryBatchStatus,
@@ -33,6 +34,7 @@ import {
 import ColdProcessFields from "@/components/ColdProcessFields";
 import { BatchReview } from "@/components/BatchReview";
 import EstimatedQualitiesSummary from "@/components/EstimatedQualitiesSummary";
+import SensoryEvaluation from "@/components/SensoryEvaluation";
 
 const STATUS_LABELS: Record<string, string> = {
   draft: "Rascunho",
@@ -566,6 +568,18 @@ export default function DiarioPage() {
                   <EstimatedQualitiesSummary
                     qualities={batch.formula.estimatedQualities}
                     rating={batch.result?.rating}
+                  />
+                )}
+
+                {isReviewable(batch.method, batch.status) && (
+                  <SensoryEvaluation
+                    method={batch.method}
+                    estimated={batch.formula.estimatedQualities}
+                    evaluations={batch.result?.evaluations}
+                    onSave={(evaluation) => {
+                      addBatchEvaluation(batch.id, evaluation);
+                      load();
+                    }}
                   />
                 )}
 

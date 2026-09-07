@@ -1,10 +1,13 @@
 import {
   ESTIMATED_QUALITY_KEYS,
+  EVALUATION_MOMENTS,
   validateBatch,
   type BatchAdditive,
   type BatchOil,
   type BatchStatus,
+  type BatchSensoryEvaluation,
   type EstimatedQualities,
+  type EvaluationMoment,
   type SoapMethod,
 } from "@/lib/diario";
 import {
@@ -245,6 +248,40 @@ function parseYield(value: unknown): DecodeResult<BatchYield | undefined> {
   });
 }
 
+function parseSensoryEvaluation(value: unknown, path: string): DecodeResult<BatchSensoryEvaluation> {
+  if (!isRecord(value)) return fail(`${path} deve ser um objeto.`);
+  if (typeof value.evaluatedAt !== "string" || value.evaluatedAt.length === 0) {
+    return fail(`${path}.evaluatedAt deve ser texto não vazio.`);
+  }
+  if (typeof value.moment !== "string" || !EVALUATION_MOMENTS.includes(value.moment as EvaluationMoment)) {
+    return fail(`${path}.moment não é reconhecido.`);
+  }
+  if (!isRecord(value.scores)) return fail(`${path}.scores deve ser um objeto.`);
+
+  const scores: Partial<EstimatedQualities> = {};
+  for (const key of ESTIMATED_QUALITY_KEYS) {
+    const score = (value.scores as Record<string, unknown>)[key];
+    if (score === undefined) continue;
+    if (!isFiniteNumber(score)) return fail(`${path}.scores.${key} deve ser um número.`);
+    if (score < 0 || score > 5) return fail(`${path}.scores.${key} deve estar entre 0 e 5.`);
+    scores[key] = score;
+  }
+
+  if (value.sweating !== undefined) {
+    if (!isFiniteNumber(value.sweating)) return fail(`${path}.sweating deve ser um número.`);
+    if (value.sweating < 0 || value.sweating > 5) return fail(`${path}.sweating deve estar entre 0 e 5.`);
+  }
+  if (value.notes !== undefined && typeof value.notes !== "string") return fail(`${path}.notes deve ser texto.`);
+
+  return ok({
+    evaluatedAt: value.evaluatedAt,
+    moment: value.moment as EvaluationMoment,
+    scores,
+    ...(value.sweating === undefined ? {} : { sweating: value.sweating as number }),
+    ...(value.notes === undefined ? {} : { notes: value.notes as string }),
+  });
+}
+
 function parseResult(value: unknown): DecodeResult<BatchResult | undefined> {
   if (value === undefined) return ok(undefined);
   if (!isRecord(value)) return fail("result deve ser um objeto.");
@@ -255,12 +292,25 @@ function parseResult(value: unknown): DecodeResult<BatchResult | undefined> {
   }
   if (value.wouldRepeat !== undefined && typeof value.wouldRepeat !== "boolean") return fail("result.wouldRepeat deve ser booleano.");
   if (value.failureReason !== undefined && typeof value.failureReason !== "string") return fail("result.failureReason deve ser texto.");
+
+  let evaluations: BatchSensoryEvaluation[] | undefined;
+  if (value.evaluations !== undefined) {
+    if (!Array.isArray(value.evaluations)) return fail("result.evaluations deve ser uma lista.");
+    evaluations = [];
+    for (let index = 0; index < value.evaluations.length; index += 1) {
+      const parsed = parseSensoryEvaluation(value.evaluations[index], `result.evaluations[${index}]`);
+      if (!parsed.success) return parsed;
+      evaluations.push(parsed.data);
+    }
+  }
+
   return ok({
     ...(value.ph === undefined ? {} : { ph: value.ph }),
     ...(value.observations === undefined ? {} : { observations: value.observations }),
     ...(value.rating === undefined ? {} : { rating: value.rating }),
     ...(value.wouldRepeat === undefined ? {} : { wouldRepeat: value.wouldRepeat }),
     ...(value.failureReason === undefined ? {} : { failureReason: value.failureReason }),
+    ...(evaluations === undefined ? {} : { evaluations }),
   });
 }
 
